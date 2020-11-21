@@ -1,51 +1,88 @@
 <html>
     <head>
         <title>NanoVNA Control Panel</title>
+        <style>
+        table {
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        </style>
     </head>
     <body>
         <h1>NanoVNA Control Panel</h1>
-        <p>The NanoVNA is connected.</p>
-        <form>
-            <label for="start_freq">Start Frequency in Megahertz</label>
-            <input type="text" id="start_freq"/>
-            <label for="end_freq">End Frequency in Megahertz</label>
-            <input type="text" id="end_freq"/>
-            <label for="step">Step in Megahertz</label>
-            <input type="text" id="step"/>
+        <p>The NanoVNA is connected</p>
+        <form method="post" action="/">
+            <label for="s1">Start Frequency in Megahertz</label>
+            <input type="text" id="s1" name="start_frequency_mhz" value="7"/>
+            <label for="s2">End Frequency in Megahertz</label>
+            <input type="text" id="s2" name="end_frequency_mhz" value="7.3"/>
+            <label for="s3">Step in Megahertz</label>
+            <input type="text" id="s3" name="step_frequency_mhz" value="0.025"/>
             <button>Sweep</button>
         </form>
         <table>
-            <caption>Sweep result</caption>
+            <caption>VSWR Sweep</caption>
             <thead>
                 <tr>
-                    <th>28.300</th>
-                    <th>28.310</th>
-                    <th>28.320</th>
-                    <th>28.330</th>
-                    <th>28.340</th>
-                    <th>28.350</th>
-                    <th>28.360 best match</th>
-                    <th>28.370</th>
-                    <th>28.380</th>
-                    <th>28.390</th>
-                    <th>28.400</th>
+                    
+                    <th>7.000</th>
+                    
+                    <th>7.025</th>
+                    
+                    <th>7.050</th>
+                    
+                    <th>7.075 best match</th>
+                    
+                    <th>7.100</th>
+                    
+                    <th>7.125</th>
+                    
+                    <th>7.150</th>
+                    
+                    <th>7.175</th>
+                    
+                    <th>7.200</th>
+                    
+                    <th>7.225</th>
+                    
+                    <th>7.250</th>
+                    
+                    <th>7.275</th>
+                    
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>2.10</td>
-                    <td>2.05</td>
-                    <td>2.00</td>
-                    <td>1.75</td>
-                    <td>1.70</td>
-                    <td>1.50</td>
-                    <td>1.30 best match</td>
-                    <td>1.35</td>
-                    <td>1.55</td>
-                    <td>1.70</td>
-                    <td>1.80</td>
+                    
+                    <td> 1.01</td>
+                    
+                    <td> 1.01</td>
+                    
+                    <td> 1.01</td>
+                    
+                    <td> 1.01 best match</td>
+                    
+                    <td> 1.01</td>
+                    
+                    <td> 1.01</td>
+                    
+                    <td> 1.01</td>
+                    
+                    <td> 1.01</td>
+                    
+                    <td> 1.01</td>
+                    
+                    <td> 1.01</td>
+                    
+                    <td> 1.01</td>
+                    
+                    <td> 1.01</td>
+                    
                 </tr>
             </tbody>
         </table>
+        <p>NanoVNA voltage is 4.2 volts</p>
     </body>
 </html>
