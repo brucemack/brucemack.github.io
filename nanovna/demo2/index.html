@@ -6,7 +6,7 @@ function setupTabNavigation(tabs) {
     $(tabs).focus(function(event) {
         $(this).find("[role='tablist']").find("[aria-selected='true']").focus();
     });
-    $(tabs).find("button").keydown(function(event) {
+    $(tabs).find("[role='tab']").keydown(function(event) {
         if (event.which == 37 || event.which == 39) {
             var selectedEl = $(this).closest("[role='tablist']").find("[aria-selected='true']")
             // Unselect the current tab
@@ -50,7 +50,7 @@ function setupTabNavigation(tabs) {
     });
     // This event handler is to control which tab panel is visible
     // when moving between tab controls.
-    $(tabs).find("button").focus(function(event) {
+    $(tabs).find("[role='tab']").focus(function(event) {
         controlsId = $(this).attr("aria-controls")
         // Search up
         var tabsDiv = $(this).closest(".tabs")
@@ -101,9 +101,79 @@ $(document).ready(function() {
                  role="tabpanel"
                  id="sweep-tab"
                  aria-labelledby="sweep-control">
-              <p>
-                Nils Frahm is a German musician, composer and record producer based in Berlin. He is known for combining classical and electronic music and for an unconventional approach to the piano in which he mixes a grand piano, upright piano, Roland Juno-60, Rhodes piano, drum machine, and Moog Taurus.
-              </p>
+                 <h1>NanoVNA Control Panel</h1>
+                 <p>The NanoVNA is connected</p>
+                 <form method="get" action="/nanovna/demo1">
+                     <label for="s1">Start Frequency in Megahertz</label>
+                     <input type="text" id="s1" name="start_frequency_mhz" value="7"/>
+                     <label for="s2">End Frequency in Megahertz</label>
+                     <input type="text" id="s2" name="end_frequency_mhz" value="7.3"/>
+                     <label for="s3">Step in Megahertz</label>
+                     <input type="text" id="s3" name="step_frequency_mhz" value="0.025"/>
+                     <button>Sweep</button>
+                 </form>
+                 <table>
+                     <caption>VSWR Sweep Results</caption>
+                     <thead>
+                         <tr>
+                             
+                             <th>7.000</th>
+                             
+                             <th>7.025</th>
+                             
+                             <th>7.050</th>
+                             
+                             <th>7.075</th>
+                             
+                             <th>7.100</th>
+                             
+                             <th>7.125</th>
+                             
+                             <th>7.150</th>
+                             
+                             <th>7.175</th>
+                             
+                             <th>7.200</th>
+                             
+                             <th>7.225 best match</th>
+                             
+                             <th>7.250</th>
+                             
+                             <th>7.275</th>
+                             
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr>
+                             
+                             <td> 2.46</td>
+                             
+                             <td> 2.30</td>
+                             
+                             <td> 2.14</td>
+                             
+                             <td> 1.97</td>
+                             
+                             <td> 1.83</td>
+                             
+                             <td> 1.68</td>
+                             
+                             <td> 1.53</td>
+                             
+                             <td> 1.42</td>
+                             
+                             <td> 1.31</td>
+                             
+                             <td> 1.19 best match</td>
+                             
+                             <td> 1.19</td>
+                             
+                             <td> 1.19</td>
+                             
+                         </tr>
+                     </tbody>
+                 </table>
+                 <p>NanoVNA voltage is 4.2 volts</p>
             </div>
             <div tabindex="0"
                  role="tabpanel"
