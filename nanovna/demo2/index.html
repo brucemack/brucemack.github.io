@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <script src="jquery-3.5.1.min.js"></script>
+        <script>
+function setupTabNavigation(tabs) {
+    $(tabs).focus(function(event) {
+        $(this).find("[role='tablist']").find("[aria-selected='true']").focus();
+    });
+    $(tabs).find("button").keydown(function(event) {
+        if (event.which == 37 || event.which == 39) {
+            var selectedEl = $(this).closest("[role='tablist']").find("[aria-selected='true']")
+            // Unselect the current tab
+            $(selectedEl).attr("aria-selected", "false")
+            // Remove from tab rotation
+            $(selectedEl).attr("tabindex", "-1")
+            // Right arrow
+            if (event.which == 39) {
+                // Is there a next sibling? If so focus, if not wrap to the first
+                if ($(selectedEl).next().length != 0) {
+                    targetEl = $(selectedEl).next()
+                } else {
+                    targetEl = $(this).closest("[role='tablist']").children().first()
+                }
+            }
+            // Left arrow 
+            else {
+                // Is there a previous sibling?  If so focus, if not wrap to the lset
+                if ($(selectedEl).prev().length != 0) {
+                    targetEl = $(selectedEl).prev()
+                } else {
+                    targetEl = $(this).closest("[role='tablist']").children().last()
+                }
+            }
+            // Select the new tab
+            $(targetEl).attr("aria-selected", "true")
+            // Add into tab rotation so that when someone back-tabs out of 
+            // the tabpanel then end up on the selected tab control.
+            $(targetEl).attr("tabindex", "0")
+            $(targetEl).focus()
+            return false
+        } else if (event.which == 9) {
+            // Search up to find the parent tabs
+            var tabsDiv = $(this).closest(".tabs")
+            controlsId = $(this).attr("aria-controls")
+            $(tabsDiv).find("#" + controlsId).focus()
+            return false
+        } else {
+            return true;
+        }
+    });
+    // This event handler is to control which tab panel is visible
+    // when moving between tab controls.
+    $(tabs).find("button").focus(function(event) {
+        controlsId = $(this).attr("aria-controls")
+        // Search up
+        var tabsDiv = $(this).closest(".tabs")
+        // Hide all
+        $(tabsDiv).find("[role=tabpanel]").hide()
+        // Show the selection
+        $(tabsDiv).find("#" + controlsId).show()
+    });
+}
+
+$(document).ready(function() {
+    setupTabNavigation($(".tabs"))
+});
+        </script>
+    </head>
+    <body>
+        <div class="tabs" tabindex="0">
+            <div class="tablist" role="tablist" aria-label="Entertainment">
+              <button role="tab"
+                      aria-selected="true"
+                      aria-controls="sweep-tab"
+                      id="sweep-control">
+                Sweep
+              </button>
+              <button role="tab"
+                      aria-selected="false"
+                      aria-controls="agnes-tab"
+                      id="agnes"
+                      tabindex="-1">
+                Complex Sweep
+              </button>
+              <button role="tab"
+                      aria-selected="false"
+                      aria-controls="complexcomplex"
+                      id="complex"
+                      tabindex="-1">
+                Calibration
+              </button>
+              <button role="tab"
+                      aria-selected="false"
+                      aria-controls="complexcomplex"
+                      id="complex"
+                      tabindex="-1">
+                Administration
+              </button>
+            </div>
+            <div tabindex="0"
+                 role="tabpanel"
+                 id="sweep-tab"
+                 aria-labelledby="sweep-control">
+              <p>
+                Nils Frahm is a German musician, composer and record producer based in Berlin. He is known for combining classical and electronic music and for an unconventional approach to the piano in which he mixes a grand piano, upright piano, Roland Juno-60, Rhodes piano, drum machine, and Moog Taurus.
+              </p>
+            </div>
+            <div tabindex="0"
+                 role="tabpanel"
+                 id="agnes-tab"
+                 aria-labelledby="agnes"
+                 hidden="">
+              <p>
+                Agnes Caroline Thaarup Obel is a Danish singer/songwriter. Her first album, Philharmonics, was released by PIAS Recordings on 4 October 2010 in Europe. Philharmonics was certified gold in June 2011 by the Belgian Entertainment Association (BEA) for sales of 10,000 Copies.
+              </p>
+            </div>
+            <div tabindex="0"
+                 role="tabpanel"
+                 id="complexcomplex"
+                 aria-labelledby="complex"
+                 hidden="">
+              <p>
+                Fear of complicated buildings:
+              </p>
+              <p>
+                A complex complex complex.
+              </p>
+            </div>
+        </div>          
+    </body>
+</html>
