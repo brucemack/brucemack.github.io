@@ -14,5 +14,5 @@ function tick() {
     }
 }
 
-window.setInterval(tick, 2000);
+window.setInterval(tick, 10000);
 
