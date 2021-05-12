@@ -1,0 +1,85 @@
+BODY {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+}
+
+.orange-text {
+    color: #fb9b2b;
+}
+
+.red-text {
+    color: #df2645;
+}
+
+.green-text {
+    color: #4eee6e;
+}
+
+.number {
+    text-align: right;
+}
+
+.cont {
+    padding: 4px;
+}
+
+TABLE {
+    font-size: 14px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+THEAD {
+
+}
+
+TBODY {
+    overflow-y: hidden;
+}
+
+THEAD TR {
+    line-height: 22px;
+}
+
+TBODY TR {
+    line-height: 18px;
+}
+
+TH {
+    font-size: 12px;
+    background-color: black;
+    color: #bbbbbb;
+    top: 0px;
+    position: sticky;
+}
+
+TH:nth-child(1) {
+    width: 45%;
+}
+
+TH:nth-child(2) {
+    width: 13%;
+}
+
+TH:nth-child(3) {
+    width: 13%;
+}
+
+TH:nth-child(4) {
+    width: 13%;
+}
+
+TH:nth-child(5) {
+    width: 13%;
+}
+
+TBODY TR TD {
+    border: 1px solid #222222;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
