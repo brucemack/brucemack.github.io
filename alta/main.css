@@ -80,9 +80,25 @@ THEAD TR TH:nth-child(6) {
     width: 50px;
 }
 
+TBODY TR TH,
 TBODY TR TD {
+    font-weight: normal;
     border: 1px solid #222222;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+table thead th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+}
+
+table tbody th {
+    position: sticky;
+    left: 0;
+    background: black;
+    z-index: 1;
+    text-align: left;
 }
