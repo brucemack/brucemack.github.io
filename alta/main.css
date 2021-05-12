@@ -30,11 +30,10 @@ TABLE {
     font-size: 14px;
     border-collapse: collapse;
     table-layout: fixed;
-    width: 100%;
+    width: 420px;
 }
 
 THEAD {
-
 }
 
 TBODY {
@@ -42,14 +41,14 @@ TBODY {
 }
 
 THEAD TR {
-    line-height: 22px;
+    line-height: 25px;
 }
 
 TBODY TR {
     line-height: 18px;
 }
 
-TH {
+THEAD TR TH {
     font-size: 12px;
     background-color: black;
     color: #bbbbbb;
@@ -57,24 +56,28 @@ TH {
     position: sticky;
 }
 
-TH:nth-child(1) {
-    width: 45%;
+THEAD TR TH:nth-child(1) {
+    width: 170px;
 }
 
-TH:nth-child(2) {
-    width: 13%;
+THEAD TR TH:nth-child(2) {
+    width: 50px;
 }
 
-TH:nth-child(3) {
-    width: 13%;
+THEAD TR TH:nth-child(3) {
+    width: 50px;
 }
 
-TH:nth-child(4) {
-    width: 13%;
+THEAD TR TH:nth-child(4) {
+    width: 50px;
 }
 
-TH:nth-child(5) {
-    width: 13%;
+THEAD TR TH:nth-child(5) {
+    width: 50px;
+}
+
+THEAD TR TH:nth-child(6) {
+    width: 50px;
 }
 
 TBODY TR TD {
