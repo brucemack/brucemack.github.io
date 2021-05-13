@@ -101,4 +101,5 @@ table tbody th {
     background: black;
     z-index: 1;
     text-align: left;
+    cursor: pointer;
 }
