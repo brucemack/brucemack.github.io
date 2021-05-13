@@ -1,3 +1,18 @@
+$(function() {
+    $(".group_a_lead").click(function() {
+        $(".group_a").toggle();
+    });
+    $(".group_b_lead").click(function() {
+        $(".group_b").toggle();
+    });
+    $(".group_c_lead").click(function() {
+        $(".group_c").toggle();
+    });
+    $(".group_d_lead").click(function() {
+        $(".group_d").toggle();
+    });
+});
+
 var count = 0;
 
 function tick() {
