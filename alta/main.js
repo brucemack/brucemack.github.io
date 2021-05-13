@@ -11,6 +11,9 @@ $(function() {
     $(".group_d_lead").click(function() {
         $(".group_d").toggle();
     });
+    $(".group_a_lead").on("tap", function() {
+        $(".group_a").toggle();
+    });
 });
 
 var count = 0;
