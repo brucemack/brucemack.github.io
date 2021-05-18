@@ -66,7 +66,6 @@ THEAD TR TH {
     }
 }
 
-
 THEAD TR TH:nth-child(2) {
     width: 50px;
 }
@@ -110,3 +109,17 @@ table tbody th {
     text-align: left;
     cursor: pointer;
 }
+
+.group_a_lead {
+    text-decoration: underline;
+}
+.group_b_lead {
+    text-decoration: underline;
+}
+.group_c_lead {
+    text-decoration: underline;
+}
+.group_d_lead {
+    text-decoration: underline;
+}
+
