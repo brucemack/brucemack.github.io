@@ -56,9 +56,16 @@ THEAD TR TH {
     position: sticky;
 }
 
-THEAD TR TH:nth-child(1) {
+.col_0 {
     width: 170px;
 }
+
+@media only screen and (min-width: 400px) {
+    .col_0 {
+        width: 350px;
+    }
+}
+
 
 THEAD TR TH:nth-child(2) {
     width: 50px;
