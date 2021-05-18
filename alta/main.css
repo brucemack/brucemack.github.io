@@ -64,7 +64,7 @@ THEAD TR TH {
     width: 170px;
 }
 
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 600px) {
     .col_0 {
         width: 350px;
     }
