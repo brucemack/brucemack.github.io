@@ -1,7 +1,7 @@
 BODY {
     margin: 0;
     padding: 0;
-    background-color: black;
+    background-color: #002f44;
     color: white;
     font-family: sans-serif;
 }
@@ -45,13 +45,17 @@ THEAD TR {
 }
 
 TBODY TR {
-    line-height: 18px;
+    line-height: 20px;
+}
+
+TBODY TR:nth-child(odd) {
+    background-color: #053852;
 }
 
 THEAD TR TH {
     font-size: 12px;
-    background-color: black;
-    color: #bbbbbb;
+    background-color: #002f44;
+    color: white;
     top: 0px;
     position: sticky;
 }
@@ -89,7 +93,7 @@ THEAD TR TH:nth-child(6) {
 TBODY TR TH,
 TBODY TR TD {
     font-weight: normal;
-    border: 1px solid #222222;
+    xxborder: 1px solid #222222;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -108,6 +112,11 @@ table tbody th {
     z-index: 1;
     text-align: left;
     cursor: pointer;
+    background-color: #002f44;
+}
+
+table tbody tr:nth-child(odd) th {
+    background-color: #053852;
 }
 
 .group_a_lead {
