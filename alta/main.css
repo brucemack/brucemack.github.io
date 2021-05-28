@@ -18,7 +18,7 @@ BODY {
 }
 
 .small-tabs {
-    height: 35px;
+    height: 38px;
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 3px;
@@ -27,7 +27,7 @@ BODY {
 
 .table-cont {
     width: 100%;
-    height: calc(100% - 35px);
+    height: calc(100% - 38px);
     overflow: scroll; 
     box-sizing: border-box;
     background-color: #002f44;
