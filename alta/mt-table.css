@@ -1,5 +1,5 @@
 TABLE.mt {
-    font-size: 14px;
+    font-size: 15px;
     border-collapse: collapse;
     table-layout: fixed;
     width: 420px;
@@ -61,7 +61,10 @@ TABLE.mt THEAD TR TH:nth-child(6) {
    (i.e. first row and first column) 
 */
 TABLE.mt THEAD TR TH {
+    /* Prevent the headers from scrolling off the screen */
     position: sticky;
+    /* This negative was needed to prevent the underlying table from peeking through 
+       above the stickey cell.  Possibly some room for the border was left? */
     top: -1px;
     /* Explicit background color is needed here so that the sticky row is opaque */
     background-color: #002f44;
