@@ -9,7 +9,7 @@ DIV.small-tabs .small-tab {
     width: 80px;
     color: grey;
     padding: 5px;
-    font-size: 18px;
+    font-size: 20px;
     overflow: hidden;
 }
 
@@ -17,5 +17,6 @@ DIV.small-tabs .selected {
     border-bottom: 3px solid #007bb7;
     outline-offset: 6px;
     color: white;
+    font-weight: bold;
 }
 
