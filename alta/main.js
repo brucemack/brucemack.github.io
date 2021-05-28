@@ -14,6 +14,14 @@ $(function() {
     $(".group_a_lead").on("tap", function() {
         $(".group_a").toggle();
     });
+
+    $(".small-tab").click(function() {
+        // Get parent and unselect all tabs
+        $(this).parent().children().removeClass("selected");
+        // Select the tab that was clicked
+        $(this).addClass("selected");
+    });
+
 });
 
 var count = 0;

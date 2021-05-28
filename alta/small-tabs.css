@@ -1,0 +1,21 @@
+DIV.small-tabs {
+    display: flex;
+    align-content: flex-start;
+    box-sizing: border-box;
+}
+
+DIV.small-tabs .small-tab {
+    flex-shrink: 0;
+    width: 80px;
+    color: grey;
+    padding: 5px;
+    font-size: 18px;
+    overflow: hidden;
+}
+
+DIV.small-tabs .selected {
+    border-bottom: 3px solid #007bb7;
+    outline-offset: 6px;
+    color: white;
+}
+

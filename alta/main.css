@@ -1,134 +1,34 @@
+html, 
+body {
+    height: 100%;
+}
+
 BODY {
     margin: 0;
-    padding: 0;
-    background-color: #002f44;
+    background-color: #001c28;
     color: white;
     font-family: sans-serif;
 }
 
-.orange-text {
-    color: #fb9b2b;
-}
-
-.red-text {
-    color: #df2645;
-}
-
-.green-text {
-    color: #4eee6e;
-}
-
-.number {
-    text-align: right;
-}
-
-.cont {
-    padding: 4px;
-}
-
-TABLE {
-    font-size: 14px;
-    border-collapse: collapse;
-    table-layout: fixed;
-    width: 420px;
-}
-
-THEAD {
-}
-
-TBODY {
-    overflow-y: hidden;
-}
-
-THEAD TR {
-    line-height: 25px;
-}
-
-TBODY TR {
-    line-height: 20px;
-}
-
-TBODY TR:nth-child(odd) {
-    background-color: #053852;
-}
-
-THEAD TR TH {
-    font-size: 12px;
-    background-color: #002f44;
-    color: white;
-    top: 0px;
-    position: sticky;
-}
-
-.col_0 {
-    width: 170px;
-}
-
-@media only screen and (min-width: 600px) {
-    .col_0 {
-        width: 350px;
-    }
-}
-
-THEAD TR TH:nth-child(2) {
-    width: 50px;
-}
-
-THEAD TR TH:nth-child(3) {
-    width: 50px;
-}
-
-THEAD TR TH:nth-child(4) {
-    width: 50px;
-}
-
-THEAD TR TH:nth-child(5) {
-    width: 50px;
-}
-
-THEAD TR TH:nth-child(6) {
-    width: 50px;
-}
-
-TBODY TR TH,
-TBODY TR TD {
-    font-weight: normal;
-    xxborder: 1px solid #222222;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.root {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
-table thead th:first-child {
-    position: sticky;
-    left: 0;
-    z-index: 2;
+.small-tabs {
+    height: 35px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 3px;
+    overflow: scroll;
 }
 
-table tbody th {
-    position: sticky;
-    left: 0;
-    background: black;
-    z-index: 1;
-    text-align: left;
-    cursor: pointer;
+.table-cont {
+    width: 100%;
+    height: calc(100% - 35px);
+    overflow: scroll; 
+    box-sizing: border-box;
     background-color: #002f44;
 }
-
-table tbody tr:nth-child(odd) th {
-    background-color: #053852;
-}
-
-.group_a_lead {
-    text-decoration: underline;
-}
-.group_b_lead {
-    text-decoration: underline;
-}
-.group_c_lead {
-    text-decoration: underline;
-}
-.group_d_lead {
-    text-decoration: underline;
-}
-
