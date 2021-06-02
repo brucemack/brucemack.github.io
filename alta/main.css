@@ -19,7 +19,7 @@ BODY {
 
 .tabs-cont {
     width: 100%;
-    height: 38px;
+    height: 34px;
     box-sizing: border-box;
     margin-bottom: 3px;
     overflow: scroll;
@@ -28,8 +28,8 @@ BODY {
 .table-cont {
     width: 100%;
     /* This removes the height of the tabs and the margin under the tabs */
-    height: calc(100% - 41px);
+    height: calc(100% - 37px);
     box-sizing: border-box;
-    overflow: scroll; 
+    overflow: scroll;
     background-color: #002f44;
 }
