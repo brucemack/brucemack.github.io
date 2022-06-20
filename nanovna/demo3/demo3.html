@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:8081/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>NanoVNA Controller</title>
+        <link rel="stylesheet" href="./demo3_files/main.css">
+        <script src="./demo3_files/jquery-3.5.1.min.js.download"></script>
+        <script src="./demo3_files/handlebars.min-v4.7.6.js.download"></script>
+        <script src="./demo3_files/main.js.download"></script>
+
+        <!-- Handlebars Templates -->
+        <script id="template_0" type="text/x-handlebars-template">
+            <table>
+                <caption>
+                    VSWR Sweep Result
+                </caption>
+                <thead>
+                    {{#each headers}}
+                    <th class="number-cell">
+                        {{this}}
+                    </th>
+                    {{/each}}
+                </thead>
+                <tbody>
+                    {{#each rows}}
+                    <tr>
+                        {{#each this.cells}}
+                        <td class="number-cell">
+                            {{this}}
+                        </td>
+                        {{/each}}
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </script>
+        <script id="template_1" type="text/x-handlebars-template">
+            <table>
+                <caption>
+                    Complex Sweep Result
+                </caption>
+                <thead>
+                    <td></td>
+                    {{#each headers}}
+                    <th class="number-cell">
+                        {{this}}
+                    </th>
+                    {{/each}}
+                </thead>
+                <tbody>
+                    {{#each rows}}
+                    <tr>
+                        <th>{{this.header}}</th>
+                        {{#each this.cells}}
+                        <td class="number-cell">
+                            {{this}}
+                        </td>
+                        {{/each}}
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </script>
+        <script id="template_2" type="text/x-handlebars-template">
+            <div>
+                <p>Battery voltage: {{voltage}}</p>
+                <p>NanovNA version: {{version}}</p>
+            </div>
+        </script>
+        <script>
+$.ajaxSetup({ cache: false });
+
+var template_0;
+var template_1;
+var template_2;
+
+// The calibration workflow is a multi-step process.  This variable
+// keeps track of which step we are on.
+var calWorkflowStep = 0;
+
+// Page load initialization
+$(document).ready(function() {
+
+    // Compile the templates
+    template_0 = Handlebars.compile($("#template_0").html());
+    template_1 = Handlebars.compile($("#template_1").html());
+    template_2 = Handlebars.compile($("#template_2").html());
+
+    setupTabNavigation($(".tabs"))
+
+    // Shut off normal form submit logic
+    $(".control-form").submit(function(event) {
+        return false
+    });
+
+    // Action button on sweep tab
+    $("#sweep-tab .go").click(function(event) {
+        do_sweep($("#sweep-tab"))
+    });
+
+    // Action button on complex sweep tab
+    $("#complex-tab .go").click(function(event) {
+        do_complex_sweep($("#complex-tab"))
+    });
+
+    // Input on administration tab
+    $("#administration-tab .port-input").blur(function(event) {
+        var v = $(this).val()
+        // Remove spaces
+        v = v.replace(/\s/g, '');
+        // If a single number is entered, add leading "com"
+        if (!isNaN(v)) {
+          v = "COM" + v
+        }
+        // Replace the modified value
+        $(this).val(v)
+        $.post("/api/config",{ "port": v })
+    });
+
+    // This is logic needed to make sure that the range of frequencies
+    // entered on the calibration tab is valid
+    $("#calibration-tab #s31").change(function(event) {
+        validateCalibrationRange($("#calibration-tab"))
+    });
+    $("#calibration-tab #s32").change(function(event) {
+        validateCalibrationRange($("#calibration-tab"))
+    });
+    // Trigger an initial validation (which will fail since the
+    // initial value of the fields is empty)
+    validateCalibrationRange($("#calibration-tab"))
+
+    // Action buttons on calibration
+    showStepDiv($("#calibration-tab .step-div-set"), calWorkflowStep, prepareCalStepDiv);
+
+    // Attach workflow function to calibration buttons
+    $("#calibration-tab .button-0").click(function(event) {
+        // Check to see if the workflow is blocked at this point.  If so then just
+        // ignore the button press.
+        if ($(this).data("block-workflow")) {
+            return;
+        }
+        // Do the step.  If it fails then return to the first step.  If 
+        // it succeeds then move forward to the next step.
+        doCalStep($("#calibration-tab"), calWorkflowStep,
+            // Success 
+            () => {
+                // Advance to the next step
+                calWorkflowStep++
+                // Wrap?
+                if (calWorkflowStep == 7) {
+                    calWorkflowStep = 0
+                }
+                showStepDiv($("#calibration-tab .step-div-set"), calWorkflowStep, prepareCalStepDiv);
+            },
+            // Error
+            () => {
+                calWorkflowStep = 0;
+                showStepDiv($("#calibration-tab .step-div-set"), calWorkflowStep, prepareCalStepDiv);
+            })
+    });
+
+    // Fill in the initial config values
+    $.get("/api/config",function(data) {
+        $("#administration-tab .port-input").val(data.port);
+    });
+
+    // Action button on status tab
+    $("#status-tab .go").click(function(event) {
+        do_status_refresh($("#status-tab"))
+    });
+});
+        </script>
+    </head>
+    <body>
+        <div class="tabs" tabindex="0">
+            <div class="tablist" role="tablist" aria-label="Navigation Tabs">
+              <button role="tab" aria-selected="false" aria-controls="sweep-tab" id="sweep-control" tabindex="-1">
+                Sweep
+              </button>
+              <button role="tab" aria-selected="true" aria-controls="complex-tab" id="complex-control" tabindex="0">
+                Complex Sweep
+              </button>
+              <button role="tab" aria-selected="false" aria-controls="calibration-tab" id="calibration-control" tabindex="-1">
+                Calibration
+              </button>
+              <button role="tab" aria-selected="false" aria-controls="administration-tab" id="administration-control" tabindex="-1">
+                Administration
+              </button>
+              <button role="tab" aria-selected="false" aria-controls="status-tab" id="status-control" tabindex="-1">
+                Status
+              </button>
+              <button role="tab" aria-selected="false" aria-controls="about-tab" id="about-control" tabindex="-1">
+                About
+              </button>
+            </div>
+
+            <!-- ===== VSWR Sweep Panel ================================================== -->
+            <div tabindex="0" role="tabpanel" id="sweep-tab" aria-labelledby="sweep-control" style="display: none;">
+                 <h1>Sweep Panel</h1>
+                 <form class="control-form">
+                     <label for="s14">Calibration Preset</label>
+                     <select class="s4" id="s14" tabindex="0" name="cal_preset">
+                         <option>0</option>
+                         <option>1</option>
+                         <option>2</option>
+                         <option>3</option>
+                         <option>4</option>
+                     </select>
+                     <label for="s11">Start Frequency in Megahertz</label>
+                     <input class="s1" type="text" id="s11" tabindex="0" name="start_frequency_mhz">
+                     <label for="s12">End Frequency in Megahertz</label>
+                     <input class="s2" type="text" id="s12" tabindex="0" name="end_frequency_mhz">
+                     <label for="s13">Step in Megahertz</label>
+                     <input class="s3" type="text" id="s13" tabindex="0" name="step_frequency_mhz">
+                     <button id="s15" class="go" tabindex="0">Sweep</button>
+                 </form>
+                 <br>
+                 <div class="result-div"></div>
+            </div>
+
+            <!-- ===== Complex VSWR Sweep Panel ============================================= -->
+            <div tabindex="0" role="tabpanel" id="complex-tab" aria-labelledby="complex-control" hidden="" style="display: block;">
+                 <h1>Complex Sweep Panel</h1>
+                 <form class="control-form">
+                     <label for="s24">Calibration Preset</label>
+                     <select class="s4" id="s24" tabindex="0" name="cal_preset">
+                         <option>0</option>
+                         <option>1</option>
+                         <option>2</option>
+                         <option>3</option>
+                         <option>4</option>
+                     </select>
+                     <label for="s21">Start Frequency in Megahertz</label>
+                     <input class="s1" type="text" id="s21" tabindex="0" name="start_frequency_mhz">
+                     <label for="s22">End Frequency in Megahertz</label>
+                     <input class="s2" type="text" id="s22" tabindex="0" name="end_frequency_mhz">
+                     <label for="s23">Step in Megahertz</label>
+                     <input class="s3" type="text" id="s23" tabindex="0" name="step_frequency_mhz">
+                     <button class="go" tabindex="0">Sweep</button>
+                 </form>
+                 <br>
+                 <div class="result-div">
+            <table>
+                <caption>
+                    Complex Sweep Result
+                </caption>
+                <thead>
+                    <tr><td></td>
+                    <th class="number-cell">
+                        1.000
+                    </th>
+                    <th class="number-cell">
+                        3.077
+                    </th>
+                    <th class="number-cell">
+                        5.154
+                    </th>
+                    <th class="number-cell">
+                        7.231 best match
+                    </th>
+                    <th class="number-cell">
+                        9.308
+                    </th>
+                    <th class="number-cell">
+                        11.385
+                    </th>
+                    <th class="number-cell">
+                        13.462
+                    </th>
+                    <th class="number-cell">
+                        15.538
+                    </th>
+                    <th class="number-cell">
+                        17.615
+                    </th>
+                    <th class="number-cell">
+                        19.692
+                    </th>
+                    <th class="number-cell">
+                        21.769
+                    </th>
+                    <th class="number-cell">
+                        23.846
+                    </th>
+                    <th class="number-cell">
+                        25.923
+                    </th>
+                    <th class="number-cell">
+                        28.000
+                    </th>
+                </tr></thead>
+                <tbody>
+                    <tr>
+                        <th>VSWR</th>
+                        <td class="number-cell">
+                            1.02
+                        </td>
+                        <td class="number-cell">
+                            1.02
+                        </td>
+                        <td class="number-cell">
+                            1.01
+                        </td>
+                        <td class="number-cell">
+                            1.01
+                        </td>
+                        <td class="number-cell">
+                            1.01
+                        </td>
+                        <td class="number-cell">
+                            1.01
+                        </td>
+                        <td class="number-cell">
+                            1.02
+                        </td>
+                        <td class="number-cell">
+                            1.02
+                        </td>
+                        <td class="number-cell">
+                            1.03
+                        </td>
+                        <td class="number-cell">
+                            1.04
+                        </td>
+                        <td class="number-cell">
+                            1.05
+                        </td>
+                        <td class="number-cell">
+                            1.06
+                        </td>
+                        <td class="number-cell">
+                            1.06
+                        </td>
+                        <td class="number-cell">
+                            1.07
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Real Z</th>
+                        <td class="number-cell">
+                            49.05
+                        </td>
+                        <td class="number-cell">
+                            49.30
+                        </td>
+                        <td class="number-cell">
+                            49.49
+                        </td>
+                        <td class="number-cell">
+                            49.64
+                        </td>
+                        <td class="number-cell">
+                            49.73
+                        </td>
+                        <td class="number-cell">
+                            49.83
+                        </td>
+                        <td class="number-cell">
+                            49.87
+                        </td>
+                        <td class="number-cell">
+                            49.91
+                        </td>
+                        <td class="number-cell">
+                            49.89
+                        </td>
+                        <td class="number-cell">
+                            49.84
+                        </td>
+                        <td class="number-cell">
+                            49.74
+                        </td>
+                        <td class="number-cell">
+                            49.59
+                        </td>
+                        <td class="number-cell">
+                            49.39
+                        </td>
+                        <td class="number-cell">
+                            49.13
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Imag Z</th>
+                        <td class="number-cell">
+                            0.30
+                        </td>
+                        <td class="number-cell">
+                            0.25
+                        </td>
+                        <td class="number-cell">
+                            0.08
+                        </td>
+                        <td class="number-cell">
+                            -0.10
+                        </td>
+                        <td class="number-cell">
+                            -0.32
+                        </td>
+                        <td class="number-cell">
+                            -0.60
+                        </td>
+                        <td class="number-cell">
+                            -0.89
+                        </td>
+                        <td class="number-cell">
+                            -1.22
+                        </td>
+                        <td class="number-cell">
+                            -1.57
+                        </td>
+                        <td class="number-cell">
+                            -1.93
+                        </td>
+                        <td class="number-cell">
+                            -2.31
+                        </td>
+                        <td class="number-cell">
+                            -2.68
+                        </td>
+                        <td class="number-cell">
+                            -3.05
+                        </td>
+                        <td class="number-cell">
+                            -3.42
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Magnitude Z</th>
+                        <td class="number-cell">
+                            49.05
+                        </td>
+                        <td class="number-cell">
+                            49.30
+                        </td>
+                        <td class="number-cell">
+                            49.49
+                        </td>
+                        <td class="number-cell">
+                            49.64
+                        </td>
+                        <td class="number-cell">
+                            49.74
+                        </td>
+                        <td class="number-cell">
+                            49.83
+                        </td>
+                        <td class="number-cell">
+                            49.88
+                        </td>
+                        <td class="number-cell">
+                            49.92
+                        </td>
+                        <td class="number-cell">
+                            49.92
+                        </td>
+                        <td class="number-cell">
+                            49.88
+                        </td>
+                        <td class="number-cell">
+                            49.79
+                        </td>
+                        <td class="number-cell">
+                            49.66
+                        </td>
+                        <td class="number-cell">
+                            49.49
+                        </td>
+                        <td class="number-cell">
+                            49.25
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Series C</th>
+                        <td class="number-cell">
+                            
+                        </td>
+                        <td class="number-cell">
+                            
+                        </td>
+                        <td class="number-cell">
+                            
+                        </td>
+                        <td class="number-cell">
+                            227 nF
+                        </td>
+                        <td class="number-cell">
+                            54.1 nF
+                        </td>
+                        <td class="number-cell">
+                            23.4 nF
+                        </td>
+                        <td class="number-cell">
+                            13.2 nF
+                        </td>
+                        <td class="number-cell">
+                            8.38 nF
+                        </td>
+                        <td class="number-cell">
+                            5.76 nF
+                        </td>
+                        <td class="number-cell">
+                            4.2 nF
+                        </td>
+                        <td class="number-cell">
+                            3.16 nF
+                        </td>
+                        <td class="number-cell">
+                            2.49 nF
+                        </td>
+                        <td class="number-cell">
+                            2.01 nF
+                        </td>
+                        <td class="number-cell">
+                            1.66 nF
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Series L</th>
+                        <td class="number-cell">
+                            47.2 nH
+                        </td>
+                        <td class="number-cell">
+                            13 nH
+                        </td>
+                        <td class="number-cell">
+                            2.45 nH
+                        </td>
+                        <td class="number-cell">
+                            
+                        </td>
+                        <td class="number-cell">
+                            
+                        </td>
+                        <td class="number-cell">
+                            
+                        </td>
+                        <td class="number-cell">
+                            
+                        </td>
+                        <td class="number-cell">
+                            
+                        </td>
+                        <td class="number-cell">
+                            
+                        </td>
+                        <td class="number-cell">
+                            
+                        </td>
+                        <td class="number-cell">
+                            
+                        </td>
+                        <td class="number-cell">
+                            
+                        </td>
+                        <td class="number-cell">
+                            
+                        </td>
+                        <td class="number-cell">
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>S11 Return Loss</th>
+                        <td class="number-cell">
+                            -40
+                        </td>
+                        <td class="number-cell">
+                            -43
+                        </td>
+                        <td class="number-cell">
+                            -46
+                        </td>
+                        <td class="number-cell">
+                            -48
+                        </td>
+                        <td class="number-cell">
+                            -48
+                        </td>
+                        <td class="number-cell">
+                            -44
+                        </td>
+                        <td class="number-cell">
+                            -41
+                        </td>
+                        <td class="number-cell">
+                            -38
+                        </td>
+                        <td class="number-cell">
+                            -36
+                        </td>
+                        <td class="number-cell">
+                            -34
+                        </td>
+                        <td class="number-cell">
+                            -33
+                        </td>
+                        <td class="number-cell">
+                            -31
+                        </td>
+                        <td class="number-cell">
+                            -30
+                        </td>
+                        <td class="number-cell">
+                            -29
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>S11 Phase</th>
+                        <td class="number-cell">
+                            163
+                        </td>
+                        <td class="number-cell">
+                            160
+                        </td>
+                        <td class="number-cell">
+                            171
+                        </td>
+                        <td class="number-cell">
+                            -165
+                        </td>
+                        <td class="number-cell">
+                            -130
+                        </td>
+                        <td class="number-cell">
+                            -106
+                        </td>
+                        <td class="number-cell">
+                            -97
+                        </td>
+                        <td class="number-cell">
+                            -94
+                        </td>
+                        <td class="number-cell">
+                            -93
+                        </td>
+                        <td class="number-cell">
+                            -94
+                        </td>
+                        <td class="number-cell">
+                            -95
+                        </td>
+                        <td class="number-cell">
+                            -97
+                        </td>
+                        <td class="number-cell">
+                            -100
+                        </td>
+                        <td class="number-cell">
+                            -102
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            </div>
+
+            <!-- ===== Calibration Panel ================================================ -->
+            <div tabindex="0" role="tabpanel" id="calibration-tab" aria-labelledby="calibration-control" hidden="" style="display: none;">
+                 <div>
+                    <h1>Calibration Panel</h1>
+                    <form class="control-form">
+                        <div class="step-div-set">
+                            <div class="step-div" style="">
+                                <button tabindex="0" class="button-0 step-focus">Begin calibration</button>
+                            </div>
+                            <div class="step-div" style="display: none;">
+                                <label for="s33">Select Calibration Preset</label>
+                                <select class="s4 step-focus" id="s33" tabindex="0" name="cal_preset">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                                <br>
+                                <button tabindex="0" class="button-0">Continue</button>
+                            </div>
+                            <div class="step-div" style="display: none;">
+                                <label for="s31">Start Frequency in Megahertz</label>
+                                <input class="s1 step-focus" tabindex="0" type="text" id="s31" name="start_frequency_mhz">
+                                <br>
+                                <label for="s32">End Frequency in Megahertz</label>
+                                <input class="s2" tabindex="0" type="text" id="s32" name="end_frequency_mhz">
+                                <br>
+                                <button tabindex="0" class="button-0 s3" id="s30">Invalid Range</button>
+                            </div>
+                            <div class="step-div" style="display: none;">
+                                <button tabindex="0" class="button-0 step-focus">Attach Short and Press When Ready</button>
+                            </div>
+                            <div class="step-div" style="display: none;">
+                                <button tabindex="0" class="button-0 step-focus">Attach Open and Press When Ready</button>
+                            </div>
+                            <div class="step-div" style="display: none;">
+                                <button tabindex="0" class="button-0 step-focus">Attach Load and Press When Ready</button>
+                            </div>
+                            <div class="step-div" style="display: none;">
+                                <p>Calibration is complete.</p>
+                                <button tabindex="0" class="button-0 step-focus">Calibration Complete Press to Restart</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- ===== Administration Panel ================================================ -->
+
+            <div tabindex="0" role="tabpanel" id="administration-tab" aria-labelledby="administration-control" hidden="" style="display: none;">
+                 <h1>Administration Panel</h1>
+                 <label for="s41">Serial Port</label>
+                 <input class="port-input" type="text" id="s41" name="serial_port">
+            </div>
+
+            <!-- ===== Status Panel ================================================ -->
+
+            <div tabindex="0" role="tabpanel" id="status-tab" aria-labelledby="status-control" hidden="" style="display: none;">
+                <h1>Status Panel</h1>
+                <button class="go">Refresh Status</button>
+                <div class="result-div"></div>
+            </div>
+
+            <!-- ===== About Panel ================================================ -->
+
+           <div tabindex="0" role="tabpanel" id="about-tab" aria-labelledby="about-control" hidden="" style="display: none;">
+                 <p>This is version 5.</p>
+                 <p>The NanoVNA control panel was designed by N1FMV and KC1FSZ.</p>
+                 <p>Details on the NanoVNA can be found <a href="https://nanovna.com/">here</a>.</p>
+                 <p>Details on the NanoVNA command language can be found <a href="https://4ham.ru/wp-content/uploads/2020/05/NanoVNA_Console_Commands_Dec-9-19-1.pdf">here</a>.</p>
+                 <p>The GitHub page for this project can be found <a href="https://github.com/brucemack/nanovna-controller">here</a>.</p>
+            </div>
+        </div>
+
+    
+</body></html>
