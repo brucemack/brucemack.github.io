@@ -19,3 +19,7 @@ and the designs/code.
 
 * [My Book For Sale](https://www.amazon.com/Radar-Endorsement-Quick-Study-Guide/dp/B0CGL9TC46)
 * [Possible Errata on the FCC Exam](fcc-element8/questions.html)
+
+## Research and Notes
+
+* [MOSFET Differential Amplifier](research/fet-differential-amp)
