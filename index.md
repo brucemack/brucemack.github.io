@@ -5,6 +5,11 @@
 Please see [this detailed writeup](https://github.com/brucemack/microlink) for more information
 and the designs/code.
 
+### The LoRA Birdhouse Mesh Network Project
+
+* [GitHub Project Page](https://github.com/brucemack/WARS-Birdhouse)
+* [Blind Hams PodCast Episode](https://www.youtube.com/watch?v=8tOdMGnqepk)
+
 ### The NanoVNA Controller Project
 
 * [The Software](https://github.com/brucemack/nanovna-controller)
