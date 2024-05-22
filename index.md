@@ -23,3 +23,5 @@ and the designs/code.
 ## Research and Notes
 
 * [MOSFET Differential Amplifier](research/fet-differential-amp)
+* [Mixer Notes](research/mixers)
+
