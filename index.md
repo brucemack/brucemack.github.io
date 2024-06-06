@@ -5,7 +5,7 @@
 layout: home
 ---
 
-## Some Interesting Projects
+## Some Of My Projects
 
 * [My submission to the Tiny Tapeout 07](https://github.com/brucemack/tt07-sb-mixer) VLSI chip fabrication project. I created a double balanced mixer.
   * [This page](https://github.com/brucemack/tt07-sb-mixer/blob/main/docs/math.md) contains some details on the math.
@@ -18,14 +18,15 @@ a from-scratch implementation of an EchoLink station on a $6 microcontroller.
   * [More detail on the hardware](https://github.com/brucemack/iso9141-interface)
 * The [NanoVNA Controller Project](https://github.com/brucemack/nanovna-controller) is an HTML interface for the NanoVNA vector 
 network analyzer.  
-  * This was covered by the [Blind Hams PodCast Episode](https://www.youtube.com/watch?v=btvXQv5VkKs&t=336) due to the project's 
-  applicability to allow a NanoVNA to be accessed using a screen reader.
+  * This was covered by the [Blind Hams PodCast Episode](https://www.youtube.com/watch?v=btvXQv5VkKs&t=336) given the accessibility
+  aspects of this project.
 * I wrote a [study guide for the FCC Ship Radar Endorsement Exam](https://www.amazon.com/Radar-Endorsement-Quick-Study-Guide/dp/B0CGL9TC46)
   * See also, some [possible Errata on the FCC Exam](fcc-element8/questions.html)
 
-## Research and Notes
+## My Research Notes
 
 * [IBM 1620](research/IBM-1620)
+* [IBM SMS Cards](research/IBM SMS Cards)
 * [MOSFET Differential Amplifier](research/fet-differential-amp)
 
 
