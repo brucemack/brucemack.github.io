@@ -6,7 +6,7 @@ _(We provide a more in-depth documentation of this simple card for illustrative 
 
 [SMS Card Database Entry](https://static.righto.com/sms/CD.html)
 
-This card provides 3x three-input NAND gates. E is low when A and B and C are high.
+This card provides 3x three-input NAND gates. 
 
 The original IBM schematic is provided below. 
 
@@ -22,9 +22,11 @@ The card is designed to operate using "S line" voltage levels. Per the notation 
 * High is -0.1V to -0.4V.
 * Low is -5.86V to -12.48V.
 
+E is low when A and B and K are high.
+
 ![IBM Schematic](cd-schem-0.jpg)
 
-Modern representation of the first circuit to provide better intuition:
+Here's a modern representation of the first circuit to provide better intuition:
 
 ![Modern Schematic](cd-schem-1.jpg)
 
