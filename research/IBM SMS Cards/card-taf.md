@@ -15,6 +15,8 @@ part of the system.
 
 ## Simulated Output
 
+We're getting almost exactly 1 MHz here, which is the expected frequency.
+
 ![TAF Simulation](taf-sim-0.jpg)
 
 
