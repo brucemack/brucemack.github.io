@@ -17,5 +17,7 @@ SMS cards that appear in the [IBM 1620](../IBM-1620). This information
 is provided below, keyed by the card ID.
 
 * [CD](card-cd)
+* [TAF](card-taf)
+* [TAJ](card-taj)
 
 
