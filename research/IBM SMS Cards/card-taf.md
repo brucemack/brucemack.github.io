@@ -6,7 +6,7 @@ _(In-depth documentation of this interesting card for illustrative purposes.)_
 
 [SMS Card Database Entry](https://static.righto.com/sms/TAF.html)
 
-This care provides the 1 MHz oscillator to the entire system. Obviously, a very important 
+This card provides the 1 MHz oscillator to the entire system. Obviously, a very important 
 part of the system.
 
 ## SPICE Model

@@ -41,6 +41,7 @@ are high.
 
 ### SPICE Model
 
+[Working model here](https://github.com/brucemack/IBM-1620/blob/main/sms-cards/cd/ibm-sms-cd.sp)
 
 ~~~
 * CD 
@@ -49,11 +50,11 @@ are high.
 * SPICE model of IBM SMS logic card
 * Bruce MacKinnon 2-June-2024
 
-.include "ibm-sms-models.spice"
+.include "../ibm-sms-models.sp"
 
 .SUBCKT SMS_CARD_CD a b c d e f g h j k l m n p q r
 
-* Aliases for power pins
+* Standard aliases for power pins
 Rx0 vp12 n 0
 Rx1 vn12 m 0
 
