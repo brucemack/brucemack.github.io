@@ -12,20 +12,11 @@ layout: page
 ## Clocking
 
 * ALD Page 86.
-* SMS cards
-  * TAF - A 1 MHz oscillator
-  * TAJ - 
-  * TAG - SDTRL 2 way inverter
-  * DAX - 
-  * AFR - 
-  * TFC -
-
 
 ## Reset
 
 * Master reset button pg 60 (01.05.03.1)
 
 * ALD page 75 - Manual reset distribution
-* CEYB
 
 
