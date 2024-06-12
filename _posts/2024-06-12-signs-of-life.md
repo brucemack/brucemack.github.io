@@ -48,7 +48,7 @@ SPICE simulator created at UC Berkeley in the 1970s.
 
 Don't worry - I'm not planning to 
 model the entire computer in SPICE! That model would 
-be prohibitively large, and such detail is not really 
+be prohibitively large, and such analog detail is not really 
 required. However, SPICE models are a great way to 
 fully understand the relevant SMS cards and to get the 
 key sections of the ALD logic diagrams nailed down. The full machine simulation will likely happen using [Verilog](https://en.wikipedia.org/wiki/Verilog). Verilog will support a more logical (digital) simulation and will not attempt to model
