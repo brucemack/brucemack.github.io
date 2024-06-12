@@ -6,7 +6,7 @@ tag-name: ibm1620
 
 Everything in a processor is driven by a master clock. To find the heart of the 
 IBM 1620, you need to find the source of this clock. After some hunting through 
-the Model 1F ALDs, I found a page called **CLOCK OSC + CONTROL** (01.10.05.01) that sounded 
+the Model 1F ALDs, I found a page named **CLOCK OSC + CONTROL** (01.10.05.01) that looked 
 promising. The TAF card at gate B, panel 1, row A, column 15 labeled "OSC" is noteworthy
 because **it has no inputs.**  
 
@@ -37,8 +37,8 @@ computer frame using a 16 pin connector.
 SMS cards.
 
 In order to simulate the full computer we need an accurate model of the behavior of each card. There are 
-some excellent instruction-set emulators available, but from what I can tell, nobody has attempted to model the 
-**electronic behavior** of the SMS cards. _(If you've
+some excellent instruction-set emulators available for the 1620, but from what I can tell, nobody has attempted to model the 
+**electronic behavior** of the system. _(If you've
 done this already please drop me a line!)_
 
 I started with [NGSPICE](https://ngspice.sourceforge.io/) because I'm familiar with it, it is a widely used circuit simulator, and it will do
@@ -51,7 +51,7 @@ model the entire computer in SPICE! That model would
 be prohibitively large, and such detail is not really 
 required. However, SPICE models are a great way to 
 fully understand the relevant SMS cards and to get the 
-key sections of the ALD logic diagrams nailed down. The full machine simulation will likely happen in Verilog.
+key sections of the ALD logic diagrams nailed down. The full machine simulation will likely happen using [Verilog](https://en.wikipedia.org/wiki/Verilog).
 
 ## Looking at the TAF Card 
 
@@ -70,7 +70,7 @@ is being stated in _microfarads_, not millifards.
 And we know from the above resonance calculation that C5 150 MMF is stated in micro-micro Farads, better known as picofarads.
 
 I modeled this circuit in NGSPICE. The SPICE file for
-this card is included here so you can get an idea of
+this card is included below so you can get an idea of
 what it looks like. (For all other cards please reference
 the [official IBM 1620 Github site](https://github.com/IBM-1620).)  
 
@@ -154,7 +154,7 @@ is a divide-by-two flip-flop that produces even and odd
 clock drives.
 
 After the TAG card was modeled and the A/1/B17 card 
-was "plugged in," you can see the cleaned up clock 
+was virtually "plugged in," you can see the cleaned up clock 
 drives that are sent to the rest of the machine.
 Clock Drive B is on the top and Clock Drive A is on the bottom:
 
