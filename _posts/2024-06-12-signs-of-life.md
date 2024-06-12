@@ -146,9 +146,9 @@ output, the traces start to look more like they would in the real world.  The cu
 in the blue and yellow traces results from the fact that the TAJ card contains capacitors.
 These signals will get "cleaned up" a bit by the next stage of the circuit.
 * Unlike modern processors, the IBM CTRL/SDTRL technology 
-used in the 1620 used a voltage around -0.5V to represent
+used in the 1620 uses a voltage around -0.5V to represent
 a logical "1" and a voltage around -12V to represent 
-a logical "0." This will take some getting used to. (I'll get into the PNP logic circuit in a future article.)
+a logical "0." This will take some getting used to. (I'll get into the PNP logic circuit in a future post.)
 * The blue and yellow traces alternate on each cycle. The TAJ card 
 is a divide-by-two flip-flop that produces even and odd
 clock drives.
