@@ -5,7 +5,7 @@ tag-name: ibm1620
 categories: [ "ibm1620" ]
 ---
 
-In [my last post](/ibm1620/2024/06/12/signs-of-life) I described the SPICE model of the 1620 clock generation circuit. SPICE
+In [my last post](/ibm1620/2024/06/12/signs-of-life) I described a SPICE model of the 1620 clock generation circuit. SPICE
 models are nice because they account for the electrical behavior of every component 
 in the machine - right down to the last resistor. Given that my goal is to run software,
 an analog simulation is unnecessarily detailed. A digital abstraction should suit our 
@@ -15,13 +15,13 @@ needs.
 
 This is a gross simplification, but this particular digital computer considers 
 voltages above -0.6V to be logical ones and voltages below -10V to be logical zeros. Under
-this simplification, all of the complex currents flowing through the transistors, diodes,
+this simplification, all of the complex analog currents flowing through the transistors, diodes,
 resistors, and capacitors on the SMS cards can be boiled down to Boolean logic.
 
 This is where Verilog comes into the picture. Verilog is a popular hardware description 
 language that allows a designer to express
 a detailed specification of a digital circuit. The Verilog ecosystem includes open-source
-compilers, simulators, and synthesizers that we can use for this project. I use [Icarus Verilog](https://steveicarus.github.io/iverilog/) written
+compilers, simulators, and synthesizers that we can leverage for this project. I use [Icarus Verilog](https://steveicarus.github.io/iverilog/) written
 by Steve Icarus. 
 
 The digital abstraction of an analog circuit
@@ -54,7 +54,7 @@ this goes.
 ## A Verilog Model of Multiple SMS Cards
 
 I developed a translation program that converts my digitized ALD format to Verilog. The translated scan 
-of the clock generation ALD page (01.10.05.1) looks like this:
+of part of the clock generation ALD page (01.10.05.1) looks like this:
 
 ~~~
   wire W_HIZ0_A;
@@ -77,7 +77,7 @@ of the clock generation ALD page (01.10.05.1) looks like this:
 ~~~
 
 Don't worry, I'm not typing that part by hand. The digitized ALD is the master representation and 
-what is shown above is a machine-generation "wire-up" of the SMS-level Verilog models.
+what is shown above is a machine-generated "wire-up" of the SMS-level Verilog models.
 
 When I compile that Verilog, along with the Verilog models of the TAF, TAJ, and TAG cards, run a Verilog 
 simulator, and display the result in GTKWave, I see his output:
@@ -89,5 +89,5 @@ three lines match perfectly!
 
 ![Clocks](/assets/images/ibm1620-clock-5.jpg)
 
-We're still on the right track. I'm now working on the more detailed timing phases, like "C-1" shown
+I think we're still on the right track. I'm now working on the more detailed timing phases, like "C-1" shown
 in the CE manual above.
