@@ -2,6 +2,7 @@
 layout: post
 title:  "IBM 1620 - Signs of Life"
 tag-name: ibm1620
+categories: [ "ibm1620" ]
 ---
 
 Everything in a processor is driven by a master clock. To find the heart of the 
