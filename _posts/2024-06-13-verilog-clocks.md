@@ -80,7 +80,7 @@ Don't worry, I'm not typing that part by hand. The digitized ALD is the master r
 what is shown above is a machine-generated "wire-up" of the SMS-level Verilog models.
 
 When I compile that Verilog, along with the Verilog models of the TAF, TAJ, and TAG cards, run a Verilog 
-simulator, and display the result in GTKWave, I see his output:
+simulator, and display the result in GTKWave, I see this output:
 
 ![Clocks](/assets/images/ibm1620-clock-6.jpg)
 
