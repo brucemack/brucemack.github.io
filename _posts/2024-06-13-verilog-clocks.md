@@ -79,7 +79,7 @@ of part of the clock generation ALD page (01.10.05.1) looks like this:
 Don't worry, I'm not typing that part by hand. The digitized ALD is the master representation and 
 what is shown above is a machine-generated "wire-up" of the SMS-level Verilog models.
 
-When I compile that Verilog, along with the Verilog models of the TAF, TAJ, and TAG cards, run a Verilog 
+When I compile that Verilog, along with my Verilog models of the TAF, TAJ, and TAG cards, run a Verilog 
 simulator, and display the result in GTKWave, I see this output:
 
 ![Clocks](/assets/images/ibm1620-clock-6.jpg)

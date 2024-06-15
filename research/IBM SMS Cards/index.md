@@ -13,3 +13,4 @@ information about individual IBM SMS cards is the
 [incredible blog of Ken Shirriff](https://www.righto.com/2015/03/a-database-of-sms-cards-technology.html). 
 
 
+This document contains some SMS functional details: https://bitsavers.org/pdf/ibm/1620/fe/227-5647-0_1620_E_Level_CE_Manual_of_Instruction_1962.pdf
