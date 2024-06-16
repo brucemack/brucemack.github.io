@@ -47,7 +47,15 @@ a good job of accurately modeling the SMS cards down to the
 transistor level. NGSPICE is an evolved flavor of the classic 
 SPICE simulator created at UC Berkeley in the 1970s.
 
-Don't worry - I'm not planning to 
+**IMPORTANT:** The default PNP transistor models in NGSPICE are based on modern silicon 
+devices. I've been using a SPICE transistor model file that more closely simulates
+a germanium transistor, but this is far from accurate at this time. In particular,
+the early transistors used in the 1620 undoubtedly had some relatively huge parasitic
+capacitances that impacted performance. I've not tackled this problem yet so many of the 
+simulations present an unrealistically "sharp" view of the analog waveforms. I will 
+do some work on this facet of the model later.
+
+And don't worry - I'm not planning to 
 model the entire computer in SPICE! That model would 
 be prohibitively large, and such analog detail is not really 
 required. However, SPICE models are a great way to 
