@@ -73,7 +73,7 @@ If we look at the input of the card that is being driven by the CEYB output in t
 see that the input pin P is being held up to +12V via R23 (circled in blue)
 **in the case that P isn't otherwise connected.**
 
-![Dot AND](/assets/images/dot-and-5.jpg)
+![Dot AND](/assets/images/dot-and-5.gif)
 
 So the "ambiguous" state on the CEYB.G output when it's driver transistor is off is resolved by the R23 pull-up on the input stage of TFC.P, assuming these cards are connected to each other. In that case, the CEYB.G becomes unambiguously logic 1 with a little help from its TFC friend. See the path highlighted in blue:
 
