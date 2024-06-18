@@ -9,9 +9,10 @@ At first glance, the ALDs provide a simplistic wiring
 diagram between lettered pins on logic blocks.  However, there are a few nuances that are worth studying because they are critical 
 to a correct simulation.
 
-### Dot AND
+(Please make sure you have read [the last post](ibm1620/2024/06/15/alds.html) first to get some basic 
+orientation to the ALDs.)
 
-This one is easy to miss. 
+### Dot AND
 
 It is common to see a single output pin driving the 
 input pins of several different other logic blocks.  This 
@@ -19,7 +20,7 @@ one-to-many connection is the traditional "fan out" concept that is present in a
 digital logic designs.
 
 However, notice that in the picture below (1F ALD page 01.10.15.1) two **output** pins are connected together,
-and then go off sheet to drive 5 other places. 
+and then go off sheet to drive five other places. This case requires some research.
 
 ![Dot AND](/assets/images/dot-and.jpg)
 
@@ -35,16 +36,16 @@ This case is only identified by the fact that the outputs of two different circu
 are connected to the same wire.
 
 _(**Side Note**: In the picture above there is a mysterious "+" immediately to the right 
-of the G on one of the two CEYB blocks.  I've seen this in other places and 
+of the G on one of the two CEYB blocks.  I've seen this in other places in the ALDs and 
 have not been able to figure out whether it is significant, is a typo, or is a glitch 
 in the ALD software. There is no mention of this notation in the ALD articles that 
 I've read. I would welcome any experts to comment on this.)_
 
-This 2-drives-5 situation seems counter-intuitive, particular in the case where the two logic outputs are 
+This 2-drives-5 situation seems strange, particular in the case where the two logic outputs are 
 attempting to assert opposite values. Which one wins? A review of the schematic of the SMS cards 
-involved helps to understand the many-to-many situation.
+involved helps to understand these many-to-many situation.
 
-Very often this many-to-many wiring arrangement is driven by a CEYB card. If we focus 
+Very often the many-to-many wiring arrangement is driven by a CEYB card. If we focus 
 on the first CEYB card in the diagram above and take a look at the [SMS schematic of 
 the CEYB](https://static.righto.com/sms/CEYB.html) (thank you Ken Shirriff) circuit between
 pins B and G we see this:
@@ -53,7 +54,7 @@ pins B and G we see this:
 
 Notice above the that T5 collector is connected to -12V through a moderately low resistance (300 ohm) and the emitter is connected directly to the output pin G through a very low DC resistance (30 ohm, we'll come back to the inductor later).
 
-The key thing to understand here is that for this particular card: when the transistor is on it provides a strong path to -12V (logic 0) for anything connected to pin G, and when the transistor is off pin G is essentially floating at high impedance - it's almost like the pin is disconnected.
+The key thing to understand here is that for this particular card: when the transistor is "on" it provides a strong path to -12V (logic 0) for anything connected to pin G, and when the transistor is "off" pin G is essentially floating at high impedance - it's almost like the pin is disconnected.
 
 Contrast that with the output stage of many of the other logic cards.  [TAG - 2-input NAND](https://static.righto.com/sms/TAG.html) is a very common example and is used heavily in the 1620:
 
@@ -127,21 +128,25 @@ Even though the cards have their outputs connected, there is no logical conflict
 We get a free OR gate out of the deal, which is one of the reasons that the cards
 are designed this way.  
 
- A last note on terminology.  Above it seemed like TFC was reacting to a logical 0 
- of either one CEYB **OR** the other.  But the comment in the ALD says "DOT AND."
- I'm assuming this terminology refers to the fact that the dot on the ALD diagram
- that connects the multiple 
- outputs is performing a logical AND operation.  
+Recalling the error checks that IBM built into their "Design Mechanization System," compatibility between 
+SMS cards was one of the things that the system was looking at automatically. We'll 
+only get the desired OR behavior with cards that are designed to work like this.
+
+A last note on terminology.  Above it seemed like TFC was reacting to a logical 0 
+of either one CEYB **OR** the other.  But the comment in the ALD says "DOT AND."
+I'm assuming this terminology refers to the fact that the dot on the ALD diagram
+that connects the multiple 
+outputs is performing a logical AND operation.  
  
- ![Dot AND](/assets/images/dot-and-10.jpg)
+![Dot AND](/assets/images/dot-and-10.jpg)
 
- In fact, this statement appears in the 1959 _IBM Transistor Components Circuit_ manual:
+In fact, this statement appears in the 1959 _IBM Transistor Components Circuit_ manual:
 
- > *DOT Functions*
- >
- > Under certain conditions, outputs of similar levels can be tied together,
- > to share a common load. This connection provides a second level of logic
- > in the output circuits, and is referred to as a DOT function ...
+> *DOT Functions*
+>
+> Under certain conditions, outputs of similar levels can be tied together,
+> to share a common load. This connection provides a second level of logic
+> in the output circuits, and is referred to as a DOT function ...
 
 The confusion between AND dot and OR dot is probably related to the fact
 that a NAND can be re-written as a NOT-OR, per [De Morgan](https://en.wikipedia.org/wiki/De_Morgan%27s_laws). So in our example, if the 
