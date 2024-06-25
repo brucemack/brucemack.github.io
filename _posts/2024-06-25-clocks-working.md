@@ -20,17 +20,18 @@ story.
 The master clock runs at about 1 MHz, so the machine "ticks" ever 1 microsecond.
 However, this 1 MHz master clock drives a 20 cycle sequence of events that 
 defines one "memory cycle" of the computer.  You can think of this 20 microsecond
-sequence as the more fundamental machine cycle with respect to memory activity:
+sequence as the fundamental cycle with respect to memory activity:
 memory is addressed, read from, and written to during the different phases of 
 this 20 microsecond period.
 
 The 20 individual "ticks" inside of the memory cycle are named T0, T1, T2, T3,
-T4, T5, R0, R1, R2, R3, R4, R5, R6, W0, W1, W2, W3, W4, W5, W6. 
+T4, T5, R0, R1, R2, R3, R4, R5, R6, W0, W1, W2, W3, W4, W5, W6 and each has 
+a specific purpose.
 
 As you can see from the timing diagram, the machine goes through an "advance" 
 process on each W6 tick.
 
-This cycles is further segmented into the A and B cycles which are 
+This memory cycle is further segmented into the A and B cycles which are 
 used to initiate alternating memory accesses.
 
 The logic to handle all of this spans pages 01.10.05.1 through 01.10.12.1 of the ALD.
