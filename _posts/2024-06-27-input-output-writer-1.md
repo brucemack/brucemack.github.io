@@ -29,7 +29,7 @@ I'd be glad to elaborate my post.
 
 # Check out the Cadetwriter
 
-Dave Babcock and team have done a lot of work [on an interesting project called the Cadetwriter](https://github.com/IBM-1620/Cadetwriter) that replicates a 1620-style I/O typewriter using a slightly less vintage, but still satisfyingly mechanical IBM Wheelwriter typewriter from the 1980's.  
+Dave Babcock and team have done a lot of work [on an interesting project called the Cadetwriter](https://github.com/IBM-1620/Cadetwriter) that replicates a 1620-style I/O typewriter using a slightly less vintage, but still satisfyingly-mechanical IBM Wheelwriter typewriter from the 1980's.  
 
 ![Wheelwriter](/assets/images/cadetwriter-1.jpg)
 
