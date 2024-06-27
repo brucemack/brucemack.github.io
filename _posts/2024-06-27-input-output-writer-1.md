@@ -29,7 +29,7 @@ I'd be glad to elaborate my post.
 
 # Check out the Cadetwriter
 
-Dave Babcock and team have done a lot of work [on an interesting project called the Cadetwriter](https://github.com/IBM-1620/Cadetwriter) that replicates a 1620-style I/O typewriter using a slightly less vintage, but sill satisfyingly mechanical IBM Wheelwriter typewriter from the 1980's.  
+Dave Babcock and team have done a lot of work [on an interesting project called the Cadetwriter](https://github.com/IBM-1620/Cadetwriter) that replicates a 1620-style I/O typewriter using a slightly less vintage, but still satisfyingly mechanical IBM Wheelwriter typewriter from the 1980's.  
 
 ![Wheelwriter](/assets/images/cadetwriter-1.jpg)
 
@@ -47,7 +47,7 @@ like the sexier tape reader (1621), the tape punch (1624), or the card reader/pu
 perhaps related to the fact that The Typewriter was actually borrowed from the mainstream IBM 
 product line and integrated into the 1620 console. "The Typewriter" is actually an IBM Model B
 electric typewriter with an extensive set of modifications. The official name given 
-in [this more recent IBM document of 1966](https://bitsavers.org/pdf/ibm/typewriter/model_b/540-0113-2_IBM_Input-Output_Writer_Model_B_Jan196df) is the **IBM Input-Output Writer, Model B**. That
+in [this more recent IBM document of 1966](https://bitsavers.org/pdf/ibm/typewriter/model_b/540-0113-2_IBM_Input-Output_Writer_Model_B_Jan1966.pdf) is the **IBM Input-Output Writer, Model B**. That
 sounds slightly more exciting, but not much.
 
 ![Model B](/assets/images/model-b-1.jpg)
@@ -133,3 +133,43 @@ a tabulation machine.
 
 (_I believe the Cadetwriter has colored keycaps to denote the numerical 
 keys, but from the pictures I've seen it doesn't look like the 1620 had this feature._)
+
+# Connectors
+
+Part of what is found on the two inches that were added to the bottom 
+of the Model B typewriter is a set of giant 40-pin connectors.  I think 
+there are four: two for output and two for input. 
+
+There is nothing compact/efficient
+about these connectors: approximately one pin for every key on the 
+typewriter.  
+
+One less obvious thing to note: two pins on the output connector 
+provide access to the "interlock"
+mechanisms. Continuity is provided between these two pins when **none** of the
+interlocks are engaged. In other words, any of the following breaks 
+continuity:
+* Carriage return in process
+* Tab in process
+* Space in process 
+* Shift engage/shift release in process
+* Character typing in process
+
+So the CPU can watch all of these things with one connection.
+
+All of the interfaces to the typewriter use 48 volts. This is likely 
+a result of the fact that the actuators need a fair amount of pull
+to do their jobs.  From the specifications, the actuators draw 
+around 200mA a piece, which is a significant current.
+
+# Notes on Simulation
+
+I am going to stay as true to the original electronics as possible.
+In an ideal world it will be possible to integrate directly with 
+a Model B. :-) I've been watching Craigslist and there are some tempting
+vintage IBM typewriters for sale!
+
+In reality, I'll need to convert the signals on
+on the 40-pin connectors to a "normal" terminal interface of some kind.  
+It would probably be possible to make a interface card for the 
+Cadetwriter.  
