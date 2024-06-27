@@ -167,9 +167,10 @@ around 200mA a piece, which is a significant current.
 I am going to stay as true to the original electronics as possible.
 In an ideal world it will be possible to integrate directly with 
 a Model B. :-) I've been watching Craigslist and there are some tempting
-vintage IBM typewriters for sale!
+vintage IBM typewriters for sale. But my family already thinks I'm 
+crazy enough.
 
 In reality, I'll need to convert the signals on
-on the 40-pin connectors to a "normal" terminal interface of some kind.  
+the 40-pin connectors to a "normal" terminal interface of some kind.  
 It would probably be possible to make a interface card for the 
 Cadetwriter.  
