@@ -8,7 +8,8 @@ categories: [ "ibm1620" ]
 It's hard to believe I'm writing a post about electric typewriters. My
 parents would be disappointed that my years of engineering education 
 have come to this. I can take solace in the fact that I'm not 
-typing this **on** an electric typewriter.
+typing this **on** an electric typewriter. At least, not yet - I'll
+get there eventually.
 
 The IBM 1620 didn't have a screen or a mouse. But it had an integrated
 keyboard and printer in the form of a electric typewriter. This was not an ordinary typewriter.
@@ -24,7 +25,7 @@ originates is called **I┘O CONTROL** and, among
 other things, it defines the start of the integration with the I/O typewriter. 
 
 Long story short: the 1620's system clock is stopped during I/O operations to allow 
-the slow mechanical devices - including the humans in front of them - to do their jobs. It's like you're flying down the highway at 1 MHz until one of 
+the slow mechanical devices - including the humans in front of them - to do their jobs. It's like you're flying down the tracks at 1 MHz until one of 
 the I/O instructions comes along, at which 
 point you slam on the breaks and the entire machine is halted until that operation finishes. If someone executes a Read Numerically (RN 36) instruction
 and then gets called away for dinner the whole machine is just stuck. This 
@@ -37,7 +38,7 @@ nor have I done extensive research. I'm providing what I can discern from the ci
 and documentation. Anyone who knows more should drop me a line and 
 I'd be glad to elaborate my post.
 
-# Check out the Cadetwriter
+# Check out the Cadetwriter Project
 
 Dave Babcock and team have done a lot of work [on an interesting project called the Cadetwriter](https://github.com/IBM-1620/Cadetwriter) that replicates a 1620-style I/O typewriter using a slightly less vintage, but still satisfyingly-mechanical IBM Wheelwriter typewriter from the 1980's. It 
 features one of those buckling spring "tactile feedback" keyboards - so nice.
@@ -88,7 +89,7 @@ of the typewriter to be monitored by the 1620 CPU.
 production Model B to provide R-S (Release and Start), Flag Mark, and Record Mark. Those
 don't seem like general-purpose keys.
 
-All of this added almost two inches of height to the bottom of the unit, but it looks like the typewriter sat in a depressed
+All of this added almost two inches of height to the bottom of the unit, but it looks like the typewriter sat in a recessed
 area on the 1620 console desk so this didn't matter.
 
 # Mechanical Realities
@@ -161,8 +162,8 @@ of the Model B typewriter is a set of giant 40-pin Elco connectors.  I think
 there are four: two for output and two for input. 
 
 There is nothing compact/efficient
-about these connectors: approximately one pin for every key on the 
-typewriter. This is the ultimate parallel port.
+about these connectors: two pins for every key on the 
+typewriter: one to generate the keystroke (output) and one to detect it (input). This is the ultimate parallel port.
 
 One less obvious thing to note: two pins on the output connector 
 provide access to the "interlock"
