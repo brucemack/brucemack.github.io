@@ -5,14 +5,14 @@ tag-name: ibm1620
 categories: [ "ibm1620" ]
 ---
 
-It's hard to believe I'm writing an post about electric typewriters. My
+It's hard to believe I'm writing a post about electric typewriters. My
 parents would be disappointed that my years of engineering education 
 have come to this. But this is no ordinary typewriter.
 
 # Interesting Clock Feature
 
 While studying the clock generation logic [as described in my last post](/ibm1620/2024/06/25/clocks-working.html), I was puzzled by an input signal called -S HOLD TR P1 that comes from 
-page 01.64.12.1 way towards the back of volume 3 of Dave's ALD set. Normally you'd think of 
+page 01.64.12.1 of Dave's ALD set - way towards the back of Volume 3. Normally you'd think of 
 the system clock as a __driver__ of all computer activity, so seeing a logic __input__ to the 
 clock tree caught my 
 attention. I'll get into this in more detail in a future post, but the ALD page where this signal 
@@ -20,7 +20,8 @@ originates is called **I┘O CONTROL** and, among
 other things, it defines the start of the integration with the I/O typewriter. 
 
 Long story short: the 1620's system clock is stopped (completely) during I/O operations to allow 
-the slow mechanical devices - including the humans in front of them - to do their jobs. It's like you're flying down the highway at 1 MHz until one of the I/O instructions comes along, at which 
+the slow mechanical devices - including the humans in front of them - to do their jobs. It's like you're flying down the highway at 1 MHz until one of 
+the I/O instructions comes along, at which 
 point you slam on the breaks and the entire machine is halted until that operation finishes. If someone executes a Read Numerically (RN 36) instruction
 and then gets called for dinner the whole machine is just stuck. This 
 is very strange by today's standard, but the concept of asynchronous I/O did not exist on 
@@ -36,7 +37,7 @@ I'd be glad to elaborate my post.
 
 Dave Babcock and team have done a lot of work [on an interesting project called the Cadetwriter](https://github.com/IBM-1620/Cadetwriter) that replicates a 1620-style I/O typewriter using a slightly less vintage, but still satisfyingly-mechanical IBM Wheelwriter typewriter from the 1980's. It 
 features one of those buckling spring "tactile feedback" keyboards - so nice.
-It's probably not quite as satisfying as the feel of the mechanical lever of an electric typewriter striking the page, but it's the next best thing. 
+It's probably not quite as satisfying as the feel of the mechanical lever of an electric typewriter striking the page, but it's the next best thing.
 
 ![Wheelwriter](/assets/images/cadetwriter-1.jpg)
 
@@ -46,12 +47,12 @@ Cadetwriter doesn't attempt to replicate the 1620-era hardware.  In order to avo
 any of the excellent work done by the Cadetwriter team, I'm going to focus my analysis/documentation
 on the original 1620 hardware as much as possible. 
 
-As an aside
+As an aside:
 the tooling used by IBM to manufacture those tactile-feedback keyboards 
 was sold to 
 [UNICOMP and you can buy modern USB-enabled versions](https://www.pckeyboard.com/page/SFNT) of those nice (loud) keyboards.
 
-# The Original Model B
+# The Original Model B Typewriter
 
 The 1620 documentation just calls it "The Typewriter" - not very exciting.  It doesn't seem 
 to have a machine number 
@@ -71,33 +72,36 @@ hardware to the 1620 processor is a fascinating/complex topic that I'll write do
 
 Essentially, the Model B electric typewriter was modified to allow "remote control."  The changes
 go into these categories:
-* An electronic actuator was added to each key to allow output via remote "typing."
-* An electronic sensor was added to each key to allow key strokes to be watched and recorded. This
-clever idea was later taken by the KGB and used to place a bugged version of an IBM Selectric
-[into the US embassy in Moscow](https://www.popularmechanics.com/military/a30370413/typewriter-bugging-cold-war/).
-* A few internal functions of the carriage mechanism were instrumented to allow the internal status
+* An electronic actuator was added to each key to allow th 1620 
+to generate output.  It was basically "remote typing" and was similar to a 
+player piano.
+* An electronic sensor was added to each key to allow user-generated key strokes to be watched and sent to the computer. (This
+clever idea was apparently taken by the KGB and used to place a bugged version of an IBM Selectric
+[into the US embassy in Moscow](https://www.popularmechanics.com/military/a30370413/typewriter-bugging-cold-war/)).
+* A few internal functions of the carriage mechanism were instrumented to allow the detailed status
 of the typewriter to be monitored by the 1620 CPU.
 * I'm not sure about this, but I suspect that some of the key caps were altered from the 
 production Model B to provide R-S (Release and Start), Flag Mark, and Record Mark. Those
 don't seem like general-purpose keys.
 
-All of this added almost two inches to the bottom of the unit, but it looks like it sat in a depressed
+All of this added almost two inches of height to the bottom of the unit, but it looks like the typewriter sat in a depressed
 area on the 1620 console desk so this didn't matter.
 
 # Mechanical Realities
 
-I found it helped a lot to understand the interface circuitry if I kept a few of the 
+I found that it helped a lot to understand the interface circuitry if I kept the 
 mechanical realities of the Model B electric typewriter in mind:
 
 * It's called an electric typewriter, but these IBM typewriters are a marvel of mechanical 
-engineering.  Refer to numerous YouTube tear-downs to see what I mean.
+engineering.  Refer to numerous YouTube tear-downs to see what I mean. It's 
+not quite as electronic as you'd hope.  And, no, there is no serial port.
 * The typewriter works at 10 characters per second.  Anything faster runs the risk of a 
 jam.
 * A normal letter key needs to be pressed for 25 milliseconds to make a complete impression
 on the page.
 * You might be used to the design of modern inkjet printer, or even an IBM Selectric typewriter 
-which hold the paper fixed (at least horizontally) and moves the printing element 
-across a line of text. The IBM Electrics of this era did the opposite: the printing element
+which holds the paper fixed (at least horizontally) and moves the printing element 
+across to form a line of text. The IBM Electrics of this era did the opposite: the printing element
 was fixed and the paper was moved horizontally in something called a "carriage" under 
 the control of an electric motor.
 * Carriage function keys (carriage return, space, tab) require 39 milliseconds to initiate 
