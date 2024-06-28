@@ -110,7 +110,7 @@ because they control a more complicated mechanism.
 operations is variable. The typewriter has an internal mechanism called an "interlock" to 
 prevent typing during carriage movement. This requires feedback to the integration electronics
 since there is no concept of a "buffer" anywhere in this system. The computer needs to be kept in the 
-loop to determine when these long-running carriage movements are complete.
+loop to determine when these relatively long-running carriage movements are complete.
 * "Shift" is a mechanical operation that lifts an internal part of the typewriter 
 called the "basket." This takes
 90 milliseconds to activate and 115 milliseconds to deactivate. A "remote control" typist
@@ -118,10 +118,10 @@ needs to wait for the shift to engage before pressing the next character. (NOTE:
 I suspect this is the limiting
 factor that leads to the 10 character per second output data rate.)
 * Tab stops are created manually by the operator.
-* Given how tabs work, there is no way to keep count of how many characters have been typed
+* Given how tabs work, there is no way to keep count of how many column positions have been used
 on a line.  Therefore, an internal switch detects when the end of the line has been 
 reached.  I'm assuming this 
-was part of the normal Model B system, but this also needs to be fed back to the integration 
+was part of the normal Model B system, but this information also needs to be fed back to the integration 
 electronics to allow the CPU to react.
 * The concept of "overstrike" exists, whereby two character impressions are made without advancing the carriage between them. This implies that the mechanism can control whether 
 or not the carriage is advanced after a symbol impression is made. Important examples that I am aware of:
@@ -153,7 +153,7 @@ keys, but from the pictures I've seen it doesn't look like the 1620 had this fea
 # Connectors
 
 Part of what is found on the two inches that were added to the bottom 
-of the Model B typewriter is a set of giant 40-pin connectors.  I think 
+of the Model B typewriter is a set of giant 40-pin Elco connectors.  I think 
 there are four: two for output and two for input. 
 
 There is nothing compact/efficient
@@ -171,7 +171,9 @@ continuity:
 * Shift engage/shift release in process
 * Character typing in process
 
-So the CPU can watch all of these things with one connection.
+So the CPU can watch all of these things with one connection. When
+there is continuity through this loop it's safe to send the 
+next character.
 
 All of the interfaces to the typewriter use 48 volts. This is likely 
 a result of the fact that the actuators need a fair amount of pull
@@ -187,5 +189,5 @@ vintage IBM typewriters for sale. But my family already thinks I'm insane.
 
 In reality, I'll need to convert the signals on
 the 40-pin connectors to a "normal" terminal interface of some kind.  
-In fact, it would probably be possible to make a interface card for the 
+It would probably be possible to make a interface card for the 
 Cadetwriter.  
