@@ -164,11 +164,13 @@ The supported output symbols are as follows:
 
 (_Need to get a good photo of the keyboard here._)
 
-The keyboard layout is a bit different from what we're used to. Specifically, the numbers keys
-are not arranged in a row across the top of the keyboard, but instead are accessed using 
-shifted versions of the UIO, JKL, and M,. keys.  This makes sense because it provides a 
+The keyboard layout used on the 1620 Model 1F was different from what we're used to
+on a modern computer. Specifically, the numbers keys
+were not arranged in a row across the top of the keyboard, but instead were accessed using 
+shifted versions of the UIO, JKL, and M,. keys.  This makes sense because it provided a 
 physical arrangement of the numbers that would have felt familiar to someone who was used to
-a tabulation machine. 
+a tabulation machine.  I know later versions of the 1620 moved to more advanced typewriters,
+and later to the Selectric model.  The keyboard layout was an evolving thing.
 
 (_I believe the Cadetwriter has colored keycaps to denote the numerical 
 keys, but from the pictures I've seen it doesn't look like the 1620 had this feature._)
