@@ -7,7 +7,11 @@ categories: [ "ibm1620" ]
 
 It's hard to believe I'm writing a post about electric typewriters. My
 parents would be disappointed that my years of engineering education 
-have come to this. But this is no ordinary typewriter.
+have come to this. I can take solace in the fact that I'm not 
+typing this **on** an electric typewriter.
+
+The IBM 1620 didn't have a screen or a mouse. But it had an integrated
+keyboard and printer in the form of a electric typewriter. This was not an ordinary typewriter.
 
 # Interesting Clock Feature
 
@@ -19,11 +23,11 @@ attention. I'll get into this in more detail in a future post, but the ALD page 
 originates is called **I┘O CONTROL** and, among 
 other things, it defines the start of the integration with the I/O typewriter. 
 
-Long story short: the 1620's system clock is stopped (completely) during I/O operations to allow 
+Long story short: the 1620's system clock is stopped during I/O operations to allow 
 the slow mechanical devices - including the humans in front of them - to do their jobs. It's like you're flying down the highway at 1 MHz until one of 
 the I/O instructions comes along, at which 
 point you slam on the breaks and the entire machine is halted until that operation finishes. If someone executes a Read Numerically (RN 36) instruction
-and then gets called for dinner the whole machine is just stuck. This 
+and then gets called away for dinner the whole machine is just stuck. This 
 is very strange by today's standard, but the concept of asynchronous I/O did not exist on 
 the 1620. 
 
