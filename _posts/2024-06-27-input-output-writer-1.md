@@ -77,7 +77,7 @@ hardware to the 1620 processor is a fascinating/complex topic that I'll write do
 
 Essentially, the Model B electric typewriter was modified to allow "remote control."  The changes
 go into these categories:
-* An electronic actuator was added to each key to allow th 1620 
+* An electronic actuator was added to each key to allow the 1620 
 to generate output.  It was basically "remote typing" and was similar to a 
 player piano.
 * An electronic sensor was added to each key to allow user-generated key strokes to be watched and sent to the computer. (This
@@ -114,15 +114,15 @@ because they control a more complicated mechanism.
 * Carriage return, tab, and space involve a rotating belt. The time it takes to complete these 
 operations is variable. The typewriter has an internal mechanism called an "interlock" to 
 prevent typing during carriage movement. This requires feedback to the integration electronics
-since there is no concept of a "buffer" anywhere in this system. The computer needs to be kept in the 
+since there is no concept of a buffer anywhere in this system. The computer needs to be kept in the 
 loop to determine when these relatively long-running carriage movements are complete.
-* "Shift" is a mechanical operation that lifts an internal part of the typewriter 
+* Shift is a mechanical operation that lifts an internal part of the typewriter 
 called the "basket." This takes
-90 milliseconds to activate and 115 milliseconds to deactivate. A "remote control" typist
+90 milliseconds to activate and 115 milliseconds to deactivate. A remote control typist
 needs to wait for the shift to engage before pressing the next character. (NOTE: 
 I suspect this is the limiting
 factor that leads to the 10 character per second output data rate.)
-* Tab stops are created manually by the operator.
+* Tab stops are created manually by the operator during setup time.
 * Given how tabs work, there is no way to keep count of how many column positions have been used
 on a line.  Therefore, an internal switch detects when the end of the line has been 
 reached.  I'm assuming this 
