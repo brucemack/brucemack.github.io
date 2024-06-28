@@ -12,7 +12,7 @@ would think I'd have better things to do.  This is no ordinary typewriter.
 
 While studying the clock generation logic [as described in my last post](/ibm1620/2024/06/25/clocks-working.html), I was puzzled by an input signal called -S HOLD TR P1 that comes from 
 page 01.64.12.1 way towards the back of volume 3 of Dave's ALD set. Normally you'd think of 
-the system clock as a __driver__ of all computer activity, so seeing a logic *input* to the 
+the system clock as a __driver__ of all computer activity, so seeing a logic __input__ to the 
 clock tree caught my 
 attention. I'll get into this in more detail in a future post, but the ALD page where this signal 
 originates is called **I┘O CONTROL** and, among 
@@ -27,13 +27,15 @@ the 1620.
 
 This revelation led me to examine the 20 or so ALD pages related to the I/O typewriter.  Those
 pages are quite interesting, and unexpected in many ways. I _am not_ an IBM typewriter expert, 
-nor have I done an extensive amount of research. I'm providing what I can discern from the circuits 
-and documentation below. Anyone who knows more should drop me a line and 
+nor have I done extensive research. I'm providing what I can discern from the circuits 
+and documentation. Anyone who knows more should drop me a line and 
 I'd be glad to elaborate my post.
 
 # Check out the Cadetwriter
 
-Dave Babcock and team have done a lot of work [on an interesting project called the Cadetwriter](https://github.com/IBM-1620/Cadetwriter) that replicates a 1620-style I/O typewriter using a slightly less vintage, but still satisfyingly-mechanical IBM Wheelwriter typewriter from the 1980's.  
+Dave Babcock and team have done a lot of work [on an interesting project called the Cadetwriter](https://github.com/IBM-1620/Cadetwriter) that replicates a 1620-style I/O typewriter using a slightly less vintage, but still satisfyingly-mechanical IBM Wheelwriter typewriter from the 1980's. It 
+features one of those buckling spring "tactile feedback" keyboards - so nice.
+It's probably not quite as satisfying as the feel of the mechanical lever of an electric typewriter striking the page, but it's the next best thing. 
 
 ![Wheelwriter](/assets/images/cadetwriter-1.jpg)
 
@@ -43,16 +45,21 @@ Cadetwriter doesn't attempt to replicate the 1620-era hardware.  In order to avo
 any of the excellent work done by the Cadetwriter team, I'm going to focus my analysis/documentation
 on the original 1620 hardware as much as possible. 
 
+As an aside
+the tooling used by IBM to manufacture those tactile-feedback keyboards 
+was sold to 
+[UNICOMP and you can buy modern USB-enabled versions](https://www.pckeyboard.com/page/SFNT) of those nice (loud) keyboards.
+
 # The Original Model B
 
 The 1620 documentation just calls it "The Typewriter" - not very exciting.  It doesn't seem 
 to have a machine number 
-like the sexier tape reader (1621), the tape punch (1624), or the card reader/punch (1622).  This is
+like the sexier tape reader (1621), the tape punch (1624), or the card reader/punch (1622). The engineers probably felt slighted. This is
 perhaps related to the fact that The Typewriter was actually borrowed from the mainstream IBM 
 product line and integrated into the 1620 console. "The Typewriter" is actually an IBM Model B
 electric typewriter with an extensive set of modifications. The official name given 
 in [this more recent IBM document of 1966](https://bitsavers.org/pdf/ibm/typewriter/model_b/540-0113-2_IBM_Input-Output_Writer_Model_B_Jan1966.pdf) is the **IBM Input-Output Writer, Model B**. That
-sounds slightly more exciting, but not much.
+sounds slightly more exciting. OK, not really.
 
 ![Model B](/assets/images/model-b-1.jpg)
 
