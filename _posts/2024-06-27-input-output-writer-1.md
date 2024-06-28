@@ -42,7 +42,7 @@ I'd be glad to elaborate my post.
 
 Dave Babcock and team have done a lot of work [on an interesting project called the Cadetwriter](https://github.com/IBM-1620/Cadetwriter) that replicates a 1620-style I/O typewriter using a slightly less vintage, but still satisfyingly-mechanical IBM Wheelwriter typewriter from the 1980's. It 
 features one of those buckling spring "tactile feedback" keyboards - so nice.
-It's probably not quite as satisfying as the feel of the mechanical lever of an electric typewriter striking the page, but it's the next best thing.
+It's probably not quite as satisfying as the feel of the mechanical hammer of a Model B electric typewriter striking the page, but it's the next best thing.
 
 ![Wheelwriter](/assets/images/cadetwriter-1.jpg)
 
