@@ -91,20 +91,21 @@ production Model B to provide R-S (Release and Start), Flag Mark, and Record Mar
 don't seem like general-purpose keys.
 
 All of this added almost two inches of height to the bottom of the unit, but it looks like the typewriter sat in a recessed
-area on the 1620 console desk so this didn't matter. Thanks to Paul Kimple for pointing out that 
+area on the 1620 console desk so this didn't matter. Thanks to Paul Kimpel for pointing out that 
 the photo of what appears to be a modified Model B on the [IBM Electric Typewriter Wikipedia Page](https://en.wikipedia.org/wiki/IBM_Electric) gives a very good view of the 2 inch "platform" that contained
 the mechanical modifications needed for computer integration. 
 
 Paul also pointed out that the computer-capable Model 
 B Typewriter found use with other non-IBM computers of the day including 
 the [JONNIAC](https://en.wikipedia.org/wiki/JOHNNIAC) (RAND Corp), the [PDP-1](https://en.wikipedia.org/wiki/PDP-1) (DEC), and the [Bendix G-15](https://en.wikipedia.org/wiki/Bendix_G-15) (Bendix Corp). So
-it seems these machines were being sold to other manufacturers on a stand-alone basis. All
+it would appear that these state-of-the-art typewriters were being sold to other manufacturers on a
+stand-alone basis. All
 of this explains why this [IBM Input-Output Writer, Model B](https://bitsavers.org/pdf/ibm/typewriter/model_b/540-0113-2_IBM_Input-Output_Writer_Model_B_Jan1966.pdf) document reads a bit like a 
 sales brochure with statements like: _"... an efficient print out device for computers and other similar equipment ..."_ and _"A power supply of 42-48 volts DC is required ... this power supply 
 must be provided by the purchaser."_  You'd never see anything like that in a normal IBM manual.
 
 Adding to Paul's observations, I can see a blogger working on a [Bendix G-15 restoration project](https://headspinlabs.wordpress.com/2022/10/04/bendix-g-15-typewriter-console/) has
-documented the Bendix "Master Writer" terminal, which is really just a white-labeled IBM Model A/B/C Electric. Looking the Bendix G-15 schematics, I can tell that Bendix had their own "platform" 
+documented the Bendix "Master Writer" terminal, which is really just a white-labeled IBM Model A/B/C Electric. Looking the Bendix G-15 schematics, I can tell that Bendix had their own typewriter "platform" 
 design and was not sharing the the integration electronics used by the 1620.
 
 # Mechanical Realities
