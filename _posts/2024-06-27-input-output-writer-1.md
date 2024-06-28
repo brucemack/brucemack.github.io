@@ -5,20 +5,24 @@ tag-name: ibm1620
 categories: [ "ibm1620" ]
 ---
 
+It's hard to believe I'm writing an post about electric typewriters.  You 
+would think I'd have better things to do.  This is no ordinary typewriter.
+
 # Interesting Clock Feature
 
 While studying the clock generation logic [as described in my last post](/ibm1620/2024/06/25/clocks-working.html), I was puzzled by an input signal called -S HOLD TR P1 that comes from 
 page 01.64.12.1 way towards the back of volume 3 of Dave's ALD set. Normally you'd think of 
-the system clock as a __driver__ of all computer activity, so seeing a logic input to the 
+the system clock as a __driver__ of all computer activity, so seeing a logic *input* to the 
 clock tree caught my 
-attention. I'll get into this in more detail later, but the ALD page where this signal 
+attention. I'll get into this in more detail in a future post, but the ALD page where this signal 
 originates is called **I┘O CONTROL** and, among 
-other things, it is defines the start of the integration with the I/O typewriter. 
+other things, it defines the start of the integration with the I/O typewriter. 
 
 Long story short: the 1620's system clock is stopped (completely) during I/O operations to allow 
-the slow mechanical devices - including the humans in front of them - to do their jobs. You're screaming along at 1 MHz until one of the I/O instructions comes along, at which 
-point you slam on the breaks and the entire machine is halted until that operation can finish. This 
-is very strange by today's standard, but the concept of asynchronous I/O does not exist on 
+the slow mechanical devices - including the humans in front of them - to do their jobs. It's like you're flying down the highway at 1 MHz until one of the I/O instructions comes along, at which 
+point you slam on the breaks and the entire machine is halted until that operation finishes. If someone executes a Read Numerically (RN 36) instruction
+and then gets called for dinner the whole machine is just stuck. This 
+is very strange by today's standard, but the concept of asynchronous I/O did not exist on 
 the 1620. 
 
 This revelation led me to examine the 20 or so ALD pages related to the I/O typewriter.  Those
@@ -167,10 +171,9 @@ around 200mA a piece, which is a significant current.
 I am going to stay as true to the original electronics as possible.
 In an ideal world it will be possible to integrate directly with 
 a Model B. :-) I've been watching Craigslist and there are some tempting
-vintage IBM typewriters for sale. But my family already thinks I'm 
-crazy enough.
+vintage IBM typewriters for sale. But my family already thinks I'm insane.
 
 In reality, I'll need to convert the signals on
 the 40-pin connectors to a "normal" terminal interface of some kind.  
-It would probably be possible to make a interface card for the 
+In fact, it would probably be possible to make a interface card for the 
 Cadetwriter.  
