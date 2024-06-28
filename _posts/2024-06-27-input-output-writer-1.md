@@ -5,8 +5,9 @@ tag-name: ibm1620
 categories: [ "ibm1620" ]
 ---
 
-It's hard to believe I'm writing an post about electric typewriters.  You 
-would think I'd have better things to do.  This is no ordinary typewriter.
+It's hard to believe I'm writing an post about electric typewriters. My
+parents would be disappointed that my years of engineering education 
+have come to this. But this is no ordinary typewriter.
 
 # Interesting Clock Feature
 
@@ -153,7 +154,7 @@ there are four: two for output and two for input.
 
 There is nothing compact/efficient
 about these connectors: approximately one pin for every key on the 
-typewriter.  
+typewriter. This is the ultimate parallel port.
 
 One less obvious thing to note: two pins on the output connector 
 provide access to the "interlock"
