@@ -9,10 +9,10 @@ It's hard to believe I'm writing a post about electric typewriters. My
 parents would be disappointed that my years of engineering education 
 have come to this. I can take solace in the fact that I'm not 
 typing this **on** an electric typewriter. At least, not yet - I'll
-get there eventually.
+regress to that level eventually.
 
 The IBM 1620 didn't have a screen or a mouse. But it had an integrated
-keyboard and printer in the form of a electric typewriter. This was not an ordinary typewriter.
+keyboard and printer in the form of an electric typewriter. This was not an ordinary typewriter.
 
 # Interesting Clock Feature
 
