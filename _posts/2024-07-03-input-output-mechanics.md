@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "IBM 1620 - Input-Output Mechanics"
+title:  "IBM 1620 - Input-Output Typewriter, Mechanics"
 tag-name: ibm1620
 categories: [ "ibm1620" ]
 ---
@@ -90,6 +90,12 @@ representation of the coils use "LP" to denote the pick coil and "LT" to denote 
 trip coil:
 
 ![Relay Latching](/assets/images/relays-5.jpg)
+
+# Rotating Commutator
+
+This one took some time to figure out. The rotating commutator is constructed using a 
+rotating drum that produces a series of repeating electrical connections according to 
+the configuration of 
 
 
 
