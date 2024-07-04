@@ -162,7 +162,7 @@ The supported output symbols are as follows:
 * Overstrike symbol
 * Record marker: ╪
 
-(_Need to get a good photo of the keyboard here._)
+![Keyboard](/assets/images/typewriter-keyboard-1.jpg)
 
 The keyboard layout used on the 1620 Model 1F was different from what we're used to
 on a modern computer. Specifically, the numbers keys
