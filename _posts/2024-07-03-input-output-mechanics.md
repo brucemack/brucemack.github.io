@@ -18,12 +18,13 @@ typewriter interface is built from a bewildering collection of
 mechanical arrays and selection commutators. My guess is that either (a) this part of 
 the system was designed before the SMS/transistor technology was firmly established or (b)
 this part of the system was designed by the "typewriter team" who had deep expertise/history
-building complex mechanical logic. In seems that the 1620 typewriter control logic 
+building complex mechanical logic but was less comfortable with transistors. In seems that 
+the 1620 typewriter control logic 
 stands at the cross-roads between the legacy of IBM/CTR mechanical calculation/tabulation 
 machines and the future of electronic computing.
 
 The IBM document entitled ["Commutation and Control"](https://ed-thelen.org/comp-hist/IBM-FU-05-CommutationControl.pdf) provides the details of the IBM mechanical controls
-used in a wide range of machines of the era. In this post I'm going to summarize the key concepts 
+used in a wide range of machines of the era. In this post I'll summarize the key concepts 
 that are needed to understand how the 1620 typewriter interface works. Some of this 
 is clear from the documentation, some takes some digging.
 
@@ -37,7 +38,7 @@ refers to the basic relay as a "Duo Relay" for reasons that we'll get into short
 Most people are
 familiar with the operation of a relay so I'll just highlight two facets that are 
 most relevant to the 1620 design:
-* The duo relays support multiple/parallel contact sets known as "stacks."  The picture below
+* The duo relays support multiple/parallel contact sets known as "stacks."  The picture above
 shows two contact sets (1NC/1C/1NO and 2NC/2C/2NO). NC is "normally closed," OP is "common"
 or "operating point" and NO is "normally open." The 1620 uses relays that have 
 up tp 12 independent "stacks" controlled by one set of coils. 
@@ -47,14 +48,14 @@ coils provided for operating the relay.  The "pick" coil is designed for fast re
 requires more power.  The "hold" coil works more slowly, but requires less power.  The difference
 has to do with the type/amount of wire used to wind the coils. These circuits are designed
 to energize the pick coil first to quickly close the relay, and then hand over to the hold 
-coil to hold it closed for a longer period of time. Importantly, one of the two coils
+coil to keep it closed for a longer period of time. Importantly, one of the two coils
 must be energized to keep the relay closed, or else the spring will pull it open again.
 
 The relay components are disaggregated in the 1620 schematics.
 
 This part of the schematic shows two stacks of relay 3: stack 4 and stack 2. Notice each 
 stack has three connections (NC/OP/NO). These two stacks are electrically independent,
-except for the fact that they are controlled by the same two relays.
+except for the fact that they are controlled by the same two coils.
 
 ![Relay 1](/assets/images/relays-3.jpg)
 
