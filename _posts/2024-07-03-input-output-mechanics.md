@@ -36,20 +36,24 @@ refers to the basic relay as a "Duo Relay" for reasons that we'll get into short
 ![Relay 1](/assets/images/relays-1a.jpg)
 
 Most people are
-familiar with the operation of a relay so I'll just highlight two facets that are 
+familiar with the operation of a relay so I'll just highlight the facets that are 
 most relevant to the 1620 design:
 * The duo relays support multiple/parallel contact sets known as "stacks."  The picture above
 shows two contact sets (1NC/1C/1NO and 2NC/2C/2NO). NC is "normally closed," OP is "common"
 or "operating point" and NO is "normally open." The 1620 uses relays that have 
 up tp 12 independent "stacks" controlled by one set of coils. 
-* The term "duo" arises from an interesting feature that I've not seen before. Notice that 
+* The relay is closed when the coils are energized. IBM uses the term "pick" to refer to the 
+relay closing operation. 
+* The term "duo" arises from an interesting feature that I've not seen before. Notice 
+from the diagram above that 
 there are two separate
-coils provided for operating the relay.  The "pick" coil is designed for fast reaction, but 
-requires more power.  The "hold" coil works more slowly, but requires less power.  The difference
+coils provided for operating the relay.  The "pick" coil is designed to quickly close the relay, but 
+requires more power.  The "hold" coil pulls in the same direction, but works more slowly and 
+requires less power.  The difference
 has to do with the type/amount of wire used to wind the coils. These circuits are designed
 to energize the pick coil first to quickly close the relay, and then hand over to the hold 
 coil to keep it closed for a longer period of time. Importantly, one of the two coils
-must be energized to keep the relay closed, or else the spring will pull it open again.
+must always be energized to keep the relay closed or else the spring will pull it open again.
 
 The relay components are disaggregated in the 1620 schematics.
 
@@ -67,9 +71,25 @@ two coils are wired in series - that defeats the purpose of the duo relay.)
 
 ![Relay 1](/assets/images/relays-2.jpg)
 
-
 # Latching Relay
 
 This is less common, but appears in some critical functions of the 1620. 
+
+![Relay Latching](/assets/images/relays-4.jpg)
+
+The key difference here 
+is that the relay has no spring.  Once the "pick" coil is energized, the relay will stay 
+in the closed even when the current is removed from the coil.  IBM uses the term "trip" 
+to refer to the opposite direction: once the "trip" coil is energized the relay opens again.  
+There is 
+no power required to maintain the closed or open state - only to transition.  This relay type is typically used to manage
+long-lived states. 
+
+There is no difference in the depiction of the contacts in the schematics.  The schematic
+representation of the coils use "LP" to denote the pick coil and "LT" to denote the 
+trip coil:
+
+![Relay Latching](/assets/images/relays-5.jpg)
+
 
 
