@@ -15,12 +15,12 @@ to me is how much of the typewriter _interface_ is also mechanical. The logic of
 processor used a cutting-edge transistorized design. In 
 contrast, the
 typewriter interface was built from a bewildering collection of 
-mechanical relays, motors, and cams. My guess is that either (a) this part of 
+mechanical relays, motors, and spinning cams. My guess is that either (a) this part of 
 the system was designed before the SMS/transistor technology was firmly established or (b)
 this part of the system was designed by the "typewriter team" who had deep expertise/history
-building complex mechanical logic and was less comfortable with transistors. It seems that 
-the 1620 typewriter controller stands at the cross-roads between the legacy of IBM/CTR mechanical calculation/tabulation 
-machines and the future of electronic computing.
+building complex machines and was less comfortable with transistors. It seems to me that 
+the 1620 typewriter controller stood at the cross-roads between the IBM/CTR mechanical calculation/tabulation 
+legacy and the future of electronic computing.
 
 A chapter entitled ["Commutation and Control"](https://ibm-1401.info/pictures/IBM-FU-05-CommutationControl-.pdf) from 
 an unknown IBM document archived on the IBM-1401.info site provides illustrations of the IBM 
@@ -31,7 +31,7 @@ are clear from the IBM documentation, other concepts take some digging to unders
 
 # Duo Relay 
 
-This is the most common component used in the typewriter interface - there are about 40 of them! The IBM 
+This is the most common component used in the typewriter interface - there are about 50 of them! The IBM 
 documentation refers to the basic relay as a "Duo Relay" for reasons that we'll get into shortly.
 
 ![Relay 1](/assets/images/relays-1a.jpg)
@@ -42,7 +42,9 @@ most relevant to the 1620 design:
 * The duo relays support multiple/parallel contact sets known as "stacks."  The picture above
 shows two contact sets (1NC/1C/1NO and 2NC/2C/2NO). NC is "normally closed," OP is "common"
 or "operating point" and NO is "normally open." The 1620 uses relays that have 
-up to 12 independent "stacks" controlled by a shared set of coils. 
+up to 12 independent stacks controlled by a shared set of coils. **NOTE:** My crude diagram
+above is misleading in that it appears to show that the 1OP and 2OP contacts are connected - they are not,
+each stack is _electrically independent_ (although they are mechanically connected).
 * The relay is closed when the coils are energized. IBM uses the term "pick" to refer to the 
 relay closing operation. I've seen the term "relay pickup" used in common literature, so "pick"
 must be an abbreviation.  The IBM documents use the word "pick" is used as noun qualifier (when 
@@ -51,23 +53,22 @@ describing the purpose of a coil) and as a verb to describe the action of "picki
 from the diagram above that 
 there are two separate
 coils provided for operating the relay.  The pick coil is designed to quickly close the relay and 
-the "hold" coil is designed to hold it closed.  Why two coils?  It turns out that the pick coil
-is engineered to operate quickly, at the expense of higher power.  The hold coil, on the other
+the "hold" coil is designed to keep it closed.  Why two coils?  It turns out that the pick coil
+was engineered to operate quickly, at the expense of higher power.  The hold coil, on the other
 hand, works more slowly but consumes less power.  The difference
 has to do with the type/amount of wire used to wind the coils. Control circuits are designed
 to energize the pick coil first in order to quickly close the relay, and then hand over to the hold 
-coil to keep it closed for a longer period of time. Importantly, one of the two coils
+coil to keep it closed for a longer period of time. This is obviously a highly refined form of 
+electromechanical engineering. Importantly, one of the two coils
 must always be energized to keep the relay closed or else the spring will pull it open again.
 
-The relay parts are disaggregated in the 1620 schematics.
-
-This part of the schematic (page 01.82.72.1) shows two stacks of relay 3: stack 4 and stack 2. Notice each 
+The relay parts are disaggregated in the 1620 schematics. This part of the schematic (page 01.82.72.1) shows two stacks of relay 3: stack 4 and stack 2, but not their coils. Notice each 
 stack has three connections (NC/OP/NO). These two stacks are electrically independent,
 except for the fact that **they are controlled by the same two relay coils**.
 
 ![Relay 1](/assets/images/relays-3.jpg)
 
-Other stacks of the same relay may appear on completely different pages in the schematic, which can 
+Coils and other stacks of the _same relay_ may appear on completely different pages in the schematic, which can 
 be confusing.
 
 This part of the schematic (page 01.82.72.1) shows the two coils for relay 12.  The "P" indicates the pick
@@ -144,12 +145,15 @@ reference angles:
 ![Cam Relay 3](/assets/images/relays-10.jpg)
 
 Hopefully you can see that this is the mechanical equivalent of the electronic 
-clock sequence that was described in [my previous post about clocking](/ibm1620/2024/06/25/clocks-working.html).
+clock sequence that was described in [my previous post about clocking](/ibm1620/2024/06/25/clocks-working.html). The
+main difference is that the "modern" SMS electronic sequence runs at a speed 4-5 orders of magnitude faster than 
+the spinning motors and switching relay. That said, the sound of the typewriter system must have been very cool,
+in a steampunk kind of way.
 
 # Contacts
 
 This is a simplest device, but it's worth calling out to avoid confusion.  A "contact" refers to a 
-normal switch.  I mention this heret because the schematic can easily be confused with 
+normal switch.  I mention this here because the schematic can easily be confused with 
 a relay.  Here is an example (page 01.82.70.1):
 
 ![Cam Relay 2](/assets/images/relays-9.jpg)
