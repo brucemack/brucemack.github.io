@@ -7,7 +7,7 @@ categories: [ "ibm1620" ]
 
 In a [previous post](/ibm1620/2024/06/27/input-output-writer-1.html) I talked about 
 the Model B Electric Typewriter that served as the I/O device for the original 1620 models. In 
-this post I'll start to get into the complex electronics and mechanics used by 
+this post I'll start to get into the complex mechanics and electronics used by 
 the 1620 to integrate with this typewriter. 
 
 It's no surprise that the typewriter itself is a mechanical device. What was surprising 
@@ -15,7 +15,7 @@ to me is how much of the typewriter _interface_ is mechanical. The logic of the 
 processor used a cutting-edge design constructed almost entirely from transistors. In 
 contrast, the
 typewriter interface is built from a bewildering collection of 
-mechanical arrays and selection commutators. My guess is that either (a) this part of 
+mechanical relays, motors, and cams. My guess is that either (a) this part of 
 the system was designed before the SMS/transistor technology was firmly established or (b)
 this part of the system was designed by the "typewriter team" who had deep expertise/history
 building complex mechanical logic but was less comfortable with transistors. In seems that 
@@ -98,7 +98,8 @@ interface are driven by a special type of rotating relay called a **cam-operated
 In this device, a motor is used to turn a series of parallel cams to produce electrical 
 continuity at different phases of each rotation. The precise phasing is achieved
 by (a) machining the size of the cam to control the fraction of the rotation for which it
-is engaged and (b) offsetting each cam relative to the others to determine the phase
+is engaged and (b) offsetting each cam relative to the others on the same drive shaft 
+to determine the phase
 of the engagement. This is very similar to the camshaft in a mechanically-controlled
 engine.
 
@@ -115,7 +116,7 @@ typically have several cams mounted on the same motor shaft, each sized and offs
 differently to produce the desired timing pulses.
 
 These devices show up in the 1620 schematic in a cryptic way that only makes 
-sense once you understand the mechanics.  Here is an example:
+sense when you understand the mechanics.  Here is an example:
 
 ![Cam Relay 1](/assets/images/relays-7.jpg)
 
@@ -124,6 +125,10 @@ that the relay is "made" (closed) at 171° of rotation and B221 means the relay
 "break" is at 221°. If you do the math, this cam provides a repeating pulse with 
 about a 14% duty cycle: (221 - 171) / 360.
 
+Note in this example, when CRCB 4 is made we expect to see +48 volts on 
+the operating point of stack 3 of relay 20.
+
+
 Here we see CRCB 6, which is another instance of the same 50° cam part, but offset at 
 a different phase relative to CRCB 4. This produces another 14% duty cycle pulse,
 but offset from CRCB 4 by 139° in phase.
@@ -131,7 +136,7 @@ but offset from CRCB 4 by 139° in phase.
 ![Cam Relay 2](/assets/images/relays-8.jpg)
 
 Hopefully you can see that this is the mechanical equivalent of the electronic 
-clock tree that was described in [my previous post about clocking](/ibm1620/2024/06/25/clocks-working.html).
+clock sequence that was described in [my previous post about clocking](/ibm1620/2024/06/25/clocks-working.html).
 
 
 
