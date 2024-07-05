@@ -7,20 +7,19 @@ categories: [ "ibm1620" ]
 
 In a [previous post](/ibm1620/2024/06/27/input-output-writer-1.html) I talked about 
 the Model B Electric Typewriter that served as the I/O device for the original 1620 models. In 
-this post I'll start to get into the complex mechanics and electronics used by 
-the 1620 to integrate with this typewriter. 
+this post I'll start to get into the complex mechanics and electronics used to integrate 
+the 1620 with this typewriter. 
 
 It's no surprise that the typewriter itself is a mechanical device. What was surprising 
-to me is how much of the typewriter _interface_ is mechanical. The logic of the core 1620 
-processor used a cutting-edge design constructed almost entirely from transistors. In 
+to me is how much of the typewriter _interface_ is also mechanical. The logic of the core 1620 
+processor used a cutting-edge transistorized design. In 
 contrast, the
 typewriter interface was built from a bewildering collection of 
 mechanical relays, motors, and cams. My guess is that either (a) this part of 
 the system was designed before the SMS/transistor technology was firmly established or (b)
 this part of the system was designed by the "typewriter team" who had deep expertise/history
 building complex mechanical logic and was less comfortable with transistors. It seems that 
-the 1620 typewriter control logic 
-stands at the cross-roads between the legacy of IBM/CTR mechanical calculation/tabulation 
+the 1620 typewriter controller stands at the cross-roads between the legacy of IBM/CTR mechanical calculation/tabulation 
 machines and the future of electronic computing.
 
 A chapter entitled ["Commutation and Control"](https://ibm-1401.info/pictures/IBM-FU-05-CommutationControl-.pdf) from 
@@ -28,11 +27,11 @@ an unknown IBM document archived on the IBM-1401.info site provides illustration
 electro-mechanical devices
 used in a wide range of machines of the era. In this post I'll summarize the key concepts 
 that are needed to understand how the 1620 typewriter interface works. Some concepts 
-are clear from the IBM documentation, other concepts take some digging.
+are clear from the IBM documentation, other concepts take some digging to understand. 
 
 # Duo Relay 
 
-This is the most common component used in the typewriter interface - there are about 40 of them. The IBM 
+This is the most common component used in the typewriter interface - there are about 40 of them! The IBM 
 documentation refers to the basic relay as a "Duo Relay" for reasons that we'll get into shortly.
 
 ![Relay 1](/assets/images/relays-1a.jpg)
@@ -43,22 +42,24 @@ most relevant to the 1620 design:
 * The duo relays support multiple/parallel contact sets known as "stacks."  The picture above
 shows two contact sets (1NC/1C/1NO and 2NC/2C/2NO). NC is "normally closed," OP is "common"
 or "operating point" and NO is "normally open." The 1620 uses relays that have 
-up tp 12 independent "stacks" controlled by a shared set of coils. 
+up to 12 independent "stacks" controlled by a shared set of coils. 
 * The relay is closed when the coils are energized. IBM uses the term "pick" to refer to the 
-relay closing operation. 
+relay closing operation. I've seen the term "relay pickup" used in common literature, so "pick"
+must be an abbreviation.  The IBM documents use the word "pick" is used as noun qualifier (when 
+describing the purpose of a coil) and as a verb to describe the action of "picking" (closing) a relay.
 * The term "duo" arises from an interesting feature that I've not seen before. Notice 
 from the diagram above that 
 there are two separate
-coils provided for operating the relay.  The "pick" coil is designed to quickly close the relay and 
+coils provided for operating the relay.  The pick coil is designed to quickly close the relay and 
 the "hold" coil is designed to hold it closed.  Why two coils?  It turns out that the pick coil
 is engineered to operate quickly, at the expense of higher power.  The hold coil, on the other
 hand, works more slowly but consumes less power.  The difference
 has to do with the type/amount of wire used to wind the coils. Control circuits are designed
-to energize the pick coil first to quickly close the relay, and then hand over to the hold 
+to energize the pick coil first in order to quickly close the relay, and then hand over to the hold 
 coil to keep it closed for a longer period of time. Importantly, one of the two coils
 must always be energized to keep the relay closed or else the spring will pull it open again.
 
-The relay components are disaggregated in the 1620 schematics.
+The relay parts are disaggregated in the 1620 schematics.
 
 This part of the schematic (page 01.82.72.1) shows two stacks of relay 3: stack 4 and stack 2. Notice each 
 stack has three connections (NC/OP/NO). These two stacks are electrically independent,
@@ -66,7 +67,8 @@ except for the fact that **they are controlled by the same two relay coils**.
 
 ![Relay 1](/assets/images/relays-3.jpg)
 
-Other stacks of the same relay may appear on completely different pages in the schematic.
+Other stacks of the same relay may appear on completely different pages in the schematic, which can 
+be confusing.
 
 This part of the schematic (page 01.82.72.1) shows the two coils for relay 12.  The "P" indicates the pick
 coil and the "H" indicates the hold coil. (NOTE: This particular example is unusual in that the 
@@ -82,14 +84,13 @@ This is less common, but appears in some critical functions of the 1620.
 ![Relay Latching](/assets/images/relays-4.jpg)
 
 The key difference here 
-is that the relay has no spring.  Once the "pick" coil is energized, the relay will stay 
- closed even when the current is removed from the coil.  IBM uses the term "trip" 
-to refer to the opposite movement: once the "trip" coil is energized the relay opens again. There is 
+is that the relay has no spring.  Once the pick coil is energized, the relay will stay closed even when the current is removed from the coil.  IBM uses the term "trip" 
+to refer to the opposite movement: once the trip coil is energized the relay opens again. There is 
 no power required to maintain the closed or open states - only to transition between them.  This 
 relay type is used to manage long-lived states in a power-efficient manner.
 
-There is no difference in the depiction of the contacts in the schematics.  The schematic
-representation (page 01.82.72.1) of the coils use "LP" to denote the pick coil and "LT" to denote the 
+There is no difference in the depiction of the duo vs. latching contacts in the schematics.  The schematic
+representation (page 01.82.72.1) of the latching coils use "LP" to denote the pick coil and "LT" to denote the 
 trip coil:
 
 ![Relay Latching](/assets/images/relays-5.jpg)
@@ -100,7 +101,7 @@ This one took some time to figure out. The surprisingly complex timing sequences
 interface are driven by a special type of rotating relay called a **cam-operated contact.**
 In this device, a motor is used to turn a series of parallel cams to produce electrical 
 continuity at different phases of each rotation. The precise phasing is achieved
-by (a) machining the size of the cam to control the fraction of the rotation for which it
+by (a) choosing the size of the cam to control the fraction of the rotation for which it
 is engaged and (b) offsetting each cam relative to the others on the same drive shaft 
 to determine the phase
 of the engagement. This is very similar to the camshaft in a mechanically-controlled
@@ -137,6 +138,11 @@ but offset from CRCB 4 by 139° in phase.
 
 ![Cam Relay 2](/assets/images/relays-8.jpg)
 
+With this context you can interpret the timing figures shown in the [CE Manual of Instruction](https://bitsavers.org/pdf/ibm/1620/fe/227-5751-1_1620_Model_1_Customer_Engineering_Manual_of_Instruction_Aug63.pdf) that
+reference angles:
+
+![Cam Relay 3](/assets/images/relays-10.jpg)
+
 Hopefully you can see that this is the mechanical equivalent of the electronic 
 clock sequence that was described in [my previous post about clocking](/ibm1620/2024/06/25/clocks-working.html).
 
@@ -171,9 +177,10 @@ relay coil and relay contacts are "connected" via a mechanical behavior that nee
 the simulation to work.
 
 My approach has been to focus on capturing an accurate representation of the electrical/mechanical 
-components and their inter-connectins **without attempting to translate this into 
+components and their inter-connections **without attempting to translate this into 
 modern "digital Verilog"**, or even to understand the purpose of each component.  I then 
 run the simulation using a hybrid analog/mechanical technique. This approach has been successful
 so far, and allows the larger purpose of the circuit (i.e. energizing solenoids connected to 
 specific keys on the typewriter in careful sequence) to emerge. More on this to follow.
+
 
