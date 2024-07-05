@@ -14,7 +14,7 @@ connections were coded properly. I have found a few small bugs in these non-ALD 
 the way, so there is always that possibility in the back of my mind, but the behavior
 I was seeing (or not seeing) seemed more fundamental.
 
-This led to the discovery of that I'm calling the "missing link" - or at least one example
+This led to the discovery of what I'm calling the "missing link" - or at least one example
 of many potentially-missing links.
 
 # What's *Not* Shown in the Electrical Schematics
