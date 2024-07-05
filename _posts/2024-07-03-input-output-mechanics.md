@@ -23,10 +23,10 @@ the 1620 typewriter control logic
 stands at the cross-roads between the legacy of IBM/CTR mechanical calculation/tabulation 
 machines and the future of electronic computing.
 
-The IBM document entitled ["Commutation and Control"](https://ed-thelen.org/comp-hist/IBM-FU-05-CommutationControl.pdf) provides the details of the IBM mechanical controls
+The IBM document entitled ["Commutation and Control"](https://ed-thelen.org/comp-hist/IBM-FU-05-CommutationControl.pdf) provides illustrations of the IBM mechanical controls
 used in a wide range of machines of the era. In this post I'll summarize the key concepts 
-that are needed to understand how the 1620 typewriter interface works. Some of this 
-is clear from the documentation, some takes some digging.
+that are needed to understand how the 1620 typewriter interface works. Some parts of this 
+are clear from the documentation, other parts take some digging.
 
 # Duo Relay 
 
