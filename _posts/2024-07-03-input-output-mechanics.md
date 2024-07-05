@@ -93,11 +93,11 @@ trip coil:
 
 # Cam Operated Relays
 
-This one took some time to figure out. The complex timing sequences needed by the typewriter
+This one took some time to figure out. The surprisingly complex timing sequences needed by the typewriter
 interface are driven by a special type of rotating relay called a **cam-operated contact.**
 In this device, a motor is used to turn a series of parallel cams to produce electrical 
 continuity at different phases of each rotation. The precise phasing is achieved
-by (a) machining the size of the cam to control the fraction of the rotation it
+by (a) machining the size of the cam to control the fraction of the rotation for which it
 is engaged and (b) offsetting each cam relative to the others to determine the phase
 of the engagement. This is very similar to the camshaft in a mechanically-controlled
 engine.
@@ -124,8 +124,8 @@ that the relay is "made" (closed) at 171° of rotation and B221 means the relay
 "break" is at 221°. If you do the math, this cam provides a repeating pulse with 
 about a 14% duty cycle: (221 - 171) / 360.
 
-Here we see CRCB 6 which is another instance of the same 50° cam part, but using 
-a different phase relative to CRCB 4. This produces the same 14% duty cycle pulse,
+Here we see CRCB 6, which is another instance of the same 50° cam part, but offset at 
+a different phase relative to CRCB 4. This produces another 14% duty cycle pulse,
 but offset from CRCB 4 by 139° in phase.
 
 ![Cam Relay 2](/assets/images/relays-8.jpg)
