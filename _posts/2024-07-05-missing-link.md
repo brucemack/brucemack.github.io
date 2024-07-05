@@ -55,7 +55,7 @@ they are completely different pages of the schematics.)
 mechanically controlled by the SHIFT solenoid. The basket gets physically lifted up. [Check out this video](https://www.youtube.com/watch?v=6p7aa56KwZg) to see what that looks like.
 5. The SHIFT CONTACT is mechanically controlled by the basket. That switch was added to provide instrumentation
 of the internal state of the typewriter. 
-6. The rest of the circuit that follows is electrically controlled The SHIFT CONTACT switch.
+6. The rest of the circuit that follows is electrically controlled by the SHIFT CONTACT switch.
 
 What I was missing was linkage #5 above: the switch is controlled as a result of the basket movement. I won't 
 bore you with the details, but essentially the complex state machine in the 1620 typewriter interface
