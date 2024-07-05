@@ -135,7 +135,7 @@ prevent typing during carriage movement. This requires feedback to the integrati
 since there is no concept of a buffer anywhere in this system. The computer needs to be kept in the 
 loop to determine when these relatively long-running carriage movements are complete.
 * Shift is a mechanical operation that lifts an internal part of the typewriter 
-called the "basket." This takes
+called the "basket." [Check out this video](https://www.youtube.com/watch?v=6p7aa56KwZg) for an illustration. This takes
 90 milliseconds to activate and 115 milliseconds to deactivate. A remote control typist
 needs to wait for the shift to engage before pressing the next character. (NOTE: 
 I suspect this is the limiting
