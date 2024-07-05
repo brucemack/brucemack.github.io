@@ -18,7 +18,7 @@ typewriter interface was built from a bewildering collection of
 mechanical relays, motors, and spinning cams. My guess is that either (a) this part of 
 the system was designed before the SMS/transistor technology was firmly established or (b)
 this part of the system was designed by the "typewriter team" who had deep expertise/history
-building complex machines and was less comfortable with transistors. It seems to me that 
+building complex machines but was less comfortable with transistors. It seems to me that 
 the 1620 typewriter controller stood at the cross-roads between the IBM/CTR mechanical calculation/tabulation 
 legacy and the future of electronic computing.
 
@@ -31,7 +31,7 @@ are clear from the IBM documentation, other concepts take some digging to unders
 
 # Duo Relay 
 
-This is the most common component used in the typewriter interface - there are about 50 of them! The IBM 
+This is the most common component used in the 1620 typewriter interface - there are about 50 of them! The IBM 
 documentation refers to the basic relay as a "Duo Relay" for reasons that we'll get into shortly.
 
 ![Relay 1](/assets/images/relays-1a.jpg)
@@ -60,7 +60,8 @@ has to do with the type/amount of wire used to wind the coils. Control circuits 
 to energize the pick coil first in order to quickly close the relay, and then hand over to the hold 
 coil to keep it closed for a longer period of time. This is obviously a highly refined form of 
 electromechanical engineering. Importantly, one of the two coils
-must always be energized to keep the relay closed or else the spring will pull it open again.
+must always be energized to keep the relay closed or else the spring will pull it back to its
+normally-open state again.
 
 The relay parts are disaggregated in the 1620 schematics. This part of the schematic (page 01.82.72.1) shows two stacks of relay 3: stack 4 and stack 2, but not their coils. Notice each 
 stack has three connections (NC/OP/NO). These two stacks are electrically independent,
