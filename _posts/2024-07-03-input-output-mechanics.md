@@ -79,7 +79,7 @@ This is less common, but appears in some critical functions of the 1620.
 
 The key difference here 
 is that the relay has no spring.  Once the "pick" coil is energized, the relay will stay 
-in the closed even when the current is removed from the coil.  IBM uses the term "trip" 
+ closed even when the current is removed from the coil.  IBM uses the term "trip" 
 to refer to the opposite direction: once the "trip" coil is energized the relay opens again.  
 There is 
 no power required to maintain the closed or open state - only to transition.  This relay type is typically used to manage
@@ -91,11 +91,49 @@ trip coil:
 
 ![Relay Latching](/assets/images/relays-5.jpg)
 
-# Rotating Commutator
+# Cam Operated Relays
 
-This one took some time to figure out. The rotating commutator is constructed using a 
-rotating drum that produces a series of repeating electrical connections according to 
-the configuration of 
+This one took some time to figure out. The complex timing sequences needed by the typewriter
+interface are driven by a special type of rotating relay called a **cam-operated contact.**
+In this device, a motor is used to turn a series of parallel cams to produce electrical 
+continuity at different phases of each rotation. The precise phasing is achieved
+by (a) machining the size of the cam to control the fraction of the rotation it
+is engaged and (b) offsetting each cam relative to the others to determine the phase
+of the engagement. This is very similar to the camshaft in a mechanically-controlled
+engine.
+
+This picture from the IBM documentation illustrates the mechanism:
+
+![Cam Relay](/assets/images/relays-6.jpg)
+
+The cam rotates in the clockwise direction. Notice that the relay contact is held 
+open from approximately 110° around to approximately 360° and is 
+allowed to close from 0° to 110°. The point where the relay closes
+is called the "make angle" and the point where the relay opens is called the 
+"break angle." A complicated machine like the IBM 1620 typewriter interface would
+typically have several cams mounted on the same motor shaft, each sized and offset
+differently to produce the desired timing pulses.
+
+These devices show up in the 1620 schematic in a cryptic way that only makes 
+sense once you understand the mechanics.  Here is an example:
+
+![Cam Relay 1](/assets/images/relays-7.jpg)
+
+"CRCB 4" is the 4th of 6 parallel cams mounted on the same motor shaft. M171 means 
+that the relay is "made" (closed) at 171° of rotation and B221 means the relay
+"break" is at 221°. If you do the math, this cam provides a repeating pulse with 
+about a 14% duty cycle: (221 - 171) / 360.
+
+Here we see CRCB 6 which is another instance of the same 50° cam part, but using 
+a different phase relative to CRCB 4. This produces the same 14% duty cycle pulse,
+but offset from CRCB 4 by 139° in phase.
+
+![Cam Relay 2](/assets/images/relays-8.jpg)
+
+Hopefully you can see that this is the mechanical equivalent of the electronic 
+clock tree that was described in [my previous post about clocking](/ibm1620/2024/06/25/clocks-working.html).
+
+
 
 
 
