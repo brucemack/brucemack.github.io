@@ -147,24 +147,24 @@ reference angles:
 Hopefully you can see that this is the mechanical equivalent of the electronic 
 clock sequence that was described in [my previous post about clocking](/ibm1620/2024/06/25/clocks-working.html). The
 main difference is that the "modern" SMS electronic sequence runs at a speed 4-5 orders of magnitude faster than 
-the spinning motors and switching relay. That said, the sound of the typewriter system must have been very cool,
-in a steampunk kind of way.
+the spinning motors and switching relays. That said, the sound of the typewriter system must have been very cool,
+in a steampunk kind of way. :-)
 
 # Contacts
 
-This is a simplest device, but it's worth calling out to avoid confusion.  A "contact" refers to a 
+This is a simple device, but it's worth calling out to avoid confusion.  A "contact" refers to a 
 normal switch.  I mention this here because the schematic can easily be confused with 
 a relay.  Here is an example (page 01.82.70.1):
 
 ![Cam Relay 2](/assets/images/relays-9.jpg)
 
-There are no numbers on this device - just the name "SHIFT CONTACT." This particular switch was added
+There are no numbers on this device - just the name, ex: "SHIFT CONTACT." This particular switch was added
 to the typewriter to signal when the basket upshift is completely engaged. The schematic symbol indicates that 
 the switch is normally open.
 
 # Simulation Notes
 
-Needless to say, there are no simple SPICE/Verilog representation of many of the components described
+Needless to say, there are no simple SPICE/Verilog representations of many of the components described
 above. It would be theoretically possible to reverse-engineer an equivalent **boolean logic** representation 
 of the assembly of the 12 
 pages of schematics showing the myriad of switches, duo relays, latching relays, and cam contacts, but that is a lot 
