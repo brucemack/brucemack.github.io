@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "IBM 1620 - Input-Output Typewriter, Mechanics"
+title:  "IBM 1620 - Input-Output Typewriter, Interface Mechanics"
 tag-name: ibm1620
 categories: [ "ibm1620" ]
 ---
