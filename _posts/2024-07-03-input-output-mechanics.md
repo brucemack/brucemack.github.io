@@ -138,7 +138,7 @@ but offset from CRCB 4 by 139° in phase.
 
 ![Cam Relay 2](/assets/images/relays-8.jpg)
 
-With this context you can interpret the timing figures shown in the [CE Manual of Instruction](https://bitsavers.org/pdf/ibm/1620/fe/227-5751-1_1620_Model_1_Customer_Engineering_Manual_of_Instruction_Aug63.pdf) that
+With this context you can start to interpret the puzzling timing figures shown in the [CE Manual of Instruction](https://bitsavers.org/pdf/ibm/1620/fe/227-5751-1_1620_Model_1_Customer_Engineering_Manual_of_Instruction_Aug63.pdf) that
 reference angles:
 
 ![Cam Relay 3](/assets/images/relays-10.jpg)
@@ -149,13 +149,13 @@ clock sequence that was described in [my previous post about clocking](/ibm1620/
 # Contacts
 
 This is a simplest device, but it's worth calling out to avoid confusion.  A "contact" refers to a 
-normal switch.  I mention it in this context because the schematic can easily be confused with 
+normal switch.  I mention this heret because the schematic can easily be confused with 
 a relay.  Here is an example (page 01.82.70.1):
 
 ![Cam Relay 2](/assets/images/relays-9.jpg)
 
 There are no numbers on this device - just the name "SHIFT CONTACT." This particular switch was added
-to the typewriter to indicate when the basket upshift is engaged. The schematic symbol indicates that 
+to the typewriter to signal when the basket upshift is completely engaged. The schematic symbol indicates that 
 the switch is normally open.
 
 # Simulation Notes
@@ -167,11 +167,11 @@ pages of schematics showing the myriad of switches, duo relays, latching relays,
 of work and runs the risk of missing an important facet of the circuit. Instead, I am pursing a more
 analog approach to this simulation that takes the components as they appear on the pages. In fact, this 
 part of the 1620 circuit represents an interesting hybrid 
-simulation probably that needs to combine three cooperating domains:
+simulation problem that needs to combine three cooperating domains:
 1. The "traditional" SMS logic cards that can be reasonably modeled using Verilog logic simulation 
 techniques (with more caveats that I am learning as I go along).
-2. Analog circuitry that deals with 48V connections, cascaded relay coils, and very complex circuit 
-paths that orchestrate the (literally) moving parts of this design.
+2. Analog circuitry that deals with +48V connections, cascaded relay coils, and very complex circuit 
+paths that orchestrate the many moving parts (literally) of this design.
 3. Mechanical components that create linkages across different parts of the circuit. For example, the
 relay coil and relay contacts are "connected" via a mechanical behavior that needs to exist for 
 the simulation to work.
