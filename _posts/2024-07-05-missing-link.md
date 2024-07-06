@@ -21,7 +21,8 @@ of many potentially-missing links.
 
 I've been working from a set of schematics kindly loaned to me by Dave Babcock. The pages
 used to describe the 1620's I/O system (including the typewriter) are different from 
-the rest of the diagrams because they aren't implemented using "normal" SMS cards. Strictly speaking, these are not ALDs. I/O 
+the rest of the diagrams because they aren't implemented using "normal" SMS cards. Strictly speaking, these 
+pages are not ALDs. I/O 
 devices live in the physical world and involve control over a lot of whirring/moving/spinning/clicking 
 mechanical parts, as described in my previous post. This would be a clock-maker's paradise.
 
@@ -49,7 +50,7 @@ apparent from the schematic in all cases. Here's the way I see it:
 
 1. The relay 10 coils are electrically controlled by the circuit that comes before.
 2. The relay 10-1 contacts are mechanically controlled by relay 10 coils from #1 above (even though
-they are completely different pages of the schematics.)
+they are on completely different pages of the schematics.)
 3. The SHIFT solenoid is electrically controlled by the relay 10-1 contacts.
 4. The typewriter "basket" (see [this post for more](/ibm1620/2024/06/27/input-output-writer-1.html)) is 
 mechanically controlled by the SHIFT solenoid. The basket gets physically lifted up. [Check out this video](https://www.youtube.com/watch?v=6p7aa56KwZg) to see what that looks like.
@@ -72,7 +73,7 @@ is eliminated.
 
 I share this to highlight what I've come to realize. 
 * This is a very interesting hybrid simulation project.
-* The more accurate the simulation represents the physical/electrical reality of this system, the
+* The more accurately the simulation represents the physical/electrical reality of this system, the
 less detailed my understanding of the inner logic of the 1620 needs to be. As I've mentioned,
 there are around 50 relays being used to implement the typewriter output interface, but I have 
 very little understanding of what most of them do.  I hope to keep in that way. Life is too short.
