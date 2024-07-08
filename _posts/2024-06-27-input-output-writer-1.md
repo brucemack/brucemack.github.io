@@ -110,6 +110,13 @@ design and was not sharing the the integration electronics used by the 1620, at 
 initially. It would be interesting 
 to find out where else the IBM-designed typewriter mods were used.
 
+Dave Lovett of the excellent Usagi Electric channel on YouTube is working on a restoration of a Bendix
+G-15 and [this episode](https://www.youtube.com/watch?v=JaqPBd6B4A4) gets into detail of
+the "Bendix" typewriter. Yes, it's an IBM Electric typewriter. Dave's video shows a tear-down 
+of the typewriter and gives an idea of what the Bendix interface electronics looks like. I'm 
+still fairly sure from watching this video that the Bendix G-15 typewriter interface is 
+different from what was used on the 1620.
+
 # Mechanical Realities
 
 I found that it helped a lot to understand the interface circuitry if I kept the 
