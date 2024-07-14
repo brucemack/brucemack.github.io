@@ -47,12 +47,12 @@ above is misleading in that it appears to show that the 1OP and 2OP contacts are
 each stack is _electrically independent_ (although they are mechanically connected).
 * The relay is closed when the coils are energized. IBM uses the term "pick" to refer to the 
 relay closing operation. I've seen the term "relay pickup" used in common literature, so "pick"
-must be an abbreviation.  The IBM documents use the word "pick" is used as noun qualifier (when 
+must be an abbreviation.  The IBM documents use the word "pick" as a noun qualifier (when 
 describing the purpose of a coil) and as a verb to describe the action of "picking" (closing) a relay.
 * The term "duo" arises from an interesting feature that I've not seen before. Notice 
 from the diagram above that 
 there are two separate
-coils provided for operating the relay.  The pick coil is designed to quickly close the relay and 
+coils provided for operating the relay.  The pick coil is designed to close the relay and 
 the "hold" coil is designed to keep it closed.  Why two coils?  It turns out that the pick coil
 was engineered to operate quickly, at the expense of higher power.  The hold coil, on the other
 hand, works more slowly but consumes less power.  The difference

@@ -78,7 +78,7 @@ hardware to the 1620 processor is a fascinating/complex topic that I'll write do
 
 Essentially, the Model B electric typewriter was modified to allow "remote control."  The changes
 go into these categories:
-* An electronic actuator was added to each key to allow the 1620 
+* An electro-mechanical actuator was added to each key to allow the 1620 
 to generate output.  It was basically "remote typing" and was similar to a 
 player piano.
 * An electronic sensor was added to each key to allow user-generated key strokes to be watched and sent to the computer. (This
