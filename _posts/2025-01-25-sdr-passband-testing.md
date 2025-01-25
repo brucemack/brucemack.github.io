@@ -24,6 +24,12 @@ of the Hilbert transformer that exists on the Q channel.
 *The accuracy of this I/Q synchronization is critical to the quality of the opposite 
 sideband suppression provided by the Hilbert transformer.*
 
+I think the classic analog phasing HDR rigs achieved the same by doing a few things:
+* Using high-tolerance parts to provide good electronic symmetry between the I and Q paths.
+* Ensuring physical symmetry between the I and Q paths.
+* Using a +45° and -45° shift in the I and Q paths respectively, instead of putting the 
+entire 90° shift in the Q path like the SDR rigs do.
+
 Per the DSP reference (see Lyons 1st ed. pg. 202), the group delay of a 
 linear phase FIR filter with S taps (an odd number) is:
 
