@@ -47,7 +47,7 @@ understand (a) the shape of the audio passband and (b) the quality of the suppre
 of signals on the "other side of zero."  
 
 The intuitive way to perform this test is to tune the rig's VFO to a fixed frequency and 
-sweep an RF signal across both sidebands around that center VFO. Ideally the amplitude
+sweep an RF signal across both sidebands around the center VFO. Ideally the amplitude
 of the resulting demodulated audio would be (a) flat across the desired sideband and (b)
 zero across the opposite sideband.
 
@@ -84,7 +84,7 @@ negative frequencies on the left represent the opposite sideband.
 
 Notice a few things:
 * First off, the shape of the desired passband is pretty good. The "lows"
-are rolled off a bit (below 500 Hz), but this is a known behavior of the Hilbert 
+are rolled off a bit much (below 500 Hz), but this is a known behavior of the Hilbert 
 transformer filter. More on this later: it would be nice to improve this, possibly
 with more Hilbert taps.
 * The passband rolls off pretty sharply starting at +3.5 kHz. This makes sense
