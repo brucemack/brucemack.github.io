@@ -24,7 +24,7 @@ of the Hilbert transformer that exists on the Q channel.
 Per the DSP reference (see Lyons 1st ed pg 202), the group delay of a 
 linear phase FIR filter with S taps (an odd number) is:
 
-G~odd~ = ((S - 1) t~s~) / 2
+G<sub>odd</sub> = ((S - 1) t<sub>s</sub>) / 2
 
 
 ![Link 1](/assets/images/passband-0.png)
