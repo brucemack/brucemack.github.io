@@ -40,7 +40,7 @@ That's the number that was originally coded into my firmware.
 
 I've read some articles that suggest that "tuning" this delay a tap
 or two can help to compensate for imperfections in the hardware implementation
-and may result in improved sideband suppression performance. The purpose of this 
+and may result in improved opposite sideband suppression performance. The purpose of this 
 experiment is to evaluate this parameter.
 
 ### Test Setup
