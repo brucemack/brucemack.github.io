@@ -5,7 +5,7 @@ tag-name: sdr2
 categories: [ "SDR" ]
 ---
 
-I've been working on a SDR project for a few months now.  Things are 
+I've been working on a homebrew SDR project for a few months now.  Things are 
 finally starting to work.  The receiver sounds pretty good, but there are many 
 parameters in the design that have been chosen somewhat arbitrarily. Therefore,
 I've been trying to do some systematic testing to figure out what is optimal.
@@ -68,9 +68,12 @@ Test particulars:
 * Sweep VFO from 7,195 kHz to 7,205 kHz in 100 Hz steps.  
 * 100ms at each location.
 * Audio power was measured across 256 samples taken at 8 kHz.
-* My Hilbert transform was using 51 taps. 
 * I generated the Hilbert impulse response
-using [my implementation of the Parks-McClellan algorithm](https://github.com/brucemack/firpm-py). 
+using [my homebrew implementation of the Parks-McClellan algorithm](https://github.com/brucemack/firpm-py). 
+* My Hilbert transform was using 51 taps. The passband used for the filter 
+generation was set to 0.02 * f<sub>s</sub> -> 0.48  * f<sub>s</sub>.  (That 
+tap count and passband range are
+assumed parameters that should be experimented with.)
 * There is also a 91-tap low-pass filter with a cutoff of 3.5 kHz.
 
 I ran four 
