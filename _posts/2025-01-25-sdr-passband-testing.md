@@ -72,8 +72,9 @@ out and plotted for analysis.
 Test particulars:
 * Fixed carrier at 7,200 kHz.
 * Sweep VFO from 7,195 kHz to 7,205 kHz in 100 Hz steps.  
-* 100ms at each location.
-* Audio power was measured across 256 samples taken at 8 kHz.
+* 100ms at each frequency.
+* Audio power was measured across 256 samples taken at 8 kHz. This is a RMS aggregation 
+of the voltage samples.
 * I generated the Hilbert impulse response
 using [my homebrew implementation of the Parks-McClellan algorithm](https://github.com/brucemack/firpm-py). 
 * My Hilbert transform was using 51 taps. The passband used for the filter 
@@ -81,10 +82,11 @@ generation was set to 0.02 * f<sub>s</sub> -> 0.48  * f<sub>s</sub>.  (That
 tap count and passband range are
 assumed parameters that should be experimented with.)
 * There is also a 91-tap low-pass filter with a cutoff of 3.5 kHz.
+* My rig was running in LSB mode.
 
 I ran four 
-tests with four different "tweaks" to the group delay of the Hilbert transformer. It 
-turns out this delay makes a difference.
+tests with four different "tweaks" the delay on the I channel that compensates for the 
+group delay of the Hilbert transformer. It turns out this group delay makes a measurable difference!
 
 ![Link 1](/assets/images/passband-0.png)
 
