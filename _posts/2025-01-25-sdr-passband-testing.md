@@ -43,6 +43,16 @@ or two can help to compensate for imperfections in the hardware implementation
 and may result in improved opposite sideband suppression performance. The purpose of this 
 experiment is to evaluate this parameter.
 
+*NOTE:* After more research, I found [a good paper from 2012 written by Oscar Steila, IK1XPV](https://www.qsl.net/ik1xpv/dsp/pdf/aiqben.pdf)
+that talks about this issue in detail and contains references to several academic papers
+on the topic. It turns out that this phenomenon is commonly called "I/Q imbalance." There are
+two important take-aways:
+* The imbalance could actually be a frequency-dependent factor in a multi-band rig. The 
+simple tap delay adjustment shown on this page may not be sufficient to fix the problem across a wide range of operating frequencies.
+* The imbalance refers to differences in *amplitude as well as phase*. My simple receiver assumes
+the amplitudes of the I and Q channel are the same. I will need to do some 
+more testing to demonstrate the implication of this assumption.
+
 ### Test Setup
 
 One of the great things about SDR rigs is that systematic performance testing can 
