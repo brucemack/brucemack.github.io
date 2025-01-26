@@ -120,5 +120,32 @@ trace) gets a bit better. Increasing the delay of the I channel by 2 taps gives 
 result (green trace) with around -25dB of opposite sideband suppression across the entire
 audio passband. That should be good enough for my purposes.
 
+# Test 2: Experimenting With I/Q Amplitude Imbalance
+
+Test 1 explored the effect of phase differences between the I and Q channel. Test
+2 will look at the effect of amplitude differences.
+
+A multiplicative factor was added to the firmware that allows the amplitude 
+of the I channel to be scaled up/down relative to the Q channel. Four trials were 
+run: down 5%, flat, up 5%, up 10%.
+
+### Test Setup
+
+Everything with the setup was the same as Test 1 above. The test was run using the 
++2 tap group delay adjustment that was determined during the previous test.
+
+The passband plots are shown here:
+
+![Figure 2](/assets/images/passband-1.png)
+
+Within the range tested the impact of amplitude imbalance is very small. It looks 
+like the "flat" trace (i.e. no adjustment to the amplitude of the I channel) gives
+the best performance, demonstrating that the circuit is well balanced to begin with.
+The green trace shows that the extreme situation (+10%) gives the worst performance,
+as expected.
+
+My conclusion is that amplitude balance is important, but not as important as phase
+balance.
+
 
 
