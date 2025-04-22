@@ -19,7 +19,18 @@ in this article - more on that later.
 NOTE: I'm using the term "RP2040" here in a general sense. Everything described
 will also work on the RP2350, as well as other ARM Cortex-M0-based systems.
 
-# SWD Basics
+# Background: The SWD Interface and Debugging Basics
+
+The RP2040 is flashed using an interface that was originally intended for 
+in-system debugging. In order to understand the flash process, you need
+to understand the ARM debug mechanism. The next few sections walk through
+this background. Note that this information may be useful for other 
+debug purposes unrelated to flashing.
+
+If you already understand SWD/debug you can skip down to the parts about
+flashing.
+
+## SWD Basics
 
 Before we get into the details of flashing some background on the SWD
 port that is needed. 
@@ -49,7 +60,7 @@ The Pi Pico on the left is the "target" board, i.e. the one being flashed. The P
 where my flashing code is running. My source board is connected to a normal Raspberry Pi Debug Probe 
 and is flashed the normal way.
 
-## Debug Hardware
+### Debug Hardware
 
 The RP2040 chip contains some special ARM hardware that enables remote debug. This hardware is officially 
 know as a "CoreSight compliant Debug Access Port (DAP)." External debug/flash systems like the one I am building
@@ -69,7 +80,7 @@ factory ROM inside of the RP2040 chip.
 
 If you can understand how to use these three features, you can flash the board via SWD.
 
-## SWD Physical Interface
+### SWD Physical Interface
 
 As you can see from the previous photo, the two SWD pins of the target board are connected to GPIO pins on the source board. 
 There is also a reference ground pin on the target SWD connector that is tied to the ground on the source board.
@@ -90,7 +101,7 @@ target when sending data to the source. Again, very similar tpo the SDA pin on a
 This is a bi-directional serial interface, so all of the complex exchanges of data on the SWD port boil 
 down to a simple process of sending or receiving a bit. Those two processes are explained next.
 
-## Sending a Bit to the Target
+### Sending a Bit to the Target
 
 When the protocol requires the source to send a bit to the target we must make sure that the 
 SWDIO GPIO pin on the source is configured for output. Once that is done, it's very straight-forward.
@@ -109,7 +120,7 @@ The code from my driver is the best description of what to do:
             _setCLK(false);
         }
 
-## Receiving a Bit From the Target
+### Receiving a Bit From the Target
 
 When the protocol requires a bit to be received from the target the GPIO pin used
 for the SWDIO pin is switched into input mode. The actual receive code from my driver
@@ -130,7 +141,7 @@ looks like this:
             return r;
         }
 
-## SWD Handshake
+### SWD Handshake
 
 There are a few steps that need to be followed to initialize the SWD interface. The details are explained
 in these documents:
@@ -142,16 +153,16 @@ in these documents:
 I will try to avoid repeating everything in these documents and, instead, outline the precise steps that my (working)
 flashing is following. Hopefully I am not doing anything that contradicts the official documents.
 
-### Step 0: Connect the Physical Interface
+#### Step 0: Connect the Physical Interface
 
 This is pictured above: connect two GPIO pins from the source board to the SWD pins on the target board, including 
 a ground reference.  
 
-### Step 1: Initial State
+#### Step 1: Initial State
 
 Pull the SWCLK and SWDIO pins low and then send 8 1's.
 
-### Step 2: Send Selection Alert
+#### Step 2: Send Selection Alert
 
 This is a protocol reset message that is needed to get the CoreSight DAP interface into a known state, 
 regardless of what it was doing previously. According to 
@@ -172,7 +183,7 @@ The 128 bits look like this:
 
 (The spaces above are provided only to make the strings easier to read.)
 
-### Step 3: Send Activation Code
+#### Step 3: Send Activation Code
 
 A special activation code is used to enable communication with the ARM CoreSight debug system. The 16 
 bits look like this:
@@ -181,18 +192,18 @@ bits look like this:
 
 (The spaces above are provided only to make the strings easier to read.)
 
-### Step 4: Send Line Reset
+#### Step 4: Send Line Reset
 
 The next series of steps is described beginning with section B4.3.4 of the ARM Debug Interface Architecture Specification
 IHI0031.  
 
 A line reset is sent to the target.  A line reset is created by sending 64 consecutive 1s to the target.
 
-### Step 5: Send 8 Zeros
+#### Step 5: Send 8 Zeros
 
 8 consecutive 0s are sent to the target.
 
-### Step 6: Send a DP Target Select
+#### Step 6: Send a DP Target Select
 
 At this point the protocol starts to follow a standard messaging format that can read or 
 write 32-bit payloads to specific registers in the target debug interface's space. The 
@@ -213,25 +224,25 @@ protocol (and only this step) the acknowledgement is ignored. Actually, the targ
 doesn't even drive the acknowledgment phase for this particular step in the transaction
 because of the multi-drop nature of the SWD bus internal to the RP2040 SOIC.
 
-### Step 7: Read The Target's ID CODE
+#### Step 7: Read The Target's ID CODE
 
 A read transaction on the DP's IDCODE (0x0) register is required.  The RP2040 will return an IDCODE of 0x0BC12477.
 
-### Step 8: Send a Precautionary Abort
+#### Step 8: Send a Precautionary Abort
 
 A write transaction on the DP's ABORT (0x0) register is used to make sure there is no work in process.
 
-### Step 9: Select AP 0
+#### Step 9: Select AP 0
 
 A write transaction on the DP's SELECT (0x8) register is used to select AP 0/Bank 0.  (NOTE: I'm a bit
 unclear on the reason for this step, but it appears to be necessary.)
 
-### Step 10: Send a Power Up of the Debug System
+#### Step 10: Send a Power Up of the Debug System
 
 A write transaction on the DP's CTRL/STAT (0x4) register is used to request that the debug circuits are powered
 on. The CSYSPWRUPREQ (30), CDBGPWRUPREQ (28), and ORUNDETECT (0) bits are set to 1.
 
-### Step 11: Read the CTRL/STAT To Validate Power
+#### Step 11: Read the CTRL/STAT To Validate Power
 
 A read transaction on the DP's CTRL/STAT (0x4) register is used to make sure that power on was successful. 
 The CSYSPWRUPACK (31) and CDBGPWRUPACK (29) bits are checked.
@@ -240,7 +251,7 @@ I'm not completely sure, but it's possible that the power-up process is asynchro
 to read these two ACK status bits in a loop. More research is needed, but so far everything seems to come 
 up on the first try.
 
-### Step 12: Check AP ID
+#### Step 12: Check AP ID
 
 This step is probably not necessary, but is used to validate the identification of the MEM-AP port 
 in the CoreSight system.  
@@ -252,11 +263,11 @@ Next, an AP read is performed on address 0x0c. This is the AP identification reg
 Finally, the data from the previous read is retrieved by reading the DP RDBUFF (0xc) register. I am 
 seeing an AP ID of 10005AC3.
 
-### Step 13: Leave the AP Bank 0 Selected
+#### Step 13: Leave the AP Bank 0 Selected
 
 First, AP 0 and register bank F are selected by writing a 0x00000000 to the DP SELECT (0x8) register.
 
-### Step 14: Configure the AP Transfer Mode
+#### Step 14: Configure the AP Transfer Mode
 
 The DP CTRL/STAT (0x0) register is configured to control the AP data access going forward. There are
 two configurations:
@@ -264,7 +275,7 @@ two configurations:
 * Auto increment is turned on by writing 0b01 into bits 5:4.
 * Word transfer (i.e. 32-bits) is selected by writing 0b010 into bits 2:0.
 
-## SWD Write Transaction Sequence
+### SWD Write Transaction Sequence
 
 Once the first few "free form" steps of the handshake are complete, all communications between the 
 source/target happen using standardized read and write transactions. These transactions are 
@@ -289,7 +300,7 @@ have not implement this because it is not needed in my flashing program.
 * A 32-bit value is written in little-endian format (i.e. LSB first). This is called the data transfer phase.
 * A 1 bit parity (even) is written.
 
-## SWD Read Transaction Sequence
+### SWD Read Transaction Sequence
 
 Once the first few "free form" steps of the handshake are complete, all communications between the 
 source/target happen using standardized read and write transactions. These transactions are 
@@ -313,10 +324,10 @@ two MSB bits of the AP/DP register selection. The two LSB bits are always zero.
 * The SWDIO line is converted back to output mode so that it can be driven by the source.
 * A bit is written by the source, but ignored. This is called a turn-around bit.
 
-# Reading/Writing Memory (or Memory-Mapped Registers) via SWD
+## Accessing Memory (or Mapped Registers) via SWD
 
 Now the we understand the SWD port, we can get into the process of reading/writing
-from/into the memory space of the core processor. 
+from/into the memory space of the processor. 
 
 Unlike some other ARM Cortex parts
 that you might have used (ex: STM32), *it is not possible to 
@@ -354,7 +365,7 @@ because no data is returned by this operation, but instead it is moved into a
 DP register to be ready for the next step.
 * Read the DP RDBUF (0xC) register to get the data.
 
-# Reading/Writing Core Registers via SWD
+## Accessing Processor Core Registers via SWD
 
 The section above discuss how to read/write data in the processor address space.
 The "core registers" of the ARM processor (i.e. PC, LR, R0..R12, etc.) *are not memory
@@ -364,7 +375,7 @@ This mechanism involves the use of three registers that *are memory mapped*, spe
 the confusingly-named Debug Core Register Data Register (DCRDR), Debug Core Register 
 Selector Register (DCRSR), and Debug Halting Control and Status Register (DHCSR).
 
-To write to a core register follow these steps:
+Follow these steps to write to a processor core register:
 
 * Write the data you want to write into the address location 
 of the DCRDR (address 0xE000EDF8) using the process in the previous section.
@@ -376,7 +387,7 @@ a DCRSR selector of 0x00010007.
 * Poll (i.e. repeatedly read) the location of the DHCSR (address 0xe000edf0) using the process
 explained in the previous section until the S_REGRDY bit (bit 16) turns to 1.
 
-To read from a core register follow these steps:
+Follow these steps to read from a processor core register:
 
 * Write the appropriate selector for the desired core register  
 into the DCRSR (address 0xE000EDF4) using the process in the previous section. This
@@ -392,12 +403,13 @@ As you can tell from the description above, reading/writing processor core regis
 an asynchronous process and care must be taken to monitor the S_REGRDY flag to determine
 when the operation has completed.
 
-# Entering Debug Mode, Halt and Resume via SWD
+## Entering Debug Mode, Halt and Resume via SWD
 
-# Resetting into Debug Mode via SWD
-
+## Resetting into Debug Mode via SWD
 
 # Overview of Flashing Process
+
+Finally, with all of the SWD/debug background complete, we can get back to the topic of flashing memory.
 
 # RP2040/RP2350 Flash Sequence
 
