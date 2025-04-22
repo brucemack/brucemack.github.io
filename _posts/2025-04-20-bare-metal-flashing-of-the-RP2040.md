@@ -56,15 +56,54 @@ There are two pins on the SWD port. They follow normal 3.3V logic:
 board in the same way what the SCL pin works on an I2C interface. It doesn't matter too much what frequency 
 this clock is driven at, so long as it falls within the allowable range of the SWD protocol and/or 
 your cables. The RP2040 suggests a *maximum* clock rate of 24 MHz.  I am using something much slower, 
-around 500 kHz.  Importantly, there is no requirement that the clock rate is even constant. I've traced
+around 500 kHz. Importantly, there is no requirement that the clock rate is even constant. I've traced
 the pins on commercial SWD probes and seen all kinds of pauses floating through the protocol exchanges.
 The important thing is the relationship between the timing on the SWCLK and SWDIO pins - that is critical.
 * The SWDIO pin is driven by the source when sending data to the target and is driven by the 
 target when sending data to the source. Again, very similar tpo the SDA pin on an I2C interface.
 
-## Sending a Bit
+This is a bi-directional serial interface, so all of the complex exchanges of data on the SWD port boil 
+down to a simple process of sending or receiving a bit. Those two processes are explained next.
 
-## Receiving a Bit
+## Sending a Bit to the Target
+
+When the protocol requires the source to send a bit to the target we must make sure that the 
+SWDIO GPIO pin on the source is configured for output. Once that is done, it's very straight-forward.
+The code from my driver is the best description of what to do:
+
+        void SWDDriver::writeBit(bool b) {
+            // Assert the outbound bit to the slave on the SWDIO data pin
+            _setDIO(b);
+            // Wait about 1uS for setup.
+            _delayPeriod();
+            // Raise the SWLCK clock pin. Slave will capture the data on this rising edge.
+            _setCLK(true);
+            // Wait around 1uS for hold
+            _delayPeriod();
+            // Lower the SWCLK clock pin.
+            _setCLK(false);
+        }
+
+## Receiving a Bit From the Target
+
+When the protocol requires a bit to be received from the target the GPIO pin used
+for the SWDIO pin is switched into input mode. The actual receive code from my driver
+looks like this:
+
+        bool SWDDriver::readBit() {
+            // The inbound data is already asserted by the slave on the previous falling 
+            // clock edge.  Wait about 1uS for setup.
+            _delayPeriod();
+            // Read the value from the SWDIO data pin
+            bool r = _getDIO();
+            // Raise the SWCLK clock pin.
+            _setCLK(true);
+            // Wait about 1uS.
+            _delayPeriod();
+            // Lower the SWCLK clock pin.
+            _setCLK(false);
+            return r;
+        }
 
 ## SWD Handshake
 
