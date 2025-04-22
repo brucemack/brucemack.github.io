@@ -29,7 +29,7 @@ debug purposes unrelated to flashing.
 
 The description of the debug mechanism in the RP2040 datasheet (section 2.4.2.4) is 
 extremely brief. I think the 
-RPi team expects you to either (a) flash use their off-the-shelf debug probe or (b)
+RPi team expects you to either (a) flash using their off-the-shelf debug probe or (b)
 use the ARM documentation to understand the details of the debug port. I had 
 a hard time piecing this together for myself, but it does work in the end.
 
@@ -54,8 +54,8 @@ the SWD port on an RP2040. This two-pin interface works very much like an I2C po
 can be driven by any 3.3V-compatible device that can wiggle two GPIO lines in a way
 that follows the SWD protocol. I'm driving the SWD interface using a second RP2040, 
 but that is not a requirement - *any other GPIO-capable device could be used to flash 
-an RP2040 board*, so long as it follows the SWD protocol rules. I hope this article removes 
-some of the mystery around this process.
+an RP2040 board*, so long as it follows the SWD protocol rules. I've developed my own 
+driver from scratch. I hope this article removes some of the mystery around this process.
 
 Here's a picture of the setup that I used to build/test my flasher:
 
@@ -78,7 +78,7 @@ capability.
 
 It turns out that the RP2040 flashing process can be carried out over the SWD debug port because of three key 
 enabling features:
-* You can read/write arbitrary locations in core memory via the SWD port.
+* You can read/write arbitrary locations in the RP2040 (ARM) address space via the SWD port.
 * You can command the processor execute arbitrary functions via the SWD port. 
 * The low-level driver firmware required to erase/write the flash memory on an RP2040-based board is available in the 
 factory ROM inside of the RP2040 chip.
@@ -101,7 +101,7 @@ around 500 kHz. Importantly, there is no requirement that the clock rate is even
 the pins on commercial SWD probes and seen all kinds of pauses floating through the protocol exchanges.
 The important thing is the relationship between the timing on the SWCLK and SWDIO pins - that is critical.
 * The SWDIO pin is driven by the source when sending data to the target and is driven by the 
-target when sending data to the source. Again, very similar tpo the SDA pin on an I2C interface.
+target when sending data to the source. Again, very similar to the SDA pin on an I2C interface.
 
 This is a bi-directional serial interface, so all of the complex exchanges of data on the SWD port boil 
 down to a simple process of sending or receiving a bit. Those two processes are explained next.
@@ -155,8 +155,8 @@ in these documents:
 * A paper called [Low Pin-count Debug Interfaces for Multi-device Systems](https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/Low_Pin-Count_Debug_Interfaces_for_Multi-device_Systems.pdf) that summarizes the IEEE 1149.7 standard.
 * The [ARM Debug Interface Architecture Specification ADIv5.0 to ADIv5.2](https://developer.arm.com/documentation/ihi0031/latest/) 
 
-I will try to avoid repeating everything in these documents and, instead, outline the precise steps that my (working)
-flashing is following. Hopefully I am not doing anything that contradicts the official documents.
+I will try to avoid repeating everything in these documents. Instead, I outline the precise steps that my (working)
+flashing code follows. Hopefully I am not doing anything that contradicts the official documentation.
 
 #### Step 0: Connect the Physical Interface
 
@@ -165,7 +165,7 @@ a ground reference.
 
 #### Step 1: Initial State
 
-Pull the SWCLK and SWDIO pins low and then send 8 1's.
+Pull the SWCLK and SWDIO pins low and then send 8 1's by raising the SWDIO and clocking the SWCLK 8 times.
 
 #### Step 2: Send Selection Alert
 
@@ -181,7 +181,7 @@ the _Low Pin-Count Debug Interface_ article linked above:
 > 1149.7 protocol selection command, ensuring compatibility
 > between the two protocols.
 
-The 128 bits look like this:
+The source should send 128 bits that look like this:
 
         0100 1001 1100 1111 1001 0000 0100 0110 1010 1001 1011 0100 1010 0001 0110 0001
         1001 0111 1111 0101 1011 1011 1100 0111 0100 0101 0111 0000 0011 1101 1001 1000
@@ -190,8 +190,8 @@ The 128 bits look like this:
 
 #### Step 3: Send Activation Code
 
-A special activation code is used to enable communication with the ARM CoreSight debug system. The 16 
-bits look like this:
+A special activation code is used to enable communication with the ARM CoreSight debug system. The
+source should send 16 bits that look like this:
 
         0000 0101 1000 1111
 
@@ -199,8 +199,8 @@ bits look like this:
 
 #### Step 4: Send Line Reset
 
-The next series of steps is described beginning with section B4.3.4 of the ARM Debug Interface Architecture Specification
-IHI0031.  
+(The next series of steps is described beginning with section B4.3.4 of the ARM Debug Interface Architecture Specification
+IHI0031.)
 
 A line reset is sent to the target.  A line reset is created by sending 64 consecutive 1s to the target.
 
@@ -210,8 +210,8 @@ A line reset is sent to the target.  A line reset is created by sending 64 conse
 
 #### Step 6: Send a DP Target Select
 
-At this point the protocol starts to follow a standard messaging format that can read or 
-write 32-bit payloads to specific registers in the target debug interface's space. The 
+At this point the protocol starts to follow a standard messaging format that reads/writes 32-bit payloads 
+to specific registers in the target debug interface's space. The 
 precise mechanics of these read/write transactions are explained below.
 
 This is the part of the handshake sequence were where we decide which of the processor
