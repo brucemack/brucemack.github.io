@@ -21,7 +21,11 @@ will also work on the RP2350, as well as other ARM Cortex-M0-based systems.
 
 # SWD Basics
 
-The RP2040 provides a two pin "Serial Wire Debug" (SWD) port. The commercial Pi Pico 1/W/2 boards all break out these two pins into a separate connector that can be connected to a 
+Before we get into the details of flashing some background on the SWD
+port that is needed. 
+
+The RP2040 provides a two pin "Serial Wire Debug" (SWD) port. The commercial Pi Pico 1/W/2 
+boards all break out these two pins into a separate connector that can be connected to a 
 debug probe like the Pi Debug Port, a JLink, or a Segger. The SWD connector is marked in red here:
 
 ![Debug Pins](/assets/images/IMG_1982.jpg)
@@ -278,7 +282,8 @@ two MSB bits of the AP/DP register selection. The two LSB bits are always zero.
     * A park bit (1)
 * The SWDIO line is released and turned to input mode so that it can be driven by the target.
 * A bit is read from the target, but ignored. This is called a turn-around bit.
-* A three-bit acknowledgement is read from the target in little endian format.  A 0b001 code means "success." Anything else is treated as a failure, although strictly speaking this is not correct.
+* A three-bit acknowledgement is read from the target in little endian format.  A 0b001 code means "success." Anything else is treated as a failure, although strictly speaking this is not correct since one of the acknowledgment codes (WAIT) means to try again later. I 
+have not implement this because it is not needed in my flashing program.
 * The SWDIO line is converted back to output mode so that it can be driven by the source.
 * A bit is written by the source, but ignored. This is called a turn-around bit.
 * A 32-bit value is written in little-endian format (i.e. LSB first). This is called the data transfer phase.
@@ -302,15 +307,101 @@ two MSB bits of the AP/DP register selection. The two LSB bits are always zero.
     * A park bit (1)
 * The SWDIO line is released and turned to input mode so that it can be driven by the target.
 * A bit is read from the target, but ignored. This is called a turn-around bit.
-* A three-bit acknowledgement is read from the target in little endian format.  A 0b001 code means "success." Anything else is treated as a failure, although strictly speaking this is not correct.
+* A three-bit acknowledgement is read from the target in little endian format.  A 0b001 code means "success." Anything else is treated as a failure, although strictly speaking this is not correct - see notes on WAIT above.
 * A 32-bit value is read in little-endian format (i.e. LSB first). This is called the data transfer phase.
 * A 1 bit parity (even) is read.
 * The SWDIO line is converted back to output mode so that it can be driven by the source.
 * A bit is written by the source, but ignored. This is called a turn-around bit.
 
+# Reading/Writing Memory (or Memory-Mapped Registers) via SWD
+
+Now the we understand the SWD port, we can get into the process of reading/writing
+from/into the memory space of the core processor. 
+
+Unlike some other ARM Cortex parts
+that you might have used (ex: STM32), *it is not possible to 
+write directly into the flash memory of an RP2040 board*. This is because *there is 
+no on-chip flash on an RP2040.* Instead, the flash memory in an RP2040 system is 
+generally contained in an external QSPI flash chip that is mounted onto the board
+adjacent to the CPU SOIC. The QSPI flash can be mapped into the processor's memory 
+space and read directly via the RP2040 XIP mechanism, *but this doesn't work for writes.* Instead,
+writes are achieved using a serial protocol that looks more like SPI.
+
+That said, you still need to be able to read/write the processor's address space
+in order to carry out the flashing steps that are outlined below.
+
+Reads/writes into the RP2040 address space can be accomplished over the SWD debug 
+port via a part of the CoreSight hardware called the Memory Access Port (MEM-AP).
+
+Reads/writes always happen in 32-bit words on word-aligned address boundaries.
+
+The steps to write are simple:
+
+* Write the address of the word you want to write into the AP TAR (0x4) register.
+This must be on a word boundary (i.e. two LSBs are zero).
+* Write the data you want to write into the AP DRW (0xC) register.
+
+Strictly speaking, the write doesn't take effect until at least 8 more clock 
+cycles have passed, but that generally happens are part of the next operation
+so this delay is not noticed.
+
+The steps to read are almost as simple:
+
+* Write the address of the word you want to read into the AP TAR (0x4) register.
+This must be on a word boundary (i.e. two LSBs are zero).
+* "Read" the data you want from the AP DRW (0xC) register. This is a bit tricky
+because no data is returned by this operation, but instead it is moved into a 
+DP register to be ready for the next step.
+* Read the DP RDBUF (0xC) register to get the data.
+
+# Reading/Writing Core Registers via SWD
+
+The section above discuss how to read/write data in the processor address space.
+The "core registers" of the ARM processor (i.e. PC, LR, R0..R12, etc.) *are not memory
+mapped*, so a special mechanism is required.
+
+This mechanism involves the use of three registers that *are memory mapped*, specifically 
+the confusingly-named Debug Core Register Data Register (DCRDR), Debug Core Register 
+Selector Register (DCRSR), and Debug Halting Control and Status Register (DHCSR).
+
+To write to a core register follow these steps:
+
+* Write the data you want to write into the address location 
+of the DCRDR (address 0xE000EDF8) using the process in the previous section.
+* Write the appropriate selector for the desired core register  
+into the DCRSR (address 0xE000EDF4) using the process in the previous section. This
+selector will contain a 1 in the bit 16 position signifying a write, and then the 
+register number in bit positions 6:0.  For example, writing core register R7 uses 
+a DCRSR selector of 0x00010007.
+* Poll (i.e. repeatedly read) the location of the DHCSR (address 0xe000edf0) using the process
+explained in the previous section until the S_REGRDY bit (bit 16) turns to 1.
+
+To read from a core register follow these steps:
+
+* Write the appropriate selector for the desired core register  
+into the DCRSR (address 0xE000EDF4) using the process in the previous section. This
+selector will contain a 0 in the bit 16 position signifying a read, and then the 
+register number in bit positions 6:0.  For example, reading core register R7 uses 
+a DCRSR selector of 0x00000007.
+* Poll (i.e. repeatedly read) the location of the DHCSR (address 0xe000edf0) using the process
+explained in the previous section until the S_REGRDY bit (bit 16) turns to 1.
+* Read the final result from the the address location 
+of the DCRDR (address 0xE000EDF8) using the process in the previous section.
+
+As you can tell from the description above, reading/writing processor core registers is
+an asynchronous process and care must be taken to monitor the S_REGRDY flag to determine
+when the operation has completed.
+
+# Entering Debug Mode, Halt and Resume via SWD
+
+# Resetting into Debug Mode via SWD
+
+
 # Overview of Flashing Process
 
 # RP2040/RP2350 Flash Sequence
+
+# Calling A ROM Function on the RP2040 Via SWD
 
 # Important References
 
