@@ -340,7 +340,7 @@ two MSB bits of the four-bit AP/DP register selection. The two LSB bits are alwa
 ## Accessing Memory (or Mapped Registers) via SWD
 
 Now the we understand the SWD port, we can get into the process of reading/writing
-from/into the memory space of the processor. 
+from/to the memory space of the processor. 
 
 Unlike some other ARM Cortex parts
 that you might have used (ex: STM32), *it is not possible to 
@@ -351,7 +351,7 @@ adjacent to the CPU SOIC. The QSPI flash can be mapped into the processor's memo
 space and read directly via the RP2040 XIP mechanism, *but this doesn't work for writes.* Instead,
 writes are achieved using a serial protocol that looks more like SPI.
 
-So don't be confused. When we talk about writing to memory locations in this section, we 
+So don't be confused: when we talk about writing to memory locations in this section, we 
 are not talking about writing to flash memory locations (unfortunately). That said, you still 
 need to be able to read/write the processor's address space
 in order to carry out the flashing process that is outlined later.
@@ -420,7 +420,48 @@ when the operation has completed.
 
 ## Entering Debug Mode, Halt and Resume via SWD
 
+ARM processors like the RP2040 provide a debug mode that allows 
+us to halt the processor, use the mechanisms described above to read/write 
+memory and/or registers, and restart the processor from an arbitrary location
+in memory. All of this can be achieved via the SWD port, which is exactly
+how GDB does its job.
+
+The processor enters debug mode and halts by setting some bits in the DHCSR (address 0xe000edf0)
+register using a write transaction explained above. Specifically, we need to set:
+
+* Bits 31:16 to 0xA05F. This is a magic key that helps to prevent accidental 
+writing to the DHCSR register.
+* Bit 3 must be set to 1 to disable interrupts.
+* Bit 2 must be set to 1 to halt.
+* Bit 0 must be set to 1 to enter debug mode.
+
+In summary, write 0xA05F000B to address 0xE000EDF0 to halt the processor and
+enter debug mode.
+
+The processor can be resumed by clearing bits 3, 2, and 0.  In other words,
+write 0xA05F0000 to address 0xE000EDF0 to resume execution.
+
 ## Resetting into Debug Mode via SWD
+
+Unfortunately, halting a running processor at can lead to an indeterminate
+state, since we don't know exactly what it was going on at the time that the 
+(asynchronous) halt command was issued. This is solved by resetting 
+the processor directly into debug mode.
+In this way, the processor doesn't have a chance to do *anything* after it
+is reset - we start from a blank slate.
+
+This behavior is achieved by writing a one into bit 0 of the Debug Exception and Monitor
+Control Register (DEMCR) at address 0xE000EDFC. This bit is called the VC_CORERESET
+bit and it instructs the processor to enter halt/debug immediately after a reset 
+using the "vector catch" feature.
+
+Once this bit is set, a reset is requested by writing a one into bit 2 of the 
+Application Interrupt and Reset Control Register (NVIC.AIRCR) at address 
+0xE000ED0C. This bit is called the SYSRESETREQ bit and it requests an immediate
+reset of the processor.
+
+After these steps the processor goes into a clean state and is halted awaiting 
+the instructions needed to accomplish the flashing process.
 
 # Overview of Flashing Process
 
