@@ -151,7 +151,7 @@ Pull the SWCLK and SWDIO pins low and then send 8 1's.
 
 This is a protocol reset message that is needed to get the CoreSight DAP interface into a known state, 
 regardless of what it was doing previously. According to 
-the article by Michael Williams linked above:
+the _Low Pin-Count Debug Interface_ article linked above:
 
 > Hence the designers of multi-drop SWD chose an unlikely
 > data sequence approach. The selection message consists of a
@@ -169,6 +169,96 @@ The 128 bits look like this:
 (The spaces above are provided only to make the strings easier to read.)
 
 ### Step 3: Send Activation Code
+
+A special activation code is used to enable communication with the ARM CoreSight debug system. The 16 
+bits look like this:
+
+        0000 0101 1000 1111
+
+(The spaces above are provided only to make the strings easier to read.)
+
+### Step 4: Send Line Reset
+
+The next series of steps is described beginning with section B4.3.4 of the ARM Debug Interface Architecture Specification
+IHI0031.  
+
+A line reset is sent to the target.  A line reset is created by sending 64 consecutive 1s to the target.
+
+### Step 5: Send 8 Zeros
+
+8 consecutive 0s are sent to the target.
+
+### Step 6: Send a DP Target Select
+
+At this point the protocol starts to follow a standard messaging format that can read or 
+write 32-bit payloads to specific registers in the target debug interface's space. The 
+precise mechanics of these read/write transactions are explained below.
+
+This is the part of the handshake sequence were where we decide which of the processor
+cores we would like to connect to. For an RP2040 the two cores have these addresses:
+
+* Core 0: 0x01002927
+* Core 1: 0x11002927
+
+The desired core address needs to be written to the DP SELECT register (0xc). In my 
+testing I always connected to core 0. So 0x01002927 was written to DP register 0xc.
+
+*IMPORTANT NOTE:* Normally a write transaction would be acknowledged by the target using a 
+5-bit response code that will be explained below. For this particular step in the 
+protocol (and only this step) the acknowledgement is ignored. Actually, the target
+doesn't even drive the acknowledgment phase for this particular step in the transaction
+because of the multi-drop nature of the SWD bus internal to the RP2040 SOIC.
+
+### Step 7: Read The Target's ID CODE
+
+A read transaction on the DP's IDCODE (0x0) register is required.  The RP2040 will return an IDCODE of 0x0BC12477.
+
+### Step 8: Send a Precautionary Abort
+
+A write transaction on the DP's ABORT (0x0) register is used to make sure there is no work in process.
+
+### Step 9: Select AP 0
+
+A write transaction on the DP's SELECT (0x8) register is used to select AP 0/Bank 0.  (NOTE: I'm a bit
+unclear on the reason for this step, but it appears to be necessary.)
+
+### Step 10: Send a Power Up of the Debug System
+
+A write transaction on the DP's CTRL/STAT (0x4) register is used to request that the debug circuits are powered
+on. The CSYSPWRUPREQ (30), CDBGPWRUPREQ (28), and ORUNDETECT (0) bits are set to 1.
+
+### Step 11: Read the CTRL/STAT To Validate Power
+
+A read transaction on the DP's CTRL/STAT (0x4) register is used to make sure that power on was successful. 
+The CSYSPWRUPACK (31) and CDBGPWRUPACK (29) bits are checked.
+
+I'm not completely sure, but it's possible that the power-up process is asynchronous. It may be necessary
+to read these two ACK status bits in a loop. More research is needed, but so far everything seems to come 
+up on the first try.
+
+### Step 12: Check AP ID
+
+This step is probably not necessary, but is used to validate the identification of the MEM-AP port 
+in the CoreSight system.  
+
+First, AP 0 and register bank F are selected by writing a 0x000000f0 to the DP SELECT (0x8) register.
+
+Next, an AP read is performed on address 0x0c. This is the AP identification register.
+
+Finally, the data from the previous read is retrieved by reading the DP RDBUFF (0xc) register. I am 
+seeing an AP ID of 10005AC3.
+
+### Step 13: Leave the AP Bank 0 Selected
+
+First, AP 0 and register bank F are selected by writing a 0x00000000 to the DP SELECT (0x8) register.
+
+### Step 14: Configure the AP Transfer Mode
+
+The DP CTRL/STAT (0x0) register is configured to control the AP data access going forward. There are
+two configurations:
+
+* Auto increment is turned on by writing 0b01 into bits 5:4.
+* Word transfer (i.e. 32-bits) is selected by writing 0b010 into bits 2:0.
 
 ## SWD Write Sequence
 
