@@ -1,5 +1,5 @@
 ---
-title: Bare Metal Flashing of RP2040
+title: Bare Metal Flashing of the RP2040
 ---
 # Introduction
 
@@ -11,7 +11,7 @@ host computer running OpenOCD. That works great on the bench, but I'd
 like something simpler and more compact. That led me to a research 
 project to understand how the SWD-based flashing mechanism on the RP2040
 actually works. Is it possible to create a simple device that can drive 
-the RP2040's SWD pins and update its firmware?  Let's find out.
+the SWD pins on an RP2040-based board and update its firmware?  Let's find out.
 
 I'm not going to get into the details of the wireless part of this project
 in this article - more on that later.
@@ -28,21 +28,22 @@ debug probe like the Pi Debug Port, a JLink, or a Segger. The SWD connector is m
 
 I'm not going to get into the details of these commercial probes since they are described 
 in many other articles.
-The key thing to understand (which was new to me) is that there is no "magic" to driving 
+The key thing to understand (which was new to me) is that there is no "magic" involved 
+when driving 
 the SWD port on an RP2040. This two-pin interface works very much like an I2C port and 
 can be driven by any 3.3V-compatible device that can wiggle two GPIO lines in a way
-that follows the SWD protocol. I hope this article removes some of the mystery around 
-that process.
+that follows the SWD protocol. I'm driving the SWD interface using a second RP2040, 
+but that is not a requirement - *any other GPIO-capable device could be used to flash 
+an RP2040 board*, so long as it follows the SWD protocol rules. I hope this article removes 
+some of the mystery around this process.
 
-I am driving the SWD port using a *second* RP2040 board (a Pi Pico 1), but that isn't 
-a requirement - any other controller can be used. In fact, if you look closely at the 
-Raspberry Pi Debug Probe you'll see that it's exactly the same thing: an RP2040 with 
-special firmware needed to interface the USB port to the two-wire SWD port.  Here's
-a picture of the setup that I used to build/test my flasher:
+Here's a picture of the setup that I used to build/test my flasher:
 
 ![Debug Pins](/assets/images/IMG_1981.jpg)
 
-The Pi Pico on the left is the "target" board, i.e. the one being flashed. The Pico on the right is the "source" board where the flashing code is running.  My source board is connected to a normal Raspberry Pi Debug Probe and is flashed the normal way.
+The Pi Pico on the left is the "target" board, i.e. the one being flashed. The Pico on the right is the "source" board 
+where my flashing code is running. My source board is connected to a normal Raspberry Pi Debug Probe 
+and is flashed the normal way.
 
 ## Physical Interface
 
