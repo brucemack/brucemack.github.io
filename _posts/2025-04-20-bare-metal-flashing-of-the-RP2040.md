@@ -17,7 +17,7 @@ I'm not going to get into the details of the wireless part of this project
 in this article - more on that later.
 
 NOTE: I'm using the term "RP2040" here in a general sense. Everything described
-will also work on the RP2350, as well as other ARM Cortex-M0-based systems.
+will also work on the RP2350.
 
 # Background: The SWD Interface and Debugging Basics
 
@@ -27,13 +27,18 @@ to understand the ARM debug mechanism. The next few sections walk through
 this background. Note that this information may be useful for other 
 debug purposes unrelated to flashing.
 
+The description of the debug mechanism in the RP2040 datasheet (section 2.4.2.4) is 
+extremely brief. I think the 
+RPi team expects you to either (a) flash use their off-the-shelf debug probe or (b)
+use the ARM documentation to understand the details of the debug port. I had 
+a hard time piecing this together for myself, but it does work in the end.
+
+The most important/detailed document is the [ARM Debug Interface Architecture Specification ADIv5.0 to ADIv5.2](https://developer.arm.com/documentation/ihi0031/latest/).  The RP2040 follows the ADIv5.1 specification.
+
 If you already understand SWD/debug you can skip down to the parts about
 flashing.
 
 ## SWD Basics
-
-Before we get into the details of flashing some background on the SWD
-port that is needed. 
 
 The RP2040 provides a two pin "Serial Wire Debug" (SWD) port. The commercial Pi Pico 1/W/2 
 boards all break out these two pins into a separate connector that can be connected to a 
@@ -409,7 +414,7 @@ when the operation has completed.
 
 # Overview of Flashing Process
 
-Finally, with all of the SWD/debug background complete, we can get back to the topic of flashing memory.
+Finally, with all of the SWD/debug background out of the way we can get back to the topic of flashing memory.
 
 # RP2040/RP2350 Flash Sequence
 
