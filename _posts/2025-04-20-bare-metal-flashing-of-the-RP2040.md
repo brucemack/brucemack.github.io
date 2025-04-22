@@ -383,8 +383,8 @@ DP register to be ready for the next step.
 ## Accessing Processor Core Registers via SWD
 
 The section above discuss how to read/write data in the processor address space.
-The "core registers" of the ARM processor (i.e. PC, LR, R0..R12, etc.) *are not memory
-mapped*, so a special mechanism is required.
+Unfortunately, the "core registers" of the ARM processor (i.e. PC, LR, R0..R12, etc.) *are not memory
+mapped*, so a special mechanism is required to manipulate them.
 
 This mechanism involves the use of three registers that *are memory mapped*, specifically 
 the confusingly-named Debug Core Register Data Register (DCRDR), Debug Core Register 
