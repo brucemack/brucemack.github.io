@@ -280,7 +280,15 @@ two configurations:
 * Auto increment is turned on by writing 0b01 into bits 5:4.
 * Word transfer (i.e. 32-bits) is selected by writing 0b010 into bits 2:0.
 
-### SWD Write Transaction Sequence
+### DP and AP Components
+
+The ARM CoreSight hardware contains two different parts called the Debug Port (DP) and Access Port (AP).
+The specific roles of these two parts are described in the ARM documentation so I won't repeat this.
+Suffice to say, most operations involve the use of registers on both the DP and AP components. Fortunately,
+the same SWD communication mechanism is used to access registers on both the DP and the AP. Pay close
+attention to the documentation to make sure you are reading/writing to the right port.
+
+### DP/AP Register Write Transaction Sequence
 
 Once the first few "free form" steps of the handshake are complete, all communications between the 
 source/target happen using standardized read and write transactions. These transactions are 
@@ -289,10 +297,10 @@ section provides a quick summary of the write transaction.
 
 * The source sends an 8-bit write request.
     * A start bit (1)
-    * The AP/DP select bit. 0 means DP, 1 means AP.
+    * The AP/DP select bit. 0 means writing to a DP register, 1 means writing to an AP register. 
     * The write bit (0)
-    * A two-bit address in little-endian format. These are the 
-two MSB bits of the AP/DP register selection. The two LSB bits are always zero.
+    * A two-bit register address in little-endian format. These are the 
+two MSB bits of the four-bit AP/DP register selection. The two LSB bits are always zero.
     * A single parity bit (even) across the 8-bit write request.
     * A stop bit (0)
     * A park bit (1)
@@ -305,7 +313,7 @@ have not implement this because it is not needed in my flashing program.
 * A 32-bit value is written in little-endian format (i.e. LSB first). This is called the data transfer phase.
 * A 1 bit parity (even) is written.
 
-### SWD Read Transaction Sequence
+### DP/AP Register Read Transaction Sequence
 
 Once the first few "free form" steps of the handshake are complete, all communications between the 
 source/target happen using standardized read and write transactions. These transactions are 
@@ -314,10 +322,10 @@ section provides a quick summary of the read transaction.
 
 * The source sends an 8-bit read request.
     * A start bit (1)
-    * The AP/DP select bit. 0 means DP, 1 means AP.
+    * The AP/DP select bit. 0 means reading a DP register, 1 means reading an AP register.
     * The read bit (1)
-    * A two-bit address in little-endian format. These are the 
-two MSB bits of the AP/DP register selection. The two LSB bits are always zero.
+    * A two-bit register address in little-endian format. These are the 
+two MSB bits of the four-bit AP/DP register selection. The two LSB bits are always zero.
     * A single parity bit (even) across the 8-bit read request.
     * A stop bit (0)
     * A park bit (1)
@@ -343,8 +351,10 @@ adjacent to the CPU SOIC. The QSPI flash can be mapped into the processor's memo
 space and read directly via the RP2040 XIP mechanism, *but this doesn't work for writes.* Instead,
 writes are achieved using a serial protocol that looks more like SPI.
 
-That said, you still need to be able to read/write the processor's address space
-in order to carry out the flashing steps that are outlined below.
+So don't be confused. When we talk about writing to memory locations in this section, we 
+are not talking about writing to flash memory locations (unfortunately). That said, you still 
+need to be able to read/write the processor's address space
+in order to carry out the flashing process that is outlined later.
 
 Reads/writes into the RP2040 address space can be accomplished over the SWD debug 
 port via a part of the CoreSight hardware called the Memory Access Port (MEM-AP).
