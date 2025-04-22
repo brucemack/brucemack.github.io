@@ -204,7 +204,7 @@ The desired core address needs to be written to the DP SELECT register (0xc). In
 testing I always connected to core 0. So 0x01002927 was written to DP register 0xc.
 
 *IMPORTANT NOTE:* Normally a write transaction would be acknowledged by the target using a 
-5-bit response code that will be explained below. For this particular step in the 
+3-bit response code that will be explained below. For this particular step in the 
 protocol (and only this step) the acknowledgement is ignored. Actually, the target
 doesn't even drive the acknowledgment phase for this particular step in the transaction
 because of the multi-drop nature of the SWD bus internal to the RP2040 SOIC.
@@ -260,9 +260,53 @@ two configurations:
 * Auto increment is turned on by writing 0b01 into bits 5:4.
 * Word transfer (i.e. 32-bits) is selected by writing 0b010 into bits 2:0.
 
-## SWD Write Sequence
+## SWD Write Transaction Sequence
 
-## SWD Read Sequence
+Once the first few "free form" steps of the handshake are complete, all communications between the 
+source/target happen using standardized read and write transactions. These transactions are 
+explained in great detail in the official ARM documentation so I won't repeat all of that.  This 
+section provides a quick summary of the write transaction.
+
+* The source sends an 8-bit write request.
+    * A start bit (1)
+    * The AP/DP select bit. 0 means DP, 1 means AP.
+    * The write bit (0)
+    * A two-bit address in little-endian format. These are the 
+two MSB bits of the AP/DP register selection. The two LSB bits are always zero.
+    * A single parity bit (even) across the 8-bit write request.
+    * A stop bit (0)
+    * A park bit (1)
+* The SWDIO line is released and turned to input mode so that it can be driven by the target.
+* A bit is read from the target, but ignored. This is called a turn-around bit.
+* A three-bit acknowledgement is read from the target in little endian format.  A 0b001 code means "success." Anything else is treated as a failure, although strictly speaking this is not correct.
+* The SWDIO line is converted back to output mode so that it can be driven by the source.
+* A bit is written by the source, but ignored. This is called a turn-around bit.
+* A 32-bit value is written in little-endian format (i.e. LSB first). This is called the data transfer phase.
+* A 1 bit parity (even) is written.
+
+## SWD Read Transaction Sequence
+
+Once the first few "free form" steps of the handshake are complete, all communications between the 
+source/target happen using standardized read and write transactions. These transactions are 
+explained in great detail in the official ARM documentation so I won't repeat all of that.  This 
+section provides a quick summary of the read transaction.
+
+* The source sends an 8-bit read request.
+    * A start bit (1)
+    * The AP/DP select bit. 0 means DP, 1 means AP.
+    * The read bit (1)
+    * A two-bit address in little-endian format. These are the 
+two MSB bits of the AP/DP register selection. The two LSB bits are always zero.
+    * A single parity bit (even) across the 8-bit read request.
+    * A stop bit (0)
+    * A park bit (1)
+* The SWDIO line is released and turned to input mode so that it can be driven by the target.
+* A bit is read from the target, but ignored. This is called a turn-around bit.
+* A three-bit acknowledgement is read from the target in little endian format.  A 0b001 code means "success." Anything else is treated as a failure, although strictly speaking this is not correct.
+* A 32-bit value is read in little-endian format (i.e. LSB first). This is called the data transfer phase.
+* A 1 bit parity (even) is read.
+* The SWDIO line is converted back to output mode so that it can be driven by the source.
+* A bit is written by the source, but ignored. This is called a turn-around bit.
 
 # Overview of Flashing Process
 
