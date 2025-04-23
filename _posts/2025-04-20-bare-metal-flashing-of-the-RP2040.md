@@ -462,22 +462,26 @@ the instructions needed to accomplish the flashing process.
 
 # RP2040 ROM Functions
 
-As mentioned above, there is no flash memory built directly into the RP2040 chip.
+As mentioned above, there is no flash memory in the RP2040.
 An external QSPI flash chip is used to provides the necessary non-volatile storage.
-The code needed to configure the QSPI flash memory for reading and writing operations 
-is quite complicated, so the RP2040 designers placed the flash chip initialization code
-into a small ROM that is masked into RP2040 chip itself.  This is known as the "boot ROM."
-The ROM also contains other helpful utility functions that are unrelated to the 
-flash memory like floating point math.
+The code needed to configure the QSPI device for reading and writing operations 
+is quite complicated, so the RP2040 designers placed the QSPI flash initialization code
+into a small (16k) ROM that is masked into RP2040 chip itself.  This is known as the "boot ROM."
+This ROM also contains other helpful utility functions that are unrelated to the 
+flash memory like floating point math routines.
 
-In order to exposure the ROM utility functions to RP2040 users, each function is assigned
-a two-character identifier and a lookup table at a known location in ROM provides the 
-the mapping between the two-character codes and a pointer to the corresponding ROM function.
-For example, the cpde that erases a sector of the flash memory has
+In order to exposure the ROM utility functions to RP2040 programmers, each function is assigned
+a two-character identifier.  A lookup table at a known location in ROM provides the 
+the mapping between a two-character codes and a pointer to the corresponding ROM function.
+For example, the code that erases a sector of the flash memory has
 the code "RE" which maps to 0x00002351 - the starting address of the flash_range_erase() function.
 
-Actually, the lookup table isn't at a fixed location, rather a 16-bit pointer to the lookup 
-table is stored at the fixed location 0x00000014 in ROM.
+Actually, this lookup table isn't at a fixed location, but rather a 16-bit pointer to the lookup 
+table is stored at the fixed location 0x00000014 in ROM. This is explained in section 2.8.3 of the 
+RP2040 datasheet. In summary: you can call a function in the RP2040 ROM only after you've resolved
+it's address in a lookup table using it's two-character code.
+
+## Aside: 16-bit Reads Via SWD
 
 # Overview of Flashing Process
 
