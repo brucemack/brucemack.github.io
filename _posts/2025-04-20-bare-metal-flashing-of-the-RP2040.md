@@ -483,34 +483,81 @@ it's address in a lookup table using it's two-character code.
 
 ## Aside: 16-bit Reads Via SWD
 
-# Important Address Ranges in the RP2040
+Since ROM space is at a premium, 16-bit addresses are used for the boot ROM function 
+lookup table. Since the ROM has 16K of space starting at address 0x00000000, we don't 
+need a full 32-bit address anyhow.
 
-# Overview of Flashing Process
+Pay careful attention when navigating a 16-bit lookup table using the SWD read operation
+that deals with 32-bit words. I think there is a way to configure the CoreSight MEM-AP 
+device to perform 16-bit reads natively, but I didn't bother with this. Instead, 
+my driver has a utility function that supports a 16-bit "half-word" read for this 
+purpose. The comments explain the process:
+
+        std::expected<uint16_t, int> SWDDriver::readHalfWordViaAP(uint32_t addr) {
+
+            // Write to the AP TAR register. This is the memory address that we will 
+            // be reading from. Notice that the read is forced to be word-aligned by 
+            // masking off the bottom two bits.
+            if (const auto r = writeAP(0x4, addr & 0xfffffffc); r != 0) {
+                return std::unexpected(r);
+            }
+            // Read from the AP DRW register (actual data is buffered in the DP and 
+            // comes in the next step)
+            if (const auto r = readAP(0xc); !r.has_value()) {
+                return std::unexpected(r.error());
+            }
+            // Fetch result of previous AP read from the DP READBUF register. Remember, 
+            // this is a full 32-bit word!
+            if (const auto r = readDP(0xc); !r.has_value()) {
+                return std::unexpected(r.error());
+            } else {
+                // For the even half-words (i.e. word boundary) just return the 
+                // 16 least-significant bits of the word.
+                if ((addr & 0x3) == 0)
+                    return (*r & 0xffff);
+                // For the odd half-words return the 16 most significant bits of
+                // of the word.
+                else 
+                return (*r >> 16) & 0xffff;
+            }
+        }
+
+Important Address Ranges in the RP2040
+--------------------------------------
+
+This is documented in detail in the RP2040 datasheets. A quick summary:
+
+* The factory ROM is located at address 0x00000000.
+* The QSPI flash memory (when enabled in XIP mode) is located at address 0x10000000. This memory is ready-only.
+* The RAM is located at address 0x20000000.
+
+Overview of Flashing Process
+----------------------------
 
 Finally, with all of the SWD/debug background out of the way we can get back to the topic of flashing memory.  Here are the key steps:
 
-1. The SDK build process is used to create a binary file that is targeted for loading at address 0x10000000.
+1. The SDK build process is used to create a binary file that is targeted for loading at the flash start address 0x10000000.
 2. The SWD initialization process is followed to initialize the debug capability on the target board.
 3. A processor reset is performed to bring the target board into a known/clean state.
 4. The VTOR register on the target board is set to a RAM location (0x20000000) in 
 preparation for executing functions on the target.
 5. Memory reads (via SWD) are used to read the ROM function lookup table from the target and determine the 
-addresses of the key boot ROM functions that will be used in the flashing process.
+addresses of the key boot ROM functions that will be used during the flashing process.
 6. A ROM utility function (IF, connect_internal_flash()) is called on the target to 
 reset the flash chip.
 7. A ROM utility function (EX, flash_exit_xip()) is called to put the flash into serial write mode.
 8. A ROM utility function (RE, flash_range_erase()) is called to erase the flash memory.
 9. A ROM utility function (FC, flash_flush_cache()) is called to flush any internal caching related to the flash memory system.
 10. For each 4K page from the binary to be stored in flash:
-    1. The page is written into a RAM workarea on the target board starting at address 0x20000100.
+    1. The page is written into a RAM workarea on the target board starting at address 0x20000100. This is done using 1024 32-bit word writes.
     2. A ROM utility function (RP, flash_range_program()) is called on the target board that copies data from RAM to Flash.
 11. A ROM utility function (FC, flash_flush_cache()) is called to flush any internal caching     
 12. A ROM utility function (CX, flash_enter_cmd_xip()) is called that re-enables XIP and allow the flash memory to be read normally.
 13. For each 4K page from the binary to be stored in flash:
-    1. The page is written into a RAM workarea on the target board starting at address 0x20000100.
-    2. The 1024 32-bit words are compared between what is in the RAM workarea and what is stored in flash to validate the flashing process.
+    1. The page is written into a RAM workarea on the target board starting at address 0x20000100. This is done using 1024 32-bit word writes.
+    2. A comparison is performed between what is in the RAM workarea and what is stored in flash to validate the flashing process. This is done using 1024 32-bit word compares.
 14. Debug mode is exited on the target board.
-15. The target board is reset again, thus beginning the execution of the newly flashed program.
+15. The target board is reset again, thus beginning the normal boot process and the execution of the newly flashed program.
 
 # Calling A Function on the RP2040 Via SWD
 
