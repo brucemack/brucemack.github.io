@@ -665,7 +665,7 @@ This problem is solved using a clever technique called a "debug trampoline"
 function. You can think of the trampoline as a wrapper function that does
 two things:
 * Calls the function you wanted to call in the first place.
-* On return, *immediately* halts into debug mode using the ARM BKPT instruction.
+* On return, *immediately* halts into debug mode.
 
 If you use this mechanism, you are guaranteed that nothing (besides the function 
 you were trying to call) gets executed.
@@ -673,10 +673,11 @@ you were trying to call) gets executed.
 The RP2040 designers foresaw this requirement and put a debug trampoline 
 function into factory ROM (see later section). The ROM trampoline uses core
 register r7 to pass the address of the target function into the debug trampoline
-function. So the *actual* steps to call a function via the SWD interface look 
-like this:
+function. On return from your function, the trampoline uses the ARM BKPT instruction
+to halt and enter debug mode. So the *actual* steps to call a function via the SWD 
+interface look more like this:
 
-* Use the "core register write" process described previously to write the
+* Use the core register write process described previously to write the
 first four arguments of the function into core registers r0-r3.
 * Write a value of 0x20000080 into the core MSP register so that the 
 function has a valid stack to work with if it needs one. This address is 
@@ -691,7 +692,7 @@ explained later. The two-character identifier for the trampoline function is "DT
 * Remove the halt bit from the DHCSR register to start the processor 
 again. We leave the MASKINT and DEBUGEN flags on, so this step 
 amounts to writing a value of 0xA05F0009 to address 0xE000EDF0.
-* Poll the DHCSR register until the halt bit (bit 2) to turn on, indicating
+* Poll the DHCSR register until the halt bit (bit 2) turns on, indicating
 that the BKPT instruction has been hit and the processor is halted again.
 
 You are now at a deterministic breakpoint and ready to call another function.
@@ -702,7 +703,7 @@ As mentioned above, there is no flash memory in the RP2040.
 An external QSPI flash chip provides the necessary non-volatile storage.
 The code needed to configure a QSPI device to enable reading and writing 
 is quite complicated, so the RP2040 designers placed the QSPI flash driver code
-into a small (16k) ROM that is masked into RP2040 chip.  This space is known as the "boot ROM."
+into a small (16k) ROM that is masked into the RP2040 chip.  This space is known as the "boot ROM."
 This ROM also contains other helpful utility functions that are unrelated to the 
 flash memory. Floating point math routines, for example.
 
@@ -716,7 +717,7 @@ the code "RE" which maps to 0x00002351 - the starting address of the flash_range
 Actually, this lookup table isn't at a fixed location, but rather a 16-bit pointer to the lookup 
 table is stored at the fixed location 0x00000014 in ROM. This is explained in section 2.8.3 of the 
 RP2040 datasheet. In summary: you can call a function in the RP2040 ROM only after you've resolved
-it's address in a lookup table using it's two-character code.
+its address in a lookup table using its two-character code.
 
 ## Aside: 16-bit Reads Via SWD
 
