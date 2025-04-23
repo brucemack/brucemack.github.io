@@ -16,8 +16,8 @@ the SWD pins on an RP2040-based board and update its firmware?  Let's find out.
 I'm not going to get into the details of the wireless part of this project
 in this article - more on that later.
 
-NOTE: I'm using the term "RP2040" here in a general sense. Everything described
-will also work on the RP2350.
+NOTE: Things are slightly different for the RP2350. I will update this 
+document shortly to reflect those differences.
 
 # Background: The SWD Interface and Debugging Basics
 
@@ -40,7 +40,7 @@ flashing.
 
 ## SWD Basics
 
-The RP2040 provides a two pin "Serial Wire Debug" (SWD) port. The commercial Pi Pico 1/W/2 
+The RP2040 provides a two pin "Serial Wire Debug" (SWD) port. The commercial Pi Pico 1/W 
 boards all break out these two pins into a separate connector that can be connected to a 
 debug probe like the Pi Debug Port, a JLink, or a Segger. The SWD connector is marked in red here:
 
@@ -266,7 +266,7 @@ First, AP 0 and register bank F are selected by writing a 0x000000f0 to the DP S
 Next, an AP read is performed on address 0x0c. This is the AP identification register.
 
 Finally, the data from the previous read is retrieved by reading the DP RDBUFF (0xc) register. I am 
-seeing an AP ID of 10005AC3.
+seeing an AP ID of 0x04770031.
 
 #### Step 13: Leave the AP Bank 0 Selected
 
@@ -313,6 +313,74 @@ have not implement this because it is not needed in my flashing program.
 * A 32-bit value is written in little-endian format (i.e. LSB first). This is called the data transfer phase.
 * A 1 bit parity (even) is written.
 
+Here's what my driver code looks like so you can see the precise logic:
+
+        int SWDDriver::_write(bool isAP, uint8_t addr, uint32_t data, bool ignoreAck) {
+
+            // The only variable bits are the address and the DP/AP flag
+            unsigned int ones = 0;
+            if (addr & 0b0100)
+                ones++;
+            if (addr & 0b1000)
+                ones++;
+            if (isAP)
+                ones++;
+
+            // Start bit
+            writeBit(true);
+            // 0=DP, 1=AP
+            writeBit(isAP);
+            // 0=Write
+            writeBit(false);
+            // Address[3:2] (LSB first)
+            writeBit((addr & 0b0100) != 0);
+            writeBit((addr & 0b1000) != 0);
+            // This system uses even parity, so an extra one should be 
+            // added only if the rest of the count is odd.
+            writeBit((ones % 2) == 1);
+            // Stop bit
+            writeBit(false);
+            // Park bit: drive the DIO high and leave it there
+            writeBit(true);
+
+            // Let go of the DIO pin so that the slave can drive it
+            _releaseDIO();    
+            // One cycle turnaround 
+            readBit();
+
+            // Read three acknowledgement bits (LSB first)
+            uint8_t ack = 0;
+            if (readBit()) ack |= 1;
+            if (readBit()) ack |= 2;
+            if (readBit()) ack |= 4;
+
+            // Grab the DIO pin back so that we can drive
+            _holdDIO();
+            // One cycle turnaround 
+            writeBit(false);
+
+            // 001 is OK
+            if (!ignoreAck) {
+                if (ack != 0b001) {
+                    return -1;
+                }
+            }
+
+            // Write data, LSB first
+            ones = 0;
+            for (unsigned int i = 0; i < 32; i++) {
+                bool bit = (data & 1) == 1;
+                ones += (bit) ? 1 : 0;
+                writeBit(bit);
+                data = data >> 1;
+            }
+
+            // Write parity in order to make the one count even
+            writeBit((ones % 2) == 1);
+
+            return 0;
+        }
+
 ### DP/AP Register Read Transaction Sequence
 
 Once the first few "free form" steps of the handshake are complete, all communications between the 
@@ -336,6 +404,78 @@ two MSB bits of the four-bit AP/DP register selection. The two LSB bits are alwa
 * A 1 bit parity (even) is read.
 * The SWDIO line is converted back to output mode so that it can be driven by the source.
 * A bit is written by the source, but ignored. This is called a turn-around bit.
+
+Here's what my driver code looks like so you can see the precise logic:
+
+        std::expected<uint32_t, int> SWDDriver::_read(bool isAP, uint8_t addr) {
+
+            // Parity calculation. The only variable bits are the address and 
+            // the DP/AP flag. Start with read flag.
+            unsigned int ones = 1;
+            if (addr & 0b0100)
+                ones++;
+            if (addr & 0b1000)
+                ones++;
+            if (isAP)
+                ones++;
+
+            // Start bit
+            writeBit(true);
+            // 0=DP, 1=AP
+            writeBit(isAP);
+            // 1=Read
+            writeBit(true);
+            // Address[3:2] (LSB first)
+            writeBit((addr & 0b0100) != 0);
+            writeBit((addr & 0b1000) != 0);
+            // This system uses even parity, so an extra one should be 
+            // added only if the rest of the count is odd.
+            writeBit((ones % 2) == 1);
+            // Stop bit
+            writeBit(false);
+            // Park bit
+            writeBit(true);
+
+            // Release the DIO pin so the slave can drive it
+            _releaseDIO();
+            // One cycle turnaround 
+            readBit();
+
+            // Read three acknowledgment bits (LSB first)
+            uint8_t ack = 0;
+            if (readBit()) ack |= 1;
+            if (readBit()) ack |= 2;
+            if (readBit()) ack |= 4;
+
+            // 0b001 is OK
+            if (ack != 0b001) {
+                // TODO: DECIDE HOW TO DEAL WITH THIS
+                _holdDIO();
+                return std::unexpected(-1);
+            }
+
+            // Read data, LSB first
+            uint32_t data = 0;
+            ones = 0;
+            for (unsigned int i = 0; i < 32; i++) {
+                bool bit = readBit();
+                ones += (bit) ? 1 : 0;
+                data = data >> 1;
+                data |= (bit) ? 0x80000000 : 0;
+            }
+
+            // Read parity
+            bool parity = readBit();
+            if (ones % 2 == 1 && !parity)
+                return std::unexpected(-2);
+
+            // Grab the DIO pin back again so that we can drive it
+            _holdDIO();
+            // One cycle turnaround 
+            writeBit(false);
+
+            return data;
+        }
 
 ## Accessing Memory (or Mapped Registers) via SWD
 
@@ -612,7 +752,7 @@ purpose. The comments explain the process:
         }
 
 Important Address Ranges in the RP2040
---------------------------------------
+======================================
 
 This is documented in detail in the RP2040 datasheet. A quick summary:
 
@@ -620,8 +760,8 @@ This is documented in detail in the RP2040 datasheet. A quick summary:
 * The QSPI flash memory (when enabled in XIP mode) is located at address 0x10000000. This memory is ready-only.
 * The RAM is located at address 0x20000000.
 
-Overview of Flashing Process
-----------------------------
+Overview of the Flashing Process
+================================
 
 Finally, with all of the SWD/debug background out of the way we can get back to the topic of flashing memory.  Here are the key steps:
 
@@ -648,7 +788,12 @@ reset the flash chip.
 14. Debug mode is exited on the target board.
 15. The target board is reset again, thus beginning the normal boot process and the execution of the newly flashed program.
 
+Notes on Build Process/Binaries
+===============================
 
-# Important References
+The normal SDK build process can be used to create a binary file that can be flashed onto an RP2040
+board. The output of that build process is generally an .ELF file. One final step is needed to convert
+the .ELF to a raw .BIN file that is suitable for flashing:
 
-# Other Notes
+        arm-none-eabi-objcopy -O binary main.elf main.bin
+
