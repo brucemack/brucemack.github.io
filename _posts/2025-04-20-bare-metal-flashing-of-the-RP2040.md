@@ -1,6 +1,8 @@
 ---
 title: Bare Metal Flashing of the RP2040
 ---
+Copyright (C) Bruce MacKinnon, 2025.  Contact bruce at mackinnon dot com for comments/corrections.
+
 # Introduction
 
 I'm working on a radio project that requires the ability to perform a 
@@ -305,18 +307,18 @@ section provides a quick summary of the write transaction.
     * A start bit (1)
     * The AP/DP select bit. 0 means writing to a DP register, 1 means writing to an AP register. 
     * The write bit (0)
-    * A two-bit register address in little-endian format. These are the 
+    * A two-bit register address in LSB-forst format. These are the 
 two MSB bits of the four-bit AP/DP register selection. The two LSB bits are always zero.
     * A single parity bit (even) across the 8-bit write request.
     * A stop bit (0)
     * A park bit (1)
 * The SWDIO line is released and turned to input mode so that it can be driven by the target.
 * A bit is read from the target, but ignored. This is called a turn-around bit.
-* A three-bit acknowledgement is read from the target in little endian format.  A 0b001 code means "success." Anything else is treated as a failure, although strictly speaking this is not correct since one of the acknowledgment codes (WAIT) means to try again later. I 
+* A three-bit acknowledgement is read from the target in LSB-first format.  A 0b001 code means "success." Anything else is treated as a failure, although strictly speaking this is not correct since one of the acknowledgment codes (WAIT) means to try again later. I 
 have not implement this because it is not needed in my flashing program.
 * The SWDIO line is converted back to output mode so that it can be driven by the source.
 * A bit is written by the source, but ignored. This is called a turn-around bit.
-* A 32-bit value is written in little-endian format (i.e. LSB first). This is called the data transfer phase.
+* A 32-bit value is written in LSB-first, little-endian format. This is called the data transfer phase.
 * A 1 bit parity (even) is written.
 
 Here's what my driver code looks like so you can see the precise logic:
@@ -398,15 +400,15 @@ section provides a quick summary of the read transaction.
     * A start bit (1)
     * The AP/DP select bit. 0 means reading a DP register, 1 means reading an AP register.
     * The read bit (1)
-    * A two-bit register address in little-endian format. These are the 
+    * A two-bit register address in LSB-first format. These are the 
 two MSB bits of the four-bit AP/DP register selection. The two LSB bits are always zero.
     * A single parity bit (even) across the 8-bit read request.
     * A stop bit (0)
     * A park bit (1)
 * The SWDIO line is released and turned to input mode so that it can be driven by the target.
 * A bit is read from the target, but ignored. This is called a turn-around bit.
-* A three-bit acknowledgement is read from the target in little endian format.  A 0b001 code means "success." Anything else is treated as a failure, although strictly speaking this is not correct - see notes on WAIT above.
-* A 32-bit value is read in little-endian format (i.e. LSB first). This is called the data transfer phase.
+* A three-bit acknowledgement is read from the target in LSB-first format.  A 0b001 code means "success." Anything else is treated as a failure, although strictly speaking this is not correct - see notes on WAIT above.
+* A 32-bit value is read in LSB-first, little-endian format. This is called the data transfer phase.
 * A 1 bit parity (even) is read.
 * The SWDIO line is converted back to output mode so that it can be driven by the source.
 * A bit is written by the source, but ignored. This is called a turn-around bit.
@@ -514,7 +516,7 @@ This must be on a word boundary (i.e. two LSBs are zero).
 * Write the data you want to write into the AP DRW (0xC) register.
 
 Strictly speaking, the write doesn't take effect until at least 8 more clock 
-cycles have passed, but that generally happens are part of the next operation
+cycles have passed, but that generally happens as part of the next operation
 so this delay is not noticed.
 
 The steps to read are almost as simple:
@@ -530,7 +532,7 @@ DP register to be ready for the next step.
 
 The section above discuss how to read/write data in the processor address space.
 Unfortunately, the "core registers" of the ARM processor (i.e. PC, LR, R0..R12, etc.) *are not memory
-mapped*, so a special mechanism is required to manipulate them.
+mapped*, so a special mechanism is required to access and manipulate them.
 
 This mechanism involves the use of three registers that *are memory mapped*, specifically 
 the confusingly-named Debug Core Register Data Register (DCRDR), Debug Core Register 
@@ -587,7 +589,7 @@ to address 0xE000EDF0 to resume execution.
 ## Resetting into Debug Mode via SWD
 
 Unfortunately, halting a running processor can lead to an indeterminate
-state, since we don't know exactly what was going on at the time the 
+state since we don't know exactly what was going on at the time the 
 (asynchronous) halt command was issued. This is solved by resetting 
 the processor directly into debug mode.
 In this way, the processor doesn't have a chance to do *anything* after it
@@ -644,7 +646,7 @@ function has a valid stack to work with if it needs one. This address is
 in the RAM address space.
 * Write the address of the function you want to call (+1 to indicate thumb mode) into the PC
 register.
-* Read and write the Debug Fault Status Register (DFSR) at address 
+* Read and write the same value back to the Debug Fault Status Register (DFSR) at address 
 0xE000ED30 to clear any faults from previous calls.
 * Remove the halt bit from the DHCSR register to start the processor 
 again. We leave the MASKINT and DEBUGEN flags on, so this step 
