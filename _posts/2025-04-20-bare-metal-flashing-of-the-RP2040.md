@@ -24,7 +24,7 @@ document shortly to reflect those differences.
 The RP2040 is flashed using an interface that was originally intended for 
 in-system debugging. In order to understand the flash process, you need
 to understand the ARM debug mechanism. The next few sections walk through
-this background. Note that this information may be useful for other 
+this background. Note that this information may also be useful for other 
 debug purposes unrelated to flashing.
 
 The description of the debug mechanism in the RP2040 datasheet (section 2.4.2.4) is 
@@ -33,31 +33,32 @@ RPi team expects you to either (a) flash using their off-the-shelf debug probe o
 use the ARM documentation to understand the details of the debug port. I had 
 a hard time piecing this together for myself, but it does work in the end.
 
-The most important/detailed document is the [ARM Debug Interface Architecture Specification ADIv5.0 to ADIv5.2](https://developer.arm.com/documentation/ihi0031/latest/).  The RP2040 follows the ADIv5.1 specification.
+The RP2350 datasheet does a slightly better job, but we're not dealing with that quite yet.
 
-If you already understand SWD/debug you can skip down to the parts about
-flashing.
+The most important/detailed document is the [ARM Debug Interface Architecture Specification ADIv5.0 to ADIv5.2](https://developer.arm.com/documentation/ihi0031/latest/).  Per the datasheet, the RP2040 follows the ADIv5.1 specification.
+
+If you already understand SWD/debug you can skip down to the parts about flashing.
 
 ## SWD Basics
 
 The RP2040 provides a two pin "Serial Wire Debug" (SWD) port. The commercial Pi Pico 1/W 
-boards all break out these two pins into a separate connector that can be connected to a 
+boards all break out these two pins into a separate connector that can be attached to a 
 debug probe like the Pi Debug Port, a JLink, or a Segger. The SWD connector is marked in red here:
 
 ![Debug Pins](/assets/images/IMG_1982.jpg)
 
-I'm not going to get into the details of these commercial probes since they are described 
+I'm not going to get into the details of the debug commercial probes since they are described 
 in many other articles.
 The key thing to understand (which was new to me) is that there is no "magic" involved 
 when driving 
 the SWD port on an RP2040. This two-pin interface works very much like an I2C port and 
 can be driven by any 3.3V-compatible device that can wiggle two GPIO lines in a way
 that follows the SWD protocol. I'm driving the SWD interface using a second RP2040, 
-but that is not a requirement - *any other GPIO-capable device could be used to flash 
+but that is not a requirement - *any other 3.3V GPIO-capable device could be used to flash 
 an RP2040 board*, so long as it follows the SWD protocol rules. I've developed my own 
 driver from scratch. I hope this article removes some of the mystery around this process.
 
-Here's a picture of the setup that I used to build/test my flasher:
+Here's a picture of the setup that I used to build/test my flasher. It's not that complicated!
 
 ![Debug Pins](/assets/images/IMG_1981.jpg)
 
@@ -68,19 +69,19 @@ and is flashed the normal way.
 ### Debug Hardware
 
 The RP2040 chip contains some special ARM hardware that enables remote debug. This hardware is officially 
-know as a "CoreSight compliant Debug Access Port (DAP)." External debug/flash systems like the one I am building
+know as a _CoreSight compliant Debug Access Port (DAP)_. External debug/flash systems like the one I am building
 communicate with the CoreSight hardware via the Serial Wire Debug (SWD) connections.
 
-One thing to understand is that the the CoreSight debug system is almost completely independent of the rest of the 
-Cortex processor cores inside of the RP2040. This means that the debug interface runs (and maintains state)
-even when the core processor(s) are crashed and/or rebooted. This is obviously critical for any low-level debugging
-capability.
+One thing to understand is that the the CoreSight debug system is almost completely independent of the  
+Cortex-M0+ processor cores inside of the RP2040. This means that the debug interface runs (and maintains state)
+even when the core processor(s) are crashed, halted, or rebooted. This independence is obviously critical for any 
+low-level debugging capability.
 
 It turns out that the RP2040 flashing process can be carried out over the SWD debug port because of three key 
 enabling features:
-* You can read/write arbitrary locations in the RP2040 (ARM) address space via the SWD port.
+* You can read/write arbitrary locations in the RP2040 address space via the SWD port.
 * You can command the processor execute arbitrary functions via the SWD port. 
-* The low-level driver firmware required to erase/write the flash memory on an RP2040-based board is available in the 
+* The low-level driver firmware required to erase/write the QSPI flash memory on an RP2040-based board is available in the 
 factory ROM inside of the RP2040 chip.
 
 If you can understand how to use these three features, you can flash the board via SWD.
@@ -96,12 +97,12 @@ There are two pins on the SWD port. They follow normal 3.3V logic:
 * The SWCLK pin is always driven by the source. This provides the serial data clock for the target 
 board in the same way what the SCL pin works on an I2C interface. It doesn't matter too much what frequency 
 this clock is driven at, so long as it falls within the allowable range of the SWD protocol and/or 
-your cables. The RP2040 suggests a *maximum* clock rate of 24 MHz.  I am using something much slower, 
+your cables. The RP2040 datasheet suggests a *maximum* clock rate of 24 MHz.  I am using something much slower, 
 around 500 kHz. Importantly, there is no requirement that the clock rate is even constant. I've traced
 the pins on commercial SWD probes and seen all kinds of pauses floating through the protocol exchanges.
 The important thing is the relationship between the timing on the SWCLK and SWDIO pins - that is critical.
 * The SWDIO pin is driven by the source when sending data to the target and is driven by the 
-target when sending data to the source. Again, very similar to the SDA pin on an I2C interface.
+target when receiving data into the source. Again, very similar to the SDA pin on an I2C interface.
 
 This is a bi-directional serial interface, so all of the complex exchanges of data on the SWD port boil 
 down to a simple process of sending or receiving a bit. Those two processes are explained next.
@@ -128,7 +129,7 @@ The code from my driver is the best description of what to do:
 ### Receiving a Bit From the Target
 
 When the protocol requires a bit to be received from the target the GPIO pin used
-for the SWDIO pin is switched into input mode. The actual receive code from my driver
+for the SWDIO pin is switched to input mode. The actual receive code from my driver
 looks like this:
 
         bool SWDDriver::readBit() {
@@ -188,12 +189,16 @@ The source should send 128 bits that look like this:
 
 (The spaces above are provided only to make the strings easier to read.)
 
-#### Step 3: Send Activation Code
+#### Step 3a: Send Zeros
 
-A special activation code is used to enable communication with the ARM CoreSight debug system. The
-source should send 16 bits that look like this:
+4 consecutive 0s are sent to the target.
 
-        0000 0101 1000 1111
+#### Step 3b: Send Activation Code
+
+A special activation code is used to enable communication with the ARM CoreSight debug system. The 
+CoreSight code is 0x1a, sent LSB first. The source should send 8 bits that look like this:
+
+        0101 1000
 
 (The spaces above are provided only to make the strings easier to read.)
 
@@ -797,3 +802,14 @@ the .ELF to a raw .BIN file that is suitable for flashing:
 
         arm-none-eabi-objcopy -O binary main.elf main.bin
 
+ References
+ ==========
+
+For RP2040:
+ * [RP2040 Datasheet](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf)
+ * [ARM Debug Interface Architecture Specification ADIv5.0 to ADIv5.2](https://developer.arm.com/documentation/ihi0031/latest/)
+ * [Low Pin-count Debug Interfaces for Multi-device Systems](https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/Low_Pin-Count_Debug_Interfaces_for_Multi-device_Systems.pdf)
+
+ For RP2350:
+ * [RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)
+ * [Arm Debug Interface Architecture Specification ADIv6.0](https://developer.arm.com/documentation/ihi0074/latest/)
