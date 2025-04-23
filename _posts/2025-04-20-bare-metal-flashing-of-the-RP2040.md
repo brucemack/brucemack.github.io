@@ -466,13 +466,14 @@ As mentioned above, there is no flash memory in the RP2040.
 An external QSPI flash chip provides the necessary non-volatile storage.
 The code needed to configure a QSPI device to enable reading and writing 
 is quite complicated, so the RP2040 designers placed the QSPI flash driver code
-into a small (16k) ROM that is masked into RP2040 chip.  This is known as the "boot ROM."
+into a small (16k) ROM that is masked into RP2040 chip.  This space is known as the "boot ROM."
 This ROM also contains other helpful utility functions that are unrelated to the 
 flash memory. Floating point math routines, for example.
 
-In order to exposure the ROM utility functions to RP2040 programmers, each function is assigned
-a two-character identifier.  A lookup table at a known location in ROM provides the 
-the mapping between a two-character codes and a pointer to the corresponding ROM function.
+In order to expose the ROM utility functions to RP2040 programmers without a bunch
+of hard-coded addresses in the linker script, each function is assigned
+a two-character identifier. A lookup table at a known location in ROM provides the 
+mapping between a two-character codes and a pointer to the corresponding ROM function.
 For example, the code that erases a sector of the flash memory has
 the code "RE" which maps to 0x00002351 - the starting address of the flash_range_erase() function.
 
