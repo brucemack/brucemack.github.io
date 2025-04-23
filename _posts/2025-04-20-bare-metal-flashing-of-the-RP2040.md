@@ -466,7 +466,7 @@ As will be seen later, the flashing process involves calling a set of
 utility functions that are available on the RP2040 chip. This section 
 focuses on the tricky problem of calling a function (i.e. executing code)
 on the target board via the SWD port. The process described here is 
-exactly the same as what would happen if used GDB to call a function 
+exactly the same as what would happen if you used GDB to call a function 
 during a debug session. It took me awhile to get this part to work.
 
 The mechanics of this process require some basic understanding of the
@@ -479,8 +479,9 @@ Normally the PC register would be changed using a branch instruction
 of some kind (i.e. B, BX, BLX, etc.) but we are using the debugger
 interface to make this change manually.
 * The first four arguments to a function call should be passed in 
-core registers r0, r1, r2, and r3.
-* The return address of a function call should be stored in the LR
+core registers r0, r1, r2, and r3. If you've got more than 4 arguments
+then the stack comes into the picture, but I've not looked into this.
+* The return address for a function call should be stored in the LR
 core register (aka r14).
 * Function code is aligned on half-word boundaries (i.e. LSB of 
 the function address is 0), but function 
