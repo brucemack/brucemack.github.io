@@ -49,7 +49,7 @@ debug probe like the Pi Debug Port, a JLink, or a Segger. The SWD connector is m
 
 ![Debug Pins](/assets/images/IMG_1982.jpg)
 
-I'm not going to get into the details of the debug commercial probes since they are described 
+I'm not going to get into the details of the commercial debug probes since they are described 
 in many other articles.
 The key thing to understand (which was new to me) is that there is no "magic" involved 
 when driving 
