@@ -242,10 +242,11 @@ A read transaction on the DP's IDCODE (0x0) register is required.  The RP2040 wi
 
 A write transaction on the DP's ABORT (0x0) register is used to make sure there is no work in process.
 
-#### Step 9: Select AP 0
+#### Step 9: Select AP 0, AP BANK 0, SW-DP Debug Port Bank 0
 
-A write transaction on the DP's SELECT (0x8) register is used to select AP 0/Bank 0.  (NOTE: I'm a bit
-unclear on the reason for this step, but it appears to be necessary.)
+A write transaction on the DP's SELECT (0x8) register is used to select AP 0/AP Bank 0/SW-DP Bank 0. I'm a bit
+unclear on the reason for this step, but it appears to be necessary. Per the ARM documentation the 
+SW-DP port bank defaults to zero anyhow.
 
 #### Step 10: Send a Power Up of the Debug System
 
@@ -266,16 +267,16 @@ up on the first try.
 This step is probably not necessary, but is used to validate the identification of the MEM-AP port 
 in the CoreSight system.  
 
-First, AP 0 and register bank F are selected by writing a 0x000000f0 to the DP SELECT (0x8) register.
+First, AP 0 and AP register bank 0xF are selected by writing a 0x000000F0 to the DP SELECT (0x8) register.
 
-Next, an AP read is performed on address 0x0c. This is the AP identification register.
+Next, an AP read is performed on address 0xc. This is the AP identification register (0xFC).
 
-Finally, the data from the previous read is retrieved by reading the DP RDBUFF (0xc) register. I am 
+Finally, the data from the previous read is retrieved by reading the DP RDBUFF (0xC) register. I am 
 seeing an AP ID of 0x04770031.
 
 #### Step 13: Leave the AP Bank 0 Selected
 
-First, AP 0 and register bank F are selected by writing a 0x00000000 to the DP SELECT (0x8) register.
+First, AP 0 and AP register bank 0x0 are selected by writing a 0x00000000 to the DP SELECT (0x8) register.
 
 #### Step 14: Configure the AP Transfer Mode
 
@@ -291,7 +292,7 @@ The ARM CoreSight hardware contains two different parts called the Debug Port (D
 The specific roles of these two parts are described in the ARM documentation so I won't repeat this.
 Suffice to say, most operations involve the use of registers on both the DP and AP components. Fortunately,
 the same SWD communication mechanism is used to access registers on both the DP and the AP. Pay close
-attention to the documentation to make sure you are reading/writing to the right port.
+attention to the documentation to make sure you are reading/writing to the right part of the system.
 
 ### DP/AP Register Write Transaction Sequence
 
@@ -300,7 +301,7 @@ source/target happen using standardized read and write transactions. These trans
 explained in great detail in the official ARM documentation so I won't repeat all of that.  This 
 section provides a quick summary of the write transaction.
 
-* The source sends an 8-bit write request.
+* The source sends an 8-bit write request consisting of:
     * A start bit (1)
     * The AP/DP select bit. 0 means writing to a DP register, 1 means writing to an AP register. 
     * The write bit (0)
@@ -393,7 +394,7 @@ source/target happen using standardized read and write transactions. These trans
 explained in great detail in the official ARM documentation so I won't repeat all of that.  This 
 section provides a quick summary of the read transaction.
 
-* The source sends an 8-bit read request.
+* The source sends an 8-bit read request consisting of:
     * A start bit (1)
     * The AP/DP select bit. 0 means reading a DP register, 1 means reading an AP register.
     * The read bit (1)
