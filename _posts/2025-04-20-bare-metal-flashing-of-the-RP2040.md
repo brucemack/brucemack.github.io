@@ -392,31 +392,28 @@ Selector Register (DCRSR), and Debug Halting Control and Status Register (DHCSR)
 
 Follow these steps to write to a processor core register:
 
-* Write the data you want to write into the address location 
-of the DCRDR (address 0xE000EDF8) using the process in the previous section.
-* Write the appropriate selector for the desired core register  
-into the DCRSR (address 0xE000EDF4) using the process in the previous section. This
+* Write the data you want to write into the DCRDR (address 0xE000EDF8) using the process in the previous section.
+* Write the appropriate selector for the desired core register into the DCRSR (address 0xE000EDF4) using the process in the previous section. This
 selector will contain a 1 in the bit 16 position signifying a write, and then the 
 register number in bit positions 6:0.  For example, writing core register R7 uses 
 a DCRSR selector of 0x00010007.
-* Poll (i.e. repeatedly read) the location of the DHCSR (address 0xe000edf0) using the process
+* Poll (i.e. repeatedly read) the DHCSR (address 0xe000edf0) using the process
 explained in the previous section until the S_REGRDY bit (bit 16) turns to 1.
 
 Follow these steps to read from a processor core register:
 
-* Write the appropriate selector for the desired core register  
-into the DCRSR (address 0xE000EDF4) using the process in the previous section. This
+* Write the appropriate selector for the desired core register into the DCRSR (address 0xE000EDF4) using the process in the previous section. This
 selector will contain a 0 in the bit 16 position signifying a read, and then the 
 register number in bit positions 6:0.  For example, reading core register R7 uses 
 a DCRSR selector of 0x00000007.
-* Poll (i.e. repeatedly read) the location of the DHCSR (address 0xe000edf0) using the process
+* Poll (i.e. repeatedly read) the DHCSR (address 0xe000edf0) using the process
 explained in the previous section until the S_REGRDY bit (bit 16) turns to 1.
-* Read the final result from the the address location 
-of the DCRDR (address 0xE000EDF8) using the process in the previous section.
+* Read the final result from the the DCRDR (address 0xE000EDF8) using the process in the previous section.
 
 As you can tell from the description above, reading/writing processor core registers is
 an asynchronous process and care must be taken to monitor the S_REGRDY flag to determine
-when the operation has completed.
+when the operation has completed. Reading the DCRDR before the DHCSR indicates that the 
+value is available will result in unpredictable results.
 
 ## Entering Debug Mode, Halt and Resume via SWD
 
@@ -438,8 +435,8 @@ writing to the DHCSR register.
 In summary, write 0xA05F000B to address 0xE000EDF0 to halt the processor and
 enter debug mode.
 
-The processor can be resumed by clearing bits 3, 2, and 0.  In other words,
-write 0xA05F0000 to address 0xE000EDF0 to resume execution.
+The processor can be resumed by clearing bits 3, 2, and 0.  In other words: write 0xA05F0000 
+to address 0xE000EDF0 to resume execution.
 
 ## Resetting into Debug Mode via SWD
 
@@ -450,12 +447,12 @@ the processor directly into debug mode.
 In this way, the processor doesn't have a chance to do *anything* after it
 is reset - we start from a blank slate.
 
-This behavior is achieved by writing a one into bit 0 of the Debug Exception and Monitor
+This behavior is achieved by writing a 1 into bit 0 of the Debug Exception and Monitor
 Control Register (DEMCR) at address 0xE000EDFC. This bit is called the VC_CORERESET
 bit and it instructs the processor to enter halt/debug immediately after a reset 
 using the "vector catch" feature.
 
-Once this bit is set, a reset is requested by writing a one into bit 2 of the 
+Once this bit is set, a reset is requested by writing a 1 into bit 2 of the 
 Application Interrupt and Reset Control Register (NVIC.AIRCR) at address 
 0xE000ED0C. This bit is called the SYSRESETREQ bit and it requests an immediate
 reset of the processor.
