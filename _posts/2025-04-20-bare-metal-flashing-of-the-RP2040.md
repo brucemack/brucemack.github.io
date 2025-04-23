@@ -440,8 +440,8 @@ to address 0xE000EDF0 to resume execution.
 
 ## Resetting into Debug Mode via SWD
 
-Unfortunately, halting a running processor at can lead to an indeterminate
-state, since we don't know exactly what it was going on at the time that the 
+Unfortunately, halting a running processor can lead to an indeterminate
+state, since we don't know exactly what was going on at the time the 
 (asynchronous) halt command was issued. This is solved by resetting 
 the processor directly into debug mode.
 In this way, the processor doesn't have a chance to do *anything* after it
@@ -467,16 +467,16 @@ utility functions that are available on the RP2040 chip. This section
 focuses on the tricky problem of calling a function (i.e. executing code)
 on the target board via the SWD port. The process described here is 
 exactly the same as what would happen if you used GDB to call a function 
-during a debug session. It took me awhile to get this part to work.
+during a debug session. It took me a while to figure out this part.
 
 The mechanics of this process require some basic understanding of the
 ARM ABI Procedure Call Standard. The relevant parts of that standard
 boil down to:
 * The PC core register (aka r15) stores the address of the next 
-instruction to be executed. "Calling" a function is as simple as
+instruction to be executed. "Calling a function" is as simple as
 pointing PC to the starting instruction of the function to be called.
 Normally the PC register would be changed using a branch instruction 
-of some kind (i.e. B, BX, BLX, etc.) but we are using the debugger
+of some kind (i.e. B, BX, BLX, etc.) but we will use the debugger
 interface to make this change manually.
 * The first four arguments to a function call should be passed in 
 core registers r0, r1, r2, and r3. If you've got more than 4 arguments
@@ -491,12 +491,12 @@ different topic that isn't covered here.)
 
 The actual steps used to call a function are as follows:
 
-* Use the "core register write" process described previously to write the
+* Use the core register write process described previously to write the
 first four arguments of the function into core registers r0-r3.
 * Write a value of 0x20000080 into the core MSP register so that the 
 function has a valid stack to work with if it needs one. This address is 
 in the RAM address space.
-* Write the address of the function you want to call (+1) into the PC
+* Write the address of the function you want to call (+1 to indicate thumb mode) into the PC
 register.
 * Read and write the Debug Fault Status Register (DFSR) at address 
 0xE000ED30 to clear any faults from previous calls.
@@ -516,7 +516,7 @@ way after the function we called completes?
 This problem is solved using a clever technique called a "debug trampoline"
 function. You can think of the trampoline as a wrapper function that does
 two things:
-* Calls the function you want to call.
+* Calls the function you wanted to call in the first place.
 * On return, *immediately* halts into debug mode using the ARM BKPT instruction.
 
 If you use this mechanism, you are guaranteed that nothing (besides the function 
@@ -536,7 +536,8 @@ in the RAM address space.
 * Write the address of the function you want to call (+1) into the r7 
 register.
 * Write the address of the ROM debug trampoline function into the PC
-register.
+register. This address is determined using a lookup-table that will be
+explained later. The two-character identifier for the trampoline function is "DT."
 * Read and write the Debug Fault Status Register (DFSR) at address 
 0xE000ED30 to clear any faults from previous calls.
 * Remove the halt bit from the DHCSR register to start the processor 
