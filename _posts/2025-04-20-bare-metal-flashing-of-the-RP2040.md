@@ -460,6 +460,92 @@ reset of the processor.
 After these steps the processor goes into a clean state and is halted awaiting 
 the instructions needed to accomplish the flashing process.
 
+## Calling A Function on the RP2040 Via SWD
+
+As will be seen later, the flashing process involves calling a set of 
+utility functions that are available on the RP2040 chip. This section 
+focuses on the tricky problem of calling a function (i.e. executing code)
+on the target board via the SWD port. The process described here is 
+exactly the same as what would happen if used GDB to call a function 
+during a debug session. It took me awhile to get this part to work.
+
+The mechanics of this process require some basic understanding of the
+ARM ABI Procedure Call Standard. The relevant parts of that standard
+boil down to:
+* The PC core register (aka r15) stores the address of the next 
+instruction to be executed. "Calling" a function is as simple as
+pointing PC to the starting instruction of the function to be called.
+Normally the PC register would be changed using a branch instruction 
+of some kind (i.e. B, BX, BLX, etc.) but we are using the debugger
+interface to make this change manually.
+* The first four arguments to a function call should be passed in 
+core registers r0, r1, r2, and r3.
+* The return address of a function call should be stored in the LR
+core register (aka r14).
+* Function code is aligned on half-word boundaries (i.e. LSB of 
+the function address is 0), but function 
+calls should be made using an address with a LSB of 1 to indicate that 
+the processor should run in "thumb mode."  (Thumb mode is a whole 
+different topic that isn't covered here.)
+
+The actual steps used to call a function are as follows:
+
+* Use the "core register write" process described previously to write the
+first four arguments of the function into core registers r0-r3.
+* Write a value of 0x20000080 into the core MSP register so that the 
+function has a valid stack to work with if it needs one. This address is 
+in the RAM address space.
+* Write the address of the function you want to call (+1) into the PC
+register.
+* Read and write the Debug Fault Status Register (DFSR) at address 
+0xE000ED30 to clear any faults from previous calls.
+* Remove the halt bit from the DHCSR register to start the processor 
+again. We leave the MASKINT and DEBUGEN flags on, so this step 
+amounts to writing a value of 0xA05F0009 to address 0xE000EDF0.
+
+At this point the process is running again, starting at the first instruction
+of the function you are trying to call.
+
+## Re-Gaining Control After Function Call, Trampoline
+
+The procedure described in the previous section works great, 
+but how do we regain control of the processor in a deterministic
+way after the function we called completes?
+
+This problem is solved using a clever technique called a "debug trampoline"
+function. You can think of the trampoline as a wrapper function that does
+two things:
+* Calls the function you want to call.
+* On return, *immediately* halts into debug mode using the ARM BKPT instruction.
+
+If you use this mechanism, you are guaranteed that nothing (besides the function 
+you were trying to call) gets executed.
+
+The RP2040 designers foresaw this requirement and put a debug trampoline 
+function into factory ROM (see later section). The ROM trampoline uses core
+register r7 to pass the address of the target function into the debug trampoline
+function. So the *actual* steps to call a function via the SWD interface look 
+like this:
+
+* Use the "core register write" process described previously to write the
+first four arguments of the function into core registers r0-r3.
+* Write a value of 0x20000080 into the core MSP register so that the 
+function has a valid stack to work with if it needs one. This address is 
+in the RAM address space.
+* Write the address of the function you want to call (+1) into the r7 
+register.
+* Write the address of the ROM debug trampoline function into the PC
+register.
+* Read and write the Debug Fault Status Register (DFSR) at address 
+0xE000ED30 to clear any faults from previous calls.
+* Remove the halt bit from the DHCSR register to start the processor 
+again. We leave the MASKINT and DEBUGEN flags on, so this step 
+amounts to writing a value of 0xA05F0009 to address 0xE000EDF0.
+* Poll the DHCSR register until the halt bit (bit 2) to turn on, indicating
+that the BKPT instruction has been hit and the processor is halted again.
+
+You are now at a deterministic breakpoint and ready to call another function.
+
 # RP2040 ROM Functions
 
 As mentioned above, there is no flash memory in the RP2040.
@@ -519,14 +605,14 @@ purpose. The comments explain the process:
                 // For the odd half-words return the 16 most significant bits of
                 // of the word.
                 else 
-                return (*r >> 16) & 0xffff;
+                    return (*r >> 16) & 0xffff;
             }
         }
 
 Important Address Ranges in the RP2040
 --------------------------------------
 
-This is documented in detail in the RP2040 datasheets. A quick summary:
+This is documented in detail in the RP2040 datasheet. A quick summary:
 
 * The factory ROM is located at address 0x00000000.
 * The QSPI flash memory (when enabled in XIP mode) is located at address 0x10000000. This memory is ready-only.
@@ -560,7 +646,6 @@ reset the flash chip.
 14. Debug mode is exited on the target board.
 15. The target board is reset again, thus beginning the normal boot process and the execution of the newly flashed program.
 
-# Calling A Function on the RP2040 Via SWD
 
 # Important References
 
