@@ -463,12 +463,12 @@ the instructions needed to accomplish the flashing process.
 # RP2040 ROM Functions
 
 As mentioned above, there is no flash memory in the RP2040.
-An external QSPI flash chip is used to provides the necessary non-volatile storage.
-The code needed to configure the QSPI device for reading and writing operations 
-is quite complicated, so the RP2040 designers placed the QSPI flash initialization code
-into a small (16k) ROM that is masked into RP2040 chip itself.  This is known as the "boot ROM."
+An external QSPI flash chip provides the necessary non-volatile storage.
+The code needed to configure a QSPI device to enable reading and writing 
+is quite complicated, so the RP2040 designers placed the QSPI flash driver code
+into a small (16k) ROM that is masked into RP2040 chip.  This is known as the "boot ROM."
 This ROM also contains other helpful utility functions that are unrelated to the 
-flash memory like floating point math routines.
+flash memory. Floating point math routines, for example.
 
 In order to exposure the ROM utility functions to RP2040 programmers, each function is assigned
 a two-character identifier.  A lookup table at a known location in ROM provides the 
@@ -483,16 +483,36 @@ it's address in a lookup table using it's two-character code.
 
 ## Aside: 16-bit Reads Via SWD
 
+# Important Address Ranges in the RP2040
+
 # Overview of Flashing Process
 
-Finally, with all of the SWD/debug background out of the way we can get back to the topic of flashing memory.
-I'll get into more detail in the next section, but here's 
+Finally, with all of the SWD/debug background out of the way we can get back to the topic of flashing memory.  Here are the key steps:
 
+1. The SDK build process is used to create a binary file that is targeted for loading at address 0x10000000.
+2. The SWD initialization process is followed to initialize the debug capability on the target board.
+3. A processor reset is performed to bring the target board into a known/clean state.
+4. The VTOR register on the target board is set to a RAM location (0x20000000) in 
+preparation for executing functions on the target.
+5. Memory reads (via SWD) are used to read the ROM function lookup table from the target and determine the 
+addresses of the key boot ROM functions that will be used in the flashing process.
+6. A ROM utility function (IF, connect_internal_flash()) is called on the target to 
+reset the flash chip.
+7. A ROM utility function (EX, flash_exit_xip()) is called to put the flash into serial write mode.
+8. A ROM utility function (RE, flash_range_erase()) is called to erase the flash memory.
+9. A ROM utility function (FC, flash_flush_cache()) is called to flush any internal caching related to the flash memory system.
+10. For each 4K page from the binary to be stored in flash:
+    1. The page is written into a RAM workarea on the target board starting at address 0x20000100.
+    2. A ROM utility function (RP, flash_range_program()) is called on the target board that copies data from RAM to Flash.
+11. A ROM utility function (FC, flash_flush_cache()) is called to flush any internal caching     
+12. A ROM utility function (CX, flash_enter_cmd_xip()) is called that re-enables XIP and allow the flash memory to be read normally.
+13. For each 4K page from the binary to be stored in flash:
+    1. The page is written into a RAM workarea on the target board starting at address 0x20000100.
+    2. The 1024 32-bit words are compared between what is in the RAM workarea and what is stored in flash to validate the flashing process.
+14. Debug mode is exited on the target board.
+15. The target board is reset again, thus beginning the execution of the newly flashed program.
 
-
-# RP2040/RP2350 Flash Sequence
-
-# Calling A ROM Function on the RP2040 Via SWD
+# Calling A Function on the RP2040 Via SWD
 
 # Important References
 
