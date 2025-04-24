@@ -1,12 +1,6 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: home
 ---
-Some Of My Projects
-===================
-
 * [My submission to the Tiny Tapeout 07](https://github.com/brucemack/tt07-sb-mixer) VLSI chip fabrication project. I created a double balanced mixer.
   * [This page](https://github.com/brucemack/tt07-sb-mixer/blob/main/docs/math.md) contains some details on the math.
 * The [MicroLink Project](https://github.com/brucemack/microlink) is 
