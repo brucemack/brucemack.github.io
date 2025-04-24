@@ -4,8 +4,8 @@
 
 layout: home
 ---
-
-# Some Of My Projects
+Some Of My Projects
+===================
 
 * [My submission to the Tiny Tapeout 07](https://github.com/brucemack/tt07-sb-mixer) VLSI chip fabrication project. I created a double balanced mixer.
   * [This page](https://github.com/brucemack/tt07-sb-mixer/blob/main/docs/math.md) contains some details on the math.
@@ -23,7 +23,8 @@ network analyzer.
 * I wrote a [study guide for the FCC Ship Radar Endorsement Exam](https://www.amazon.com/Radar-Endorsement-Quick-Study-Guide/dp/B0CGL9TC46)
   * See also, some [possible Errata on the FCC Exam](fcc-element8/questions.html)
 
-# My Research Notes
+My Research Notes
+=================
 
 * [IBM 1620](research/IBM-1620)
 * [IBM SMS Cards](research/IBM SMS Cards)
