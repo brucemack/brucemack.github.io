@@ -1,7 +1,7 @@
 ---
 title: Bare Metal Flashing of the RP2040
 ---
-Copyright (C) Bruce MacKinnon, 2025.  Contact bruce at mackinnon dot com for comments/corrections.
+_Copyright (C) Bruce MacKinnon, 2025.  Contact bruce at mackinnon dot com for comments/corrections._
 
 # Introduction
 
@@ -236,7 +236,7 @@ protocol (and only this step) the acknowledgement is ignored. Actually, the targ
 doesn't even drive the acknowledgment phase for this particular step in the transaction
 because of the multi-drop nature of the SWD bus internal to the RP2040 SOIC.
 
-#### Step 7: Read The Target's ID CODE
+#### Step 7: Read the Target's ID CODE
 
 A read transaction on the DP's IDCODE (0x0) register is required.  The RP2040 will return an IDCODE of 0x0BC12477.
 
@@ -776,20 +776,20 @@ Finally, with all of the SWD/debug background out of the way we can get back to 
 
 1. The SDK build process is used to create a binary file that is targeted for loading at the flash start address 0x10000000.
 2. The SWD initialization process is followed to initialize the debug capability on the target board.
-3. A processor reset is performed to bring the target board into a known/clean state.
+3. A processor reset is performed with a vector cache to bring the target board into a known/clean state.
 4. The VTOR register on the target board is set to a RAM location (0x20000000) in 
 preparation for executing functions on the target.
 5. Memory reads (via SWD) are used to read the ROM function lookup table from the target and determine the 
-addresses of the key boot ROM functions that will be used during the flashing process.
+addresses of the required boot ROM functions that will be used during the flashing process.
 6. A ROM utility function (IF, connect_internal_flash()) is called on the target to 
-reset the flash chip.
+reset the QSPI flash chip.
 7. A ROM utility function (EX, flash_exit_xip()) is called to put the flash into serial write mode.
 8. A ROM utility function (RE, flash_range_erase()) is called to erase the flash memory.
 9. A ROM utility function (FC, flash_flush_cache()) is called to flush any internal caching related to the flash memory system.
 10. For each 4K page from the binary to be stored in flash:
     1. The page is written into a RAM workarea on the target board starting at address 0x20000100. This is done using 1024 32-bit word writes.
-    2. A ROM utility function (RP, flash_range_program()) is called on the target board that copies data from RAM to Flash.
-11. A ROM utility function (FC, flash_flush_cache()) is called to flush any internal caching     
+    2. A ROM utility function (RP, flash_range_program()) is called on the target board that copies 4K of data from RAM to flash.
+11. A ROM utility function (FC, flash_flush_cache()) is called to flush any internal caching.
 12. A ROM utility function (CX, flash_enter_cmd_xip()) is called that re-enables XIP and allow the flash memory to be read normally.
 13. For each 4K page from the binary to be stored in flash:
     1. The page is written into a RAM workarea on the target board starting at address 0x20000100. This is done using 1024 32-bit word writes.
@@ -806,8 +806,13 @@ the .ELF to a raw .BIN file that is suitable for flashing:
 
         arm-none-eabi-objcopy -O binary main.elf main.bin
 
- References
- ==========
+How to Perform a Partial Flash of the User Application
+======================================================
+
+(Work in process)
+
+References
+==========
 
 For RP2040:
  * [RP2040 Datasheet](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf)
