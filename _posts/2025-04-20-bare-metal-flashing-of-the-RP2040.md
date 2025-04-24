@@ -809,7 +809,7 @@ the .ELF to a raw .BIN file that is suitable for flashing:
 How to Perform a Partial Flash of the User Application
 ======================================================
 
-(Work in process)
+(Work in process, future)
 
 References
 ==========
