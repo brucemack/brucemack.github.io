@@ -1,7 +1,7 @@
 ---
 title: Bare Metal Flashing of the RP2040
 ---
-_Copyright (C) Bruce MacKinnon, 2025.  Contact first name at last name dot com for comments/corrections._
+_Copyright (C) Bruce MacKinnon, 2025.  Contact info at bottom of the page for comments/corrections._
 
 # Introduction
 
