@@ -22,7 +22,7 @@ title: Bruce MacKinnon
 email: firstname at lastname dot com
 description: Bruce MacKinnon's Notes
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.mackinnon.info" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  brucemack
 linkedin_username: bruce-mackinnon-7256314
 
