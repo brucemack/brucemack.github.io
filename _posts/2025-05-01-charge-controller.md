@@ -21,3 +21,10 @@ See the TP4056A datasheet for other values.
 
 An [MCP1700-3302E](https://www.mouser.com/datasheet/2/268/MCP1700_Data_Sheet_20001826F-3442024.pdf) or other suitable LDO regulator is used to make 3.3V. This particular regulator has a max dropout margin of 350mV (typical is 178mV). So 
 regulation is maintained as long as the battery voltage stays above 3.95v.
+
+Top left LED (red) indicates charge in process.  Top right LED (blue) indicates that 
+the battery is fully charged.
+
+**NOTE**: Documentation indicates that load should be disconnected during charging.
+
+
