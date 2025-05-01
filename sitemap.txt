@@ -1,6 +1,15 @@
 ---
 layout: none
 ---
+https://mackinnon.info
 https://mackinnon.info/2025/05/01/charge-controller.html
 https://mackinnon.info/2025/04/20/bare-metal-flashing-of-the-RP2040.html
 https://mackinnon.info/sdr/2025/01/25/sdr-passband-testing.html
+https://mackinnon.info/ibm1620/2024/07/05/missing-link.html
+https://mackinnon.info/ibm1620/2024/07/03/input-output-mechanics.html
+https://mackinnon.info/ibm1620/2024/06/27/input-output-writer-1.html
+https://mackinnon.info/ibm1620/2024/06/25/clocks-working.html
+https://mackinnon.info/ibm1620/2024/06/18/ald-nuances-1.html
+https://mackinnon.info/ibm1620/2024/06/15/alds.html
+https://mackinnon.info/ibm1620/2024/06/13/verilog-clocks.html
+https://mackinnon.info/ibm1620/2024/06/12/signs-of-life.html
