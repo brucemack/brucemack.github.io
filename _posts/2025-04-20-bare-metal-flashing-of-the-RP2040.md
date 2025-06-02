@@ -10,7 +10,7 @@ remote flash of the firmware on an RP2040-based board via a low-speed
 LoRa radio link. The "standard" way to flash an RP2040 board is to use a 
 USB-connected [Raspberry Pi Debug Probe](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html) (or similar device) attached to a
 host computer running OpenOCD. That works great on the bench, but I'd
-like something simpler and more compact. That led me to a research 
+like something simpler, more compact, and lower power. That led me to a research 
 project to understand how the SWD-based flashing mechanism on the RP2040
 actually works. Is it possible to create a simple device that can drive 
 the SWD pins on an RP2040-based board and update its firmware?  Let's find out.
