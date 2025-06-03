@@ -12,7 +12,13 @@ _Copyright (C) Bruce MacKinnon, 2025.  Contact info at bottom of the page for co
 [Paper: "The Fairing of Ship Lines on a High-Speed
 Computer"](https://www.ams.org/journals/mcom/1961-15-076/S0025-5718-1961-0128588-2/S0025-5718-1961-0128588-2.pdf)
 
-[Paper: Minimum Variation Curves (MVC)](https://www2.eecs.berkeley.edu/Pubs/TechRpts/1993/CSD-93-732.pdf)
+[Surface Fairing for Ship Hull Design Applications](https://upcommons.upc.edu/bitstream/handle/2117/97247/1400350099.pdf?sequence=1&isAllowed=y).
+
+A more recent paper (PhD thesis from UCB) describes
+the use of [Minimum Variation Curves (MVC)](https://www2.eecs.berkeley.edu/Pubs/TechRpts/1993/CSD-93-732.pdf).
+
+Minimum Energy Curves (MEC) are referenced in some of the
+literature.  [Here's a paper](https://people.csail.mit.edu/bkph/AIM/AIM-612-OCR.pdf) and [another paper](https://homepage.divms.uiowa.edu/~whan/VI_HVI/JH90.pdf).
 
 The formal definition of a "fair curve" from the DOD paper is proposed using 
 these criteria:
