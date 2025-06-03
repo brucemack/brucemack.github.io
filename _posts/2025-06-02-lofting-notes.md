@@ -55,3 +55,13 @@ A linear programming problem is constructed that satisfies
 the mathematic constraints and minimizes the error between
 the design offsets and the candidate fair curve.
 
+Linear programs are problems that can be expressed in standard form as:
+
+* Find a vector x
+* that maximizes c<sup>T</sup>x
+* subject to Ax ≤ b
+* and x ≥ 0
+
+Here the components of x are the variables to be determined, 
+c and b are given vectors and A is a given matrix taken from the problem description. The function whose value is to be maximized (x -> c<sup>T</sup>x)
+is called the objective function. 
