@@ -12,6 +12,8 @@ _Copyright (C) Bruce MacKinnon, 2025.  Contact info at bottom of the page for co
 [Paper: "The Fairing of Ship Lines on a High-Speed
 Computer"](https://www.ams.org/journals/mcom/1961-15-076/S0025-5718-1961-0128588-2/S0025-5718-1961-0128588-2.pdf)
 
+[Paper: Minimum Variation Curves (MVC)](https://www2.eecs.berkeley.edu/Pubs/TechRpts/1993/CSD-93-732.pdf)
+
 The formal definition of a "fair curve" from the DOD paper is proposed using 
 these criteria:
 * The curve Y(X) must be continuous
@@ -43,5 +45,7 @@ fairness conditions have been satisfied can we ask for the curve which
 minimizes the deviation. The problem would be less complicated were it
 a curve-fitting problem and not a curve-fairing problem."_
 
-
+A linear programming problem is constructed that satisfies
+the mathematic constraints and minimizes the error between
+the design offsets and the candidate fair curve.
 
