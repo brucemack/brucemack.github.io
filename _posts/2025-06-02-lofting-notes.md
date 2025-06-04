@@ -67,11 +67,60 @@ c and b are given vectors and A is a given matrix taken from the problem descrip
 is called the objective function. 
 
 The DOD paper fits the design offsets using a polynomial
-function that they call the "analytic spline" Y(X) where X is the abscissa (i.e. the distance along the centerline for a half-breadth plan view) and Y is the ordinal (i.e. offset) from the centerline. The spline uses this form (see equation 2):
+function that they call the "analytic spline" Y(X) where X is the abscissa (i.e. the distance along the centerline for a half-breadth plan view) and Y is the ordinal (i.e. offset) from the centerline. The spline uses a function of this form (see equation 2):
 
 Y(X) = A<sub>0</sub> + A<sub>1</sub>X + A<sub>2</sub>X<sup>2</sup> + A<sub>3</sub>X<sup>3</sup> + A<sub>4</sub>(X - a<sub>1</sub>)<sup>3</sup><sub>#</sub> + A<sub>5</sub>(X - a<sub>2</sub>)<sup>3</sup><sub>#</sub> + ...
 
 Where the special term A(X - a)<sup>3</sup><sub>#</sub> is A(X - a)<sup>3</sup>
- when X > a and 0 when X <= a. In other words, the term is shut off until the independent/abscissa variable X reaches a. 
+when X > a and 0 when X <= a. In other words, the term is shut off until the independent/abscissa variable X reaches a. 
 
- You might wonder how linear programming can be applied to a problem characterized by a cubic polynomial, but keep in mind that the solver is determining the A<sub>n</sub> coefficients - the X and Y(X) are known for a given offset.  *The problem is linear in the A<sub>n</sub>s.*
+In keeping with the formal definition of a fair curve, this spline function has continuous first and second derivatives. This is demonstrated as follows:
+
+The first derivative at X <= a:
+
+Y'(X) = A<sub>1</sub> + 2A<sub>2</sub>X + 3A<sub>3</sub>X<sup>2</sup>
+
+and at X > a:
+
+Y'(X) = A<sub>1</sub> + 2A<sub>2</sub>X + 3A<sub>3</sub>X<sup>2</sup> + 3A<sub>4</sub>(X - a<sub>1</sub>)<sup>2</sup>
+
+This is continuous at the X = a<sub>1</sub> boundary because the last term above starts off as 0.
+
+Similarly, the second derivative at X <= a:
+
+Y''(X) = 2A<sub>2</sub> + 6A<sub>3</sub>X
+
+and at X > a:
+
+Y''(X) = 2A<sub>2</sub> + 6A<sub>3</sub>X + 6A<sub>4</sub>(X - a<sub>1</sub>)
+
+This is also continuous at the X = a boundary for the same reason.
+
+The function **does not** have a continuous third derivative since at X <= a:
+
+Y'''(X) = 6A<sub>3</sub>
+
+and at X > a:
+
+Y''(X) = 6A<sub>3</sub> + 6A<sub>4</sub>
+
+Notice there is a jump of 6A<sub>4</sub> at the X = a boundary.
+
+
+
+
+
+
+
+
+
+
+
+
+You might wonder how linear programming can be applied to a problem characterized by a cubic polynomial, but keep in mind that the solver is determining the A<sub>n</sub> coefficients - the X and target Y(X) are known for a given offset.  *The problem is linear in the A<sub>n</sub> coefficients.* The notation can be a bit misleading because the Xs in the spline formulation are not the xs that the linear program is trying to find.
+
+
+
+
+
+
