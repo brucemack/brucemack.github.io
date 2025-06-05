@@ -3,9 +3,10 @@ title: Notes on Boat Design and Lofting
 ---
 _Copyright (C) Bruce MacKinnon, 2025.  Contact info at bottom of the page for comments/corrections._
 
-[US DOD Paper: Mathematical Ship Lofting - Part I]([https://apps.dtic.mil/sti/tr/pdf/AD0406367.pdf)
+These two papers are very interesting because they describe a ship design system that ran on an IBM 1620:
 
-[US DOD Paper: Mathematical Ship Lofting - Part I Volume 2 on Mathematical Fairing](https://apps.dtic.mil/sti/tr/pdf/AD0406715.pdf). _"To provide a basis for a mathematical fairing method, we must reduce the subjective definition of the word "fair" to a more precise mathematical definition."_
+* [US DOD Paper: Mathematical Ship Lofting - Part I](https://apps.dtic.mil/sti/tr/pdf/AD0406367.pdf)
+* [US DOD Paper: Mathematical Ship Lofting - Part I Volume 2 on Mathematical Fairing](https://apps.dtic.mil/sti/tr/pdf/AD0406715.pdf). _"To provide a basis for a mathematical fairing method, we must reduce the subjective definition of the word "fair" to a more precise mathematical definition."_
 
 [A 1978 Thesis from MIT: "Computer Aided Geometric Variation and Fairing of Ship Hull Forms"](https://apps.dtic.mil/sti/tr/pdf/ADA086640.pdf)
 
@@ -74,37 +75,41 @@ Y(X) = A<sub>0</sub> + A<sub>1</sub>X + A<sub>2</sub>X<sup>2</sup> + A<sub>3</su
 Where the special term A(X - a)<sup>3</sup><sub>#</sub> is A(X - a)<sup>3</sup>
 when X > a and 0 when X <= a. In other words, the term is shut off until the independent/abscissa variable X reaches a. 
 
+### Demonstration of Continuous First and Second Derivatives
+
 In keeping with the formal definition of a fair curve, this spline function has continuous first and second derivatives. This is demonstrated as follows:
 
-The first derivative at X <= a:
+The first derivative at X <= a<sub>1</sub>:
 
 Y'(X) = A<sub>1</sub> + 2A<sub>2</sub>X + 3A<sub>3</sub>X<sup>2</sup>
 
-and at X > a:
+and at X > a<sub>1</sub>:
 
 Y'(X) = A<sub>1</sub> + 2A<sub>2</sub>X + 3A<sub>3</sub>X<sup>2</sup> + 3A<sub>4</sub>(X - a<sub>1</sub>)<sup>2</sup>
 
 This is continuous at the X = a<sub>1</sub> boundary because the last term above starts off as 0.
 
-Similarly, the second derivative at X <= a:
+Similarly, the second derivative at X <= a<sub>1</sub>:
 
 Y''(X) = 2A<sub>2</sub> + 6A<sub>3</sub>X
 
-and at X > a:
+and at X > a<sub>1</sub>:
 
 Y''(X) = 2A<sub>2</sub> + 6A<sub>3</sub>X + 6A<sub>4</sub>(X - a<sub>1</sub>)
 
 This is also continuous at the X = a boundary for the same reason.
 
-The function **does not** have a continuous third derivative since at X <= a:
+The function **does not** have a continuous third derivative since at X <= a<sub>1</sub>:
 
 Y'''(X) = 6A<sub>3</sub>
 
-and at X > a:
+and at X > a<sub>1</sub>:
 
 Y''(X) = 6A<sub>3</sub> + 6A<sub>4</sub>
 
-Notice there is a jump of 6A<sub>4</sub> at the X = a boundary.
+Notice there is a jump of 6A<sub>4</sub> at the X = a<sub>1</sub> boundary.
+
+### Regarding the Sign of the Second Derivative (i.e. curve direction)
 
 
 
