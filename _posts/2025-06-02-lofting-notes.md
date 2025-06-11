@@ -56,6 +56,8 @@ A linear programming problem is constructed that satisfies
 the mathematic constraints and minimizes the error between
 the design offsets and the candidate fair curve.
 
+### Standard Form of Linear Program
+
 Linear programs are problems that can be expressed in standard form as:
 
 * Find a vector x
@@ -66,6 +68,8 @@ Linear programs are problems that can be expressed in standard form as:
 Here the components of x are the variables to be determined, 
 c and b are given vectors and A is a given matrix taken from the problem description. The function whose value is to be maximized (x -> c<sup>T</sup>x)
 is called the objective function. 
+
+### The Analytic Spline Function
 
 The DOD paper fits the design offsets using a polynomial
 function that they call the "analytic spline" Y(X) where X is the abscissa (i.e. the distance along the centerline for a half-breadth plan view) and Y is the ordinal (i.e. offset) from the centerline. The spline uses a function of this form (see equation 2):
@@ -135,25 +139,51 @@ at the ith offset.
 
 As mentioned above, this is a fairing calculation, not a perfect fitting
 calculation. It is OK for the analytical spline to "miss" (deviate) some of the 
-offsets, within some acceptable tolerance. This deviation is bounded by 
-$\lambda$ (lambda). Expressing mathematically:
+offsets, within some acceptable tolerance. This deviation is bounded by ƛ (lambda). Expressing mathematically:
 
-| Y(X<sub>i</sub>) - Y<sub>i</sub> | <= $\lambda$
+| Y(X<sub>i</sub>) - Y<sub>i</sub> | <= ƛ
 
 for i in 1 ... N
 
-So $\lambda$ is the "worst miss" across the entire spline. We want to 
+So ƛ is the "worst miss" across the entire spline. We want to 
 minimize this value to ensure the best fit.
 
 The constraint needs to be "linearized" (i.e. remove the absolute value 
-and get the $\lambda$ on the left side of the inequality), so we end up 
+and get the ƛ on the left side of the inequality), so we end up 
 with two constraints that need to be satisfied at the same time:
 
-$\lambda$ - Y(X<sub>i</sub>)  >=  -Y<sub>i</sub> 
+ƛ - Y(X<sub>i</sub>)  >=  -Y<sub>i</sub> 
 
-$\lambda$ + Y(X<sub>i</sub>)  >=  Y<sub>i</sub> 
+ƛ + Y(X<sub>i</sub>)  >=  Y<sub>i</sub> 
 
+for i in 1 ... N
 
+### Full Linear Optimization Problem
+
+Minimize ƛ subject to these constraints:
+
+ƛ - Y(X<sub>i</sub>) >=  -Y<sub>i</sub> 
+
+ƛ + Y(X<sub>i</sub>) >=  Y<sub>i</sub> 
+
+r<sub>i</sub> * Y''(X<sub>i</sub>) >= 0
+
+for i in 1 ... N
+
+Thinking about the standard form of the linear program, the vector x that we are looking for is made up from 
+
+### Slack Variables
+
+In an optimization problem, a slack variable is a variable that is added to an inequality constraint to transform it into an equality constraint. A non-negativity constraint on the slack variable is also added.
+
+By introducing the slack variable 
+s ≥ 0, the inequality Ax <= b can 
+be converted to Ax + s = b.
+
+Likewise, with s > 0, the inequality Ax >= b can be converted to Ax - s = b.
+
+The solver is allowed to use any 
+value of s, provided it is positive.
 
 
 
