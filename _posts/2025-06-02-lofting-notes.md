@@ -75,6 +75,8 @@ Y(X) = A<sub>0</sub> + A<sub>1</sub>X + A<sub>2</sub>X<sup>2</sup> + A<sub>3</su
 Where the special term A(X - a)<sup>3</sup><sub>#</sub> is A(X - a)<sup>3</sup>
 when X > a and 0 when X <= a. In other words, the term is shut off until the independent/abscissa variable X reaches a. 
 
+You might wonder how linear programming can be applied to a problem characterized by a cubic polynomial, but keep in mind that the solver is determining the A<sub>n</sub> coefficients - the X and target Y(X) are known for a given offset.  *The problem is linear in the A<sub>n</sub> coefficients.* The notation can be a bit misleading because the Xs in the spline formulation are not the xs that the linear program is trying to find.
+
 ### Demonstration of Continuous First and Second Derivatives
 
 In keeping with the formal definition of a fair curve, this spline function has continuous first and second derivatives. This is demonstrated as follows:
@@ -111,6 +113,45 @@ Notice there is a jump of 6A<sub>4</sub> at the X = a<sub>1</sub> boundary.
 
 ### Regarding the Sign of the Second Derivative (i.e. curve direction)
 
+The second derivative and second difference having the 
+same sign at all data points will guarantee the analytic spline will have the 
+correct amount as well as correct spacing of inflection points.
+
+In other words, the requirement that the second derivative and 
+second difference be of the same sign will guarantee compatibility 
+of inflection points.
+
+This can be expressed as a mathematical constraint by requiring that:
+
+r<sub>i</sub> * Y''(X<sub>i</sub>) >= 0
+
+for i in 1 ... N
+
+where r<sub>i</sub> is the second difference at the ith offset and 
+Y''(X<sub>i</sub>) is the second derivative of the analytic spline
+at the ith offset.
+
+### Constraining the Deviation Between Actual Offsets and Fitted Spline
+
+As mentioned above, this is a fairing calculation, not a perfect fitting
+calculation. It is OK for the analytical spline to "miss" (deviate) some of the 
+offsets, within some acceptable tolerance. This deviation is bounded by 
+$\lambda$ (lambda). Expressing mathematically:
+
+| Y(X<sub>i</sub>) - Y<sub>i</sub> | <= $\lambda$
+
+for i in 1 ... N
+
+So $\lambda$ is the "worst miss" across the entire spline. We want to 
+minimize this value to ensure the best fit.
+
+The constraint needs to be "linearized" (i.e. remove the absolute value 
+and get the $\lambda$ on the left side of the inequality), so we end up 
+with two constraints that need to be satisfied at the same time:
+
+$\lambda$ - Y(X<sub>i</sub>)  >=  -Y<sub>i</sub> 
+
+$\lambda$ + Y(X<sub>i</sub>)  >=  Y<sub>i</sub> 
 
 
 
@@ -122,7 +163,11 @@ Notice there is a jump of 6A<sub>4</sub> at the X = a<sub>1</sub> boundary.
 
 
 
-You might wonder how linear programming can be applied to a problem characterized by a cubic polynomial, but keep in mind that the solver is determining the A<sub>n</sub> coefficients - the X and target Y(X) are known for a given offset.  *The problem is linear in the A<sub>n</sub> coefficients.* The notation can be a bit misleading because the Xs in the spline formulation are not the xs that the linear program is trying to find.
+
+
+
+
+
 
 
 
