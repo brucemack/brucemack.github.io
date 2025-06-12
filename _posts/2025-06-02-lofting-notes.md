@@ -56,7 +56,7 @@ A linear programming problem is constructed that satisfies
 the mathematic constraints and minimizes the error between
 the design offsets and the candidate fair curve.
 
-### Standard Form of Linear Program
+### Standard Form of a Linear Program
 
 Linear programs are problems that can be expressed in standard form as:
 
@@ -170,7 +170,30 @@ r<sub>i</sub> * Y''(X<sub>i</sub>) >= 0
 
 for i in 1 ... N
 
-Thinking about the standard form of the linear program, the vector x that we are looking for is made up from 
+Thinking about the standard form of the linear program, the vector x that we are looking for is made up from the elements ƛ and all of the A<sub>i</sub>s 
+that make up the analytic spline function Y(X).
+
+### Linearizing the Problem: Avoiding Negative Elements in x
+
+We know from the standard form of the linear program that the decision variables
+that we are optimizing for (x) must be positive: x ≥ 0. However, there
+is no requirement that the A<sub>i</sub> coefficients of the analytic spline are 
+positive. We can fix this by introducing some more decision variables.
+
+We take advantage of the fact that any real number A<sub>i</sub> can be 
+expressed as the difference between two positive real numbers:
+
+A<sub>i</sub> = A'<sub>i</sub> - A''<sub>i</sub>
+
+So if we change the problem to use *positive* decision variables A'<sub>i</sub> 
+and A''<sub>i</sub> then the standard form is maintained. 
+
+Even though we have more decision variables now, we also have two new 
+constraints:
+
+A'<sub>i</sub> ≥ 0
+
+A''<sub>i</sub> ≥ 0
 
 ### Slack Variables
 
@@ -182,8 +205,7 @@ be converted to Ax + s = b.
 
 Likewise, with s > 0, the inequality Ax >= b can be converted to Ax - s = b.
 
-The solver is allowed to use any 
-value of s, provided it is positive.
+The solver is allowed to use any value of s, provided it is positive.
 
 
 
