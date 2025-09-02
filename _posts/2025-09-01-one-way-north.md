@@ -187,10 +187,10 @@ you experience on the trail. Take your time, relax, and eat a lot.
 Gear
 ----
 
-There is already plenty of material on the internet about LT packing lists so 
-I'm not going to list out all of my gear - reach out if you care. Suffice to say, 
-I am not a ultra-light hiker and I can say that with confidence after seeing some 
-*actual* ultra-light hikers on the trail. From my experience, my base weight of ~20 
+I'm not a big gear nerd and there is already plenty of material on the internet about LT packing lists so 
+I'm not going to list out all of my gear.  Reach out if you care. Suffice to say, 
+I am not a ultra-light hiker and I say that with confidence after seeing some 
+**actual** ultra-light hikers on the trail. From my experience, my base weight of ~20 
 pounds put me in the middle of the range of hikers I met along the way. Many had
 lighter packs and many had heavier. I doubt that 5 pounds more or less
 would have made much of a difference in my success/enjoyment.
