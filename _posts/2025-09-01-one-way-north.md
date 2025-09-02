@@ -314,8 +314,10 @@ and never had a major problem. Key things to remember during drought conditions:
 * Talk with all SOBOs to get current information on water sources.
 * Read FarOut comments closely.
 * Carry water into dry shelters.
-* When you see an active water source, stop, drink all reserves (at least 700 mL), and 
-refill.
+* Whenever you see an active water source, stop, drink all reserves (at least 700 mL), and 
+refill. Better safe than sorry.
+* "Seeping" water sources can be improved using large leaves and small stones. You'd be 
+surprised how much water you can get from these apparently marginal sources.
 * When in doubt, carry some extra.
 * On the plus side, mud was not a major problem during the drought!
 
