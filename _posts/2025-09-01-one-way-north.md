@@ -193,8 +193,8 @@ I'm not going to list out all of my gear.  Reach out if you care. Suffice to say
 I am not a ultra-light hiker and I say that with confidence after seeing some 
 **actual** ultra-light hikers on the trail. From my experience, my base weight of ~20 
 pounds put me in the middle of the range of hikers I met along the way. Many had
-lighter packs and many had heavier. I doubt that 5 pounds more or less
-would have made much of a difference in my success/enjoyment.
+lighter packs and many had heavier. Lighter is better for sure, but I doubt that 
+5 pounds more or less would have made much of a difference in my success/enjoyment.
 
 My "big three" consisted of:
 * Hyperlite Mountain Gear 55L Southwest pack (black)
@@ -202,7 +202,8 @@ My "big three" consisted of:
 * Enlightened Equipment Revelation 20 quilt
 * A silk sleeping bag liner
 * Therm-a-Rest NeoAir NextLite NXT sleeping pad
-* Gossamer Gear 1/8" foam pad
+* Gossamer Gear 1/8" foam pad -  particularly important for protecting your 
+fragile sleeping pad from shelter floors. Also a great sit/nap pad.
 
 I was happy with all gear selections and wouldn't change anything.
 
