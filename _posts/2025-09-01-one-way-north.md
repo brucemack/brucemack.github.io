@@ -77,7 +77,8 @@ Pace/Itinerary
 pre-define your exact itinerary on the LT because of different variables that may come 
 up. I planned conservatively and ended on the day I had originally targeted.
 
-I hiked northbound. LT SOBO hikers are a bit crazy in my view. SOBO would not be 
+I hiked northbound. LT SOBO hikers are a bit crazy in my view, but I have huge
+respect for that added challenge. SOBO would not be 
 a good idea for a beginner. You need the easy miles in the south to prepare
 for the brutal miles in the north.
 
