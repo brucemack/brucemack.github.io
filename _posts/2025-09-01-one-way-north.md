@@ -54,7 +54,7 @@ Yes, my legs were very tired every night.
 Time of Year
 ------------
 
-I hiked in August. I think August is a good compromise between good weather (i.e. not too
+I hiked in August. I think August is a good compromise between weather (i.e. not too
 cold, reasonably dry) and low bugs.
 
 Another side-benefit of August on the LT is that you start directly in the midst
@@ -69,29 +69,32 @@ pre-define your exact itinerary on the LT because of different variables that ma
 up. I planned conservatively and ended on the day I had originally targeted.
 
 I hiked northbound. LT SOBO hikers are a bit crazy in my view. SOBO would not be 
-a good idea for a beginner.
+a good idea for a beginner. You need the easy miles in the south to prepare
+for the brutal miles in the north.
 
 My itinerary philosophy boiled down to the following:
-* Never go more than 12 miles in the first week. More on this below.
-* Pay attention to the elevation gains and dial back mileage as needed. I only had 
+* Average around 8 and never go more than 12 miles a day in the first week. More on 
+this below.
+* Pay attention to the elevation profile and dial back mileage as needed. I only had 
 a few days that involved more than 4,000 feet of ascent. Any day that has more than 
 700 ft/mile of ascent is going to be very hard.
-* Be flexible around Camel's Hump and Mt. Mansfield to avoid exposure in bad weather. 
+* Be flexible around Camel's Hump and Mount Mansfield to avoid exposure in bad weather. 
 There are bad weather blue-blazes that can be used if you need to say on schedule 
 and don't want to cross the dangerously exposed peaks. However, steep slippery 
 down sections need to be taken extremely slowly, even on the bad-weather bypasses.
+* Sometimes blue-blazes are needed to see the best views (Killington, Belvedere for example), factor those miles into your plans.
 
 Walking
 -------
 
 You're ready to walk a lot, right? A few things about my walking philosophy:
 * I set my alarm so that I was standing on the trail when it became light
-enough to hike safely without a light. In August that was around 6:00 AM.
-* I tried to stop hiking between 4:00 PM and 5:00 PM (August).
+enough to hike safely. In August that was around 6:00 AM.
+* I tried to stop hiking between 3:30 PM and 5:00 PM (August).
 * Personal preference: I liked to get up, pack up, and start hiking before
 eating breakfast. I stopped for a hot breakfast somewhere between 2-4 miles down 
 the trail, generally at a good water source and ideally at a swimmable location.
-I found that overlapping the first break with breakfast was efficient and tricked
+I found that overlapping my first break with breakfast was efficient and tricked
 my body into getting the first few miles "for free."
 * I never hiked with a headlight. Headlight hiking should be 
 for emergencies only. Scheduled night hikes to push more miles is asking for trouble
@@ -103,7 +106,8 @@ snack break (b) I was moving too quickly (c) I was not focused on my footing. I 
 talking/bragging about how often they were falling during the trip - my guess is that those
 people were hiking to fast.
 * Don't multi-task. If you need to check your map, stop.  If you need to take a drink, stop.
-* Don't underestimate the fall danger on blue blazes or around water sources. Bring your
+If you need to text a shuttle driver, stop.
+* Don't underestimate the fall danger on blue-blazes or around water sources. Bring your
 poles and use caution even when you're not on the main line! Some of the most dangerous/slippery places were around awkward water sources.
 
 ![LT2](/assets/images/IMG_0210.jpg)
@@ -137,12 +141,12 @@ at the Long Trail.
 * Waterbury, NERO and a ZERO at the Old Stagecoach Inn.
 * Johnson, in and out to resupply and to have lunch.
 
-I was happy with this plan. I only had one day off (Waterbury) with no hiking.  This 
-day off was essential for physical and mental recovery, particularly between Camels Hump
+I was happy with this plan. I only had one day off with no hiking (Waterbury).  This 
+day off was essential for physical and mental recovery, particularly between Camel's Hump
 and Mount Mansfield.
 
-The in-town meals were very important to address the inevitable calorie deficit that
-you experience on the trail. Eat a lot.
+The **in-town meals were very important** to address the inevitable calorie deficit that
+you experience on the trail. Take your time, relax, and eat a lot.
 
 Gear
 ----
@@ -178,11 +182,11 @@ the Topo shoes. Maybe I was seduced by the marketing, but I'm a huge fan of the
 wide toe-box and zero drop combination. 
 
 I often hear people say that they feel the need to wear hiking boots or some other 
-type of shoe that provides them with more "ankle support." I'm not a doctor, but I 
+type of high shoe that provides more "ankle support." I'm not a doctor, but I 
 strongly suspect that 
-anyone who thinks that their foot health depends on the height of their shoes *should 
-not hike the Long Trail.* The terrain is insanely rough and, when push comes to shove, your shoes are not going 
-to provide any significant support. Instead, take a another year of prep using a 
+anyone who thinks that their foot health depends on the height of their shoes **should 
+not be hiking on the Long Trail.** The terrain is insanely rough and, when push comes to shove, your shoes are not going 
+to provide any significant protection against the steep, rocky, rooty, tangled trails. Instead, take a another year of prep using a 
 combination of weight training and elastic "Theraband" training. When you feel confident
 hiking on challenging terrain wearing normal trail-running sneakers you are ready to go. Before that, 
 you are probably an injury waiting to happen.
@@ -205,6 +209,10 @@ I carried an Anker 10,000 mAh power bank with a USB-C cable and a small charging
 
 I kept my iPhone in low-power and airplane modes, used my phone sparingly and traveled with my Garmin inReach off at all times. I never came close to running out of power.
 
+I kept my iPhone in a plastic bag and in a velcro front pocket on my shoulder strap. Walking 
+with a fragile phone in the pocket of your shorts is probably not a good idea on the 
+Long Trail.
+
 Navigation
 ----------
 
@@ -214,25 +222,25 @@ the paper map provided a good safety backup and made it easy to check progress w
 FarOut is essential for a few purposes:
 * Getting commentary on water sources - particularly in drought years like the one I experienced.
 * Getting commentary on tent capacity at shelter sites.
-* Getting phone numbers of shelters/inns on the trail.
-* Helping to recover in those few places where I lost the trail. It's great to know whether
-you are to the left or the right of the trail, particularly in those places where the 
-trail "mistakes" are well-worn.
+* Getting phone numbers of shuttles/inns on the trail.
+* Helping to recover in those few places where I lost the trail. It was great to know 
+whether I was to the left or the right of the trail, particularly in those places where 
+the trail "mistakes" are well-worn.
 
 Shelters/Tenting
 ----------------
 
 I carried a tent and used it whenever possible. I slept in shelters 4 nights when tenting
 wasn't allowed and/or available. The shelter experience was great and I would encourage
-everyone to try it at least a few times. There were mice running around, but none bothered
-me. That's part of living in the woods.
+everyone to try it at least a few times. Yes, there were mice running around, but 
+none bothered me. That's part of living in the woods.
 
 I slept in stealth tent sites between shelters twice on the trip.
 
 Water
 -----
 
-I had two Smartwater bottles with me at all times: 1L and 700mL. I generally used the 
+I carried two Smartwater bottles with me at all times: 1L and 700mL. I generally used the 
 700mL bottle for hydration on the trail and carried the 1L for back-up and/or camp
 when approaching a dry shelter. I tried to limit the full carry of the 1L back-up during 
 significant climbs, but that wasn't always possible.
@@ -240,7 +248,7 @@ significant climbs, but that wasn't always possible.
 I swapped the standard Smartwater bottle caps with [these push/pull 28mm caps](https://www.amazon.com/dp/B0D6L4LRYY). I liked these caps for a few reasons:
 * They are sturdy and eliminate the possibility of loosing a cap.
 * They can be closed securely to avoid losing water during those times (more often than
-you think) when you are hiking in positions that turn your pack sideways or upside down.
+you think) when you are hiking in positions that turn your pack sideways and/or upside down.
 * The caps can be opened/closed hands-free, thus limiting the amount of dirty hand 
 contact with the part of the bottle that goes in your mouth.
 
@@ -253,7 +261,13 @@ sources.
 I filtered using a Sawyer Squeeze filter (CNOC->Filter->Blue Coupler->Smartwater Bottle).
 I liked this system a lot.
 
+I used a short line to hang my CNOC from a tree during filtering. It was good to 
+be able to multi-task while filtering water. The "blue coupler" is essential.
+
 I avoided taking water from streams that were fed by swamps and/or beaver ponds.
+
+I back-flushed the filter at every town stop. I never encountered the "slow filter" 
+problem that some people complain about.
 
 I hiked in August 2025 during one of the most significant droughts in recent Vermont history. Lake Champlain reached a low water level not seen since 1934 during my hike. Several of the 
 "reliable" water sources were dry. I was fairly conservative with my water carries 
@@ -264,8 +278,7 @@ and never had a major problem. Key things to remember during drought conditions:
 * When you see an active water source, stop, drink all reserves (at least 700 mL), and 
 refill.
 * When in doubt, carry some extra.
-
-On the plus side, mud was not a major problem!
+* On the plus side, mud was not a major problem during the drought!
 
 Food Storage
 ------------
