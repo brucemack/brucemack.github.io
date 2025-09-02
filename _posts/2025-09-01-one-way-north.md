@@ -36,8 +36,9 @@ training:
 * I walked 5-12 miles every day for a year leading up to the hike.  My longer training days were often made up of two walks, one in early
 morning and one in the evening before dinner.
 * I did basic weight training at a local gym for about 6 months prior to the hike. I 
-used weights every other day and rotated through push (arms), pull (arms), and legs. In my view, weight training is the most effective step 
-you can take to avoid injury on a long-distance hiking trip.
+used weights every other day and rotated through push (arms), pull (arms), and legs. You 
+will use your arms a lot on this trip, so don't neglect that part of the training. In my view, weight training is the most effective step 
+you can take to avoid injury on a long-distance hiking trip, especially for us older folks.
 * My wife and I walked the West Highland Way in Scotland 3 months prior to the trip. This 
 was a ~100 mile trip in 6 days with two >20 mile days. This *was not* a backpacking 
 trip and the 
@@ -49,7 +50,7 @@ an issue. You don't need to go to an exotic location to have a training hike lik
 just be sure to hike multiple long days **consecutively** to get used to that experience.
 * I lost about 25 pounds during this process and got to a BMI target of 24. Coincidentally
 (or not), my pack weight was around 25 pounds. Anyone who plans to spend a lot of time/money
-getting into "ultralight" gear should first make sure that they are <= 24 BMI.
+getting into "ultralight" gear should first make sure that they are <=24 BMI.
 
 I completed the hike, I didn't get injured, and I had very little soreness along the way.
 Yes, my legs were very tired every night.
@@ -61,8 +62,13 @@ I hiked in August. I think August is a good compromise between weather (i.e. not
 cold, reasonably dry) and low bugs.
 
 Another side-benefit of August on the LT is that you start directly in the midst
-of the NOBO and SOBO AT bubbles. This provides access to trail expertise during
+of the NOBO and SOBO AT bubbles. This provides access to trail expertise and 
+camaraderie during
 the early days of your LT hike. I met some very nice AT hikers and they taught me a lot.
+
+By the time you pass Maine Junction north of Killington and the AT folks take a right
+you will be well trained. The LT crowd is much thinner, but I never had a case where
+I was alone in a shelter.
 
 Pace/Itinerary 
 --------------
