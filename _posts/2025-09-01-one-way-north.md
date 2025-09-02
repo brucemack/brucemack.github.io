@@ -23,18 +23,20 @@ General Overview
 The Long Trail follows the Green Mountains of Vermont from the Massachusetts border
 to the Canadian border. The Trail is 273 miles long and experiences about 65,000 feet
 of elevation gain. I started my hike on Tuesday, August 5 and ended on Saturday, August 30 2025. I started at the Route 2 crossing of the AT in North Adams, MA and spent my first 
-night on the AT in Massachusetts, so technically my LT hike required 24 days.
+night on the AT in Massachusetts, so technically my LT hike required 24 days. I took one
+zero.
 
-Training
---------
+My Training
+-----------
 
 A hike of this magnitude requires a lot of physical training, particularly if you 
-want to enjoy it. I started off in reasonably good shape, but my preparation started 
-about a year before I stepped onto the trail in North Adams. Key elements of the 
+want to enjoy the trip. I started off in reasonably good shape, but my preparation started 
+about a year before I stepped onto the trail in North Adams. Key elements of my 
 training:
 * I walked 5-12 miles every day for a year leading up to the hike.  My longer training days were often made up of two walks, one in early
 morning and one in the evening before dinner.
-* I did basic weight training at a local gym for about 6 months prior to the hike. Push (arms), pull (arms), legs every other day. In my view, weight training is the most effective step 
+* I did basic weight training at a local gym for about 6 months prior to the hike. I 
+used weights every other day and rotated through push (arms), pull (arms), and legs. In my view, weight training is the most effective step 
 you can take to avoid injury on a long-distance hiking trip.
 * My wife and I walked the West Highland Way in Scotland 3 months prior to the trip. This 
 was a ~100 mile trip in 6 days with two >20 mile days. This *was not* a backpacking 
@@ -43,7 +45,8 @@ terrain was much easier than the Green Mountains of Vermont, however it was very
 to get used to walking for multiple consecutive days (some in the pouring rain) without 
 days off in between. I also 
 liked the chance to test my socks/shoes and to make sure that blisters weren't going to be
-an issue.
+an issue. You don't need to go to an exotic location to have a training hike like this, 
+just be sure to hike multiple long days **consecutively** to get used to that experience.
 * I lost about 25 pounds during this process and got to a BMI target of 24. Coincidentally
 (or not), my pack weight was around 25 pounds. Anyone who plans to spend a lot of time/money
 getting into "ultralight" gear should first make sure that they are <= 24 BMI.
@@ -90,7 +93,8 @@ Walking
 
 You're ready to walk a lot, right? A few things about my walking philosophy:
 * I set my alarm so that I was standing on the trail when it became light
-enough to hike safely. In August that was around 6:00 AM.
+enough to hike safely. In August that was around 6:00 AM. An early start allows 
+you to walk more slowly and take more breaks.
 * I tried to stop hiking between 3:30 PM and 5:00 PM (August).
 * Personal preference: I liked to get up, pack up, and start hiking before
 eating breakfast. I stopped for a hot breakfast somewhere between 2-4 miles down 
@@ -105,7 +109,7 @@ in my view.
 much this meant that (a) I was tired and/or under-caloried and should stop for a 
 snack break (b) I was moving too quickly (c) I was not focused on my footing. I heard some people on the trail
 talking/bragging about how often they were falling during the trip - my guess is that those
-people were hiking to fast.
+people were hiking too fast.
 * Don't multi-task. If you need to check your map, stop.  If you need to take a drink, stop.
 If you need to text a shuttle driver, stop.
 * Don't underestimate the fall danger on blue-blazes or around water sources. Bring your
@@ -116,7 +120,7 @@ poles and use caution even when you're not on the main line! Some of the most da
 Start Slow
 ----------
 
-You've already heard this many times, so I don't need to belabor the point. The most 
+You've already heard this advice many times, so I don't need to belabor the point. The most 
 common problem that I saw on the trail was repetitive stress injury. And
 most of the time this involved hikers who had started making big miles early in their
 trip. I kept my daily milage under 12 for the first week of the trip to avoid this 
@@ -128,7 +132,8 @@ All of the AT hikers that I met on the first few days of my trip (they were arou
 This is a difficult limit to enforce, especially in the first few days of the hike. When
 you roll into a shelter at 2:00 PM feeling great it's hard to resist the temptation to 
 keep hiking. Trust me, just stop. I brought a book with me on the first part of the trip
-and it provided something to fill the down time.
+and it provided something to fill the down time and reduced the temptation to press to another
+shelter.
 
 Mental Approach
 ---------------
@@ -137,7 +142,7 @@ A lot of people talk about the mental challenge of long-distance hiking trips. A
 doing something like this for almost a month I can attest that it is a mental challenge.
 A few points that may be helpful in this regard:
 * I suspect that most people who say they are struggling mentally are really just
-tired, sore, and hungry. Take physical preparation seriously, take it slow, and carry 
+tired, sore, and hungry. Take your physical preparation seriously, take it slow, and carry 
 enough calories.  You'll be fine.
 * Take the hike one 1/2 day at a time. It can get overwhelming when you start to think
 too far down the track. Just get yourself to the next shelter. You'll be fine.
@@ -156,11 +161,14 @@ Resupply/Town Stops
 I made 6 town stops:
 * Bennington, in and out to pick up a box at the PO and to have lunch.
 * Manchester, NERO and an overnight at the Hampton Inn.
-* Killington, NERO and an overnight at the North Star. Lunch and the Inn
-at the Long Trail.
-* Warren, NERO and an overnight at the West Hill House B&B.
-* Waterbury, NERO and a ZERO at the Old Stagecoach Inn.
-* Johnson, in and out to resupply and to have lunch.
+* Killington, NERO and an overnight at the North Star Lodge. Lunch at the Inn
+at Long Trail. (NOTE: The name notwithstanding, this inn **is not** on the 
+Long Trail, but rather is on
+a blue-blaze coming down from Killington. The walk east on VT4 to the 
+inn takes about 25 minutes and is worthwhile).
+* Warren, NERO and an overnight at the [West Hill House B&B](https://westhillbb.com/).
+* Waterbury, NERO and a ZERO at the [Old Stagecoach Inn](https://oldstagecoach.com/).
+* Johnson, in and out to resupply at the [Johnson Hardware Store](https://jhrvt.com/) and to have lunch at the [Maplefields](https://maplefields.com/).
 
 I was happy with this plan. I only had one day off with no hiking (Waterbury), but this 
 zero day was essential for physical and mental recovery, particularly between Camel's Hump
@@ -191,9 +199,9 @@ My "big three" consisted of:
 I was happy with all gear selections and wouldn't change anything.
 
 I see a lot of people online obsessing about UL and pack weights. As my 
-wise son pointed out on one trip, it might be more productive to improve
+wise son pointed out before one of our trips, it might be more productive to improve
 your diet and loose 5 pounds off your body than to figure out how to 
-remove 5 pounds from your pack.
+loose 5 pounds from your pack.
 
 Footwear
 --------
@@ -308,7 +316,8 @@ Food Storage
 ------------
 
 This topic is debated endlessly. I carried a BV450 bear canister and did not 
-regret it. Be sure to put reflective tape on your canister. 
+regret it. Be sure to put reflective tape on your canister and place it on a flat
+surface (away from cliffs) at night.
 
 There are cons:
 * The canister adds weight.
@@ -322,4 +331,9 @@ and bear lockers). Critters are a much larger risk than bears.
 * I never worried about bears and/or other small critters on my trip.
 * The canister limits your food carry somewhat, which prevents over-carrying.
 
-![LT2](/assets/images/IMG_0364.jpg)
+Conclusion
+----------
+
+Hike the Long Trail end-to-end, you will not regret it.
+
+![LT3](/assets/images/IMG_0364.jpg)
