@@ -67,8 +67,8 @@ camaraderie during
 the early days of your LT hike. I met some very nice AT hikers and they taught me a lot.
 
 By the time you pass Maine Junction north of Killington and the AT folks take a right
-you will be well trained. The LT crowd is much thinner, but I never had a case where
-I was alone in a shelter.
+towards New Hampshire you will be well trained. The LT crowd is much thinner, but I 
+never had a case where I was alone in a shelter.
 
 Pace/Itinerary 
 --------------
