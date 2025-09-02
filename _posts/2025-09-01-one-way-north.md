@@ -15,6 +15,8 @@ condition and with some basic backpacking experience.
 
 You may come up with a much better way. Hike your own hike.
 
+![LT1](/assets/images/IMG_0316.jpg)
+
 General Overview
 ----------------
 
@@ -83,17 +85,17 @@ down sections need to be taken extremely slowly, even on the bad-weather bypasse
 Walking
 -------
 
-You'll be waling a lot, right? A few things about my walking philosophy:
-* I set my alarm so that I was standing on the trail when it becomes light
-enough to hike safely without a light. In August that's about 6:00 AM.
-* I try to stop hiking between 4:00 PM and 5:00 PM (August).
+You're ready to walk a lot, right? A few things about my walking philosophy:
+* I set my alarm so that I was standing on the trail when it became light
+enough to hike safely without a light. In August that was around 6:00 AM.
+* I tried to stop hiking between 4:00 PM and 5:00 PM (August).
 * Personal preference: I liked to get up, pack up, and start hiking before
-eating breakfast. I stop for a hot breakfast somewhere between 2-4 miles down 
+eating breakfast. I stopped for a hot breakfast somewhere between 2-4 miles down 
 the trail, generally at a good water source and ideally at a swimmable location.
-I find that overlapping the first break with breakfast is efficient and tricks
-your body into getting the first few miles "for free."
+I found that overlapping the first break with breakfast was efficient and tricked
+my body into getting the first few miles "for free."
 * I never hiked with a headlight. Headlight hiking should be 
-for emergencies only. Scheduled night hikes to push miles is asking for trouble
+for emergencies only. Scheduled night hikes to push more miles is asking for trouble
 in my view.
 * I used hiking poles.
 * I only had three falls. In my experience, if I found myself tripping 
@@ -104,6 +106,8 @@ people were hiking to fast.
 * Don't multi-task. If you need to check your map, stop.  If you need to take a drink, stop.
 * Don't underestimate the fall danger on blue blazes or around water sources. Bring your
 poles and use caution even when you're not on the main line! Some of the most dangerous/slippery places were around awkward water sources.
+
+![LT2](/assets/images/IMG_0210.jpg)
 
 Start Slow
 ----------
@@ -277,3 +281,4 @@ and bear lockers). Critters are a much larger risk than bears.
 * I never worried about bears and/or other small critters on my trip.
 * The canister limits your food carry somewhat, which prevents over-carrying.
 
+![LT2](/assets/images/IMG_0364.jpg)
