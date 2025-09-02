@@ -227,6 +227,16 @@ combination of weight training and elastic "Theraband" training. When you feel c
 hiking on challenging terrain wearing normal trail-running sneakers you are ready to go. Before that, 
 you are probably an injury waiting to happen.
 
+Clothing
+--------
+
+This isn't comprehensive, but a few notes on the frequently asked items:
+* I hiked in shorts 100% of the time, I didn't bring long pants.
+* I used my rain pants for warmth in the evenings and mornings about 5 times.
+* I wore my sun hoodie in the morning on the trail a few times, but dropped
+to a normal t-shirt on the first climb.
+* I wore my puffy jacket once on the entire trip (evening on Jay Peak).
+
 Communications/Electronics
 --------------------------
 
