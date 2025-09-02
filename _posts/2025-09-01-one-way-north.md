@@ -108,6 +108,8 @@ eating breakfast. I stopped for a hot breakfast somewhere between 2-4 miles down
 the trail, generally at a good water source and ideally at a swimmable location.
 I found that overlapping my first break with breakfast was efficient and tricked
 my body into getting the first few miles "for free."
+* Personal preference: it's nice to get into camp on the earlier side and get
+first crack at selecting a tent site.
 * I never hiked with a headlight. Headlight hiking should be 
 for emergencies only. Scheduled night hikes to push more miles is asking for trouble
 in my view.
@@ -190,7 +192,7 @@ Gear
 
 I'm not a big gear nerd and there is already plenty of material on the internet about LT packing lists so 
 I'm not going to list out all of my gear.  Reach out if you care. Suffice to say, 
-I am not a ultra-light hiker and I say that with confidence after seeing some 
+I am not an ultra-light hiker and I say that with confidence after seeing some 
 **actual** ultra-light hikers on the trail. From my experience, my base weight of ~20 
 pounds put me in the middle of the range of hikers I met along the way. Many had
 lighter packs and many had heavier. Lighter is better for sure, but I doubt that 
@@ -282,6 +284,11 @@ I carried a tent and used it whenever possible. I slept in shelters 4 nights whe
 wasn't allowed and/or available. The shelter experience was great and I would encourage
 everyone to try it at least a few times. Yes, there were mice running around, but 
 none bothered me. That's part of living in the woods.
+
+Even if you plan to sleep in shelters every night (which is theoretically possible), I 
+would suggest carrying some form of alternate shelter. You never know where you're going 
+to be stuck out on the trail. I did see some crowded shelters in the south, so keep 
+the "no room at the inn" scenario in mind.
 
 I slept in stealth tent sites between shelters twice on the trip.
 
