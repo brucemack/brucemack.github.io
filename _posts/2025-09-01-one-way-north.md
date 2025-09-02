@@ -249,6 +249,12 @@ I carried an iPhone 16 (Verizon). I had enough service to text/call
 home at least a few times a day, particularly from higher elevations. Many shelters had
 at least one bar of Verizon coverage. 
 
+One of the emotional highlights of my trip happened 2 days before the finish 
+when I turned on my phone at the top of a modest mountain (Buchanan I think) and
+received a text message from Verizon that said: "Welcome to Canada! As talk, text,
+and data is included in your domestic plan you'll have no additional charges while roaming."
+That told me I was getting close!
+
 I also carried a Garmin inReach Mini 2 to send check-in messages every night. This was
 helpful to fill 
 in those places where mobile coverage was weak. The Garmin was paired with my iPhone
