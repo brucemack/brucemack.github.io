@@ -151,15 +151,15 @@ doing something like this for almost a month I can attest that it is a mental ch
 A few points that may be helpful in this regard:
 * I suspect that most people who say they are struggling mentally are really just
 tired, sore, and hungry. Take your physical preparation seriously, take it slow, and carry 
-enough calories.  You'll be fine.
-* Take the hike one 1/2 day at a time. It can get overwhelming when you start to think
+enough calories. You'll be fine.
+* Take the hike one 1/2 day at a time. I sometimes became overwhelmed when I started to think
 too far down the track. Just get yourself to the next shelter. You'll be fine.
 * Keep in mind the impermanence of the trip. Remember that all torrential rain storms 
-and all ridiculously steep climbs will pass.
+and all ridiculously steep climbs will pass. You'll be fine.
 * No matter how much of an introvert you are (like me), the people you meet along 
 the trail are a blessing. Even if you are a tenter, make a point of introducing yourself 
 to everyone else at the shelter and eat dinner with the group. This will greatly improve
-your mental state.
+your mental state. You'll be fine.
 
 The possibility of not finishing the Trail never entered my mind.
 
