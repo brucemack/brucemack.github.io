@@ -150,8 +150,8 @@ your mental state.
 
 The possibility of not finishing the Trail never entered my mind.
 
-Resupply/Stops
---------------
+Resupply/Town Stops
+-------------------
 
 I made 6 town stops:
 * Bennington, in and out to pick up a box at the PO and to have lunch.
@@ -162,8 +162,8 @@ at the Long Trail.
 * Waterbury, NERO and a ZERO at the Old Stagecoach Inn.
 * Johnson, in and out to resupply and to have lunch.
 
-I was happy with this plan. I only had one day off with no hiking (Waterbury).  This 
-day off was essential for physical and mental recovery, particularly between Camel's Hump
+I was happy with this plan. I only had one day off with no hiking (Waterbury), but this 
+zero day was essential for physical and mental recovery, particularly between Camel's Hump
 and Mount Mansfield.
 
 The **in-town meals were very important** to address the inevitable calorie deficit that
