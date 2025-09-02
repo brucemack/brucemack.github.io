@@ -117,7 +117,8 @@ much this meant that (a) I was tired and/or under-caloried and should stop for a
 snack break (b) I was moving too quickly (c) I was not focused on my footing. I heard some people on the trail
 talking/bragging about how often they were falling during the trip - my guess is that those
 people were hiking too fast.
-* Don't multi-task. If you need to check your map, stop.  If you need to take a drink, stop.
+* Walking on rough terrain requires focus to avoid injury. Don't multi-task. If you need 
+to check your map, stop.  If you need to take a drink, stop.
 If you need to text a shuttle driver, stop.
 * Don't underestimate the fall danger on blue-blazes or around water sources. Bring your
 poles and use caution even when you're not on the main line! Some of the most dangerous/slippery places were around awkward water sources.
