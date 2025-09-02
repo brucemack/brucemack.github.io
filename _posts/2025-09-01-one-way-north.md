@@ -290,6 +290,9 @@ I avoided taking water from streams that were fed by swamps and/or beaver ponds.
 I back-flushed the filter at every town stop. I never encountered the "slow filter" 
 problem that some people complain about.
 
+I used an electrolyte drink mix (Liquid IV) in my water once per day. I found this 
+to be important for muscle cramp reduction.
+
 I hiked in August 2025 during one of the most significant droughts in recent Vermont history. Lake Champlain reached a low water level not seen since 1934 during my hike. Several of the 
 "reliable" water sources were dry. I was fairly conservative with my water carries 
 and never had a major problem. Key things to remember during drought conditions:
