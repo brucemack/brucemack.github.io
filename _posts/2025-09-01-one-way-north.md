@@ -28,7 +28,7 @@ night on the AT in Massachusetts, so technically my LT hike required 24 days.
 Training
 --------
 
-A hike of this magnitude requries a lot of physical training, particularly if you 
+A hike of this magnitude requires a lot of physical training, particularly if you 
 want to enjoy it. I started off in reasonably good shape, but my preparation started 
 about a year before I stepped onto the trail in North Adams. Key elements of the 
 training:
@@ -40,7 +40,7 @@ you can take to avoid injury on a long-distance hiking trip.
 * My wife and I walked the West Highland Way in Scotland 3 months prior to the trip. This 
 was a ~100 mile trip in 6 days with two >20 mile days. This *was not* a back-packing 
 trip and the 
-terain was much easier than the Green Mountains of Vermont, however it was very helpful 
+terrain was much easier than the Green Mountains of Vermont, however it was very helpful 
 to get used to walking for multiple consecutive days (some in the pouring rain) without 
 rest in between. I also 
 liked the chance to test my socks/shoes to make sure that blisters weren't going to be
@@ -62,17 +62,17 @@ Another side-benefit of August on the LT is that you start directly in the midst
 of the NOBO and SOBO AT bubbles. This provides access to trail expertise during
 the early days of your LT hike. I met some very nice AT hikers and they taught me a lot.
 
-Pace/Itinary 
--------------
+Pace/Itinerary 
+--------------
 
-I've attached my itinary in case you're interested. It's probably not possible to 
-pre-define your exact itinary on the LT because of different variables that may come 
+I've attached my itinerary in case you're interested. It's probably not possible to 
+pre-define your exact itinerary on the LT because of different variables that may come 
 up. I planned conservatively and ended on the day I had originally targeted.
 
 I hiked northbound. LT SOBO hikers are a bit crazy in my view. SOBO would not be 
 a good idea for a beginner.
 
-My itinary philosophy boiled down to the following:
+My itinerary philosophy boiled down to the following:
 * Never go more than 12 miles in the first week. More on this below.
 * Pay attention to the elevation gains and dial back mileage as needed. I only had 
 a few days that involved more than 4,000 feet of ascent. Any day that has more than 
@@ -123,7 +123,7 @@ All of the AT hikers that I met on the first few days of my trip (they were arou
 
 This is a difficult limit to enforce, especially in the first few days of the hike. When
 you roll into a shelter at 2:00 PM feeling great it's hard to resist the temptation to 
-keep hiking. Trust me, just stop. I brough a book with me on the first part of the trip
+keep hiking. Trust me, just stop. I brought a book with me on the first part of the trip
 and it provided something to fill the down time.
 
 Resupply/Stops
@@ -159,10 +159,10 @@ would have made much of a difference in my success/enjoyment.
 My "big three" consisted of:
 * Hyperlite Mountain Gear 55L Southwest pack (black)
 * Big Agnes Copper Spur UL1 free-standing tent
-* Enlighted Equipment Revelation 20 quilt
+* Enlightened Equipment Revelation 20 quilt
 * A silk sleeping bag liner
 * Therm-a-Rest NeoAir NextLite NXT sleeping pad
-* Goassamer Gear 1/8" foam pad
+* Gossamer Gear 1/8" foam pad
 
 I was happy with all gear selections and wouldn't change anything.
 
@@ -177,10 +177,10 @@ I often hear people say that they feel the need to wear hiking boots or some oth
 type of shoe that provides them with more "ankle support." I'm not a doctor, but I 
 strongly suspect that 
 anyone who thinks that their foot health depends on the height of their shoes *should 
-not hike the Long Trail.* The terain is insanely rough and, when push comes to shove, your shoes are not going 
+not hike the Long Trail.* The terrain is insanely rough and, when push comes to shove, your shoes are not going 
 to provide any significant support. Instead, take a another year of prep using a 
 combination of weight training and elastic "Theraband" training. When you feel confident
-hiking on challening terain wearing normal trail-running sneakers you are ready to go. Before that, 
+hiking on challenging terrain wearing normal trail-running sneakers you are ready to go. Before that, 
 you are probably an injury waiting to happen.
 
 Communications/Electronics
@@ -190,16 +190,16 @@ I carried an iPhone 16 (Verizon). I had enough service to text/call
 home at least a few times a day, particularly from higher elevations. Many shelters had
 at least one bar of Verizon coverage. 
 
-I also carried a Garmin Inreach Mini 2 to send check-in messages every night. This was
+I also carried a Garmin inReach Mini 2 to send check-in messages every night. This was
 helpful to fill 
 in those places where mobile coverage was weak. The Garmin was paired with my iPhone
 to support text messages and to receive weather forecasts when needed.
 
-I carried a Nitecore NU25 (USB-C) recharable headlamp.
+I carried a Nitecore NU25 (USB-C) rechargeable headlamp.
 
 I carried an Anker 10,000 mAh power bank with a USB-C cable and a small charging block.
 
-I kept my iPhone in low-power and airplane modes, used my phone sparingly and traveled with my Garmin Inreach off at all times. I never came close to running out of power.
+I kept my iPhone in low-power and airplane modes, used my phone sparingly and traveled with my Garmin inReach off at all times. I never came close to running out of power.
 
 Navigation
 ----------
@@ -209,7 +209,7 @@ the paper map provided a good safety backup and made it easy to check progress w
 
 FarOut is essential for a few purposes:
 * Getting commentary on water sources - particularly in drought years like the one I experienced.
-* Getting commentary on tent capactiy at shelter sites.
+* Getting commentary on tent capacity at shelter sites.
 * Getting phone numbers of shelters/inns on the trail.
 * Helping to recover in those few places where I lost the trail. It's great to know whether
 you are to the left or the right of the trail, particularly in those places where the 
