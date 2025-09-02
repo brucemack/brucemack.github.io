@@ -1,5 +1,5 @@
 ---
-title: One Way North - Hiking the Vermont Long Trail
+title: One Way North - My Hike of the Vermont Long Trail
 ---
 I recently completed a northbound thru hike of the Vermont Long Trail. This
 page provides notes on my experience in case it helps others. There are 
@@ -22,7 +22,7 @@ General Overview
 
 The Long Trail follows the Green Mountains of Vermont from the Massachusetts border
 to the Canadian border. The Trail is 273 miles long and experiences about 65,000 feet
-of elevation gain. I started the hike on Tuesday, August 5 and ended on Saturday, August 30 2025. I started at the Route 2 crossing of the AT in North Adams, MA and spent my first 
+of elevation gain. I started my hike on Tuesday, August 5 and ended on Saturday, August 30 2025. I started at the Route 2 crossing of the AT in North Adams, MA and spent my first 
 night on the AT in Massachusetts, so technically my LT hike required 24 days.
 
 Training
@@ -41,12 +41,12 @@ was a ~100 mile trip in 6 days with two >20 mile days. This *was not* a backpack
 trip and the 
 terrain was much easier than the Green Mountains of Vermont, however it was very helpful 
 to get used to walking for multiple consecutive days (some in the pouring rain) without 
-rest in between. I also 
+days off in between. I also 
 liked the chance to test my socks/shoes and to make sure that blisters weren't going to be
 an issue.
 * I lost about 25 pounds during this process and got to a BMI target of 24. Coincidentally
 (or not), my pack weight was around 25 pounds. Anyone who plans to spend a lot of time/money
-getting into "ultralight" should first make sure that they are <= 24 BMI.
+getting into "ultralight" gear should first make sure that they are <= 24 BMI.
 
 I completed the hike, I didn't get injured, and I had very little soreness along the way.
 Yes, my legs were very tired every night.
@@ -81,7 +81,8 @@ a few days that involved more than 4,000 feet of ascent. Any day that has more t
 * Be flexible around Camel's Hump and Mount Mansfield to avoid exposure in bad weather. 
 There are bad weather blue-blazes that can be used if you need to say on schedule 
 and don't want to cross the dangerously exposed peaks. However, steep slippery 
-down sections need to be taken extremely slowly, even on the bad-weather bypasses.
+down sections need to be taken extremely slowly, even on the bad-weather bypasses. I 
+was lucky and had perfect weather for Camel's Hump and adequate weather for Mansfield.
 * Sometimes blue-blazes are needed to see the best views (Killington, Belvedere for example), factor those miles into your plans.
 
 Walking
@@ -128,6 +129,26 @@ This is a difficult limit to enforce, especially in the first few days of the hi
 you roll into a shelter at 2:00 PM feeling great it's hard to resist the temptation to 
 keep hiking. Trust me, just stop. I brought a book with me on the first part of the trip
 and it provided something to fill the down time.
+
+Mental Approach
+---------------
+
+A lot of people talk about the mental challenge of long-distance hiking trips. After
+doing something like this for almost a month I can attest that it is a mental challenge.
+A few points that may be helpful in this regard:
+* I suspect that most people who say they are struggling mentally are really just
+tired, sore, and hungry. Take physical preparation seriously, take it slow, and carry 
+enough calories.  You'll be fine.
+* Take the hike one 1/2 day at a time. It can get overwhelming when you start to think
+too far down the track. Just get yourself to the next shelter. You'll be fine.
+* Keep in mind the impermanence of the trip. Remember that all torrential rain storms 
+and all ridiculously steep climbs will pass.
+* No matter how much of an introvert you are (like me), the people you meet along 
+the trail are a blessing. Even if you are a tenter, make a point of introducing yourself 
+to everyone else at the shelter and eat dinner with the group. This will greatly improve
+your mental state.
+
+The possibility of not finishing the Trail never entered my mind.
 
 Resupply/Stops
 --------------
