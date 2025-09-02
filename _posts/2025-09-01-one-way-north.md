@@ -64,7 +64,7 @@ the early days of your LT hike. I met some very nice AT hikers and they taught m
 Pace/Itinerary 
 --------------
 
-I've attached my itinerary in case you're interested. It's probably not possible to 
+[I've attached my itinerary here](/assets/lt2025.pdf) in case you're interested. It's probably not possible to 
 pre-define your exact itinerary on the LT because of different variables that may come 
 up. I planned conservatively and ended on the day I had originally targeted.
 
