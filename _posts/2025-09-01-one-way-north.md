@@ -13,7 +13,7 @@ is the only way, or even the best way to hike the Trail. This is just one way
 that worked for a 57 year-old first-time thru-hiker in reasonably good physical 
 condition and with some basic backpacking experience. 
 
-You may come up with a much better way. Hike your own hike.
+You may come up with a much better way. Hike your own hike!
 
 ![LT1](/assets/images/IMG_0316.jpg)
 
@@ -21,8 +21,8 @@ General Overview
 ----------------
 
 The Long Trail follows the Green Mountains of Vermont from the Massachusetts border
-to the Canadian border. The Trail is 273 miles long and experiences about 65,000 feet
-of elevation gain. I started my hike on Tuesday, August 5 and ended on Saturday, August 30 2025. I started at the Route 2 crossing of the AT in North Adams, MA and spent my first 
+to the Canadian border. The Trail is 273 miles long and requires about 65,000 feet
+of elevation gain. I started my hike on Tuesday, August 5 and ended on Saturday, August 30, 2025. I started at the Route 2 crossing of the AT in North Adams, MA and spent my first 
 night on the AT in Massachusetts, so technically my LT hike required 24 days. I took one
 zero.
 
@@ -37,7 +37,7 @@ training:
 morning and one in the evening before dinner.
 * I did basic weight training at a local gym for about 6 months prior to the hike. I 
 used weights every other day and rotated through push (arms), pull (arms), and legs. You 
-will use your arms a lot on this trip, so don't neglect that part of the training. In my view, weight training is the most effective step 
+will use your arms a lot on this trip so don't neglect that part of your training. In my view, weight training is the most effective step 
 you can take to avoid injury on a long-distance hiking trip, especially for us older folks.
 * My wife and I walked the West Highland Way in Scotland 3 months prior to the trip. This 
 was a ~100 mile trip in 6 days with two >20 mile days. This *was not* a backpacking 
@@ -48,7 +48,7 @@ days off in between. I also
 liked the chance to test my socks/shoes and to make sure that blisters weren't going to be
 an issue. You don't need to go to an exotic location to have a training hike like this, 
 just be sure to hike multiple long days **consecutively** to get used to that experience.
-* I lost about 25 pounds during this process and got to a BMI target of 24. Coincidentally
+* I lost about 25 pounds during the training process and got to a BMI target of 24. Coincidentally
 (or not), my pack weight was around 25 pounds. Anyone who plans to spend a lot of time/money
 getting into "ultralight" gear should first make sure that they are <=24 BMI.
 
@@ -102,14 +102,15 @@ You're ready to walk a lot, right? A few things about my walking philosophy:
 * I set my alarm so that I was standing on the trail when it became light
 enough to hike safely. In August that was around 6:00 AM. An early start allows 
 you to walk more slowly and take more breaks.
+* I forced myself to walk *very slowly* during the first 30 minutes of each morning. This provided a good warmup and reduced the chances of injury.
 * I tried to stop hiking between 3:30 PM and 5:00 PM (August).
 * Personal preference: I liked to get up, pack up, and start hiking before
 eating breakfast. I stopped for a hot breakfast somewhere between 2-4 miles down 
 the trail, generally at a good water source and ideally at a swimmable location.
 I found that overlapping my first break with breakfast was efficient and tricked
 my body into getting the first few miles "for free."
-* Personal preference: it's nice to get into camp on the earlier side and get
-first crack at selecting a tent site.
+* Personal preference: I liked to get into camp on the earlier side and get
+first crack at selecting a flat tent site.
 * I never hiked with a headlight. Headlight hiking should be 
 for emergencies only. Scheduling night hikes to push more miles is asking for trouble
 in my view.
@@ -123,7 +124,11 @@ people were hiking too fast.
 to check your map, stop.  If you need to take a drink, stop.
 If you need to text a shuttle driver, stop.
 * Don't underestimate the fall danger on blue-blazes or around water sources. Bring your
-poles and use caution even when you're not on the main line! Some of the most dangerous/slippery places were around awkward water sources.
+poles and use caution even when you're not on the main line! Some of the most dangerous/slippery places I encountered were around awkward water sources.
+* Blow-downs are common on some sections of the trail. For large/complex blow-downs,
+I found that the faster I took off my pack, the faster I was through the blow-down. It
+can be tempting to resist this and attempt to navigate a large blow-down while wearing a
+pack, but I often got stuck and ended up wasting more time than I saved.
 
 ![LT2](/assets/images/IMG_0210.jpg)
 
@@ -299,13 +304,17 @@ the "no room at the inn" scenario in mind.
 
 I slept in stealth tent sites between shelters twice on the trip.
 
+Taking the time to select a flat spot is worthwhile. The only bad nights I had on 
+the trail were caused by overly sloped tent sites. Otherwise, I slept well.
+
 Water
 -----
 
-I carried two Smartwater bottles with me at all times: 1L and 700mL. I generally used the 
+I carried two Smartwater bottles with me at all times: 1.0L and 700mL. I generally used the 
 700mL bottle for hydration on the trail and carried the 1L for back-up and/or camp
-when approaching a dry shelter. I tried to limit the full carry of the 1L back-up during 
-significant climbs, but that wasn't always possible.
+when approaching a dry shelter. I tried to limit the full carry of the 1L back-up bottle 
+during significant climbs, but that wasn't always possible due to the dry conditions 
+in August of 2025.
 
 I swapped the standard Smartwater bottle caps with [these push/pull 28mm caps](https://www.amazon.com/dp/B0D6L4LRYY). I liked these caps for a few reasons:
 * They are sturdy and eliminate the possibility of loosing a cap.
