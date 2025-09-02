@@ -3,14 +3,14 @@ title: One Way North - Hiking the Vermont Long Trail
 ---
 I recently completed a northbound thru hike of the Vermont Long Trail. This
 page provides notes on my experience in case it helps others. There are 
-many good travel logs of the Long Trail out there, mostly in video
+many good travel logs by Long Trail hikers out there, mostly in video
 format. Instead of providing yet another day-by-day account of the trail, I'm 
 treating this page like a how-to guide.
 
-There are many ways to have a successful thru-hike of the Long Trail. Here I 
+There are many ways to have a successful thru hike of the Long Trail. Here I 
 document *one way that worked for me*. I'm certainly not claiming that this
 is the only way, or even the best way to hike the Trail. This is just one way
-that worked for a 57 year-old first-time tru-hiker in reasonably good physical 
+that worked for a 57 year-old first-time thru-hiker in reasonably good physical 
 condition and with some basic backpacking experience. 
 
 You may come up with a much better way. Hike your own hike.
@@ -32,18 +32,17 @@ A hike of this magnitude requires a lot of physical training, particularly if yo
 want to enjoy it. I started off in reasonably good shape, but my preparation started 
 about a year before I stepped onto the trail in North Adams. Key elements of the 
 training:
-* I walked 5-12 miles every day for a year leading up to the hike. No weights, although
-that would probably help. My longer training days were often made up of two walks, one in early
+* I walked 5-12 miles every day for a year leading up to the hike.  My longer training days were often made up of two walks, one in early
 morning and one in the evening before dinner.
 * I did basic weight training at a local gym for about 6 months prior to the hike. Push (arms), pull (arms), legs every other day. In my view, weight training is the most effective step 
 you can take to avoid injury on a long-distance hiking trip.
 * My wife and I walked the West Highland Way in Scotland 3 months prior to the trip. This 
-was a ~100 mile trip in 6 days with two >20 mile days. This *was not* a back-packing 
+was a ~100 mile trip in 6 days with two >20 mile days. This *was not* a backpacking 
 trip and the 
 terrain was much easier than the Green Mountains of Vermont, however it was very helpful 
 to get used to walking for multiple consecutive days (some in the pouring rain) without 
 rest in between. I also 
-liked the chance to test my socks/shoes to make sure that blisters weren't going to be
+liked the chance to test my socks/shoes and to make sure that blisters weren't going to be
 an issue.
 * I lost about 25 pounds during this process and got to a BMI target of 24. Coincidentally
 (or not), my pack weight was around 25 pounds. Anyone who plans to spend a lot of time/money
@@ -165,6 +164,11 @@ My "big three" consisted of:
 * Gossamer Gear 1/8" foam pad
 
 I was happy with all gear selections and wouldn't change anything.
+
+I see a lot of people online obsessing about UL and pack weights. As my 
+wise son pointed out on one trip, it might be more productive to improve
+your diet and loose 5 pounds off your body than to figure out how to 
+remove 5 pounds from your pack.
 
 Footwear
 --------
