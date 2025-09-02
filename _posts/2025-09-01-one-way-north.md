@@ -111,7 +111,7 @@ my body into getting the first few miles "for free."
 * Personal preference: it's nice to get into camp on the earlier side and get
 first crack at selecting a tent site.
 * I never hiked with a headlight. Headlight hiking should be 
-for emergencies only. Scheduled night hikes to push more miles is asking for trouble
+for emergencies only. Scheduling night hikes to push more miles is asking for trouble
 in my view.
 * I used hiking poles.
 * I only had three falls. In my experience, if I found myself tripping 
@@ -140,7 +140,7 @@ All of the AT hikers that I met on the first few days of my trip (they were arou
 1,600) shared the same advice: start slow.
 
 This is a difficult limit to enforce, especially in the first few days of the hike. When
-you roll into a shelter at 2:00 PM feeling great it's hard to resist the temptation to 
+you roll up to a shelter at 2:00 PM feeling great it's hard to resist the temptation to 
 keep hiking. Trust me, just stop. I brought a book with me on the first part of the trip
 and it provided something to fill the down time and reduced the temptation to press to another
 shelter.
@@ -169,15 +169,16 @@ Resupply/Town Stops
 -------------------
 
 I made 6 town stops:
-* Bennington, in and out to pick up a box at the PO and to have lunch.
+* Bennington, in and out to pick up a box at the PO and to have lunch at the [Madison Brewing Company](https://www.madisonbrewingco.com/).
 * Manchester, NERO and an overnight at the Hampton Inn.
-* Killington, NERO and an overnight at the North Star Lodge. Lunch at the Inn
-at Long Trail. (NOTE: The name notwithstanding, this inn **is not** on the 
+* Killington, NERO and an overnight at the [North Star Lodge](https://www.northstarinn.com/). Lunch at the [Inn at Long Trail](https://innatlongtrail.com/). (NOTE: The name notwithstanding, this inn **is not** on the 
 Long Trail, but rather is on
 a blue-blaze coming down from Killington. The walk east on VT4 to the 
-inn takes about 25 minutes and is worthwhile).
-* Warren, NERO and an overnight at the [West Hill House B&B](https://westhillbb.com/).
-* Waterbury, NERO and a ZERO at the [Old Stagecoach Inn](https://oldstagecoach.com/).
+inn takes about 25 minutes and is worthwhile). I would have stayed at the Inn if 
+there were rooms available.
+* Warren, NERO and an overnight at the outstanding [West Hill House B&B](https://westhillbb.com/).
+* Waterbury, NERO and a ZERO at the outstanding [Old Stagecoach Inn](https://oldstagecoach.com/). Lunch at [McGillicuddy](https://mcgillicuddyswaterbury.com/) and [Maxis](https://www.maxisrestaurant.com/), dinner 
+at [BlackBack](https://www.theblackbackpub.com/).
 * Johnson, in and out to resupply at the [Johnson Hardware Store](https://jhrvt.com/) and to have lunch at the [Maplefields](https://maplefields.com/).
 
 I was happy with this plan. I only had one day off with no hiking (Waterbury), but this 
