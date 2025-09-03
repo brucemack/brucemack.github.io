@@ -183,7 +183,7 @@ inn takes about 25 minutes and is worthwhile). I would have stayed at the Inn if
 there were rooms available.
 * Warren, NERO and an overnight at the outstanding [West Hill House B&B](https://westhillbb.com/).
 * Waterbury, NERO and a ZERO at the outstanding [Old Stagecoach Inn](https://oldstagecoach.com/). Lunch at [McGillicuddy](https://mcgillicuddyswaterbury.com/) and [Maxis](https://www.maxisrestaurant.com/), dinner 
-at [BlackBack](https://www.theblackbackpub.com/).
+at [Blackback](https://www.theblackbackpub.com/).
 * Johnson, in and out to resupply at the [Johnson Hardware Store](https://jhrvt.com/) and to have lunch at the [Maplefields](https://maplefields.com/).
 
 I was happy with this plan. I only had one day off with no hiking (Waterbury), but this 
@@ -304,7 +304,7 @@ the "no room at the inn" scenario in mind.
 
 I slept in stealth tent sites between shelters twice on the trip.
 
-Taking the time to select a flat spot is worthwhile. The only bad nights I had on 
+Taking the time to select a flat tent spot is worthwhile. The only bad nights I had on 
 the trail were caused by overly sloped tent sites. Otherwise, I slept well.
 
 Water
