@@ -295,14 +295,14 @@ Shelters/Tenting
 I carried a tent and used it whenever possible. I slept in shelters 4 nights when tenting
 wasn't allowed and/or available. The shelter experience was great and I would encourage
 everyone to try it at least a few times. Yes, there were mice running around, but 
-none bothered me. That's part of living in the woods.
+none bothered me that much. Mice are part of living in the woods.
 
 Even if you plan to sleep in shelters every night (which is theoretically possible), I 
 would suggest carrying some form of alternate shelter. You never know where you're going 
-to be stuck out on the trail. I did see some crowded shelters in the south, so keep 
+to be stuck out on the trail. I did see some crowded shelters in the south so keep 
 the "no room at the inn" scenario in mind.
 
-I slept in stealth tent sites between shelters twice on the trip.
+I slept in stealth tent sites between shelters twice on my trip.
 
 Taking the time to select a flat tent spot is worthwhile. The only bad nights I had on 
 the trail were caused by overly sloped tent sites. Otherwise, I slept well.
