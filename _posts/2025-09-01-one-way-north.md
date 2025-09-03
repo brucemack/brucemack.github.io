@@ -194,6 +194,8 @@ I was happy with this plan. I only had one day off with no hiking (Waterbury), b
 zero day was essential for physical and mental recovery, particularly between Camel's Hump
 and Mount Mansfield.
 
+I did my laundry at all town stops except Bennington and Johnson.
+
 The **in-town meals were very important** to address the inevitable calorie deficit that
 you experience on the trail. Take your time, relax, and eat a lot.
 
@@ -262,18 +264,30 @@ One of the emotional highlights of my trip happened 2 days before the finish
 when I turned on my phone at the top of a modest mountain (Buchanan I think) and
 received a text message from Verizon that said: "Welcome to Canada! As talk, text,
 and data is included in your domestic plan you'll have no additional charges while roaming."
-That told me I was getting close!
+That told me I was on a Canadian tower and getting close to the border!
 
 I also carried a Garmin inReach Mini 2 to send check-in messages every night. This was
 helpful to fill 
 in those places where mobile coverage was weak. The Garmin was paired with my iPhone
 to support text messages and to receive weather forecasts when needed.
 
-I carried a Nitecore NU25 (USB-C) rechargeable headlamp.
+Keep in mind that the Garmin inReach uses the Iridium satellite constellation which
+can be slow when there is no clear view of the sky (i.e. leaf-obstructed). I always 
+turned on my Garmin 
+and broadcast the "Check In" as soon as I reached camp knowing that the message 
+could take up to ~30 minutes to be delivered. Sometimes it was much faster.
 
-I carried an Anker 10,000 mAh power bank with a USB-C cable and a small charging block.
+The latest iPhones have a satellite messaging capability tha uses the 
+Globalstar constellation. I used this feature when outside of mobile cellular 
+range and was surprised to see that it usually worked more quickly than the 
+Garmin inReach.
 
-I kept my iPhone in low-power and airplane modes, used my phone sparingly and traveled with my Garmin inReach off at all times. I never came close to running out of power.
+I carried a Nitecore NU25 (USB-C) rechargeable headlamp. Very rugged and efficient.
+
+I carried an Anker 10,000 mAh power bank with a USB-C cable and a small charging block 
+for town. I wasn't setup for the high-speed PD charging capability but this didn't matter.
+
+I kept my iPhone in low-power and airplane modes, used my phone sparingly, traveled with my Garmin inReach off at all times, and limited headlight use. I never came close to running out of power on my trip.
 
 I kept my iPhone in a plastic bag and in a velcro front pocket on my shoulder strap. Walking 
 with a fragile phone in the pocket of your shorts is probably not a good idea on the 
