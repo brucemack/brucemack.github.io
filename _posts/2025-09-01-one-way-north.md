@@ -238,7 +238,7 @@ type of high shoe that provides more "ankle support." I'm not a doctor, but I
 strongly suspect that 
 anyone who thinks that their foot health depends on the height of their shoes **should 
 not be hiking on the Long Trail.** The terrain is insanely rough and, when push comes to shove, your shoes are not going 
-to provide any significant protection against the steep, muddy, rocky, rooty, blown-down, 
+to provide any significant ankle protection against the steep, muddy, rocky, rooty, blown-down, 
 tangled treadway that is the LT.
 Instead, take a another few months of prep using a 
 combination of weight training and elastic "Theraband" training. When you feel confident
@@ -380,6 +380,16 @@ surprised how much water you can get from these apparently marginal sources.
 * When in doubt, carry some extra.
 * On the plus side, mud was not a major problem during the drought!
 
+Food
+----
+
+I didn't do anything particularly unusual here. I tried hard to maintain my
+calories during the trip but found that to be very difficult. From my experience,
+the spacing of the towns leaves no reason to be carrying more than 4 days of 
+food at any given time.
+
+I lost about 8 pounds during the hike, so obviously I wasn't eating quite enough.
+
 Food Storage
 ------------
 
@@ -387,16 +397,19 @@ This topic is debated endlessly. I carried a BV450 bear canister and did not
 regret it. Be sure to put reflective tape on your canister and place it on a flat
 surface (away from cliffs) at night.
 
-There are cons:
+Keep in mind that you don't need to fit your first dinner in the canister, so be
+sure to carry out something bulky and caloric after any resupply.
+
+There are cons to the canister:
 * The canister adds weight.
 * The canister packs awkwardly.
 * The canister limits your food carry somewhat.
 
 There are also pros:
 * Bear canisters are critter-proof (particularly important inside of shelters
-and bear lockers). Critters are a much larger risk than bears.
+and bear lockers). In my experience on the LT, **critters are a much larger risk than bears.**
 * I never spent time in the evening throwing bear lines into trees.
-* I never worried about bears and/or other small critters on my trip.
+* I never worried about bears and/or other small critters on my trip. I slept soundly.
 * The canister limits your food carry somewhat, which prevents over-carrying.
 
 Conclusion
