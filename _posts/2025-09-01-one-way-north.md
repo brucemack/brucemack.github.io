@@ -412,6 +412,9 @@ and bear lockers). In my experience on the LT, **critters are a much larger risk
 * I never worried about bears and/or other small critters on my trip. I slept soundly.
 * The canister limits your food carry somewhat, which prevents over-carrying.
 
+I would guess that 30% of the campsites I stopped at had bear lockers, so that 
+makes things a bit easier. Keep in mind that bear lockers are not critter-proof.
+
 Conclusion
 ----------
 
