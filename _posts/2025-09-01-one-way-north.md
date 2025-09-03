@@ -64,7 +64,7 @@ cold, reasonably dry) and low bugs.
 Another side-benefit of August on the LT is that you start directly in the midst
 of the NOBO and SOBO AT bubbles. This provides access to trail expertise and 
 camaraderie during
-the early days of your LT hike. I met some very nice AT hikers and they taught me a lot.
+the early days of your LT hike. I met some very nice AT hikers and they taught me a lot (esp: Yellow Shoes, Knots, Swede, Tee Time, 62, Chef, Early Bird, Tagless).
 
 By the time you pass Maine Junction north of Killington and the AT folks take a right
 towards New Hampshire you will be well trained. The LT crowd is much thinner, but I 
@@ -149,6 +149,10 @@ you roll up to a shelter at 2:00 PM feeling great it's hard to resist the tempta
 keep hiking. Trust me, just stop. I brought a book with me on the first part of the trip
 and it provided something to fill the down time and reduced the temptation to press to another
 shelter.
+
+You'll meet some nice AT hikers and will likely want to hike with them. Keep in mind that 
+these folks have been hiking for multiple months and have covered >1,600 miles. Don't 
+pace yourself against seasoned hikers during the first few days of your hike. Start slow.
 
 Mental Approach
 ---------------
