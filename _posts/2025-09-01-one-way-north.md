@@ -338,6 +338,7 @@ Taking some time to select a flat tent spot is worthwhile. The only bad nights I
 the trail were caused by overly sloped tent sites. Otherwise, I slept well.
 
 ![LT3](/assets/images/IMG_0299.jpg)
+
 *I met the Tufts University pre-freshman orientation trip at Taft Lodge just off 
 Mount Mansfield - GO JUMBOS!*
 
