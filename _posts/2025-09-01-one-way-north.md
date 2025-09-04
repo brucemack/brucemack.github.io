@@ -26,6 +26,8 @@ of elevation gain. I started my hike on Tuesday, August 5 and ended on Saturday,
 night on the AT in Massachusetts, so technically my LT hike required 24 days. I took one
 zero.
 
+I averaged around 11 miles per day with a range of around 5 miles on the short end to a few long days of ~17 miles.
+
 My Training
 -----------
 
@@ -92,14 +94,15 @@ a few days that involved more than 4,000 feet of ascent. Any day that has more t
 There are bad weather blue-blazes that can be used if you need to say on schedule 
 and don't want to cross the dangerously exposed peaks. However, steep slippery 
 down sections need to be taken extremely slowly, even on the bad-weather bypasses. I 
-was lucky and had perfect weather for Camel's Hump and adequate weather for Mansfield.
-* Sometimes blue-blazes are needed to see the best views (Killington, Belvedere for example), factor those miles into your plans.
+was lucky and had perfect weather for Camel's Hump and good enough weather for Mansfield 
+so no bad-weather bypasses were needed.
+* Sometimes blue-blazes are needed to see the best views (Killington, Belvedere for example), factor those miles into your plans and take it easy coming down.
 
 Walking
 -------
 
 You're ready to walk a lot, right? A few things about my walking philosophy:
-* I set my alarm so that I was standing on the trail when it became light
+* I set my alarm for 5:00 AM so that I was standing on the trail when it became light
 enough to hike safely. In August that was around 6:00 AM. An early start allows 
 you to walk more slowly and take more breaks.
 * I forced myself to walk *very slowly* during the first 30 minutes of each morning. This provided a good warmup and reduced the chances of injury.
@@ -142,7 +145,7 @@ trip. I kept my daily milage under 12 for the first week of the trip to avoid th
 problem.
 
 All of the AT hikers that I met on the first few days of my trip (they were around mile
-1,600) shared the same advice: start slow.
+1,600) shared the same advice with me: **start slow**.
 
 This is a difficult limit to enforce, especially in the first few days of the hike. When
 you roll up to a shelter at 2:00 PM feeling great it's hard to resist the temptation to 
@@ -165,11 +168,11 @@ tired, sore, and hungry. Take your physical preparation seriously, take it slow,
 enough calories. You'll be fine.
 * Take the hike one 1/2 day at a time. I sometimes became overwhelmed when I started to think
 too far down the track. Just get yourself to the next shelter. You'll be fine.
-* Keep in mind the impermanence of the trip. Remember that all torrential rain storms 
+* Keep in mind that everything about the journey is impermanent. All torrential rain storms 
 and all ridiculously steep climbs will pass. You'll be fine.
 * No matter how much of an introvert you are (like me), the people you meet along 
-the trail are a blessing. Even if you are a tenter, make a point of introducing yourself 
-to everyone else at the shelter and eat dinner with the group. This will greatly improve
+the trail are a blessing. Stop and talk to other hikers. Even if you are a tenter, make a point of introducing yourself 
+to everyone else at the shelter. Eat dinner with the group. This will greatly improve
 your mental state. You'll be fine.
 
 The possibility of not finishing the Trail never entered my mind.
@@ -236,15 +239,14 @@ wide toe-box and zero drop combination.
 I often hear people say that they feel the need to wear hiking boots or some other 
 type of high shoe that provides more "ankle support." I'm not a doctor, but I 
 strongly suspect that 
-anyone who thinks that their foot health depends on the height of their shoes **should 
-not be hiking on the Long Trail.** The terrain is insanely rough and, when push comes to shove, your shoes are not going 
+anyone who thinks that their foot health depends on the height of their shoes **should probably not be hiking on the Long Trail.** The terrain is insanely rough and, when push comes to shove, your shoes are not going 
 to provide any significant ankle protection against the uneven, steep, muddy, rocky, rooty, blown-down, 
 tangled treadway that is the LT.
 Instead, take a another few months of prep using a 
 combination of weight training and elastic "Theraband" training. When you feel confident
 hiking on challenging terrain wearing normal trail-running sneakers you are ready to go. Before that, 
 you are probably an injury waiting to happen. Of course, if you wear a certain kind of 
-boot/shoe because it's comfortable for you, that's what you should wear.
+boot/shoe because it's comfortable for you that's what you should wear.
 
 NOTE: My characterization of the LT trail conditions is not meant to be a criticism
 of the GMC trail maintainers. To the contrary, the trail is very well maintained.
@@ -259,6 +261,7 @@ This isn't comprehensive, but a few notes on the frequently asked items:
 * I wore my sun hoodie in the morning on the trail a few times, but dropped
 to a normal t-shirt on the first climb.
 * I wore my puffy jacket once on the entire trip (evening on Jay Peak).
+* I had a bug net but never used it.
 
 Communications/Electronics
 --------------------------
@@ -284,7 +287,7 @@ turned on my Garmin
 and broadcast the "Check In" as soon as I reached camp knowing that the message 
 could take up to ~30 minutes to be delivered. Sometimes it was much faster.
 
-The latest iPhones have a satellite messaging capability tha uses the 
+The latest iPhones have a satellite messaging capability that uses the 
 Globalstar constellation. I used this feature when outside of mobile cellular 
 range and was surprised to see that it usually worked more quickly than the 
 Garmin inReach.
@@ -318,9 +321,11 @@ Shelters/Tenting
 ----------------
 
 I carried a tent and used it whenever possible. I slept in shelters 4 nights when tenting
-wasn't allowed and/or available. The shelter experience was great and I would encourage
+wasn't allowed and/or available (no tenting above 2,500 ft is allowed). The shelter experience was great and I would encourage
 everyone to try it at least a few times. Yes, there were mice running around, but 
 none bothered me that much. Mice are part of living in the woods.
+
+In my experience the shelters were completely dark/quiet by 8:30 PM. 
 
 Even if you plan to sleep in shelters every night (which is theoretically possible), I 
 would suggest carrying some form of alternate shelter. You never know where you're going 
@@ -329,7 +334,7 @@ the "no room at the inn" scenario in mind.
 
 I slept in stealth tent sites between shelters twice on my trip.
 
-Taking the time to select a flat tent spot is worthwhile. The only bad nights I had on 
+Taking some time to select a flat tent spot is worthwhile. The only bad nights I had on 
 the trail were caused by overly sloped tent sites. Otherwise, I slept well.
 
 Water
