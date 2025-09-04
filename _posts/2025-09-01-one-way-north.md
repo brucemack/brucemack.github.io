@@ -170,7 +170,7 @@ enough calories. You'll be fine.
 too far down the track. Just get yourself to the next shelter. You'll be fine.
 * Sometimes I met people hiking in the opposite direction who shared scary-sounding
 descriptions of upcoming trail features. Very often these descriptions turned out to be 
-over-blown. Don't dwell much on other hikers' trail experiences, particularly fear-mongering - everyone experiences the trail
+over-blown. Don't dwell much on other hikers' trail descriptions, particularly fear-mongering - everyone experiences the trail
 differently. We've all heard about "type-2 fun" (i.e. things that were hard at the time,
 but seemed very fun in retrospect), but I think there is also a phenomenon like "type-2
 horror" when things that really weren't *that* hard in the moment seem very difficult in retrospect. You'll be fine.
