@@ -168,14 +168,20 @@ tired, sore, and hungry. Take your physical preparation seriously, take it slow,
 enough calories. You'll be fine.
 * Take the hike one 1/2 day at a time. I sometimes became overwhelmed when I started to think
 too far down the track. Just get yourself to the next shelter. You'll be fine.
+* Sometimes I met people hiking in the opposite direction who shared scary-sounding
+descriptions of upcoming trail features. Very often these descriptions turned out to be 
+over-blown. Don't dwell much on other hikers' trail experiences, particularly fear-mongering - everyone experiences the trail
+differently. We've all heard about "type-2 fun" (i.e. things that were hard at the time,
+but seemed very fun in retrospect), but I think there is also a phenomenon like "type-2
+horror" when things that really weren't *that* hard in the moment seem very difficult in retrospect. You'll be fine.
 * Keep in mind that everything about the journey is impermanent. All torrential rain storms 
 and all ridiculously steep climbs will pass. You'll be fine.
-* No matter how much of an introvert you are (like me), the people you meet along 
-the trail are a blessing. Stop and talk to other hikers. Even if you are a tenter, make a point of introducing yourself 
+* No matter how much of an introvert you are (like me), **the people you meet along 
+the trail are a blessing.** Stop and talk to other hikers. Even if you are a tenter, make a point of introducing yourself 
 to everyone else at the shelter. Eat dinner with the group. This will greatly improve
 your mental state. You'll be fine.
 
-The possibility of not finishing the Trail never entered my mind.
+The thought of not finishing the Trail never entered my mind.
 
 Resupply/Town Stops
 -------------------
