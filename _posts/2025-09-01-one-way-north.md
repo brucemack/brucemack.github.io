@@ -337,6 +337,12 @@ I slept in stealth tent sites between shelters twice on my trip.
 Taking some time to select a flat tent spot is worthwhile. The only bad nights I had on 
 the trail were caused by overly sloped tent sites. Otherwise, I slept well.
 
+<div style="text-align: center;">
+![LT3](/assets/images/IMG_0299.jpg)
+</div>
+_I met the Tufts University pre-freshman orientation trip on Taft Lodge just off Mount 
+Mansfield. GO JUMBOS!_
+
 Water
 -----
 
