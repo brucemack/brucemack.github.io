@@ -238,12 +238,13 @@ type of high shoe that provides more "ankle support." I'm not a doctor, but I
 strongly suspect that 
 anyone who thinks that their foot health depends on the height of their shoes **should 
 not be hiking on the Long Trail.** The terrain is insanely rough and, when push comes to shove, your shoes are not going 
-to provide any significant ankle protection against the steep, muddy, rocky, rooty, blown-down, 
+to provide any significant ankle protection against the uneven, steep, muddy, rocky, rooty, blown-down, 
 tangled treadway that is the LT.
 Instead, take a another few months of prep using a 
 combination of weight training and elastic "Theraband" training. When you feel confident
 hiking on challenging terrain wearing normal trail-running sneakers you are ready to go. Before that, 
-you are probably an injury waiting to happen.
+you are probably an injury waiting to happen. Of course, if you wear a certain kind of 
+boot/shoe because it's comfortable for you, that's what you should wear.
 
 NOTE: My characterization of the LT trail conditions is not meant to be a criticism
 of the GMC trail maintainers. To the contrary, the trail is very well maintained.
