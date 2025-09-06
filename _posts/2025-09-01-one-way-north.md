@@ -208,6 +208,18 @@ I did my laundry at all town stops except Bennington and Johnson.
 The **in-town meals were very important** to address the inevitable calorie deficit that
 you experience on the trail. Take your time, relax, and eat a lot.
 
+One thing I learned from busy town road crossings is that you may encounter a ride
+opportunity faster than you expect. I found it helpful to have my money/credit cards, 
+Garmin, and phone assembled into my electronics dry bag (and in hand) just prior to 
+exiting the woods. It's good peace of mind to have these things with you if/when you get 
+separated from your pack as it gets thrown into a trunk or the back of a pickup truck
+on the side of a busy road.
+There are a lot of nice people living near these trail towns and I was constantly
+surprised by the help I received. Particular shout out to Al Lehouiller, owner of 
+[Johnson Hardware Store](https://jhrvt.com/) who I met while he was walking his dog
+in the woods just outside of Johnson. Al drove me into town and showed me the good
+places to eat.
+
 Gear
 ----
 
