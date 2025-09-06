@@ -91,7 +91,7 @@ this below.
 a few days that involved more than 4,000 feet of ascent. Any day that has more than 
 700 ft/mile of ascent is going to be very hard.
 * Be flexible around Camel's Hump and Mount Mansfield to avoid exposure in bad weather. 
-There are bad weather blue-blazes that can be used if you need to say on schedule 
+There are bad weather blue-blazes that can be used if you need to stay on schedule 
 and don't want to cross the dangerously exposed peaks. However, steep slippery 
 down sections need to be taken extremely slowly, even on the bad-weather bypasses. I 
 was lucky and had perfect weather for Camel's Hump and good enough weather for Mansfield 
@@ -106,7 +106,7 @@ You're ready to walk a lot, right? A few things about my walking philosophy:
 enough to hike safely. In August that was around 6:00 AM. An early start allows 
 you to walk more slowly and take more breaks.
 * I forced myself to walk *very slowly* during the first 30 minutes of each morning. This provided a good warmup and reduced the chances of injury.
-* I tried to stop hiking between 3:30 PM and 5:00 PM (August).
+* I tried to end my hiking day between 3:30 PM and 5:00 PM (August).
 * Personal preference: I liked to get up, pack up, and start hiking before
 eating breakfast. I stopped for a hot breakfast somewhere between 2-4 miles down 
 the trail, generally at a good water source and ideally at a swimmable location.
@@ -117,7 +117,8 @@ first crack at selecting a flat tent site.
 * I never hiked with a headlight. Headlight hiking should be 
 for emergencies only. Scheduling night hikes to push more miles is asking for trouble
 in my view.
-* I used hiking poles.
+* I used hiking poles. This is critical to protect your knees. There were also 
+some down sections that I'm not sure I could have navigated without poles. 
 * I only had three falls. In my experience, if I found myself tripping 
 much this meant that (a) I was tired and/or under-caloried and should stop for a 
 snack break (b) I was moving too quickly (c) I was not focused on my footing. I heard some people on the trail
@@ -164,16 +165,17 @@ A lot of people talk about the mental challenge of long-distance hiking trips. A
 doing something like this for almost a month I can attest that it is a mental challenge.
 A few points that may be helpful in this regard:
 * I suspect that most people who say they are struggling mentally are really just
-tired, sore, and hungry. Take your physical preparation seriously, take it slow, and carry 
-enough calories. You'll be fine.
-* Take the hike one 1/2 day at a time. I sometimes became overwhelmed when I started to think
-too far down the track. Just get yourself to the next shelter. You'll be fine.
+tired, sore, and hungry. Take your physical preparation seriously, take it slow, rest
+when you need it, and carry enough calories. You'll be fine.
+* Take the hike one 1/2 day at a time. I sometimes became overwhelmed when I started to 
+think/plan too far down the track. Just get yourself to the next shelter safely and 
+efficiently. You'll be fine.
 * Sometimes I met people hiking in the opposite direction who shared scary-sounding
 descriptions of upcoming trail features. Very often these descriptions turned out to be 
 over-blown. Don't dwell much on other hikers' trail descriptions, particularly fear-mongering - everyone experiences the trail
 differently. We've all heard about "type-2 fun" (i.e. things that were hard at the time,
 but seemed very fun in retrospect), but I think there is also a phenomenon like "type-2
-horror" when things that really weren't *that* hard in the moment seem very difficult in retrospect. You'll be fine.
+horror" when things that really weren't *that* hard in the moment seem very difficult in retrospect. And it may actually be fun/stress-relieving to talk about how incredibly difficult things were. Don't get stressed out, you'll be fine.
 * Keep in mind that everything about the journey is impermanent. All torrential rain storms 
 and all ridiculously steep climbs will pass. You'll be fine.
 * No matter how much of an introvert you are (like me), **the people you meet along 
@@ -215,10 +217,7 @@ exiting the woods. It's good peace of mind to have these things with you if/when
 separated from your pack as it gets thrown into a trunk or the back of a pickup truck
 on the side of a busy road.
 There are a lot of nice people living near these trail towns and I was constantly
-surprised by the help I received. Particular shout out to Al Lehouiller, owner of 
-[Johnson Hardware Store](https://jhrvt.com/) who I met while he was walking his dog
-in the woods just outside of Johnson. Al drove me into town and showed me the good
-places to eat.
+surprised by the help I received. 
 
 Gear
 ----
@@ -232,11 +231,23 @@ lighter packs and many had heavier. Lighter is better for sure, but I doubt that
 5 pounds more or less would have made much of a difference in my success/enjoyment.
 
 My "big three" consisted of:
-* Hyperlite Mountain Gear 55L Southwest pack (black)
-* Big Agnes Copper Spur UL1 free-standing tent
+* Hyperlite Mountain Gear 55L Southwest pack (black). This is the most durable 
+version of the HMG packs, which is important given the amount of times you'll 
+scrape/snag your pack on rocks and trees on the LT. Yes, it's a bit heavier.
+I used the standard contractor-bag to keep things dry inside and did not
+use a pack cover. I never had a problem with things getting wet, even 
+during a few bad rain storms.
+* Big Agnes Copper Spur UL1 free-standing tent. I'm 5' 11" and found the 
+1-person to be comfortable. I kept my pack outside under the "vestibule" and
+it stayed dry, even through a few bad rain storms. I used the trekking pole
+vestibule configuration twice when I needed to cook in rainy conditions and 
+that worked fine. I brought a few short pieces of paracord which were useful 
+for (a) clotheslines inside the tent or (b) anchoring tent corners when pitching on 
+wooden platforms.
+* 6x9 Tyvek sheet ground cover.
 * Enlightened Equipment Revelation 20 quilt
 * A silk sleeping bag liner
-* Therm-a-Rest NeoAir NextLite NXT sleeping pad
+* Therm-a-Rest NeoAir NextLite NXT sleeping pad. Comfortable enough, and not too loud.
 * Gossamer Gear 1/8" foam pad -  particularly important for protecting your 
 fragile sleeping pad from shelter floors. Also a great sit/nap pad.
 
@@ -351,6 +362,8 @@ to be stuck out on the trail. I did see some crowded shelters in the south so ke
 the "no room at the inn" scenario in mind.
 
 I slept in stealth tent sites between shelters twice on my trip.
+
+I pitched on wooden platforms about 4 times and on the ground all other times.
 
 Taking some time to select a flat tent spot is worthwhile. The only bad nights I had on 
 the trail were caused by overly sloped tent sites. Otherwise, I slept well.
