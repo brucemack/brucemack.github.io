@@ -72,6 +72,15 @@ By the time you pass Maine Junction north of Killington and the AT folks take a 
 towards New Hampshire you will be well trained. The LT crowd is much thinner, but I 
 never had a case where I was alone in a shelter.
 
+One thing worth mentioning here is that the relatively large AT "bubble" I experienced
+in early August included a surprising number of weed smokers. I've got no problem with 
+people "hiking their own hikes" (so long as they aren't bothering others) and I think
+this might actually be legal in Vermont, so I share this only so that others won't be 
+too surprised when they encounter smokers on the trail. For what it's worth, it seemed 
+to be the younger AT NOBOs partaking in this particular recreation. Not so much amongst 
+the AT SOBOs, and I never saw it once I passed north of the Maine Junction where 
+the LT and AT split. 
+
 Pace/Itinerary 
 --------------
 
@@ -372,6 +381,15 @@ the trail were caused by overly sloped tent sites. Otherwise, I slept well.
 
 *I met the Tufts University pre-freshman Wilderness Orientation trip at Taft Lodge just off 
 Mount Mansfield. A great group - GO JUMBOS!*
+
+Privies
+-------
+
+All shelter/tent sites that I stayed at had well-maintained privies. One can only 
+imagine how much work must go into this system. To avoid any confusion, none of the
+back-country privies have toilet paper - you're responsible for that. There were
+a few privies at trailhead parking lots that provided toilet paper, which feels
+like quite a luxury when you encounter it.
 
 Water
 -----
