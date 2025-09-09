@@ -74,8 +74,8 @@ never had a case where I was alone in a shelter.
 
 One thing worth mentioning here is that the relatively large AT "bubble" I experienced
 in early August included a surprising number of weed smokers. I've got no problem with 
-people "hiking their own hikes" (so long as they aren't bothering others and keep it 
-away from the shelters) and I think
+people "hiking their own hikes" (so long as they aren't bothering others and are 
+keeping it away from the shelters) and I think
 this might actually be legal in Vermont, so I share this only so that others won't be 
 too surprised when they encounter smokers on the trail. For what it's worth, it seemed 
 to be younger AT NOBOs partaking in this particular recreation. Not so much amongst 
@@ -95,7 +95,7 @@ a good idea for a beginner. You need the easy miles in the south to prepare
 for the brutal miles in the north.
 
 My itinerary philosophy boiled down to the following:
-* Average around 8 and never go more than 12 miles a day in the first week. More on 
+* For the first week average around 8 and never go more than 12 miles a day. More on 
 this below.
 * Pay attention to the elevation profile and dial back mileage as needed. I only had 
 a few days that involved more than 4,000 feet of ascent. Any day that has more than 
@@ -107,6 +107,8 @@ down sections need to be taken extremely slowly, even on the bad-weather bypasse
 was lucky and had perfect weather for Camel's Hump and good enough weather for Mansfield 
 so no bad-weather bypasses were needed.
 * Sometimes blue-blazes are needed to see the best views (Killington, Belvedere for example), factor those miles into your plans and take it easy coming down.
+* A very rough rule of thumb that I developed: I was able to climb about 1,000 feet per
+hour. Camel's Hump and the Needle's Eye section of Mansfield were (slower) exceptions to this rule.
 
 Walking
 -------
