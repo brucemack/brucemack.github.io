@@ -1,5 +1,11 @@
 ---
 title: One Way North - My Hike of the Vermont Long Trail
+description: Helpful information/advice for those considering an end-to-end hike of the Vermont Long Trail.
+keywords:
+  - Long Trail
+  - Vermont Long Trail
+  - Thru Hiking
+  - Backpacking
 ---
 I recently completed a northbound thru hike of the Vermont Long Trail. This
 page provides notes on my experience in case it helps others. There are 
