@@ -19,8 +19,8 @@ zone to surround/touch the pad.
 ![Thermal Relief](/assets/images/thermal-1.jpg)
 
 KiCad will attempt to use 4 spokes when connecting
-a pad to a zone, but other constraints may get in the way and result in a smaller
-number of spokes being realized.
+a pad to a zone during the zone fill process, but other constraints may get in 
+the way and result in a smaller number of spokes being realized.
 
 The thermal relief feature doesn't directly relate to PCB fab design rules, as far 
 as I can tell. The fab would be fine having the pour zones touch the pads on the same layer.
@@ -41,5 +41,6 @@ In the picture above, a DRC error is generated because the ground pad is only co
 to the pour zone through a single spoke. A manual trace will need to be added if the 
 design rule requires at least two spokes. Interestingly, KiCad doesn't seem to care 
 if the manually-added trace fully overlaps the existing spoke, which is strange because
-this doesn't seem to be changing anything on the actual board.
+this doesn't seem to be changing anything on the actual board. It appears that the 
+presence of an explicit trace may turn off the spoke counting rule completely.
 
