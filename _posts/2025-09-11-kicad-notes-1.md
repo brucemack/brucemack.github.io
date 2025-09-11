@@ -7,7 +7,7 @@ Thermal Relief
 
 The connection between SMD pads and copper fills has an important nuance called
 "thermal relief." The idea here is to provide the desired electrical connection between 
-the pad and the copper fill while *minimizing the amount of thermal mass connected to the 
+the pad and the copper fill while *minimizing the amount of thermal mass hanging on the 
 pad*. The thermal mass of a pad very much affects the ability to solder on the pad. Pads
 with excessively large thermal mass will pull heat away from the desired contact point, 
 leading to poor/cold joints.
@@ -36,4 +36,10 @@ This gap marked with a blue arrow on the diagram above.
 establishes a design rule for the number of spokes that are required. This is generally
 set to 2. This setting doesn't impact spoke-generation per-se, but it is important
 during the DRC process.
+
+In the picture above, a DRC error is generated because the ground pad is only connected
+to the pour zone through a single spoke. A manual trace will need to be added if the 
+design rule requires at least two spokes. Interestingly, KiCad doesn't seem to care 
+if the manually-added trace fully overlaps the existing spoke, which is strange because
+this doesn't seem to be changing anything on the actual board.
 
