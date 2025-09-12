@@ -70,10 +70,10 @@ I hiked in August. I think August is a good compromise between weather (i.e. not
 cold, reasonably dry) and low bugs.
 
 Another side-benefit of August on the LT is that you start directly in the midst
-of the northbound (NOBO) and soundbound (SOBO) Appalachian Trail hikers. This provides 
+of the northbound (NOBO) and southbound (SOBO) Appalachian Trail thru-hikers. This provides 
 access to trail expertise and 
 camaraderie during
-the early days of your LT hike. I met some very nice AT hikers and they taught me a lot (esp: Yellow Shoes, Knots, Swede, Tee Time, 62, Chef, Early Bird, Tagless).
+the early days of your LT hike. I met some very nice AT hikers and they taught me a lot (esp: Yellow Shoes, Knots, Swede, Tee Time, 62, Chef, Earlybird, Tagless).
 
 By the time you pass Maine Junction north of Killington and the AT folks take a right
 towards New Hampshire you will be well trained. The LT crowd is much thinner, but I 
