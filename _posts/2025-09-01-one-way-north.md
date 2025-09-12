@@ -114,6 +114,8 @@ down sections need to be taken extremely slowly, even on the bad-weather bypasse
 was lucky and had perfect weather for Camel's Hump and good enough weather for Mansfield 
 so no bad-weather bypasses were needed.
 * Sometimes blue-blazes are needed to see the best views (Killington, Belvedere for example), factor those miles into your plans and take it easy coming down.
+* Sometimes the shelters are on blue-blazes of up to 0.3 miles away from the main line. 
+The FarOut mileage doesn't always factor that in walk. :-)
 * A very rough rule of thumb that I developed: I was able to climb about 1,000 feet per
 hour. Camel's Hump and the Needle's Eye section of Mansfield were (slower) exceptions to this rule.
 
@@ -487,6 +489,15 @@ and bear lockers). In my experience on the LT, **critters are a much larger risk
 
 I would guess that 30% of the campsites I stopped at had bear lockers, so that 
 makes things a bit easier. Keep in mind that bear lockers are not critter-proof.
+
+Swimming
+--------
+
+I got completely in the water about 8 times on the trip. It's cold, but it helped
+my mental state a lot after days without a shower. Stratton Pond, Griffith Lake,
+and Sterling Pond are the obvious places. There are also several swimmable rivers
+along the way, mostly in the southern half of the trip. In the north there is a 
+great swimmable river coming down into Johnson about an hour before you hit town.
 
 Conclusion
 ----------
