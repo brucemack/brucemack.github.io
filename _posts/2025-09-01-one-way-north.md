@@ -97,7 +97,7 @@ pre-define your exact itinerary on the LT because of different variables that ma
 up. I planned conservatively and ended on the day I had originally targeted.
 
 I hiked northbound. LT SOBO hikers are a bit crazy in my view, but I have huge
-respect for that added challenge. SOBO would not be 
+respect for that added challenge. A SOBO hike would not be 
 a good idea for a beginner. You need the easy miles in the south to prepare
 for the brutal miles in the north.
 
@@ -253,17 +253,20 @@ My "big three" consisted of:
 * Hyperlite Mountain Gear 55L Southwest pack (black). This is the most durable 
 version of the HMG packs, which is important given the amount of times you'll 
 scrape/snag your pack on rocks and trees on the LT. Yes, it's a bit heavier.
-I used the standard contractor-bag to keep things dry inside and did not
+I used the tried-and-true contractor bag to keep things dry inside and did not
 use a pack cover. I never had a problem with things getting wet, even 
-during a few bad rain storms.
+during a few bad rain storms. One thing I particularly liked about the Southwest
+pack is that I could easily fit my tent, Tyvek ground sheet, and rain jacket in 
+the outside pocket of my pack. None of the really wet things ever needed 
+to go inside the pack.
 * Big Agnes Copper Spur UL1 free-standing tent. I'm 5' 11" and found the 
 1-person to be comfortable. I kept my pack outside under the "vestibule" and
 it stayed dry, even through a few bad rain storms. I used the trekking pole
 vestibule configuration twice when I needed to cook in rainy conditions and 
 that worked fine. I brought a few short pieces of paracord which were useful 
 for (a) clotheslines inside the tent or (b) anchoring tent corners when pitching on 
-wooden platforms.
-* 6x9 Tyvek sheet ground cover.
+wooden platforms. The tent dries quickly when left in the sun.
+* 6x9 Tyvek sheet ground cover
 * Enlightened Equipment Revelation 20 quilt
 * A silk sleeping bag liner
 * Therm-a-Rest NeoAir NextLite NXT sleeping pad. Comfortable enough, and not too loud.
