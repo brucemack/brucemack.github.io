@@ -28,9 +28,9 @@ General Overview
 
 The Long Trail follows the Green Mountains of Vermont from the Massachusetts border
 to the Canadian border. The Trail is 273 miles long and requires about 65,000 feet
-of elevation gain. I started my hike on Tuesday, August 5 and ended on Saturday, August 30, 2025. I started at the Route 2 crossing of the AT in North Adams, MA and spent my first 
-night on the AT in Massachusetts, so technically my LT hike required 24 days. I took one
-zero.
+of elevation gain. I started my hike on Tuesday, August 5 and ended on Saturday, August 30, 2025. I started at the Route 2 crossing of the Appalachian Trail (AT) in North Adams, 
+MA and spent my first 
+night on the AT in Massachusetts, so technically my Long Trail (LT) hike required 24 days. I took one day off.
 
 I averaged around 11 miles per day with a range of around 5 miles on the short end to a few long days of ~17 miles.
 
@@ -70,7 +70,8 @@ I hiked in August. I think August is a good compromise between weather (i.e. not
 cold, reasonably dry) and low bugs.
 
 Another side-benefit of August on the LT is that you start directly in the midst
-of the NOBO and SOBO AT bubbles. This provides access to trail expertise and 
+of the northbound (NOBO) and soundbound (SOBO) Appalachian Trail hikers. This provides 
+access to trail expertise and 
 camaraderie during
 the early days of your LT hike. I met some very nice AT hikers and they taught me a lot (esp: Yellow Shoes, Knots, Swede, Tee Time, 62, Chef, Early Bird, Tagless).
 
