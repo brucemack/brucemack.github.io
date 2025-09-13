@@ -494,10 +494,14 @@ Swimming
 --------
 
 I got completely in the water about 8 times on the trip. It's cold, but it helped
-my mental state a lot after days without a shower. Stratton Pond, Griffith Lake,
-and Sterling Pond are the obvious places. There are also several swimmable rivers
-along the way, mostly in the southern half of the trip. In the north there is a 
-great swimmable river coming down into Johnson about an hour before you hit town.
+my mental state a lot after going days without a shower. Stratton Pond, Griffith Lake,
+Pleiad Lake, and Sterling Pond are the obvious places. There are also several 
+swimmable rivers
+along the way, mostly in the southern half of the trip. Big Branch (around mile 70)
+was the best one I remember. In the north there is a 
+great swimmable river coming down into Johnson about two hours before you hit town.
+Little Rock Pond isn't great for swimming. There are other places that I didn't 
+stop because they involved blue-blazes off the trail.
 
 Conclusion
 ----------
