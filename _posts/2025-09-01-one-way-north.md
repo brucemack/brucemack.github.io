@@ -121,6 +121,9 @@ hour. Camel's Hump and the Needle's Eye section of Mansfield were (slower) excep
 * In the north I felt like a "fast" pace was about 1.75m/hour, but I often had 
 sections that were slower than that. I'm sure that seems slow to many, but you need to 
 adjust for the terrain.
+* The trail changes noticeably after the LT/AT split. Things are more overgrown,
+there are many more blow-downs, there are fewer people, it's a bit easier to lose 
+the trail, and the general "vibe" is different. I really liked the north.
 
 Walking
 -------
@@ -390,12 +393,17 @@ would suggest carrying some form of alternate shelter. You never know where you'
 to be stuck out on the trail. I did see some crowded shelters in the south so keep 
 the "no room at the inn" scenario in mind.
 
-I slept in stealth tent sites between shelters twice on my trip.
+I slept in stealth tent sites between shelters twice on my trip. The most exciting
+stealth site was on the ski run just off the summit of Jay Peak on a pretty windy
+night. Not super flat, but well worth it.
 
 I pitched on wooden platforms about 4 times and on the ground all other times.
 
 Taking some time to select a flat tent spot is worthwhile. The only bad nights I had on 
 the trail were caused by overly sloped tent sites. Otherwise, I slept well.
+
+I'm not a hammock camper. I did see a few hammocks on my trip and it didn't
+seem like you'd ever have a problem finding suitable trees.
 
 ![LT3](/assets/images/IMG_0299.jpg)
 
