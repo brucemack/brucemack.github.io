@@ -118,6 +118,9 @@ so no bad-weather bypasses were needed.
 The FarOut mileage doesn't always factor that in walk. :-)
 * A very rough rule of thumb that I developed: I was able to climb about 1,000 feet per
 hour. Camel's Hump and the Needle's Eye section of Mansfield were (slower) exceptions to this rule.
+* In the north I felt like a "fast" pace was about 1.75m/hour, but I often had 
+sections that were slower than that. I'm sure that seems slow to many, but you need to 
+adjust for the terrain.
 
 Walking
 -------
@@ -135,9 +138,9 @@ I found that overlapping my first break with breakfast was efficient and tricked
 my body into getting the first few miles "for free."
 * Personal preference: I liked to get into camp on the earlier side and get
 first crack at selecting a flat tent site.
-* I never hiked with a headlight. Headlight hiking should be 
-for emergencies only. Scheduling night hikes to push more miles is asking for trouble
-in my view.
+* I never hiked before dawn or after dark. The blazes are *usually* pretty good, so it is theoretically
+possible. Scheduling night hikes to push more miles is asking for trouble
+in my view. Headlight hiking should be for emergencies only. 
 * I used hiking poles. This is critical to protect your knees. There were also 
 some down sections that I'm not sure I could have navigated without poles. 
 * I only had three falls. In my experience, if I found myself tripping 
@@ -369,6 +372,8 @@ FarOut is essential for a few purposes:
 * Helping to recover in those few places where I lost the trail. It was great to know 
 whether I was to the left or the right of the trail, particularly in those places where 
 the trail "mistakes" are well-worn.
+
+I found the FarOut coverage of the LT to be excellent. 
 
 Shelters/Tenting
 ----------------
