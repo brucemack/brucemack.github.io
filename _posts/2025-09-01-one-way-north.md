@@ -160,6 +160,8 @@ poles and use caution even when you're not on the main line! Some of the most da
 I found that the faster I took off my pack, the faster I was through the blow-down. It
 can be tempting to resist this and attempt to navigate a large blow-down while wearing a
 pack, but I often got stuck and ended up wasting more time than I saved.
+* On the chilly mornings it was better to spend the first
+few minutes of the day cold than to be over-dressed and need to immediately stop and re-dress/re-pack during the first climb.
 
 ![LT2](/assets/images/IMG_0210.jpg)
 
