@@ -22,7 +22,15 @@ A two-digit representation using base B:
 
 x = x<sub>1</sub>B<sup>m</sup> + x<sub>0<sub>
 
+# Addition
+
+The addition to two N-digit numbers will result in (at most) an N+1 digit 
+number.
+
 # Multiplication
+
+The multiplication of two N-digit number will result in (at most) a
+2N digit number.
 
 Karatsuba is a common efficiency improvement: https://en.wikipedia.org/wiki/Karatsuba_algorithm.
 
