@@ -62,8 +62,8 @@ int usb_control_msg(struct usb_device * dev,
     int timeout);
 ```
 
-Set Request Type: 0b00100001 0x11, request: 0x09, value: 0x02<<8 
-Get Request Type: 0b10100001 0x01, request: 0x01, value: 0x01<<8 
+Get Request Type: 0b1010_0001 (0xA1), request: 0x01, value: 0x0100, index: 0x0003, length: 0x0004
+Set Request Type: 0b0010_0001 (0x21), request: 0x09, value: 0x0200
 #define C108_HID_INTERFACE	3
 
 Understanding request parameter:
