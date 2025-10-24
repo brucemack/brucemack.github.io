@@ -61,5 +61,7 @@ it by D to find Q. This might use the Newton-Raphson algorithm.
 # References
 
 * A GNU Library: https://gmplib.org/
+* A good paper: https://www.hvks.com/Numerical/Downloads/HVE%20The%20Math%20behind%20arbitrary%20precision.pdf
+* https://people.ece.cornell.edu/land/courses/ece4760/RP2350/arithmetic/index_arithmetic.html
 
 
