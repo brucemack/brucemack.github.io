@@ -4,6 +4,39 @@ title: Notes on AllStarLink USB Audio Interfaces
 Random notes from study of the mechanisms involved.
 Some of this is probably just general Linux USB knowledge.
 
+DSP Elements
+============
+
+## Upsampling in chan_simpleusb.c
+
+(See [chan_simpleusb.c code](https://github.com/AllStarLink/app_rpt/blob/f8e4aee84bfeeb4c3acf3ccd2c1a0cdefaef1936/channels/chan_simpleusb.c#L2130)).
+
+The USB audio devices are running at 48 kHz. The network audio runs at 8 kHz.
+Network audio needs to be up-sampled by a factor of 6. As per normal 
+multi-rate technique, a low-pass filter needs to be applied after the 
+8kHz sample has been copied 6 times. An FIR filter is used. The comment
+says: "2900 Hz passband with 0.5 db ripple, 6300 Hz stopband at 60db."
+The coefficients are here:
+
+```c
+#define	NTAPS 31
+static short h[NTAPS] = { 103, 136, 148, 74, -113, -395, -694,
+        -881, -801, -331, 573, 1836, 3265, 4589, 5525, 5864, 5525,
+        4589, 3265, 1836, 573, -331, -801, -881, -694, -395, -113,
+        74, 148, 136, 103 };
+```
+
+After some experimentation, I can match these coefficients very closely
+by assuming a 31-tap FIR filter with a cut-off of 4,300 Hz and a Kaiser
+window with a beta of 3.0. Here are the plots of the two impulse responses
+superimposed:
+
+![LPF Analysis](/assets/images/asl-lpf-1.jpg)
+
+Linux Audio Interface (USB)
+===========================
+
+
 res_usbradio.c looks into this directory:
 
         /proc/asound/cards
@@ -92,13 +125,55 @@ Understanding "value" parameter:
 
 Possibly: HID_RT_INPUT = 0x01; HID_RT_OUTPUT = 0x02. So HID_RT_OUTPUT << 8 = 0x0100 and HID_RT_INPUT << 8 = 0x0200?
 
+HID Experiments With USB Audio Box Containing a CM6206 
+======================================================
+
+This device is reported as "CM106 like" by the Linux kernel.
+
+See CM106-F/L datasheet (page 18) https://pdf.dzsc.com/88888/20071017105428769.pdf.
+Or CM6206 datasheet https://static6.arrow.com/aropdfconversion/93bbc7353fab6d53e77a2e0c6d577e23c048962d/cm6206_datasheet__v2.3.pdf
+
+We are reading/writing /dev/hidraw0 in all cases, using normal Linux
+open/read/write calls.
+
+Per USB specification, numbers are represented in little-endian format.
+
+### Test 1: Press/release mute button on control box. Output:
+
+0x14, 0x00, 0x30 -> 0001 0100 | 0000 0000 | 0011 0000
+0x10, 0x00, 0x30 -> 0001 0000 | 0000 0000 | 0011 0000
+
+This shows the "mute" bit turning on/off (WORKING!).
+
+### Test 2: Press/release volume down button. Output:
+
+0x12, 0x00, 0x30
+0x10, 0x00, 0x30
+
+This shows the "VDN" bit turning on/off (WORKING!).
+
+### Test 3: Generate a Set Output Report asking for the contents of 
+register 1.
+
+Send 48, 00, 00, 01.
+Received 0x30, 0x00, 0x30 -> 0011 0000 | 0000 0000 | 0011 0000
+
+From datasheet (page 19), this means PLLBINen=1 and SOFTMUTEen=1.
+
+### Test 4: Read register 3.
+
+Send 48, 0, 0, 3
+Received: 0x30, 0x7F, 0x14
+
+Full register 3 contents: 0001 0100 0111 1111
 
 
+USB Audio Experiments 
+=====================
 
-
-
-
-
+Looking in /dev/snd. The naming convention pcmCxDy or controlCxDy indicates the 
+card number (x) and device number (y) for a specific sound card. "p" for playback,
+"c" for capture.
 
 References
 ==========
