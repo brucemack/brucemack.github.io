@@ -12,11 +12,11 @@ DSP Elements
 (See [chan_simpleusb.c code](https://github.com/AllStarLink/app_rpt/blob/f8e4aee84bfeeb4c3acf3ccd2c1a0cdefaef1936/channels/chan_simpleusb.c#L2130)).
 
 The USB audio devices are running at 48 kHz. The network audio runs at 8 kHz.
-Network audio needs to be up-sampled by a factor of 6. As per normal 
+Network audio needs to be upsampled by a factor of 6. As per normal 
 multi-rate technique, a low-pass filter needs to be applied after the 
 8kHz sample has been copied 6 times. An FIR filter is used. The comment
 says: "2900 Hz passband with 0.5 db ripple, 6300 Hz stopband at 60db."
-The coefficients are here:
+The coefficients from the actual code are here:
 
 ```c
 #define	NTAPS 31
@@ -32,6 +32,10 @@ window with a beta of 3.0. Here are the plots of the two impulse responses
 superimposed:
 
 ![LPF Analysis](/assets/images/asl-lpf-1.jpg)
+
+## Downsampling in chan_simpleusb.c
+
+Appears to use exactly the same LPF design as the upsampling filter.
 
 Linux Audio Interface (USB)
 ===========================
