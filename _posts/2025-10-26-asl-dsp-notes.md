@@ -48,8 +48,8 @@ This appears in hpass6() and is selectively enabled. The goal is to strip
 the sub-audible CTCSS tone from the audio input.  From the comment in the
 code this is an "IIR 6 pole High pass filter, 300 Hz corner with 0.5 db ripple."
 
-Taking the coefficients from the code and putting them into the customary 
-Direct Form I ("b/a") used for IIR filters gives this:
+Taking the coefficients from the code and reformatting them a bit so that they 
+are in the customary Direct Form I ("b/a") used for IIR filters gives this:
 
 ```
 b = [0.5727761454663172, -3.4366568727979034, 8.591642181994757, -11.455522909326344, 8.591642181994757, -3.4366568727979034, 0.5727761454663172 ]
