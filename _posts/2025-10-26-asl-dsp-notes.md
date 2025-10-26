@@ -2,8 +2,6 @@
 title: Notes on AllStarLink DSP in chan_simpleusb.c
 ---
 
-Random notes from study of the code.
-
 # Upsampling (Interpolation) High-Pass Filter
 
 (See [chan_simpleusb.c code](https://github.com/AllStarLink/app_rpt/blob/f8e4aee84bfeeb4c3acf3ccd2c1a0cdefaef1936/channels/chan_simpleusb.c#L2130)).
