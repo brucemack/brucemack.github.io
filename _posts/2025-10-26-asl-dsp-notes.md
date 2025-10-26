@@ -51,17 +51,17 @@ code this is an "IIR 6 pole High pass filter, 300 Hz corner with 0.5 db ripple."
 Taking the coefficients from the code and putting them into the customary 
 Direct Form I ("b/a") used for IIR filters gives this:
 
-'''
+```
 b = [0.5727761454663172, -3.4366568727979034, 8.591642181994757, -11.455522909326344, 8.591642181994757, -3.4366568727979034, 0.5727761454663172 ]
 a = [1.0, -4.86645111, 9.98966956, -11.06859818, 6.99051266, -2.39325566, 0.34918616 ]
-'''
+```
 
 * Note the "gain" variable in the code that was used to adjust the b coefficients.
 * Watch out for the sign convention on the a coefficients. The coefficients shown
 above are the negatives of what is actually in the code to adhere to the standard form.
 
 These parameters match almost exactly with what comes out when we synthesize a 
-Chebyshev filter using the scipy.signal.cheby1() function using fc=300 Hz and rp=0.5 dB.
+6th order Chebyshev filter using the scipy.signal.cheby1() function using fc=300 Hz and rp=0.5 dB.
 The frequency response curves of the filter with the coefficients from chan_simpleusb.c
 and the filter synthesized by SciPy are plotted below. The plots overlap perfectly:
 
