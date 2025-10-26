@@ -4,10 +4,7 @@ title: Notes on AllStarLink DSP in chan_simpleusb.c
 
 Random notes from study of the code.
 
-DSP Elements
-============
-
-## Upsampling in chan_simpleusb.c
+# Upsampling (Interpolation) High-Pass Filter
 
 (See [chan_simpleusb.c code](https://github.com/AllStarLink/app_rpt/blob/f8e4aee84bfeeb4c3acf3ccd2c1a0cdefaef1936/channels/chan_simpleusb.c#L2130)).
 
@@ -38,11 +35,11 @@ PCM and the coefficients are 16-bit signed values.  After the convolution
 of the PCM audio and the taps is completed a final >>15 operation is performed
 to keep the scaling right.
 
-## Downsampling in chan_simpleusb.c
+# Downsampling (Decimation) Low-Pass Filter
 
 The appears to use exactly the same LPF design as the upsampling filter.
 
-## CTCSS Filtering HPF
+# CTCSS Elimination High-Pass Filter
 
 This appears in hpass6() and is selectively enabled. The goal is to strip 
 the sub-audible CTCSS tone from the audio input.  From the comment in the
