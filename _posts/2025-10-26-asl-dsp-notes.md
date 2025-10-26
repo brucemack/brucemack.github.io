@@ -37,7 +37,12 @@ to keep the scaling right.
 
 # Downsampling (Decimation) Low-Pass Filter
 
-The appears to use exactly the same LPF design as the upsampling filter.
+It's the opposite of above. All of the ASL processing happens at 8kHz but the 
+USB sound hardware is configured for 48kHz. So we need to decimate down 
+the input audio.
+
+This process appears to use exactly the same LPF design as the upsampling filter.
+This filter is applied to the 48kHz input audio.
 
 # CTCSS Elimination High-Pass Filter
 
