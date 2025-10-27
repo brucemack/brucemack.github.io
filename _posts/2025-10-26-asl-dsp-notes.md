@@ -2,14 +2,19 @@
 title: Notes on AllStarLink DSP in chan_simpleusb.c
 ---
 
+There are some important DSP functions in the Simple USB channel, but
+those functions don't have much documentation to explain how they work.
+This page contains my analysis.
+
 # Upsampling (Interpolation) High-Pass Filter
 
 (See [chan_simpleusb.c code](https://github.com/AllStarLink/app_rpt/blob/f8e4aee84bfeeb4c3acf3ccd2c1a0cdefaef1936/channels/chan_simpleusb.c#L2130)).
 
-The USB audio devices are running at 48 kHz. The network audio runs at 8 kHz.
-Network audio needs to be upsampled by a factor of 6. As per normal 
+The USB audio devices run at a 48 kHz sample rate. The IAX network audio 
+runs at 8 kHz. Network audio needs to be upsampled by a factor of 6 as 
+it is received. As per normal 
 multi-rate technique, a low-pass filter needs to be applied after the 
-8kHz sample has been copied 6 times. An FIR filter is used. The comment
+8kHz data has been expanded to 48kHz. An FIR filter is used. The comment
 says: "2900 Hz passband with 0.5 db ripple, 6300 Hz stopband at 60db."
 The coefficients from the actual code are here:
 
@@ -21,14 +26,15 @@ static short h[NTAPS] = { 103, 136, 148, 74, -113, -395, -694,
         74, 148, 136, 103 };
 ```
 
-After some experimentation, I can match these coefficients very closely
+How were those coefficients determined? After some experimentation, I can match 
+these coefficients very closely
 by assuming a 31-tap FIR filter with a cut-off of 4,300 Hz and a Kaiser
 window with a beta of 3.0. Here are the plots of the two impulse responses
 superimposed:
 
 ![LPF Analysis](/assets/images/asl-lpf-1.jpg)
 
-Fixed-point math is used to apply this filters. Input audio is 16-bit (signed)
+Fixed-point math is used in this filters. Input audio is 16-bit (signed)
 PCM and the coefficients are 16-bit signed values.  After the convolution 
 of the PCM audio and the taps is completed a final >>15 operation is performed
 to keep the scaling right.
@@ -36,8 +42,7 @@ to keep the scaling right.
 # Downsampling (Decimation) Low-Pass Filter
 
 It's the opposite of above. All of the ASL processing happens at 8kHz but the 
-USB sound hardware is configured for 48kHz. So we need to decimate down 
-the input audio.
+USB sound hardware runs at 48kHz. So we need to decimate down the captured audio.
 
 This process appears to use exactly the same LPF design as the upsampling filter.
 This filter is applied to the 48kHz input audio.
@@ -56,6 +61,7 @@ b = [0.5727761454663172, -3.4366568727979034, 8.591642181994757, -11.45552290932
 a = [1.0, -4.86645111, 9.98966956, -11.06859818, 6.99051266, -2.39325566, 0.34918616 ]
 ```
 
+* This part of the code switches into floating point.
 * Note the "gain" variable in the code that was used to adjust the b coefficients.
 * Watch out for the sign convention on the a coefficients. The coefficients shown
 above are the negatives of what is actually in the code to adhere to the standard form.
@@ -67,5 +73,37 @@ and the filter synthesized by SciPy are plotted below. The plots overlap perfect
 
 ![HPF Analysis](/assets/images/asl-hpf-1.jpg)
 
-# Deemphasis/Preemphasis
+# Deemphasis Low-Pass Filter
+
+Deemphasis is used in some systems when FM discriminator output is used directly. 
+The feature is enabled via configuration. The code is found in deemph(). The comment 
+in the code says "6db/octave de-emphasis" which is consistent with the standard.
+
+The code implements a one-pole IIR low-pass filter in "Direct Form II." The implementation
+uses fixed point. Reformatting the coefficients in the code into standard form we get this:
+
+```
+b = [ 6878, 0 ]
+s = [ 1, -25889 ]
+```
+
+I'm not completely sure why the b<sub>1</sub> coefficient is zero.
+
+It's not immediately obvious, but the code scales the output of the filter 
+by a factor of 3.  The comment is "adjust gain that we have unity @ 1KHz."
+
+The final output is shifted left >>15 to properly normalize the values.
+
+Here's the plot of the frequency response: 
+
+![LPF Analysis](/assets/images/asl-lpf-2.jpg)
+
+The -6dB/octave roll-off looks right
+and the 0dB point is right around 1kHz as expected.
+
+
+
+
+
+
 
