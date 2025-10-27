@@ -115,6 +115,8 @@ There's also an adjustment value of 13404 that is applied resulting
 in a gain of about 2.4x in the filter. This puts the 0dB point at
 around 300 Hz.
 
+**The implementation of this filter clips the result to between -32,767 and 32,767**.
+
 The implementation is in fixed point. The result is scaled down by >>15 
 at the end as expected.
 
