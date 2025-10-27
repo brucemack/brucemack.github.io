@@ -4,6 +4,26 @@ title: Notes on AllStarLink USB Audio Interfaces
 Random notes from study of the mechanisms involved.
 Some of this is probably just general Linux USB knowledge.
 
+Notes on Audio Flow
+===================
+
+Channel function simpleusb_write() is called when 
+a data frame is received from the network. This
+function does nothing more than put the frame onto
+o->txq for later handling.
+
+Channel function simple_read() appears to be called
+periodically (at the frame rate?) and does a few things:
+* (A few steps)
+* Takes frames off the transmit queue (o->txq)
+* Converts it to 48k audio, and sends them to the sound card. 
+* Reads from the sound card to get as much as possible
+* Based on key status (and transitkion) sends control messages AST_CONTROL_RADIO_KEY or AST_CONTROL_RADIO_UNKEY.
+* Converts the 48k sound to 8k, makes a frame.
+* DTMF detection: ast_dsp_process(c, o->dsp, f) that 
+appears to return a frame handle if there is any 
+DTMF content in the audio frame.
+
 Linux Audio Interface (USB)
 ===========================
 
