@@ -66,3 +66,6 @@ The frequency response curves of the filter with the coefficients from chan_simp
 and the filter synthesized by SciPy are plotted below. The plots overlap perfectly:
 
 ![HPF Analysis](/assets/images/asl-hpf-1.jpg)
+
+# Deemphasis/Preemphasis
+
