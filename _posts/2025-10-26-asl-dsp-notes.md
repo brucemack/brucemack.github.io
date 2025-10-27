@@ -47,7 +47,7 @@ This filter is applied to the 48kHz input audio.
 
 # CTCSS Elimination High-Pass Filter
 
-This appears in hpass6() and is selectively enabled. The goal is to strip 
+This happens in hpass6() and is selectively enabled. The goal is to strip 
 the sub-audible CTCSS tone from the audio input.  From the comment in the
 code this is an "IIR 6 pole High pass filter, 300 Hz corner with 0.5 db ripple."
 
@@ -59,13 +59,13 @@ b = [0.5727761454663172, -3.4366568727979034, 8.591642181994757, -11.45552290932
 a = [1.0, -4.86645111, 9.98966956, -11.06859818, 6.99051266, -2.39325566, 0.34918616 ]
 ```
 
-* This part of the code switches into floating point.
+* Unlike the other filter functions, this part of the code uses floating point.
 * Note the "gain" variable in the code that was used to adjust the b coefficients.
 * Watch out for the sign convention on the a coefficients. The coefficients shown
-above are the negatives of what is actually in the code to adhere to the standard form.
+above are the negatives of what is actually in the code to adhere to the standard b/a form.
 
 These parameters match almost exactly with what comes out when we synthesize a 
-6th order Chebyshev filter using the scipy.signal.cheby1() function using fc=300 Hz and rp=0.5 dB.
+6th order Chebyshev filter using the scipy.signal.cheby1() function with fc=300 Hz and rp=0.5 dB.
 The frequency response curves of the filter with the coefficients from chan_simpleusb.c
 and the filter synthesized by SciPy are plotted below. The plots overlap perfectly:
 
