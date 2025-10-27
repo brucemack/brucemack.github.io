@@ -104,15 +104,16 @@ and the 0dB point is right around 1kHz as documented.
 # Preemphasis High-Pass Filter
 
 The purpose is the same as above, only in reverse. The implementation 
-is different. The code implements an FIR high-pass filter with two taps.
-The parameters in the code are:
+is different. The code is found in the preemph() function. 
+
+The code implements an FIR high-pass filter with two taps. The parameters are:
 
 ```
 b = [ 17610, -17610 ]
 ```
 
-There's an adjustment value of 13404 that is applied to tht output. This 
-results in a gain of about 2.4 being added to the filter which puts the 0dB point at
+There's also an adjustment value of 13404 that is applied which 
+results in a gain of about 2.4 being added to the filter. This puts the 0dB point at
 around 300 Hz.
 
 The implementation is in fixed point. The result is scaled down by >>15 
