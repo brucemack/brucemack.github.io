@@ -122,6 +122,20 @@ Here's the plot of the frequency response:
 
 ![HPF Analysis](/assets/images/asl-hpf-2.jpg)
 
+# DTMF Detection/Decoding
+
+This is handled by the core Asterisk code (main/dsp.c) in code written by
+Mark Spencer himself. DTMF decoding is a complicated topic given that there
+are different interpretations of the "standard." I've looked at the Asterisk
+DTMF detection code and can summarize some of the key behaviors:
+
+* The Goertzel algorithm is used with a block size of 102 samples.
+* The row and column signals both need to exceed -8dBFS.
+* Standard twist/reverse twist thresholds of 4dB/8dB are used.
+* The loudest row and loudest column tones must stand out by +8dB vs the 
+other possible tones in the same row/column.
+* There is an overall S/N test applied (more research needed here)
+
 References
 ==========
 
