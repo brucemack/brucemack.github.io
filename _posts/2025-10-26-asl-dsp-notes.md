@@ -99,9 +99,28 @@ Here's the plot of the frequency response:
 ![LPF Analysis](/assets/images/asl-lpf-2.jpg)
 
 The -6dB/octave roll-off looks right
-and the 0dB point is right around 1kHz as expected.
+and the 0dB point is right around 1kHz as documented.
 
+# Preemphasis High-Pass Filter
 
+The purpose is the same as above, only in reverse. The implementation 
+is different. The code implements an FIR high-pass filter with two taps.
+The parameters in the code are:
+
+```
+b = [ 17610, -17610 ]
+```
+
+There's an adjustment value of 13404 that is applied to tht output. This 
+results in a gain of about 2.4 being added to the filter which puts the 0dB point at
+around 300 Hz.
+
+The implementation is in fixed point. The result is scaled down by >>15 
+at the end as expected.
+
+Here's the plot of the frequency response: 
+
+![HPF Analysis](/assets/images/asl-hpf-2.jpg)
 
 
 
