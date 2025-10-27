@@ -129,6 +129,7 @@ Mark Spencer himself. DTMF decoding is a complicated topic given that there
 are different interpretations of the "standard." I've looked at the Asterisk
 DTMF detection code and can summarize some of the key behaviors:
 
+* The implementation assumes 16-bit PCM audio sampled at 8kHz.
 * The Goertzel algorithm is used with a block size of 102 samples.
 * The row and column signals both need to exceed -8dBFS.
 * Standard twist/reverse twist thresholds of 4dB/8dB are used.
