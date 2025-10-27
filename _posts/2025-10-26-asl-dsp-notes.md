@@ -2,13 +2,11 @@
 title: Notes on AllStarLink DSP in chan_simpleusb.c
 ---
 
-There are some important DSP functions in the Simple USB channel, but
+There are some important DSP functions in the Simple USB channel but
 those functions don't have much documentation to explain how they work.
 This page contains my analysis.
 
 # Upsampling (Interpolation) High-Pass Filter
-
-(See [chan_simpleusb.c code](https://github.com/AllStarLink/app_rpt/blob/f8e4aee84bfeeb4c3acf3ccd2c1a0cdefaef1936/channels/chan_simpleusb.c#L2130)).
 
 The USB audio devices run at a 48 kHz sample rate. The IAX network audio 
 runs at 8 kHz. Network audio needs to be upsampled by a factor of 6 as 
@@ -124,7 +122,10 @@ Here's the plot of the frequency response:
 
 ![HPF Analysis](/assets/images/asl-hpf-2.jpg)
 
+References
+==========
 
+* [ASL Documentation related to filter features in chan_usbradio.c](https://allstarlink.github.io/adv-topics/audiofilters/)
 
 
 
