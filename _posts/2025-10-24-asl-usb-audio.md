@@ -2,8 +2,8 @@
 title: Notes on AllStarLink USB Audio Interfaces
 date: 2025-10-28 
 ---
-Random notes from study of the mechanisms involved.
-Some of this is probably just general Linux USB knowledge.
+Random notes from study of the mechanisms involved in creating a driver for
+a USB audio interface. Some of this is probably just general Linux USB knowledge.
 
 HID Experiments With an AllScan UCI90
 ======================================
@@ -14,6 +14,9 @@ See [AllScan.info](https://allscan.info/). This device uses the CM108B chip.
 * Schematic for the UCI90: https://allscan.info/images/UCI90/UCI90-v0.97-sch.jpg
 * Datasheet for the CM108B: https://www.micros.com.pl/mediaserver/info-uicm108b.pdf
 * See: https://docs.kernel.org/hid/hidraw.html for information on Linux USB controls.
+
+My testing was done on a Raspberry Pi 5 using the stock OS. No special drivers
+we required to use the UCI90.
 
 The CM108B chip allows GPIO pins to be read via USB HID registers. 
 Here's the code that can read 4 bytes of data out of the box via the HID
