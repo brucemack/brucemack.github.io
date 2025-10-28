@@ -11,9 +11,9 @@ HID Experiments With an AllScan UCI90
 Many thanks to David Gleason for sending me one of these excellent devices.
 See [AllScan.info](https://allscan.info/). This device uses the CM108B chip.
 
-* Schematic for the UCI90: https://allscan.info/images/UCI90/UCI90-v0.97-sch.jpg
-* Datasheet for the CM108B: https://www.micros.com.pl/mediaserver/info-uicm108b.pdf
-* See: https://docs.kernel.org/hid/hidraw.html for information on Linux USB controls.
+* [Schematic for the UCI90](https://allscan.info/images/UCI90/UCI90-v0.97-sch.jpg)
+* [Datasheet for the CM108B](https://www.micros.com.pl/mediaserver/info-uicm108b.pdf)
+* [See this page](https://docs.kernel.org/hid/hidraw.html) for information on Linux USB controls.
 
 My testing was done on a Raspberry Pi 5 using the stock OS. No special drivers
 we required to use the UCI90.
@@ -55,8 +55,8 @@ HID Experiments With USB Audio Box Containing a CM6206
 
 This device is reported as "CM106 like" by the Linux kernel.
 
-See CM106-F/L datasheet (page 18) https://pdf.dzsc.com/88888/20071017105428769.pdf.
-Or CM6206 datasheet https://static6.arrow.com/aropdfconversion/93bbc7353fab6d53e77a2e0c6d577e23c048962d/cm6206_datasheet__v2.3.pdf
+* [See CM106-F/L datasheet (page 18)](https://pdf.dzsc.com/88888/20071017105428769.pdf)
+* [Or CM6206 datasheet](https://static6.arrow.com/aropdfconversion/93bbc7353fab6d53e77a2e0c6d577e23c048962d/cm6206_datasheet__v2.3.pdf)
 
 We are reading/writing /dev/hidraw0 in all cases, using normal Linux
 open/read/write calls. There is no ioctl necessary with this chip.
