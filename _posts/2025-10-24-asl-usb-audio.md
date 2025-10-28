@@ -4,6 +4,92 @@ title: Notes on AllStarLink USB Audio Interfaces
 Random notes from study of the mechanisms involved.
 Some of this is probably just general Linux USB knowledge.
 
+HID Experiments With an AllScan UCI90
+======================================
+
+Many thanks to David Gleason for sending me one of these excellent devices.
+See [AllScan.info](https://allscan.info/). This device uses the CM108B chip.
+
+* Schematic for the UCI90: https://allscan.info/images/UCI90/UCI90-v0.97-sch.jpg
+* Datasheet for the CM108B: https://www.micros.com.pl/mediaserver/info-uicm108b.pdf
+* See: https://docs.kernel.org/hid/hidraw.html for information on Linux USB controls.
+
+The CM108B chip allows GPIO pins to be read via USB HID registers. 
+Here's the code that can read 4 bytes of data out of the box via the HID
+interface. From the Linux 
+docs _"typically, this is used to request the initial states of an input report of 
+a device, before an application listens for normal reports via the regular device 
+read() interface. The format of the buffer issued with this report is 
+identical to that of ..."_
+
+```c
+  char buf[64];
+  // Set the report ID
+  buf[0] = 0;
+  int ret = ioctl(fd, HIDIOCGINPUT(5), buf);
+  // The first byte is the report ID, ignore it
+  for (unsigned i = 1; i < ret; i++)
+      printf("%d %02X\n", i, (unsigned int)buf[i]);
+```
+
+The PTT button on the microphone (connector K1 3.5mm) acts like a COS signal. This
+is connected to the VOLDN pin (pin 48) on the CM108B.  This maps to HID_IR0 bit 1. So 
+if the microphone button is pressed we'll get this from the ioctl() call:
+
+                0x02,0x00,0x00,0x00
+
+Whenever the GPIO state changes a USB HID interrupt is generated. This can be accessed
+using a normal read() system call - no ioctl() required. The format of the data 
+is the same - 4 bytes.
+
+The CM108B is a stereo CODEC so the audio data needs to be stereo. That said, we
+usually only care about one channel. The audio output on the speaker connection 
+of the UCI90 (J2) and the microphone connection (K2 2.5mm) comes from the **left channel of the CODEC** (pin 30). 
+
+HID Experiments With USB Audio Box Containing a CM6206 
+======================================================
+
+This device is reported as "CM106 like" by the Linux kernel.
+
+See CM106-F/L datasheet (page 18) https://pdf.dzsc.com/88888/20071017105428769.pdf.
+Or CM6206 datasheet https://static6.arrow.com/aropdfconversion/93bbc7353fab6d53e77a2e0c6d577e23c048962d/cm6206_datasheet__v2.3.pdf
+
+We are reading/writing /dev/hidraw0 in all cases, using normal Linux
+open/read/write calls. There is no ioctl necessary with this chip.
+
+Per USB specification, numbers are represented in little-endian format.
+
+### Test 1: Press/release mute button on control box. Output:
+
+0x14, 0x00, 0x30 -> 0001 0100, 0000 0000, 0011 0000
+0x10, 0x00, 0x30 -> 0001 0000, 0000 0000, 0011 0000
+
+This shows the "mute" bit turning on/off (WORKING!).
+
+### Test 2: Press/release volume down button. Output:
+
+0x12, 0x00, 0x30
+0x10, 0x00, 0x30
+
+This shows the "VDN" bit turning on/off (WORKING!).
+
+### Test 3: Generate a Set Output Report asking for the contents of 
+register 1.
+
+Send 48, 00, 00, 01.
+Received 0x30, 0x00, 0x30 -> 0011 0000, 0000 0000, 0011 0000
+
+From datasheet (page 19), this means PLLBINen=1 and SOFTMUTEen=1.
+
+### Test 4: Read register 3.
+
+Send 48, 0, 0, 3
+Received: 0x30, 0x7F, 0x14
+
+Full register 3 contents: 0001 0100 0111 1111
+
+
+
 Notes on Audio Flow Through chan_simpleusb.b
 ============================================
 
@@ -118,82 +204,6 @@ Understanding "value" parameter:
         0 + (HID_RT_INPUT << 8), 
 
 Possibly: HID_RT_INPUT = 0x01; HID_RT_OUTPUT = 0x02. So HID_RT_OUTPUT << 8 = 0x0100 and HID_RT_INPUT << 8 = 0x0200?
-
-HID Experiments With an AllScan UCI90
-======================================
-
-Many thanks to David Gleason for sending me one of these excellent devices.
-
-* Schematic for the UCI90: https://allscan.info/images/UCI90/UCI90-v0.97-sch.jpg
-* Datasheet for the CM108B: https://www.micros.com.pl/mediaserver/info-uicm108b.pdf
-* See: https://docs.kernel.org/hid/hidraw.html
-
-This device uses the CM108B chip.
-
-Here's the code that can read 4 bytes of data out of the box via the HID
-interface. From the Linux 
-docs _"typically, this is used to request the initial states of an input report of 
-a device, before an application listens for normal reports via the regular device 
-read() interface. The format of the buffer issued with this report is 
-identical to that of ..."_
-
-```c
-  char buf[64];
-  // Set the report ID
-  buf[0] = 0;
-  int ret = ioctl(fd, HIDIOCGINPUT(5), buf);
-  // The first byte is the report ID, ignore it
-  for (unsigned i = 1; i < ret; i++)
-      printf("%d %02X\n", i, (unsigned int)buf[i]);
-```
-
-The PTT button on the microphone (connector K1 3.5mm) acts like a COS signal. This
-is connected to the VOLDN pin (pin 48) on the CM108B.  This maps to HID_IR0 bit 1. So 
-if the microphone button is pressed we'll get this from the ioctl() call:
-
-                0x02,0x00,0x00,0x00
-
-HID Experiments With USB Audio Box Containing a CM6206 
-======================================================
-
-This device is reported as "CM106 like" by the Linux kernel.
-
-See CM106-F/L datasheet (page 18) https://pdf.dzsc.com/88888/20071017105428769.pdf.
-Or CM6206 datasheet https://static6.arrow.com/aropdfconversion/93bbc7353fab6d53e77a2e0c6d577e23c048962d/cm6206_datasheet__v2.3.pdf
-
-We are reading/writing /dev/hidraw0 in all cases, using normal Linux
-open/read/write calls.
-
-Per USB specification, numbers are represented in little-endian format.
-
-### Test 1: Press/release mute button on control box. Output:
-
-0x14, 0x00, 0x30 -> 0001 0100, 0000 0000, 0011 0000
-0x10, 0x00, 0x30 -> 0001 0000, 0000 0000, 0011 0000
-
-This shows the "mute" bit turning on/off (WORKING!).
-
-### Test 2: Press/release volume down button. Output:
-
-0x12, 0x00, 0x30
-0x10, 0x00, 0x30
-
-This shows the "VDN" bit turning on/off (WORKING!).
-
-### Test 3: Generate a Set Output Report asking for the contents of 
-register 1.
-
-Send 48, 00, 00, 01.
-Received 0x30, 0x00, 0x30 -> 0011 0000, 0000 0000, 0011 0000
-
-From datasheet (page 19), this means PLLBINen=1 and SOFTMUTEen=1.
-
-### Test 4: Read register 3.
-
-Send 48, 0, 0, 3
-Received: 0x30, 0x7F, 0x14
-
-Full register 3 contents: 0001 0100 0111 1111
 
 
 USB Audio Experiments 
