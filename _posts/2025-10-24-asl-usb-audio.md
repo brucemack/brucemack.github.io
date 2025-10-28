@@ -1,5 +1,6 @@
 ---
 title: Notes on AllStarLink USB Audio Interfaces
+date: 2025-10-28 
 ---
 Random notes from study of the mechanisms involved.
 Some of this is probably just general Linux USB knowledge.
