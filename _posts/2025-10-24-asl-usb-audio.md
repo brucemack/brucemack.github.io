@@ -119,6 +119,40 @@ Understanding "value" parameter:
 
 Possibly: HID_RT_INPUT = 0x01; HID_RT_OUTPUT = 0x02. So HID_RT_OUTPUT << 8 = 0x0100 and HID_RT_INPUT << 8 = 0x0200?
 
+HID Experiments With an AllScan UCI90
+======================================
+
+Many thanks to David Gleason for sending me one of these excellent devices.
+
+* Schematic for the UCI90: https://allscan.info/images/UCI90/UCI90-v0.97-sch.jpg
+* Datasheet for the CM108B: https://www.micros.com.pl/mediaserver/info-uicm108b.pdf
+* See: https://docs.kernel.org/hid/hidraw.html
+
+This device uses the CM108B chip.
+
+Here's the code that can read 4 bytes of data out of the box via the HID
+interface. From the Linux 
+docs _"typically, this is used to request the initial states of an input report of 
+a device, before an application listens for normal reports via the regular device 
+read() interface. The format of the buffer issued with this report is 
+identical to that of ..."_
+
+```c
+  char buf[64];
+  // Set the report ID
+  buf[0] = 0;
+  int ret = ioctl(fd, HIDIOCGINPUT(5), buf);
+  // The first byte is the report ID, ignore it
+  for (unsigned i = 1; i < ret; i++)
+      printf("%d %02X\n", i, (unsigned int)buf[i]);
+```
+
+The PTT button on the microphone (connector K1 3.5mm) acts like a COS signal. This
+is connected to the VOLDN pin (pin 48) on the CM108B.  This maps to HID_IR0 bit 1. So 
+if the microphone button is pressed we'll get this from the ioctl() call:
+
+                0x02,0x00,0x00,0x00
+
 HID Experiments With USB Audio Box Containing a CM6206 
 ======================================================
 
