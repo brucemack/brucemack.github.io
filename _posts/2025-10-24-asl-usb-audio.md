@@ -50,6 +50,9 @@ The CM108B is a stereo CODEC so the audio data needs to be stereo. That said, we
 usually only care about one channel. The audio output on the speaker connection 
 of the UCI90 (J2) and the microphone connection (K2 2.5mm) comes from the **left channel of the CODEC** (pin 30). 
 
+The audio input from the microphone connection appears 
+on both channels at the same time. 
+
 HID Experiments With USB Audio Box Containing a CM6206 
 ======================================================
 
