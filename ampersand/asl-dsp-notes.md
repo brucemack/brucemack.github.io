@@ -6,6 +6,67 @@ There are some important DSP functions in the Simple USB channel but
 those functions don't have much documentation to explain how they work.
 This page contains my analysis.
 
+# Audio Level Statistics
+
+Transmit and receive audio statistics are provided in the ASL Tune menus. The tune feature shows statistics on the audio levels going in and out of the USB interface, once per second. The methodology for these statistics is documented here so that alternate implementations can be fully consistent.
+
+These calculations are performed in the chan_simpleusb audio chain very soon after a frame 
+is captured from the USB sound card on audio receive and immediately before a frame is
+sent to the USB sound card on audio transmit.
+
+The statistics are computed on a 20ms frame of 48K audio. The audio samples are in 16-bit PCM 
+(signed) format at this point in the chain.
+
+The frame statistics are stored in a circular buffer of length 50. The system always has 
+one second (50 x 20ms) of statistical data available.
+
+The 48k audio frame is down-sampled to an 8k audio frame (160 samples) by reading every 6th sample. There is no anti-aliasing filter applied to this down-sample operation. All statistics 
+are computed on the 8k frames.
+
+There are three frame statistics being tracked during the data collection phase:
+* Peak absolute value
+* Power
+* The number of clips
+
+The peak absolute value is straight-forward. 
+
+The frame average power is computed by summing the squares of the audio samples
+and dividing by 160. This calculation is performed using double-precision floating 
+point, but the final result is converted back to q15 format.
+
+A clip event is defined as two consecutive audio samples with an absolute
+value greater than 32,432. So a *single* audio sample of 32,767 isn't 
+considered a clip using this methodology.
+
+The system displays the audio statistics every second. This requires an
+aggregation of the previous 50 frame statistics to form a summary for the second.
+
+The aggregate peak power is displayed in dBFS. This is computed by finding the the 
+maximum peak voltage across all 50 frame statistics, squaring the peak, 
+normalizing by 2<sup>30</sup>, 
+and taking the 10 * log<sub>10</sub> of that value. A zero peak power is displayed as -96dB.
+
+The aggregate average power is displayed in dBFS. This is computed by averaging the 
+average powers of the 50 frame statistics, normalizing by 2<sup>30</sup>, and 
+taking the 10 * log<sub>10</sub> of that value. All steps in this calculation are
+performed using double-precision floating point. A zero average power is displayed as -96dB.
+
+The maximum and minimum values of the individual frame average powers are also computed. 
+These are used to display aggregate maximum and minimum average powers in dBFS following 
+the same method.
+
+The aggregate clip count is determined by summing the frame-level clip events.
+
+The 2<sup>30</sup> factor is the square of the usual 2<sup>15</sup> factor
+used to normalize a 16-bit (q15) fixed point representation. The absolute audio 
+values range from 0 to 32,767 (give or take) but we need a range from 0 to 1 to 
+compute dBFS.
+
+The display format is: 
+
+        "%sAudioStats: Pk %5.1f  Avg Pwr %3.0f  Min %3.0f  Max %3.0f  dBFS  ClipCnt %u"
+
+
 # Upsampling (Interpolation) High-Pass Filter
 
 The USB audio devices run at a 48 kHz sample rate. The IAX network audio 
@@ -30,7 +91,7 @@ by assuming a 31-tap FIR filter with a cut-off of 4,300 Hz and a Kaiser
 window with a beta of 3.0. Here are the plots of the two impulse responses
 superimposed:
 
-![LPF Analysis](/assets/images/asl-lpf-1.jpg)
+![LPF Analysis](assets/asl-lpf-1.jpg)
 
 Fixed-point math is used in this filters. Input audio is 16-bit (signed)
 PCM and the coefficients are 16-bit signed values.  After the convolution 
@@ -69,7 +130,7 @@ These parameters match almost exactly with what comes out when we synthesize a
 The frequency response curves of the filter with the coefficients from chan_simpleusb.c
 and the filter synthesized by SciPy are plotted below. The plots overlap perfectly:
 
-![HPF Analysis](/assets/images/asl-hpf-1.jpg)
+![HPF Analysis](assets/asl-hpf-1.jpg)
 
 # Deemphasis Low-Pass Filter
 
@@ -94,7 +155,7 @@ The final output is shifted left >>15 to properly normalize the values.
 
 Here's the plot of the frequency response: 
 
-![LPF Analysis](/assets/images/asl-lpf-2.jpg)
+![LPF Analysis](assets/asl-lpf-2.jpg)
 
 The -6dB/octave roll-off looks right
 and the 0dB point is right around 1kHz as documented.
@@ -122,7 +183,7 @@ at the end as expected.
 
 Here's the plot of the frequency response: 
 
-![HPF Analysis](/assets/images/asl-hpf-2.jpg)
+![HPF Analysis](assets/asl-hpf-2.jpg)
 
 # DTMF Detection/Decoding
 
