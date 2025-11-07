@@ -20,7 +20,7 @@ The statistics are computed on a 20ms frame of 48k audio. The audio samples are 
 The frame statistics are stored in a circular buffer of length 50. The system always has 
 one second (50 x 20ms) of statistical data available.
 
-The 48k audio frame is down-sampled to an 8k audio frame (160 samples) by reading every 6th sample. There is no anti-aliasing filter applied to this down-sample operation. All statistics 
+The 48k audio frame is down-sampled to an 8k audio frame (160 samples) by reading every 6th sample. There is no filtering applied to this down-sample operation. All statistics 
 are computed on the 8k frames.
 
 There are three frame-level statistics being tracked:

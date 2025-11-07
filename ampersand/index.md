@@ -17,7 +17,12 @@ This is a partial list of the requirements for the Ampersand system:
 
 ## Radio Integration 
 
-## CODEC
+## CODECs
+
+## Diagnostics/Analysis Capabilities
+
+* Audio level summary statistics are required. Please see [Notes on AllStarLink DSP](asl-dsp-notes) for more information. The one-second summary level information for
+USB in/out should be provided.
 
 
 
