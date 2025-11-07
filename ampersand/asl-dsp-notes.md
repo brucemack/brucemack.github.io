@@ -14,7 +14,7 @@ These calculations are performed in the chan_simpleusb audio chain very soon aft
 is captured from the USB sound card on audio receive and immediately before a frame is
 sent to the USB sound card on audio transmit.
 
-The statistics are computed on a 20ms frame of 48K audio. The audio samples are in 16-bit PCM 
+The statistics are computed on a 20ms frame of 48k audio. The audio samples are in 16-bit PCM 
 (signed) format at this point in the chain.
 
 The frame statistics are stored in a circular buffer of length 50. The system always has 
@@ -23,9 +23,9 @@ one second (50 x 20ms) of statistical data available.
 The 48k audio frame is down-sampled to an 8k audio frame (160 samples) by reading every 6th sample. There is no anti-aliasing filter applied to this down-sample operation. All statistics 
 are computed on the 8k frames.
 
-There are three frame statistics being tracked during the data collection phase:
+There are three frame-level statistics being tracked:
 * Peak absolute value
-* Power
+* Average power
 * The number of clips
 
 The peak absolute value is straight-forward. 
@@ -42,13 +42,13 @@ The system displays the audio statistics every second. This requires an
 aggregation of the previous 50 frame statistics to form a summary for the second.
 
 The aggregate peak power is displayed in dBFS. This is computed by finding the the 
-maximum peak voltage across all 50 frame statistics, squaring the peak, 
+maximum peak voltage across all 50 frame statistics, squaring that peak, 
 normalizing by 2<sup>30</sup>, 
-and taking the 10 * log<sub>10</sub> of that value. A zero peak power is displayed as -96dB.
+and taking the 10×log<sub>10</sub> of that value. A zero peak power is displayed as -96dB.
 
 The aggregate average power is displayed in dBFS. This is computed by averaging the 
 average powers of the 50 frame statistics, normalizing by 2<sup>30</sup>, and 
-taking the 10 * log<sub>10</sub> of that value. All steps in this calculation are
+taking the 10×log<sub>10</sub> of that value. All steps in this calculation are
 performed using double-precision floating point. A zero average power is displayed as -96dB.
 
 The maximum and minimum values of the individual frame average powers are also computed. 
@@ -62,10 +62,11 @@ used to normalize a 16-bit (q15) fixed point representation. The absolute audio
 values range from 0 to 32,767 (give or take) but we need a range from 0 to 1 to 
 compute dBFS.
 
-The display format is: 
+The summary display format is: 
 
-        "%sAudioStats: Pk %5.1f  Avg Pwr %3.0f  Min %3.0f  Max %3.0f  dBFS  ClipCnt %u"
+        "AudioStats: Pk %5.1f  Avg Pwr %3.0f  Min %3.0f  Max %3.0f  dBFS  ClipCnt %u"
 
+prefixed by either "Rx" or "Tx" depending on the direction of the flow.
 
 # Upsampling (Interpolation) High-Pass Filter
 
