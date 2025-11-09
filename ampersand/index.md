@@ -21,7 +21,7 @@ This is a partial list of the requirements for the Ampersand system:
 
 ## PLC
 
-Here's [a standard document G.711 Appendix 1](file:///Users/bruce/Downloads/T-REC-G.711-199909-I!AppI!PDF-E.pdf)
+Here's [a standard document G.711 Appendix 1](https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.711-199909-I!AppI!PDF-E&type=items)
 
 ## Diagnostics/Analysis Capabilities
 
