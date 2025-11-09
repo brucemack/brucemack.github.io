@@ -3,7 +3,7 @@ title: Notes on AllStarLink Parrot Node 55553
 ---
 
 I've been using the 55553 parrot node quite a bit in my 
-development. I reached out to it's owner, Patrick Perdue 
+research and development. I reached out to it's owner, Patrick Perdue 
 (N2DYI) and he sent me this very informative note (below) that
 gives insight into how Asterisk and parrot technology
 work. He modestly claims that he's a "terrible programmer," but 
