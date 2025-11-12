@@ -28,11 +28,10 @@ duplicates and ensures that only licensed amateurs are allowed on the network.
 * The [documented IAX2 protocol](https://datatracker.ietf.org/doc/html/rfc5456), which allows ASL servers to communicate
 with each other across public/private IP networks.
 * The AllStarLink registration service that provides:
-  - The ability to resolve a node number to an IP address
-  and port number using documented APIs and/or DNS.
-  - A secure way to allow a node owner to update the IP 
-  address and port number of their node using documented 
-  APIs.
+  - The ability to resolve a node number to a network address
+  using documented APIs and/or DNS.
+  - A secure way to allow a node owner to update the network 
+  address of their node using documented APIs.
 * The AllStarLink monitoring service which provides:
   - The ability to view/query status information for 
   any node on the ASL network using defined APIs or
