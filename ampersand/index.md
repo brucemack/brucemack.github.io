@@ -9,26 +9,27 @@ hubs, direct audio connections, etc.).
 There are well established ways to get on AllStarLink using the [ASL3](https://allstarlink.github.io/) package and
 the [Asterisk](https://www.asterisk.org/) open-source PBX. Asterisk is a sophisticated system intended
 for a broad set of telephony applications. As such, it can be hard to understand, hard to configure, and hard to enhance. The Ampersand project is 
-focused on supporting a minimal set of capabilities needed by
-hams.
+focused on supporting a **minimal set of capabilities needed by
+hams.**
 
 # Conceptual Model of the Ampersand Server
 
-(Work in process, diagram needed)
+_(Work in process, diagram needed)_
 
 This section describes the conceptual model of the Ampersand 
 Server. Ampersand enables integration with the AllStarLink network (abbreviated ASL). For the purposes of this description, 
-ASL consists of the following parts:
+we define ASL as the following:
 
-* A node numbering namespace that assigns a unique identifier
+* A namespace that assigns a unique identifier
 for each node on the ASL network.
-* A robust process for issuing node numbers that prevents 
+* A robust process for issuing node numbers that tracks
+ownership, prevents 
 duplicates and ensures that only licensed amateurs are allowed on the network.
 * The [documented IAX2 protocol](https://datatracker.ietf.org/doc/html/rfc5456), which allows ASL servers to communicate
 with each other across public/private IP networks.
 * The AllStarLink registration service that provides:
   - The ability to resolve a node number to an IP address
-  and port number using documented APIs.
+  and port number using documented APIs and/or DNS.
   - A secure way to allow a node owner to update the IP 
   address and port number of their node using documented 
   APIs.
@@ -45,8 +46,8 @@ to make announcements and discuss the ASL network.
 * The [ability to collect donations](https://www.allstarlink.org/about/donate.php) necessary to support the infrastructure
 for this large network.
 
-Strictly speaking, the Asterisk PBX server is only one 
-implementation of the IAX2 protocol, but it is not a 
+Strictly speaking, the Asterisk PBX server is _one 
+implementation_ of the IAX2 protocol, but it is not a 
 required component of
 the ASL network. Any network participant who is a licensed 
 ham, [makes their donation](https://www.allstarlink.org/about/donate.php) to support the infrastructure, and follows all of the 
