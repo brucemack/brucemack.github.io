@@ -32,3 +32,4 @@ USB in/out should be provided.
 
 * [ASL DSP Notes](asl-dsp-notes)
 * [55553 Parrot](parrot-55553-notes)
+* [Notes on Audio Latency, Jitter, and Related Topics](jitter-management.md)
