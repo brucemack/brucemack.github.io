@@ -17,3 +17,10 @@ Here's [a standard document G.711 Appendix 1](https://www.itu.int/rec/dologin_pu
 
 * Audio level summary statistics are required. Please see [Notes on AllStarLink DSP](asl-dsp-notes) for more information. The one-second summary level information for
 USB in/out should be provided.
+
+## Networking Related
+
+* IP6?
+* Ability to provide an explicit network address for a node to support
+calls to nodes that are not in the ASL directory.
+
