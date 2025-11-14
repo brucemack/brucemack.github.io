@@ -43,6 +43,9 @@ and possibly adaptive jitter management.
 
 # References
 
+* [A paper that talks about skew (clock speed differences)](https://csperkins.org/publications/2000/07/icme2000/icme2000.pdf) from University College, London.
+* [A paper: "Assessing the quality of VoIP transmission affected by playout buffer scheme"](https://arrow.tudublin.ie/cgi/viewcontent.cgi?article=1037&context=commcon)
+* Paper: https://web.stanford.edu/~bgirod/pdfs/LiangMM2003.pdf
 * A [good/detailed reference paper](https://vocal.com/voip/jitter-buffer-for-voice-over-ip/) written 
 by VoCAL, a professional services firm in the VOIP space.
 * Mentioned in the VOCAL reference: "The key element is the PWSOLA box (Packet-based Waveform Similarity Overlap-Add) which controls the adaptive buffer operation."
