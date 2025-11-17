@@ -52,8 +52,19 @@ by VoCAL, a professional services firm in the VOIP space.
 * ALSA PCM timestamp stuff: https://docs.kernel.org/sound/designs/timestamping.html
 * A journal article about statistical management of jitter: https://www.embedded.com/reducing-voip-quality-degradation-when-network-conditions-are-unstable/
 
+* Relevant paper: https://www.etsi.org/deliver/etsi_es/202700_202799/202737/01.03.02_60/es_202737v010302p.pdf
+* Test signals: https://www.itu.int/rec/T-REC-P.501
+* Test standards: https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-P.501-199608-S!!PDF-E&type=items
 
 
 
+## EchoLink (Message From Jonathan K1RFD)
 
+Bruce,
 
+I don't recall all of the details, but here's what I do remember:
+
+The app looks at the sequence number of packets and is on the lookout for any gaps in the numbering, or out-of-sequence packets.
+If packets which are still in the buffer are out of sequence, they are re-arranged so as to be properly consecutive.
+If a gap in the numbering is detected, and the buffer is nearly empty, a packet of silence is inserted to take the place of the missing packet.
+One thing to be on the lookout for is non-consecutive numbering coming from conference servers. Some conference servers might pass along the original sequence numbers from each participant, rather than generating their own new ones, and if so, this will create a big discontinuity in between transmissions. But, by that time, the buffer is probably already empty due to the pause between transmissions.
