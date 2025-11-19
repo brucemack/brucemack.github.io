@@ -56,6 +56,8 @@ by VoCAL, a professional services firm in the VOIP space.
 * Test signals: https://www.itu.int/rec/T-REC-P.501
 * Test standards: https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-P.501-199608-S!!PDF-E&type=items
 
+PLC Stuff
+* https://www.isca-archive.org/interspeech_2022/liu22s_interspeech.pdf
 
 
 ## EchoLink (Message From Jonathan K1RFD)
