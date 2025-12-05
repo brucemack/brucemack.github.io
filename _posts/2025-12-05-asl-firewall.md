@@ -72,8 +72,11 @@ To be clear: the Registration Server is not in the middle of the call - this is 
 The Registration Server is just acting as a notification service for nodes stuck behind 
 restrictive firewalls.
 
-Also, I don't think the Registration Server would need to perform any database access to support
-this feature. A public-key encryption mechanism could be used to perform the necessary validations.
+Also, I don't think the Registration Server would need to perform any real-time database access 
+to support this feature. A public-key encryption mechanism could be used to perform the necessary validations. The Registration Server would need to periodically refresh its cache of 
+the private keys for all nodes on the network. It would also need to keep track of the 
+address and port most recently used for the regular POKE (step 1) for each active node 
+on the network.
 
 I'm specifically mentioning the IAX POKE frame type because that message is already in the IAX2
 protocol and is designed for this kind of situation. From the RFC:
@@ -98,5 +101,10 @@ We would need to send a few IEs in the POKE messages to support this feature. Sp
 * The POKE from 44444 to the Registration Server would need to contain the target address/port.
 * The POKE from the Registration Server to 55555 would need to contain the source
 address/port of the anticipated connection.
+
+With this mechanism in place, there should be no reason for special inbound firewall 
+rules. This lowers the friction to adding new nodes on the network.
+
+
 
 
