@@ -22,39 +22,40 @@ internet addresses/ports all the way down to the AllStarLink end-point. My imple
 IAX2 now supports IPv6 and it works well, with some important limitations. I'll provide a different write-up on that later.
 
 However, the problem isn't solved. The inflexible firewall still exists and the Verizon 4G/LTE 
-service doesn't allow ports to be opened from the outside in. For obvious reasons, the carriers design the mobile network to support clients, not servers. So even if everything was 
+service doesn't allow ports to be opened from the outside world. For obvious reasons, the carriers designed the mobile network to support clients, not servers. So even if everything was 
 running on IPv6, making a call into the node at our repeater site is still blocked.
 
 All of this reminded me of something from my EchoLink experience. I know people might quarrel 
 with this, but from my perspective the AllStarLink and EchoLink systems are **very similar** 
-from a technology standpoint. Both essentially borrow concepts/protocols from the telco world
+from a technology standpoint. Both essentially borrow concepts/protocols from the VOIP/PBX world
 and adapt them for ham radio use. Each system has its pros and cons. One of the big pros
 of EchoLink it its smooth(er) traversal of firewalls. I think the AllStarLink system can 
-borrow a proven technique from the EchoLink world.
+borrow a proven technique from EchoLink.
 
-Adapting the EchoLink 
-=====================
+Adapting the EchoLink OPEN/OVER Protocol
+========================================
 
 If you want to know how the EchoLink system works, [my reverse-engineering document](https://github.com/brucemack/microlink/blob/main/docs/el_supplement.md) may be
-the most detailed source of information. EchoLink doesn't enjoy an nice[RFC like IAX2](https://datatracker.ietf.org/doc/html/rfc5456). EchoLink has a central server called the "Addressing Server" that 
-plays a similar role to the AllStarLink registration server.
+the most detailed source of information. EchoLink doesn't enjoy an nice [RFC like IAX2](https://datatracker.ietf.org/doc/html/rfc5456). 
 
-One simple feature in the EchoLink Addressing Server makes firewall traversal simpler. I call this 
+EchoLink has a central server called the "Addressing Server" that 
+plays a similar role to the AllStarLink registration server. One simple feature in the EchoLink Addressing Server makes firewall traversal simpler. I call this 
 feature the ["OPEN/OVER protocol"](https://github.com/brucemack/microlink/blob/main/docs/el_supplement.md#echolink-pingopenover-protocol). 
 
-Understanding this mechanism requires an understanding of dynamic firewall capabilities known as [Stateful Packet Inspection](https://en.wikipedia.org/wiki/Stateful_firewall) and/or [UDP Hole Punching](https://en.wikipedia.org/wiki/UDP_hole_punching). A full explanation is beyond the scope of this document, but the key thing to understand is: on most "normal" internet routers sending a UDP packet to a remote address will **automatically grant temporary permission for the return path**. This temporary permission is sometimes called a "UDP hole" because it enables a traffic pattern that would not normally be possible. The hole being described here includes (a) a firewall opening to allow return traffic on the same port and (b) the routing entries needed to get the return traffic back to the right place on your LAN.
+Understanding this mechanism requires an understanding of dynamic firewall capabilities known as [Stateful Packet Inspection](https://en.wikipedia.org/wiki/Stateful_firewall) and/or [UDP Hole Punching](https://en.wikipedia.org/wiki/UDP_hole_punching). A full explanation is beyond the scope of this document, but the key thing to understand is: on most "normal" home/cellular internet routers sending a UDP packet to a remote address will **automatically grant temporary permission for the return path**. This temporary permission is sometimes called a "UDP hole" because it enables a traffic pattern that would not normally be possible. The hole being described here includes (a) a firewall opening to allow return traffic on the same port and (b) the routing entries needed to get the return traffic back to the right place on your LAN. Without this hole, two-way communication would not be possible.
 
-The UDP hole is transient and will only persist as long as the network path is actively being used. Once a path becomes inactive the UDP hole is closed.
+The UDP hole is transient and will only persist as long as the network path is actively being used. Once a path becomes inactive the UDP hole is closed. The lifetime of the hole depends 
+on the carriers and the traffic situation, but it's safe to assume that the holes will last through 15 seconds of inactivity.
 
-If node 44444 (from port 4569) wants to connect to node 55555 (to port 4569) it will be blocked by the firewall. However, if node 55555 just happens to send a message to node 44444 on the same ports, a 
-temporary opening will be created on node 55555's firewall for a minute or so. If node 44444 wants to 
-connect to node 55555 during that brief window, the connection goes through just fine.
+If node 44444 (from port 4569) wants to connect to node 55555 (to port 4569) it will be blocked by the firewall. However, if node 55555 _just happens_ to send a message to node 44444 on the same ports, a 
+temporary opening will be created on node 55555's firewall for a short time. If node 44444 wants to 
+connect to node 55555 during that window, the packets go through just fine.
 
 So, the "trick" is to ask node 55555 to make a brief (and content-free) connection to node 44444 in 
 advance of receiving a real call from node 44444. EchoLink performs this trick by leveraging their 
 addressing server.  AllStarLink could do the same thing, something like this:
 
-1. Node 55555 sends a POKE frame (on port 4569) to the Registration Server on a frequent basis.
+1. Node 55555 sends a POKE frame (on port 4569) to the Registration Server on a regular basis.
 This has the effect of keeping a UDP hole open on 55555's firewall for packets **FROM** the Registration 
 Server.
 2. When node 44444 wants to call node 55555, it first sends a POKE frame to the Registration Server
@@ -70,6 +71,9 @@ previous step.
 To be clear: the Registration Server is not in the middle of the call - this is not a proxy mechanism.
 The Registration Server is just acting as a notification service for nodes stuck behind 
 restrictive firewalls.
+
+Also, I don't think the Registration Server would need to perform any database access to support
+this feature. A public-key encryption mechanism could be used to perform the necessary validations.
 
 I'm specifically mentioning the IAX POKE frame type because that message is already in the IAX2
 protocol and is designed for this kind of situation. From the RFC:
@@ -88,5 +92,11 @@ One nice thing about the POKE is that it is processed by Asterisk (a) without ne
 any authentication and (b) without needing an active call. I've tested this on 
 several nodes on the existing network and they all respond with the PONG, as 
 required by the RFC.
+
+We would need to send a few IEs in the POKE messages to support this feature. Specifically:
+* The authentication tokens would be required
+* The POKE from 44444 to the Registration Server would need to contain the target address/port.
+* The POKE from the Registration Server to 55555 would need to contain the source
+address/port of the anticipated connection.
 
 
