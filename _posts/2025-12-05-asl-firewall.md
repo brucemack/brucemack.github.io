@@ -98,6 +98,10 @@ any authentication and (b) without needing an active call. I've tested this on
 several nodes on the existing network and they all respond with the PONG, as 
 required by the RFC.
 
+This scheme will actually be simpler than that used on EchoLink because AllStarLink
+only needs one port. EchoLink needs two ports, both of which need to be opened using
+this handshake.
+
 With this mechanism in place, there should be no reason for special inbound firewall 
 rules. This lowers the friction to adding new nodes on the network.
 
