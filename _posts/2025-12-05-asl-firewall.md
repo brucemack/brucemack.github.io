@@ -11,7 +11,7 @@ on a crazy project like this, the previous time was [my implementation of EchoLi
 I've been working on putting the [Wellesley Amateur Radio Society (W1TKZ)](https://ema.arrl.org/wellesley-amateur-radio-society/) repeater system on AllStarLink using a 4G/LTE cellular hotspot.
 I've never worked much with the mobile carriers so a lot of this is new to me. In particular,
 the hotspot that I am using (Verizon + Netgear LM1200) provides generally good service, but
-has the limitations of CGNAT on the IPv4 side. Bottom line: it's not easy to accept inbound 
+it has the known limitations of CGNAT on the IPv4 side. Bottom line: it's not easy to accept inbound 
 connections since (a) you don't have a static IP address and (b) the port numbers are NATed
 and (c) there's a rigid firewall with no concept of "port forwarding rules" like you might 
 have from a commercial or home ISP.
@@ -22,7 +22,7 @@ internet addresses/ports all the way down to the AllStarLink end-point. My imple
 IAX2 now supports IPv6 and it works well, with some important limitations. I'll provide a different write-up on that later.
 
 However, the problem isn't solved. The inflexible firewall still exists and the Verizon 4G/LTE 
-service doesn't allow ports to be opened from the outside world. For obvious reasons, the carriers designed the mobile network to support clients, not servers. So even if everything was 
+service doesn't allow ports to be opened from the outside world. For obvious reasons, the carriers designed the mobile network to support clients, not servers. So even now with everything 
 running on IPv6, making a call into the node at our repeater site is still blocked.
 
 All of this reminded me of something from my EchoLink experience. I know people might quarrel 
@@ -36,7 +36,7 @@ Adapting the EchoLink OPEN/OVER Protocol
 ========================================
 
 If you want to know how the EchoLink system works, [my reverse-engineering document](https://github.com/brucemack/microlink/blob/main/docs/el_supplement.md) may be
-the most detailed source of information. EchoLink doesn't enjoy an nice [RFC like IAX2](https://datatracker.ietf.org/doc/html/rfc5456). 
+the most detailed source of information. EchoLink doesn't enjoy an nice [RFC like IAX2](https://datatracker.ietf.org/doc/html/rfc5456), so everything needed to be figured out using Wireshark.
 
 EchoLink has a central server called the "Addressing Server" that 
 plays a similar role to the AllStarLink registration server. One simple feature in the EchoLink Addressing Server makes firewall traversal simpler. I call this 
@@ -47,12 +47,12 @@ Understanding this mechanism requires an understanding of dynamic firewall capab
 The UDP hole is transient and will only persist as long as the network path is actively being used. Once a path becomes inactive the UDP hole is closed. The lifetime of the hole depends 
 on the carriers and the traffic situation, but it's safe to assume that the holes will last through 15 seconds of inactivity.
 
-If node 44444 (from port 4569) wants to connect to node 55555 (to port 4569) it will be blocked by the firewall. However, if node 55555 _just happens_ to send a message to node 44444 on the same ports, a 
+If node 44444 (from port 4569) wants to connect to node 55555 (to port 4569) it will be blocked by the firewall. However, if node 55555 _just happens_ to send a UDP message to node 44444 on the same ports, a 
 temporary opening will be created on node 55555's firewall for a short time. If node 44444 wants to 
-connect to node 55555 during that window, the packets go through just fine.
+connect to node 55555 via IAX2 during that window, the packets go through just fine.
 
 So, the "trick" is to ask node 55555 to send a content-free message to node 44444 in 
-advance of receiving a real call from node 44444. EchoLink performs this trick by leveraging their 
+advance of receiving a real IAX2 call from node 44444. EchoLink performs this trick by leveraging their 
 addressing server.  AllStarLink could do the same thing, something like this:
 
 1. Node 55555 sends an PING to the Registration Server on a regular basis.
