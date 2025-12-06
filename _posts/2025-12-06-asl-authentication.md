@@ -3,8 +3,8 @@ title: Thoughts on AllStarLink Authentication
 date: 2025-12-06
 ---
 
-This structure combines the suggestion for how to do IP-address-independent
-authentication from Jason N8EI and the use of [www.qrz.com](https://www.qrz.com/) as a 
+This structure combines the design for IP-address-independent
+authentication from Jason N8EI and the suggested use of [www.qrz.com](https://www.qrz.com/) as a 
 ham authenticator from David Gleason NR9V.
 
 None of this has been endorsed by the ASL system, this is just a brainstorm 
@@ -13,12 +13,11 @@ ham/homebrewer ([KC1FSZ](https://www.qrz.com/db/KC1FSZ)) tinkering in this space
 
 ## One-Time Setup For Each New ASL Node
 
-* The user creates their own 32-byte secret seed and saves it somewhere safe. This is 
-a 32 octets, or a 64 character hex string. ED25519 would be a good choice. One example 
+* The user creates their own 32-byte secret and saves it somewhere safe. This is 
+a 64 character hex string. ED25519 would be a good choice. One example 
 of a place to create a
-seed is here: https://cyphr.me/ed25519_tool/ed.html. www.allstarlink.org might 
-also have a page for doing this.
-* The user uses their new secret seed to create a public key using an online tool, or 
+seed is here: [https://cyphr.me/ed25519_tool/ed.html](https://cyphr.me/ed25519_tool/ed.html). www.allstarlink.org could also create a page for doing this.
+* The user uses their new secret to create a public key using an online tool, or 
 www.allstarlink.org.
 * The user looks at the public list of AllStarLink nodes and chooses their own node 
 number following the official AllStarLink guidelines (i.e. can't start with a 3, 
@@ -34,12 +33,11 @@ follows this format:
 The visual format (i.e. fonts and colors) doesn't matter, so long as the text is structured
 this way. It looks like this:
 
-![QRZ Example](../assets/asl-qrz.jpg)
+![QRZ Example](/assets/asl-qrz.jpg)
 
 * The user goes to the www.allstarlink.org portal to a new page called "Refresh My Node 
 List," enters their call sign, and presses "Refresh."
-* The ASL portal reaches out to the appropriate page on QRZ (https://www.qrz.com/db/KC1FSZ
-in my case) and pulls the text of the page, extracting the ASL node numbers and public 
+* The ASL portal reaches out to the appropriate page on QRZ ([https://www.qrz.com/db/KC1FSZ](https://www.qrz.com/db/KC1FSZ) in my case) and pulls the text of the page, extracting the ASL node numbers and public 
 keys. This is a one-time-per-setup operation, *the QRZ page is not used on an ongoing/operational
 basis to validate ASL connections*.
 * The ASL portal checks its existing records:
@@ -52,7 +50,7 @@ basis to validate ASL connections*.
     error message and rejects the request.
 * At this point the public key of the node is registered in DNS under nnnn.nodes.allstarlink.org. That looks like this (disregard the w1tkz.net part):
 
-![DIG Example](../assets/asl-dig.jpg)
+![DIG Example](/assets/asl-dig.jpg)
 
 ## Ongoing Node Registration
 
@@ -109,6 +107,9 @@ registrations. Users just need to be instructed how to format their QRZ bio page
 * The ASL server concept goes a way. Each node registers its own address/port.
 * The HTTP registration API doesn't require HTTPS for security. This makes life easier for 
 developers of embedded platforms that might not have full-fledged TLS stacks available.
+* To the extent that ASL nodes leverage these new mechanisms, the run-time dependency 
+on the ASL infrastructure is reduced. Only DNS would be required to establish a connection
+(assuming the IP address of a node stays constant). This has resilience implications.
 
 ## Disadvantages
 
