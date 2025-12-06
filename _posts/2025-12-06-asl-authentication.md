@@ -28,7 +28,7 @@ that is already used. This is very similar in concept to the
 includes their node number and public key 
 follows this format:
 
-        ASL Node 61057 (7FDD773A09DD6024A15930EF2ED16F39DC62EECC06B4F68FA41AB9B22CA6BC69) located in Wellesley, MA.
+> ASL Node 61057 (7FDD773A09DD6024A15930EF2ED16F39DC62EECC06B4F68FA41AB9B22CA6BC69) located in Wellesley, MA.
 
 The visual format (i.e. fonts and colors) doesn't matter, so long as the text is structured
 this way. It looks like this:
@@ -44,7 +44,7 @@ basis to validate ASL connections*.
   - A black-list is enforced.
   - For any node that has never been seen before it is registered as "taken" with the user's 
     callsign and a DNS TXT record is created at nnnnn.nodes.allstarlink.org with the public key provided.
-  - For any node that is already taken by the user the DNS TXT record is updated with the new
+  - For any node that is already taken by the same user the DNS TXT record is updated with the new
     public key.
   - For any node that is already taken by ANOTHER user (i.e. a collision) the portal displays an 
     error message and rejects the request.
@@ -57,7 +57,7 @@ basis to validate ASL connections*.
 As today, nodes on the network periodically post their public-facing IP address
 and port number into register.allstarlink.org. 
 
-* Every 10 minutes each live node signs the IP address/port combination using the node's 
+* Every 10 minutes each live node signs their desired IP address/port combination using the node's 
 private key and posts it to register.allstarlink.org. 
 * The ASL registration server uses the node's public key to validate the signature. 
 * The ASL registration server checks the request against a black-list.
@@ -79,7 +79,7 @@ This is very straight-forward mutual PKI validation.
 to the called node. 
 * The called node signs the nonce with its private key and sends the signature back in an AUTHREP
 response.
-* The caller node validates the signature returned node using the called node's public key
+* The caller node validates the signature returned using the called node's public key
 found in DNS. 
 * Similarly, the called node creates a nonce and sends it to the caller node in an AUTHREQ challenge.
 * The caller node signs the nonce with its private key and sends the signature back in an AUTHREP
@@ -96,15 +96,16 @@ any address/port combination it wants to. This will eliminate many CGNAT-related
 for hams who operate their stations behind firewalls or at repeater sites with mobile/cellular
 hotspots.
 * Modern public-key authentication is used. No more passwords.
-* The process of deciding whether a user is a licensed ham has been delegated to QRZ.com. I would
-guess that most people have already gone through the QRZ.com setup process?
+* The process of validating whether a user is a licensed ham has been delegated to QRZ.com. I would
+guess that most people have already gone through the QRZ.com setup process? 
 * The ASL team doesn't need to administer node numbers. Users pick their own numbers (from a 
 range designated by the ASL team). This is very similar to IPv6 SLACC. The ASL system only 
 needs to prevent collisions. 
 * No special user interface portal needs to be developed for the maintenance of ASL node 
-registrations. Users just need to be instructed how to format their QRZ bio page.
+registrations. Users just need to be instructed how to format their QRZ bio page. This 
+should be less work for the ASL administration team.
 * The ASL system doesn't need to hold secrets in the database. Users hold their own secrets.
-* The ASL server concept goes a way. Each node registers its own address/port.
+* The ASL "server" concept goes a way. Each node registers its own address/port.
 * The HTTP registration API doesn't require HTTPS for security. This makes life easier for 
 developers of embedded platforms that might not have full-fledged TLS stacks available.
 * To the extent that ASL nodes leverage these new mechanisms, the run-time dependency 
@@ -116,15 +117,15 @@ on the ASL infrastructure is reduced. Only DNS would be required to establish a 
 * Some education will be required. Some hams might not be comfortable with PKI concepts
 and may not be comfortable managing their own keys.
 * Development would be required to support this. The ASL services would need to be added
-and the app_rpt would need to be modified to take advantage of the new capabilities.
+and app_rpt would need to be modified to take advantage of the new authentication capabilities.
 * If the selected PKI mechanism becomes mathematically compromised in the future the 
 entire system would become insecure.
 
 ## Practicalities
 
 * The existing ASL registration system/portal would need to stay up to support the existing nodes.
-* Perhaps new servers/nodes would be required to use the new system?
-* Pulls from QRZ would need to be governed to avoid creating measurable load on their system.
+* Perhaps new nodes would be required to use the new system?
+* Page pulls from QRZ would need to be governed to avoid creating measurable load on their system.
 An ASL user should be limited to a few "QRZ biography page pulls" a day.
 * ED25519 would be a good PKI choice given that the public keys are short and DNS-friendly.
 * QRZ already has a more structured database where users can store details like their 
