@@ -6,6 +6,7 @@ The purpose of this project is to provide hams with a simple
 way to link radios to the [AllStarLink](https://www.allstarlink.org) network. Radio-less applications are also supported (conference
 hubs, direct audio connections, etc.). 
 
+* (Will be replaced)
 {:toc}
 
 # Introduction
