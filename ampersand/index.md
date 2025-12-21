@@ -149,6 +149,41 @@ is closely related to PLC - more below.
 
 It’s hard to tell exactly how the jitter buffer inside of Asterisk works, but I don’t think it’s using any very advanced adaptive algorithms.
 
+### Notes on EchoLink
+
+I asked Jonathan K1RFD, the author of EchoLink, what his software does. Here's a 
+section of his reply:
+
+> Bruce,
+> 
+> I don't recall all of the details, but here's what I do remember:
+> 
+> The app looks at the sequence number of packets and is on the lookout for any gaps in the 
+> numbering, or out-of-sequence packets.
+>
+> If packets which are still in the buffer are out of sequence, they are re-arranged so as to be 
+> properly consecutive.
+>
+> If a gap in the numbering is detected, and the buffer is nearly empty, a packet of silence is 
+> inserted to take the place of the missing packet.
+> 
+> One thing to be on the lookout for is non-consecutive numbering coming from conference servers. Some 
+> conference servers might pass along the original sequence numbers from each participant, rather than
+> generating their own new ones, and if so, this will create a big discontinuity in between 
+> transmissions. But, by that time, the buffer is probably already empty due to the pause between
+> transmissions.
+
+### References
+
+* [A paper that talks about skew (clock speed differences)](https://csperkins.org/publications/2000/07/icme2000/icme2000.pdf) from University College, London.
+* [A paper: "Assessing the quality of VoIP transmission affected by playout buffer scheme"](https://arrow.tudublin.ie/cgi/viewcontent.cgi?article=1037&context=commcon)
+* Paper: https://web.stanford.edu/~bgirod/pdfs/LiangMM2003.pdf
+* A [good/detailed reference paper](https://vocal.com/voip/jitter-buffer-for-voice-over-ip/) written 
+by VoCAL, a professional services firm in the VOIP space.
+* Mentioned in the VOCAL reference: "The key element is the PWSOLA box (Packet-based Waveform Similarity Overlap-Add) which controls the adaptive buffer operation."
+* [ALSA PCM timestamp stuff](https://docs.kernel.org/sound/designs/timestamping.html)
+* [A journal article about statistical management of jitter](https://www.embedded.com/reducing-voip-quality-degradation-when-network-conditions-are-unstable/)
+
 ## Packet Loss Concealment (PLC)
 
 Packet Loss Concealment (PLC) algorithms are one of the tricky parts of this system. PLC is the thing that fills gaps in a transmission that result from lost or, more commonly, very late voice packets. There are a lot of research papers on this topic. At the moment Ampersand is using something called “ITU G.711 Appendix I” which is a pretty standard/simple method. From looking at the waveforms that come out of Asterisk during packet loss, I am pretty sure it uses something very similar.
