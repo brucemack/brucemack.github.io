@@ -127,6 +127,43 @@ on the list of things to ask IANA to update in their documentation.)
 
 Ampersand will favor 16K linear PCM whenever possible, falling back to G.711 uLaw (8K) as needed.
 
+## Jitter Buffer
+
+The "jitter buffer" is the subject of a lot of discussion on the AllStarLink board over the 
+years. After studying this quite a bit, I can now appreciate the challenge of making this 
+work efficiently. I’ve been focused on adaptive algorithms that do a good job of keeping the 
+latency through the system as short as possible. The method I’ve settled on at the moment is 
+called "Ramjee Algorithm 1" after a paper by Ramjee, Kurose, Towsley, and Schulzrinne called 
+"Adaptive Playout Mechanisms for Packetized Audio Applications in Wide-Area Networks". Unfortunately, 
+the paper is behind an IEEE paywall so I can’t link to a copy of it. This algorithm estimates 
+the variance of the flight times of the voice packets and dynamically adjusts the size of the 
+jitter buffer to be larger for very jittery transmissions and smaller for less jittery ones. It 
+works pretty well at keeping the delay as short as possible. 
+
+Simple adaptive jitter buffer algorithms wait until the end of a transmission before making an 
+adjustment to the delay. That’s usually OK, but there are times when the variance is spiking up and 
+the adaptive algorithm would really like to extend the delay a bit to increase margin and avoid 
+voice packet loss. Fancy VoIP systems have the ability to “slow down” a few frames of audio 
+mid-stream to allow the delay to be extended without creating an audible gap in the conversation. This 
+is closely related to PLC - more below.
+
+It’s hard to tell exactly how the jitter buffer inside of Asterisk works, but I don’t think it’s using any very advanced adaptive algorithms.
+
+## Packet Loss Concealment (PLC)
+
+Packet Loss Concealment (PLC) algorithms are one of the tricky parts of this system. PLC is the thing that fills gaps in a transmission that result from lost or, more commonly, very late voice packets. There are a lot of research papers on this topic. At the moment Ampersand is using something called “ITU G.711 Appendix I” which is a pretty standard/simple method. From looking at the waveforms that come out of Asterisk during packet loss, I am pretty sure it uses something very similar.
+
+It’s confusing because G.711 usually refers to the uLaw/ALaw CODECs, but G.711 Appendix I has nothing to do with these CODECs. This PLC method could be used for any CODEC. [The paper is in the public domain](https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.711-199909-I!AppI!PDF-E&type=items).
+
+The idea is to estimate the “pitch” of a short recent sample of the transmission and then generate a synthetic sound (more than just a tone) that matches that pitch during any gaps in the transmission. The
+G.711 algorithm "searches" for the best pitch by correlating recent history of the audio with a range 
+of time-lagged versions of itself. Interestingly, the search range is limited to 66.66 Hz to 200 Hz, 
+so the pitch estimation that comes out of this process is fairly low.
+
+There are a bunch of features in this spectral interpolation algorithm that try to smooth the transitions between real speech and synthetic speech to avoid discontinuities. The result is surprisingly effective as long as the gap is small <= 60ms. And it runs well on a small microcontroller. Unsurprisingly, a lot of the cutting edge work in this space is focused on AI-driven models that predict longer passages of missing audio. It won’t be long before it can finish our sentences ...
+
+The implementation of the G.711 approach can be found [in this Github repo](https://github.com/brucemack/itu-g711-codec).
+
 # Other Pages
 
 * [ASL DSP Notes](asl-dsp-notes)
