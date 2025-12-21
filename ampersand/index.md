@@ -100,7 +100,7 @@ that operate at lower bandwidths.
 The existing app_rpt/chan_simpleusb code appears to make the fundamental assumption that network 
 audio is sampled at 8kHz. The USB side of the system runs at a higher rate (48K), but the
 captured stream is immediately down-converted to 8K. It's possible that this restriction is 
-inherited from the Asterisk architecture somehwere, although I doubt it because the Asterisk code has 
+inherited from the Asterisk architecture somewhere, although I doubt it because the Asterisk PBX has 
 some 16K CODECs. 
 
 The Ampersand system avoids this limitation. The system supports a 16K audio mode that we're 
