@@ -1,0 +1,120 @@
+\chapter{ITU G711 CODEC/\+PLC}
+\hypertarget{index}{}\label{index}\index{ITU G711 CODEC/PLC@{ITU G711 CODEC/PLC}}
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+ This repo contains two implementations described in ITU G.\+711.
+
+
+\begin{DoxyItemize}
+\item A u\+Law CODEC
+\item A packet loss concealment (PLC) utility
+\end{DoxyItemize}
+
+Copyright (C) 2025, Bruce Mac\+Kinnon\hypertarget{index_autotoc_md0}{}\doxysection{\texorpdfstring{G.\+711 CODEC Overview}{G.711 CODEC Overview}}\label{index_autotoc_md0}
+This is a bare-\/bones implementation of an ITU G.\+711 u\+Law encoder/decoder. This can be used in embedded implementations. {\bfseries{There is no use of dynamic memory allocation in this code.}}
+
+The encode function converts a 16-\/bit PCM value to an 8-\/bit value. The decode function goes the other way.
+
+The A-\/\+Law CODEC has not been implemented yet.\hypertarget{index_autotoc_md1}{}\doxysubsection{\texorpdfstring{References}{References}}\label{index_autotoc_md1}
+
+\begin{DoxyItemize}
+\item \href{https://en.wikipedia.org/wiki/G.711}{\texttt{ Summary of the CODEC}}
+\item \href{https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.711-198811-I!!PDF-E&type=items}{\texttt{ Official ITU standard document}}
+\item \href{https://g711.org/}{\texttt{ Online file converter}} that understands G.\+711 files.
+\end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{G.\+711 Packet Loss Concealment Utility (\+PLC)}{G.711 Packet Loss Concealment Utility (PLC)}}\label{index_autotoc_md2}
+This is more complicated than the CODEC. Packet Loss Concealment systems are intended to improve the quality of digital/packetized voice applications by "{}smoothing over"{} playout gaps created by missing/late/out-\/of-\/order network packets. The G.\+711 standard is a fairly simple time-\/domain algorithm.
+
+The implementation is hard-\/coded to work on 16-\/bit PCM audio sampled at 8 k\+Hz with a 10ms (80 sample) frame size. This is easily used in 20ms frame systems by calling the good\+Frame() and bad\+Frame() functions twice for each 20ms audio frame.
+
+This would be a good fit for 8 k\+Hz applications like Echo\+Link or \href{https://www.allstarlink.org/}{\texttt{ All\+Star\+Link}}.
+
+The picture below illustrates the basic idea. The red trace is the input signal with a 20ms gap in the middle. The blue trace is the interpolated output. Notice that the blue trace matches the frequency and phase of the red trace even during the drop-\/out.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{plc1.jpg}
+\doxyfigcaption{PLC1}
+\end{DoxyImage}
+   
+
+The blue trace lags the red trace by about 4ms. This is the inherent delay of the G.\+711 PLC algorithm.
+
+Obviously this is a contrived example and things are more complicated using real voice.
+
+This example shows what the synthesized output looks like following the final good frame. Notice the attenuation ramp that fades out the final audio.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{plc2.jpg}
+\doxyfigcaption{PLC2}
+\end{DoxyImage}
+   
+
+This code is embedded-\/friendly. {\bfseries{There is no use of dynamic memory allocation anywhere in the code.}}
+
+There is work in process to eliminate much of the floating-\/point math in this code.\hypertarget{index_autotoc_md3}{}\doxysubsection{\texorpdfstring{References}{References}}\label{index_autotoc_md3}
+
+\begin{DoxyItemize}
+\item \href{https://en.wikipedia.org/wiki/Packet_loss_concealment}{\texttt{ Overview of the problem being solved}}
+\item \href{https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.711-199909-I!AppI!PDF-E&type=items}{\texttt{ Official ITU Standard Document}}
+\item \href{https://assets.amazon.science/41/c1/5650d1214f919a168f4b6c1ddfec/real-time-packet-loss-concealment-with-mixed-generative-and-predictive-model.pdf}{\texttt{ This is an Amazon paper}} that talks about a much more sophisticated algorithm. However, the introduction gives a lot of good background on how these systems work.
+\end{DoxyItemize}\hypertarget{index_autotoc_md4}{}\doxysubsection{\texorpdfstring{PLC Example Code}{PLC Example Code}}\label{index_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Plc_8h}{itu-\/g711-\/plc/Plc.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacekc1fsz}{kc1fsz}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{decode-cmd_8cpp_a217dbf8b442f20279ea00b898af96f52}{main}}(\textcolor{keywordtype}{int},\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**)\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Instantiate\ the\ PLC.\ There\ is\ state\ maintained}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ between\ calls.}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classkc1fsz_1_1Plc}{Plc}}\ plc;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ sampleRate\ =\ 8000;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ f\ =\ 85;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ omega\ =\ 2\ *\ 3.14156\ *\ f\ /\ sampleRate;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ phi\ =\ 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{unsigned}\ frameCount\ =\ 12;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ frameLen\ =\ 80;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ j\ =\ 0;\ j\ <\ frameCount;\ j++)\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ int16\_t\ inFrame[frameLen];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ int16\_t\ outFrame[frameLen];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Put\ a\ tone\ into\ the\ input\ frame\ from\ demonstration}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ i\ =\ 0;\ i\ <\ frameLen;\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ inFrame[i]\ =\ 0.5\ *\ 32767.0f\ *\ std::cos(phi);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ phi\ +=\ omega;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Here\ is\ where\ the\ PLC\ gets\ applied.\ Call}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ goodFrame()\ for\ a\ valid\ frame.\ Call\ badFrame()}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ when\ a\ frame\ is\ missing.\ In\ either\ case\ you'll}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ get\ an\ output\ frame\ that\ can\ sent\ along\ the\ }}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ audio\ pipeline.}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ few\ erasures\ to\ demonstrate\ interpolation}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ ==\ 4\ ||\ j\ ==\ 5\ ||\ j\ >=\ 8)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ plc.\mbox{\hyperlink{classkc1fsz_1_1Plc_a5522d68faa91a36916893736d89cb62c}{badFrame}}(outFrame,\ frameLen);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Otherwise\ feed\ good\ audio\ }}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ plc.\mbox{\hyperlink{classkc1fsz_1_1Plc_a82bcce1f3e75c0affa33b134c6b3c92b}{goodFrame}}(inFrame,\ outFrame,\ frameLen);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ display}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ i\ =\ 0;\ i\ <\ frameLen;\ i++)\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ inFrame[i]\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}}\ <<\ outFrame[i]\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \hypertarget{index_autotoc_md5}{}\doxysection{\texorpdfstring{Building/\+Installation Notes}{Building/Installation Notes}}\label{index_autotoc_md5}
+There is no build process provided. The assumption is that this source repo will be added as a submodule to a larger. 

@@ -1,0 +1,59 @@
+\doxysection{src/codec.cpp File Reference}
+\hypertarget{codec_8cpp}{}\label{codec_8cpp}\index{src/codec.cpp@{src/codec.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$cassert$>$}\newline
+{\ttfamily \#include "{}itu-\/g711-\/codec/codec.\+h"{}}\newline
+Include dependency graph for codec.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{codec_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacekc1fsz}{kc1fsz}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{codec_8cpp_a26f9d1a56a4f5cd7fe4fa650d8d1c70e}{S\+\_\+\+BIT\+\_\+\+MASK\+\_\+16}}~(0b1000000000000000)
+\item 
+\#define \mbox{\hyperlink{codec_8cpp_af0e8dae456063ee240e9cb9d054d0011}{S\+\_\+\+BIT\+\_\+\+MASK\+\_\+14}}~(0b10000000000000)
+\item 
+\#define \mbox{\hyperlink{codec_8cpp_a12bcdd11a8131a14625cbe0bb89e366f}{S\+\_\+\+BIT\+\_\+\+MASK\+\_\+8}}~(0b10000000)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacekc1fsz_af1114dc773b4ef63b4ea99ab83015775}{kc1fsz\+::out\+Binary}} (int16\+\_\+t a)
+\item 
+void \mbox{\hyperlink{namespacekc1fsz_a48520506970052ec18cc6fa4c614ca8a}{kc1fsz\+::out\+Binary}} (int8\+\_\+t a)
+\item 
+int16\+\_\+t \mbox{\hyperlink{namespacekc1fsz_abd95058bea0ac0b553d8599e310cf0db}{kc1fsz\+::decode\+\_\+ulaw}} (uint8\+\_\+t c)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespacekc1fsz_a5d07ebb31cbd7db0eb782b508a5e4b4a}{kc1fsz\+::encode\+\_\+ulaw}} (int16\+\_\+t a)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{codec_8cpp_af0e8dae456063ee240e9cb9d054d0011}\label{codec_8cpp_af0e8dae456063ee240e9cb9d054d0011} 
+\index{codec.cpp@{codec.cpp}!S\_BIT\_MASK\_14@{S\_BIT\_MASK\_14}}
+\index{S\_BIT\_MASK\_14@{S\_BIT\_MASK\_14}!codec.cpp@{codec.cpp}}
+\doxysubsubsection{\texorpdfstring{S\_BIT\_MASK\_14}{S\_BIT\_MASK\_14}}
+{\footnotesize\ttfamily \#define S\+\_\+\+BIT\+\_\+\+MASK\+\_\+14~(0b10000000000000)}
+
+\Hypertarget{codec_8cpp_a26f9d1a56a4f5cd7fe4fa650d8d1c70e}\label{codec_8cpp_a26f9d1a56a4f5cd7fe4fa650d8d1c70e} 
+\index{codec.cpp@{codec.cpp}!S\_BIT\_MASK\_16@{S\_BIT\_MASK\_16}}
+\index{S\_BIT\_MASK\_16@{S\_BIT\_MASK\_16}!codec.cpp@{codec.cpp}}
+\doxysubsubsection{\texorpdfstring{S\_BIT\_MASK\_16}{S\_BIT\_MASK\_16}}
+{\footnotesize\ttfamily \#define S\+\_\+\+BIT\+\_\+\+MASK\+\_\+16~(0b1000000000000000)}
+
+\Hypertarget{codec_8cpp_a12bcdd11a8131a14625cbe0bb89e366f}\label{codec_8cpp_a12bcdd11a8131a14625cbe0bb89e366f} 
+\index{codec.cpp@{codec.cpp}!S\_BIT\_MASK\_8@{S\_BIT\_MASK\_8}}
+\index{S\_BIT\_MASK\_8@{S\_BIT\_MASK\_8}!codec.cpp@{codec.cpp}}
+\doxysubsubsection{\texorpdfstring{S\_BIT\_MASK\_8}{S\_BIT\_MASK\_8}}
+{\footnotesize\ttfamily \#define S\+\_\+\+BIT\+\_\+\+MASK\+\_\+8~(0b10000000)}
+

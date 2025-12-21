@@ -1,0 +1,84 @@
+\doxysection{kc1fsz Namespace Reference}
+\hypertarget{namespacekc1fsz}{}\label{namespacekc1fsz}\index{kc1fsz@{kc1fsz}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classkc1fsz_1_1Plc}{Plc}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacekc1fsz_af1114dc773b4ef63b4ea99ab83015775}{out\+Binary}} (int16\+\_\+t a)
+\item 
+void \mbox{\hyperlink{namespacekc1fsz_a48520506970052ec18cc6fa4c614ca8a}{out\+Binary}} (int8\+\_\+t a)
+\item 
+int16\+\_\+t \mbox{\hyperlink{namespacekc1fsz_abd95058bea0ac0b553d8599e310cf0db}{decode\+\_\+ulaw}} (uint8\+\_\+t c)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespacekc1fsz_a5d07ebb31cbd7db0eb782b508a5e4b4a}{encode\+\_\+ulaw}} (int16\+\_\+t a)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+ITU G.\+711 CODEC Copyright (C) 2025, Bruce Mac\+Kinnon
+
+This program is free software\+: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see \href{https://www.gnu.org/licenses/}{\texttt{ https\+://www.\+gnu.\+org/licenses/}}.
+
+NOT FOR COMMERCIAL USE WITHOUT PERMISSION.
+
+ITU G.\+711 Appendix 1 PLC Algorithm Copyright (C) 2025, Bruce Mac\+Kinnon
+
+This program is free software\+: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see \href{https://www.gnu.org/licenses/}{\texttt{ https\+://www.\+gnu.\+org/licenses/}}. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacekc1fsz_abd95058bea0ac0b553d8599e310cf0db}\label{namespacekc1fsz_abd95058bea0ac0b553d8599e310cf0db} 
+\index{kc1fsz@{kc1fsz}!decode\_ulaw@{decode\_ulaw}}
+\index{decode\_ulaw@{decode\_ulaw}!kc1fsz@{kc1fsz}}
+\doxysubsubsection{\texorpdfstring{decode\_ulaw()}{decode\_ulaw()}}
+{\footnotesize\ttfamily int16\+\_\+t kc1fsz\+::decode\+\_\+ulaw (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{c }\end{DoxyParamCaption})}
+
+G.\+771 u\+Law Decoder Function
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The 8-\/bit character signal. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A signed 16-\/bit PCM audio sample. The decoder result is ending up in the high 16 bits of the value so keep dynamic range in mind. Output range is -\/32K to +32K. 
+\end{DoxyReturn}
+\Hypertarget{namespacekc1fsz_a5d07ebb31cbd7db0eb782b508a5e4b4a}\label{namespacekc1fsz_a5d07ebb31cbd7db0eb782b508a5e4b4a} 
+\index{kc1fsz@{kc1fsz}!encode\_ulaw@{encode\_ulaw}}
+\index{encode\_ulaw@{encode\_ulaw}!kc1fsz@{kc1fsz}}
+\doxysubsubsection{\texorpdfstring{encode\_ulaw()}{encode\_ulaw()}}
+{\footnotesize\ttfamily uint8\+\_\+t kc1fsz\+::encode\+\_\+ulaw (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{a }\end{DoxyParamCaption})}
+
+G.\+771 u\+Law Encoder Function
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Is a 16-\/bit signed PCM audio sample. Range is -\/32K to +32K. The encoder only looks at the high 14 bits of the value so keep dynamic range in mind. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The 8-\/bit character signal. 
+\end{DoxyReturn}
+\Hypertarget{namespacekc1fsz_af1114dc773b4ef63b4ea99ab83015775}\label{namespacekc1fsz_af1114dc773b4ef63b4ea99ab83015775} 
+\index{kc1fsz@{kc1fsz}!outBinary@{outBinary}}
+\index{outBinary@{outBinary}!kc1fsz@{kc1fsz}}
+\doxysubsubsection{\texorpdfstring{outBinary()}{outBinary()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void kc1fsz\+::out\+Binary (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{a }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacekc1fsz_a48520506970052ec18cc6fa4c614ca8a}\label{namespacekc1fsz_a48520506970052ec18cc6fa4c614ca8a} 
+\index{kc1fsz@{kc1fsz}!outBinary@{outBinary}}
+\index{outBinary@{outBinary}!kc1fsz@{kc1fsz}}
+\doxysubsubsection{\texorpdfstring{outBinary()}{outBinary()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void kc1fsz\+::out\+Binary (\begin{DoxyParamCaption}\item[{int8\+\_\+t}]{a }\end{DoxyParamCaption})}
+

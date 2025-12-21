@@ -1,0 +1,89 @@
+\doxysection{kc1fsz\+::Plc Class Reference}
+\hypertarget{classkc1fsz_1_1Plc}{}\label{classkc1fsz_1_1Plc}\index{kc1fsz::Plc@{kc1fsz::Plc}}
+
+
+{\ttfamily \#include $<$Plc.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classkc1fsz_1_1Plc_a4377551bfe0e244e1757821c5b1d8f63}{set\+Sample\+Rate}} (unsigned hz)
+\item 
+void \mbox{\hyperlink{classkc1fsz_1_1Plc_af88ac957e4d21aea09347196760cc9fa}{reset}} ()
+\item 
+void \mbox{\hyperlink{classkc1fsz_1_1Plc_a82bcce1f3e75c0affa33b134c6b3c92b}{good\+Frame}} (const int16\+\_\+t \texorpdfstring{$\ast$}{*}in\+Frame, int16\+\_\+t \texorpdfstring{$\ast$}{*}out\+Frame, unsigned frame\+Len)
+\item 
+void \mbox{\hyperlink{classkc1fsz_1_1Plc_a5522d68faa91a36916893736d89cb62c}{bad\+Frame}} (int16\+\_\+t \texorpdfstring{$\ast$}{*}out\+Frame, unsigned frame\+Len)
+\item 
+unsigned \mbox{\hyperlink{classkc1fsz_1_1Plc_ad7c6e2eb34dc6f4d3dc425aed1fc3405}{get\+Pitch\+Wavelength}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Performs audio packet loss concealment using the \href{https://www.itu.int/rec/T-REC-G.711/}{\texttt{ ITU G.\+711 Appendix I}} method.
+
+At the present time this implementation assumes 16 bit signed PCM, and 10ms frame size. Only 8k and 16k sample rates are supported. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classkc1fsz_1_1Plc_a5522d68faa91a36916893736d89cb62c}\label{classkc1fsz_1_1Plc_a5522d68faa91a36916893736d89cb62c} 
+\index{kc1fsz::Plc@{kc1fsz::Plc}!badFrame@{badFrame}}
+\index{badFrame@{badFrame}!kc1fsz::Plc@{kc1fsz::Plc}}
+\doxysubsubsection{\texorpdfstring{badFrame()}{badFrame()}}
+{\footnotesize\ttfamily void kc1fsz\+::\+Plc\+::bad\+Frame (\begin{DoxyParamCaption}\item[{int16\+\_\+t \texorpdfstring{$\ast$}{*}}]{out\+Frame,  }\item[{unsigned}]{frame\+Len }\end{DoxyParamCaption})}
+
+Call this each time a 10ms frame is missed. Output will still be provided using the relevant PLC algorithm.
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame\+Len} & Depends on the sample rate, but must be exactly 10ms of data \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classkc1fsz_1_1Plc_ad7c6e2eb34dc6f4d3dc425aed1fc3405}\label{classkc1fsz_1_1Plc_ad7c6e2eb34dc6f4d3dc425aed1fc3405} 
+\index{kc1fsz::Plc@{kc1fsz::Plc}!getPitchWavelength@{getPitchWavelength}}
+\index{getPitchWavelength@{getPitchWavelength}!kc1fsz::Plc@{kc1fsz::Plc}}
+\doxysubsubsection{\texorpdfstring{getPitchWavelength()}{getPitchWavelength()}}
+{\footnotesize\ttfamily unsigned kc1fsz\+::\+Plc\+::get\+Pitch\+Wavelength (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+The current pitch wavelength in samples as estimated at the start of the last erasure. 
+\end{DoxyReturn}
+\Hypertarget{classkc1fsz_1_1Plc_a82bcce1f3e75c0affa33b134c6b3c92b}\label{classkc1fsz_1_1Plc_a82bcce1f3e75c0affa33b134c6b3c92b} 
+\index{kc1fsz::Plc@{kc1fsz::Plc}!goodFrame@{goodFrame}}
+\index{goodFrame@{goodFrame}!kc1fsz::Plc@{kc1fsz::Plc}}
+\doxysubsubsection{\texorpdfstring{goodFrame()}{goodFrame()}}
+{\footnotesize\ttfamily void kc1fsz\+::\+Plc\+::good\+Frame (\begin{DoxyParamCaption}\item[{const int16\+\_\+t \texorpdfstring{$\ast$}{*}}]{in\+Frame,  }\item[{int16\+\_\+t \texorpdfstring{$\ast$}{*}}]{out\+Frame,  }\item[{unsigned}]{frame\+Len }\end{DoxyParamCaption})}
+
+Call this each time a good 10m frame of audio is received. Each call will consume frame\+Len samples and will produce another frame\+Len samples.
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Frame} & The input PCM data \\
+\hline
+{\em out\+Frame} & The output PCM data \\
+\hline
+{\em frame\+Len} & Depends on the sample rate, but must be exactly 10ms of data \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classkc1fsz_1_1Plc_af88ac957e4d21aea09347196760cc9fa}\label{classkc1fsz_1_1Plc_af88ac957e4d21aea09347196760cc9fa} 
+\index{kc1fsz::Plc@{kc1fsz::Plc}!reset@{reset}}
+\index{reset@{reset}!kc1fsz::Plc@{kc1fsz::Plc}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void kc1fsz\+::\+Plc\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns to the initial state. It\textquotesingle{}s important to call this when changing the context of the PLC (ex\+: moving to a new call) since there is a bit of state for each frame left behind. \Hypertarget{classkc1fsz_1_1Plc_a4377551bfe0e244e1757821c5b1d8f63}\label{classkc1fsz_1_1Plc_a4377551bfe0e244e1757821c5b1d8f63} 
+\index{kc1fsz::Plc@{kc1fsz::Plc}!setSampleRate@{setSampleRate}}
+\index{setSampleRate@{setSampleRate}!kc1fsz::Plc@{kc1fsz::Plc}}
+\doxysubsubsection{\texorpdfstring{setSampleRate()}{setSampleRate()}}
+{\footnotesize\ttfamily void kc1fsz\+::\+Plc\+::set\+Sample\+Rate (\begin{DoxyParamCaption}\item[{unsigned}]{hz }\end{DoxyParamCaption})}
+
+Changes the sample rate and causes a reset. 
+\begin{DoxyParams}{Parameters}
+{\em hz} & Audio sample rate in Hertz. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/itu-\/g711-\/plc/\mbox{\hyperlink{Plc_8h}{Plc.\+h}}\item 
+src/\mbox{\hyperlink{Plc_8cpp}{Plc.\+cpp}}\end{DoxyCompactItemize}
