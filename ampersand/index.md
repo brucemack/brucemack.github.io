@@ -114,7 +114,7 @@ down/up sampling process. I've used a 45-tap FIR filter designed using [the Park
 The ideal cut-off frequency of this filter should be at 8kHz, but there is a transition band. I've 
 started the transition at 7kHz. Here's the transfer function of the filter used in the system:
 
-![16K LPF](assets/hd-lpf.jpg)
+![16K LPF](assets/hd-lpf.jpg){: width="400" }
 
 This looks decently flat in the passband, rolls off steeply, and attenuates anything that could create aliases.
 

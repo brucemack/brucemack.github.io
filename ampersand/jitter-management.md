@@ -41,17 +41,6 @@ to refer to a period of audio activity.
 This RFC also talks about "playout delay," which is closely related to jitter buffering
 and possibly adaptive jitter management.
 
-# References
-
-* [A paper that talks about skew (clock speed differences)](https://csperkins.org/publications/2000/07/icme2000/icme2000.pdf) from University College, London.
-* [A paper: "Assessing the quality of VoIP transmission affected by playout buffer scheme"](https://arrow.tudublin.ie/cgi/viewcontent.cgi?article=1037&context=commcon)
-* Paper: https://web.stanford.edu/~bgirod/pdfs/LiangMM2003.pdf
-* A [good/detailed reference paper](https://vocal.com/voip/jitter-buffer-for-voice-over-ip/) written 
-by VoCAL, a professional services firm in the VOIP space.
-* Mentioned in the VOCAL reference: "The key element is the PWSOLA box (Packet-based Waveform Similarity Overlap-Add) which controls the adaptive buffer operation."
-* ALSA PCM timestamp stuff: https://docs.kernel.org/sound/designs/timestamping.html
-* A journal article about statistical management of jitter: https://www.embedded.com/reducing-voip-quality-degradation-when-network-conditions-are-unstable/
-
 * Relevant paper: https://www.etsi.org/deliver/etsi_es/202700_202799/202737/01.03.02_60/es_202737v010302p.pdf
 * Test signals: https://www.itu.int/rec/T-REC-P.501
 * Test standards: https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-P.501-199608-S!!PDF-E&type=items
@@ -60,13 +49,3 @@ PLC Stuff
 * https://www.isca-archive.org/interspeech_2022/liu22s_interspeech.pdf
 
 
-## EchoLink (Message From Jonathan K1RFD)
-
-Bruce,
-
-I don't recall all of the details, but here's what I do remember:
-
-The app looks at the sequence number of packets and is on the lookout for any gaps in the numbering, or out-of-sequence packets.
-If packets which are still in the buffer are out of sequence, they are re-arranged so as to be properly consecutive.
-If a gap in the numbering is detected, and the buffer is nearly empty, a packet of silence is inserted to take the place of the missing packet.
-One thing to be on the lookout for is non-consecutive numbering coming from conference servers. Some conference servers might pass along the original sequence numbers from each participant, rather than generating their own new ones, and if so, this will create a big discontinuity in between transmissions. But, by that time, the buffer is probably already empty due to the pause between transmissions.
