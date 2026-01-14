@@ -79,7 +79,7 @@ to make announcements and discuss the ASL network.
 * The [ability to collect donations](https://www.allstarlink.org/about/donate.php) necessary to support the infrastructure
 for this large network.
 
-Strictly speaking, the Asterisk PBX server is _one 
+Strictly speaking, the Asterisk PBX server is _just one 
 implementation_ of the IAX2 protocol, but it is not a 
 required component of
 the ASL network. Any network participant who is a licensed 
