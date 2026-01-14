@@ -31,7 +31,7 @@ My hope is that Ampersand will provide a better platform for experimental work.
 
 # Users/Installation
 
-Please see [The Ampersand ServerUser's Guide](https://github.com/Ampersand-ASL/amp-server/blob/main/docs/user.md) for installation instructions.
+Please see [The Ampersand Server User's Guide](https://github.com/Ampersand-ASL/amp-server/blob/main/docs/user.md) for installation instructions.
 
 # Software
 
