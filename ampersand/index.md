@@ -58,7 +58,8 @@ of the interaction between major components of the AMP Server are achieved throu
 an asynchronous Message-passing interface.
 
 The use of multi-threading is kept to an absolute minimum. There are two reasons for
-this. First, I want to be able to run this code on bare-metal micro-controllers that 
+this. First, I want to be able to run large parts of this code (not 100%) on 
+bare-metal micro-controllers that 
 lack a thread primitive. But more importantly, **I have spent too many years of my
 life debugging complex (and often non-reproducible) bugs related to concurrency errors.** 
 The best advice I've seen to improve the reliability of multi-threaded architectures
@@ -80,7 +81,7 @@ Notice a few things:
 lock and some things that don't. All developers need to be on the 
 same page, which can be hard in a distributed/open-source team. One missed 
 lock and you might have a strange bug.
-* Certain locks cover certain resource. Depending on how many 
+* Certain locks cover certain resources. Depending on how many 
 shared resources there are this could be very complicated to keep track of.
 * It's very easy to create a situation like the one shown on line 2054 
 of this function. Notice that a lock is acquired at line 2039 but the 
@@ -92,7 +93,7 @@ file that came up when I started searching for calls to the lock/unlock function
 
 On a similar note, the use of dynamic memory allocation is kept to a minimum.
 First, I want to be able to run this code on bare-metal micro-controllers that 
-lacks dynamic memory. But more importantly, **I have spent too many years of my
+lack dynamic memory. But more importantly, **I have spent too many years of my
 life debugging complex (and often non-reproducible) bugs related to 
 memory errors.** 
 
