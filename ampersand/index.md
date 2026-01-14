@@ -42,9 +42,64 @@ integrated on the develop branch.
 
 I accept PRs to the develop branch.
 
-## License
+## Software License
 
 Ampersand is released under the [GNU Public License](https://www.gnu.org/licenses/gpl-3.0.en.html). 
+
+## A Few Notes on Project Software Philosophy
+
+This is a C++ project. However, you'll note that there are no deep/complex
+inheritance hierarchies. Also, the use of templates/meta-programming is kept 
+to a minimum. Abstract interfaces ([GoF Facade Pattern](https://en.wikipedia.org/wiki/Facade_pattern)) are used as much as possible.
+
+Linkages between the major components is kept as loose as possible. This is particularly
+relevant in an application like this that deals heavily with networking. Most 
+of the interaction between major components of the AMP Server are achieved through 
+an asynchronous Message-passing interface.
+
+The use of multi-threading is kept to an absolute minimum. There are two reasons for
+this. First, I want to be able to run this code on bare-metal micro-controllers that 
+lack a thread primitive. But more importantly, **I have spent too many years of my
+life debugging complex (and often non-reproducible) bugs related to concurrency errors.** 
+The best advice I've seen to improve the reliability of multi-threaded architectures
+is: **just don't do it!** 
+
+Being reasonable, there are some places where threads
+are unavoidable, or at least the work-around is very difficult. In this system, 
+**the only interaction between threads should be via Message-passing through a 
+thread-safe queue.** Anything else is asking for problems that I don't want to 
+spend time debugging. Given this philosophy, there should be no mutexes or other 
+synchronization objects in the code.
+
+The code below provide a good example of my general concern:
+
+![MT Error](assets/mt-error.jpg)
+
+Notice a few things:
+* There are some things in this function that need to happen under
+lock and some things that don't. All developers need to be on the 
+same page, which can be hard in a distributed/open-source team. One missed 
+lock and you might have a strange bug.
+* Certain locks cover certain resource. Depending on how many 
+shared resources there are this could be very complicated to keep track of.
+* It's very easy to create a situation like the one shown on line 2054 
+of this function. Notice that a lock is acquired at line 2039 but the 
+function **possibly** returns at line 2054 without releasing the lock. 
+Is this a bug? 
+
+**NOTE:** I'm not being critical of app_rpt or chan_simpleusb here, this is just the first 
+file that came up when I started searching for calls to the lock/unlock functions.
+
+On a similar note, the use of dynamic memory allocation is kept to a minimum.
+First, I want to be able to run this code on bare-metal micro-controllers that 
+lacks dynamic memory. But more importantly, **I have spent too many years of my
+life debugging complex (and often non-reproducible) bugs related to 
+memory errors.** 
+
+There are certain parts of the system that do not run on the microcontroller
+platform and those parts will use things like std::string, std::vector, that
+use dynamic memory internally. But much of the core system does everything 
+on the stack.
 
 # Conceptual Model of the Ampersand Server
 
