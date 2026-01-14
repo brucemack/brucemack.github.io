@@ -1,0 +1,97 @@
+\doxysection{Plc.\+h}
+\hypertarget{Plc_8h_source}{}\label{Plc_8h_source}\index{src/itu-\/g711-\/plc/Plc.h@{src/itu-\/g711-\/plc/Plc.h}}
+\mbox{\hyperlink{Plc_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacekc1fsz}{kc1fsz}}\ \{}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classkc1fsz_1_1Plc}{Plc}}\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classkc1fsz_1_1Plc_a4377551bfe0e244e1757821c5b1d8f63}{setSampleRate}}(\textcolor{keywordtype}{unsigned}\ hz);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classkc1fsz_1_1Plc_af88ac957e4d21aea09347196760cc9fa}{reset}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classkc1fsz_1_1Plc_a82bcce1f3e75c0affa33b134c6b3c92b}{goodFrame}}(\textcolor{keyword}{const}\ int16\_t*\ inFrame,\ int16\_t*\ outFrame,\ \textcolor{keywordtype}{unsigned}\ frameLen);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classkc1fsz_1_1Plc_a5522d68faa91a36916893736d89cb62c}{badFrame}}(int16\_t*\ outFrame,\ \textcolor{keywordtype}{unsigned}\ frameLen);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classkc1fsz_1_1Plc_ad7c6e2eb34dc6f4d3dc425aed1fc3405}{getPitchWavelength}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ These\ constants\ are\ used\ to\ pre-\/allocate\ the\ largest\ possible\ work\ }}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ ares.\ They\ have\ been\ scaled\ assuming\ a\ maximum\ sample\ rate\ of\ 16K.}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ IMPORTANT:\ Must\ be\ evenly\ divisible\ by\ 4.}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ MAX\_PITCH\_PERIOD\_LEN\ =\ 120\ *\ 2;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ MAX\_HIST\_BUF\_LEN\ =\ MAX\_PITCH\_PERIOD\_LEN\ *\ 3.25;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \_computePitchPeriod();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00096\ \ \ \ \ int16\_t\ \_getSyntheticSample();}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{float}\ sampleRate;}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ consecutive\ missing\ frames\ seen}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \_erasureCount\ =\ 0;}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ Used\ for\ creating\ the\ down\ ramp\ during\ synthesis.\ This}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ is\ the\ current\ attenuation\ level:}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{float}\ \_attenuationRamp\ =\ 1.0;}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ This\ is\ the\ amount\ the\ attenuation\ should\ be\ adjusted}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ on\ each\ sample:}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{float}\ \_attenuationRampDelta\ =\ 0.0;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ History\ is\ 48.75\ ms.\ This\ is\ 3.25\ maximum\ pitch\ periods.}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ (The\ lowest\ frequency\ is\ 66\ Hz,\ which\ is\ 120\ samples\ at\ 8kHz.\ }}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ 120\ *\ 3.25=390)}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \_histBufLen;}
+\DoxyCodeLine{00112\ \ \ \ \ int16\_t\ \_histBuf[MAX\_HIST\_BUF\_LEN];}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ This\ is\ used\ during\ synthesis.\ Points\ to\ the\ current}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{//\ synthesized\ sample.\ This\ moves\ across\ the\ pitch\ }}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ buffer\ in\ circular\ fashion.}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \_pitchBufPtr\ =\ 0;}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//\ These\ are\ set\ by\ the\ pitch\ determination\ function.}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ The\ dominant\ pitch\ wavelength\ in\ samples}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \_pitchWavelen\ =\ 0;}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ 1/4\ of\ above\ (used\ a\ lot)}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \_quarterPitchWavelen\ =\ 0;}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ wavelengths\ in\ the\ synthesis.\ This\ depends\ }}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ on\ how\ many\ erasures\ have\ happened\ so\ far.}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \_pitchWaveCount\ =\ 1;}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ samples\ in\ each\ 10ms\ block\ at\ 8kHz}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \_frameLen;}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{//\ The\ period\ of\ a\ 66\ Hz\ pitch\ -\/\ the\ lowest\ fundamental}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{//\ we\ will\ track.}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ pitchPeriodMax;\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ The\ period\ of\ a\ 200\ Hz\ pitch\ -\/\ the\ highest\ fundamental}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ we\ will\ track.}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ pitchPeriodMin;\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//\ The\ fixed\ delay\ in\ the\ system\ as\ a\ result\ of\ the\ lag}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ between\ input\ and\ output.}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \_outputLag;}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ The\ size\ of\ the\ blend\ window.}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \_blendCoefLen;}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//\ The\ length\ of\ the\ correlation\ period\ used\ when\ searching\ for\ the\ pitch}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ corrLen;}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ minPower\ =\ 250;}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ The\ first\ search\ is\ coarse\ to\ save\ time}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \_firstSearchStep;}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ The\ pitch\ buffer\ is\ long\ enough\ for\ three\ complete\ cycles}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{//\ at\ the\ lowest\ pitch\ frequency.}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \_pitchBufLen;}
+\DoxyCodeLine{00147\ \ \ \ \ int16\_t\ \_pitchBuf[MAX\_HIST\_BUF\_LEN];}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{//\ Holds\ the\ blend\ curve\ that\ is\ used\ to\ transition\ between\ }}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ discontinuous\ signals.\ This\ buffer\ goes\ from\ 0.0-\/>1.0\ so}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ you\ will\ need\ subtract\ it\ from\ 1.0\ to\ produce\ the\ ramp-\/down.}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{float}\ \_blendCoef[MAX\_PITCH\_PERIOD\_LEN\ /\ 4];}
+\DoxyCodeLine{00152\ \};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \}}
+\DoxyCodeLine{00155\ }
+
+\end{DoxyCode}

@@ -89,6 +89,24 @@ to be younger AT NOBOs partaking in this particular recreation. Not so much amon
 the AT SOBOs, and I never saw it again after I passed north of the Maine Junction where 
 the LT and AT split. 
 
+Hiking Alone?
+-------------
+
+I "hiked alone" until the last three days when a friend joined me for the final push to 
+Canada. But "alone" isn't really alone, at least not in August on the LT. I encountered a lot
+of north-bound and south-bound hikers on the trail. I doubt that I ever went more than 
+two hours without passing or being passed by some other hiker in the south, 
+or perhaps four hours at most in the north. Occasionally I was the first at a shelter
+or tent-site but someone else would always roll in before the end of the day. 99% of the 
+folks I encountered we very friendly. The other 1% probably just weren't getting enough 
+calories. 
+
+As I moved north I started to see some of the same people on a regular basis which was
+a great feature of the trip. It's surprising how much more quickly/easily community forms
+on the trail vs. the real world.
+
+So if you're worried about doing the trail by yourself, don't be.  You'll be fine.
+
 Pace/Itinerary 
 --------------
 
@@ -475,8 +493,8 @@ Food
 
 I didn't do anything particularly unusual here. I tried hard to maintain my
 calories during the trip but found that to be very difficult. From my experience,
-the spacing of the towns leaves no reason to be carrying more than 4 days of 
-food at any given time.
+the spacing of the towns leaves **no reason to be carrying more than 4 days of food** at 
+any given time. 
 
 I lost about 8 pounds during the hike, so obviously I wasn't eating quite enough.
 
