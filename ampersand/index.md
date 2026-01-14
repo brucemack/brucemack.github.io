@@ -2,9 +2,18 @@
 title: Ampersand Linking Project
 ---
 
-The purpose of this project is to provide hams with a simple 
-way to link radios to the [AllStarLink](https://www.allstarlink.org) network. Radio-less applications are also supported (conference
+The purposes of this project:
+* To provide hams with a simple way to link radios to 
+the [AllStarLink](https://www.allstarlink.org) network. Radio-less applications are also supported (conference
 hubs, direct audio connections, etc.). 
+* To provide a platform for research and experimentation to advance the state-of-the-art
+around ham radio linking.
+* To maintain compatibility with the rest of the ASL ecosystem. This **is not** a fork
+of ASL or an attempt to create a parallel network.
+
+This project was originated by [Bruce MacKinnon (KC1FSZ)](https://www.qrz.com/db/KC1FSZ)
+of the [Wellesley Amateur Radio Society](https://ema.arrl.org/wellesley-amateur-radio-society/) in Wellesley, MA. Please reach out using the e-mail address provided in QRZ. Or you can try me on AllStar 
+node 672730, as long as I'm not in the middle of a compile.
 
 * (Will be replaced with table of contents)
 {:toc}
@@ -16,7 +25,24 @@ the [Asterisk](https://www.asterisk.org/) open-source PBX. Asterisk is a sophist
 for a broad set of telephony applications. As such, it can be hard to understand, hard to configure, and hard to enhance. The Ampersand project is 
 focused on supporting a **minimal set of capabilities needed by hams.**
 
+The Ampersand project is not attempting to replace Asterisk. There are 1000's of 
+successful Asterisk installations being used by hams and that isn't expected to change.
+My hope is that Ampersand will provide a better platform for experimental work.
+
+# Users/Installation
+
+Please see [The Ampersand ServerUser's Guide](https://github.com/Ampersand-ASL/amp-server/blob/main/docs/user.md) for installation instructions.
+
 # Software
+
+The source code for the system is developed in [this set of Github repos](https://github.com/Ampersand-ASL). The main branch is production/stable. Development activity is 
+integrated on the develop branch.
+
+I accept PRs to the develop branch.
+
+## License
+
+Ampersand is released under the [GNU Public License](https://www.gnu.org/licenses/gpl-3.0.en.html). 
 
 # Conceptual Model of the Ampersand Server
 
