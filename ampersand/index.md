@@ -12,8 +12,10 @@ around ham radio linking.
 of ASL or an attempt to create a parallel network.
 
 This project was originated in October of 2025 by [Bruce MacKinnon (KC1FSZ)](https://www.qrz.com/db/KC1FSZ)
-of the [Wellesley Amateur Radio Society](https://ema.arrl.org/wellesley-amateur-radio-society/) in Wellesley, MA. Please reach out using the e-mail address provided in QRZ. Or you can try me on AllStar 
-node 672730, as long as I'm not in the middle of a compile.
+of the [Wellesley Amateur Radio Society](https://ema.arrl.org/wellesley-amateur-radio-society/) in Wellesley, MA. Please reach out using the e-mail address provided in QRZ. You can try me on AllStar 
+node 672730, as long as I'm not in the middle of a compile. [I'm also on LinkedIn](https://www.linkedin.com/in/bruce-mackinnon-7256314/).
+
+The [GitHub project is here](https://github.com/Ampersand-ASL).
 
 * (Will be replaced with table of contents)
 {:toc}
