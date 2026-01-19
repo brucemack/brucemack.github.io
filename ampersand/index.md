@@ -233,7 +233,7 @@ setting for `rxondelay=` also
 has the undesirable effect of cutting off the beginning of a transmission.
 
 I've been working on a more sophisticated kerchunk filter (KF). I have a new
-module in the audio pipeline that watches all of the audio frames that go 
+module in the Ampersand audio pipeline that watches all of the audio frames that go 
 by. If an audio
 spurt starts after an extended period of silence (let's assume 1 minute, but configurable) new frames are queued internally and are not passed forward in the pipeline.  If the spurt ends quickly (let's assume < 2 seconds, but configurable) those queued
 frames are discarded under the assumption that it's a kerchunk or some other transient. If the spurt lasts longer than 2s then it is considered to be legit and the queue starts playing out, with 2s of latency of course. Once the KF queue is drained it is bypassed and all subsequent audio is passed right through until another extended silence occurs. So basically, you are 2s behind only until that first spurt has been played out, and then no more delay. Hopefully it's clear that none of the audio was lost, it was just
