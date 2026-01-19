@@ -7,13 +7,15 @@ The purposes of this project:
 the [AllStarLink](https://www.allstarlink.org) network. Radio-less applications are also supported (conference
 hubs, direct audio connections, etc.). 
 * To provide a platform for research and experimentation to advance the state-of-the-art
-around ham radio linking.
+around ham radio linking. 
 * To maintain compatibility with the rest of the ASL ecosystem. This **is not** a fork
 of ASL or an attempt to create a parallel network.
 
 This project was originated in October of 2025 by [Bruce MacKinnon (KC1FSZ)](https://www.qrz.com/db/KC1FSZ)
 of the [Wellesley Amateur Radio Society](https://ema.arrl.org/wellesley-amateur-radio-society/) in Wellesley, MA. Please reach out using the e-mail address provided in QRZ. You can try me on AllStar 
 node 672730, as long as I'm not in the middle of a compile. [I'm also on LinkedIn](https://www.linkedin.com/in/bruce-mackinnon-7256314/).
+
+The [original thread where this was introduced is located here](https://community.allstarlink.org/t/a-minimal-asl-node-without-asterisk-dependency-r-d/23879).
 
 The [GitHub project is here](https://github.com/Ampersand-ASL).
 
@@ -34,73 +36,6 @@ My hope is that Ampersand will provide a better platform for experimental work.
 # Users/Installation
 
 Please see [The Ampersand Server User's Guide](https://github.com/Ampersand-ASL/amp-server/blob/main/docs/user.md) for installation instructions.
-
-# Software
-
-The source code for the system is developed in [this set of Github repos](https://github.com/Ampersand-ASL). The main branch is production/stable. Development activity is 
-integrated on the develop branch.
-
-I accept PRs to the develop branch.
-
-## Software License
-
-Ampersand is released under the [GNU Public License](https://www.gnu.org/licenses/gpl-3.0.en.html). 
-
-## A Few Notes on Project Software Philosophy
-
-This is a C++ project. However, you'll note that there are no deep/complex
-inheritance hierarchies. Also, the use of templates/meta-programming is kept 
-to a minimum. Abstract interfaces ([GoF Facade Pattern](https://en.wikipedia.org/wiki/Facade_pattern)) are used as much as possible.
-
-Linkages between the major components is kept as loose as possible. This is particularly
-relevant in an application like this that deals heavily with networking. Most 
-of the interaction between major components of the AMP Server are achieved through 
-an asynchronous Message-passing interface.
-
-The use of multi-threading is kept to an absolute minimum. There are two reasons for
-this. First, I want to be able to run large parts of this code (not 100%) on 
-bare-metal micro-controllers that 
-lack a thread primitive. But more importantly, **I have spent too many years of my
-life debugging complex (and often non-reproducible) bugs related to concurrency errors.** 
-The best advice I've seen to improve the reliability of multi-threaded architectures
-is: **just don't do it!** 
-
-Being reasonable, there are some places where threads
-are unavoidable, or at least the work-around is very difficult. In this system, 
-**the only interaction between threads should be via Message-passing through a 
-thread-safe queue.** Anything else is asking for problems that I don't want to 
-spend time debugging. Given this philosophy, there should be no mutexes or other 
-synchronization objects in the code.
-
-The code below provide a good example of my general concern:
-
-![MT Error](assets/mt-error.jpg)
-
-Notice a few things:
-* There are some things in this function that need to happen under
-lock and some things that don't. All developers need to be on the 
-same page, which can be hard in a distributed/open-source team. One missed 
-lock and you might have a strange bug.
-* Certain locks cover certain resources. Depending on how many 
-shared resources there are this could be very complicated to keep track of.
-* It's very easy to create a situation like the one shown on line 2054 
-of this function. Notice that a lock is acquired at line 2039 but the 
-function **possibly** returns at line 2054 without releasing the lock. 
-Is this a bug? 
-
-**NOTE:** I'm not being critical of app_rpt or chan_simpleusb here, this is just the first 
-file that came up when I started searching for calls to the lock/unlock functions.
-
-On a similar note, the use of dynamic memory allocation is kept to a minimum.
-First, I want to be able to run this code on bare-metal micro-controllers that 
-lack dynamic memory. But more importantly, **I have spent too many years of my
-life debugging complex (and often non-reproducible) bugs related to 
-memory errors.** 
-
-There are certain parts of the system that do not run on the microcontroller
-platform and those parts will use things like std::string, std::vector, that
-use dynamic memory internally. But much of the core system does everything 
-on the stack.
 
 # Conceptual Model of the Ampersand Server
 
@@ -233,7 +168,7 @@ is closely related to PLC - more below.
 
 It’s hard to tell exactly how the jitter buffer inside of Asterisk works, but I don’t think it’s using any very advanced adaptive algorithms.
 
-### Notes on EchoLink
+### Notes on EchoLink Jitter Buffer
 
 I asked Jonathan K1RFD, the author of EchoLink, what his software does. Here's a 
 section of his reply:
@@ -257,7 +192,7 @@ section of his reply:
 > transmissions. But, by that time, the buffer is probably already empty due to the pause between
 > transmissions.
 
-### References
+### Jitter Buffer References
 
 * [A paper that talks about skew (clock speed differences)](https://csperkins.org/publications/2000/07/icme2000/icme2000.pdf) from University College, London.
 * [A paper: "Assessing the quality of VoIP transmission affected by playout buffer scheme"](https://arrow.tudublin.ie/cgi/viewcontent.cgi?article=1037&context=commcon)
@@ -282,6 +217,113 @@ so the pitch estimation that comes out of this process is fairly low.
 There are a bunch of features in this spectral interpolation algorithm that try to smooth the transitions between real speech and synthetic speech to avoid discontinuities. The result is surprisingly effective as long as the gap is small <= 60ms. And it runs well on a small microcontroller. Unsurprisingly, a lot of the cutting edge work in this space is focused on AI-driven models that predict longer passages of missing audio. It won’t be long before it can finish our sentences ...
 
 The implementation of the G.711 approach can be found [in this Github repo](https://github.com/brucemack/itu-g711-codec).
+
+## Kerchunk Filtering
+
+I love the East Coast Reflector, but there’s a fair amount of kerchunking 
+being reflected. This is to be expected given the large number of repeaters
+connected on the network. It would be nice to have a way to filter out this kind of 
+activity. 
+
+I know the ASL rxondelay= helps to avoid false COS triggers, but I 
+think that parameter 
+serves a different purpose. It's basically a de-bounce on the COS line. A long 
+setting for rxondelay= also 
+has the undesirable effect of cutting off the beginning of each transmission.
+
+I've been working on a more sophisticated kerchunk filter (KF). I have a new
+module in the audio pipeline that watches all of the audio frames that go 
+by. If an audio
+spurt starts after an extended period of silence (let's assume 1 minute, but configurable) the frames are queued internally and not passed forward in the pipeline.  If the spurt ends quickly (let's assume < 2 seconds, but configurable) those queued
+frames are discarded under the assumption that it's a kerchunk or some other transient. If the spurt lasts longer than 2s then it is considered to be legit and the queue starts playing out, with 2s of latency of course. Once the KF queue is drained it is bypassed and all subsequent audio is passed right through until another extended silence occurs. So basically, you are 2s behind only until that first spurt has been played out, and then no more delay. Hopefully it's clear that none of the audio was lost, it was just
+delayed initially to make sure it passed the not-a-kerchunk test.
+
+I could make this really fancy and use WSOLA to slightly speed up the playout, but I don't think that's necessary because the latency is reclaimed immediately on the next break in the QSO.
+
+The 2s period was picked so that we don't lose quick/legit transmissions. _"KC1FSZ mobile, listening."_ 
+
+I've also found that applying a voice activity detect (VAD) at the very start 
+of a new transmission can allow an initial period of silence or near-silence
+to be discarded so it doesn't count against the 1,500ms 
+anti-kerchunk 
+timer. For example, if someone keyed up but remained silent for 10 seconds
+that should still be considered a kerchunk for our purposes. 
+
+After some experimentation with the heuristics, I've found the key is to make 
+the KF aggressive after long periods of silence 
+and then very accommodating once a new transmission becomes "trusted." 
+
+The obvious place for this is in the radio input path so that it can stop kerchunks 
+from getting into the system in the first place. But what is really interesting is 
+that you can put this same module into the network audio path. So basically
+it can eliminate incoming network network kerchunks if desired.
+
+# Software
+
+The source code for the system is developed in [this set of Github repos](https://github.com/Ampersand-ASL). The main branch is production/stable. Development activity is 
+integrated on the develop branch.
+
+I accept PRs to the develop branch.
+
+## Software License
+
+Ampersand is released under the [GNU Public License](https://www.gnu.org/licenses/gpl-3.0.en.html). 
+
+## A Few Notes on Project Software Philosophy
+
+This is a C++ project. However, you'll note that there are no deep/complex
+inheritance hierarchies. Also, the use of templates/meta-programming is kept 
+to a minimum. Abstract interfaces ([GoF Facade Pattern](https://en.wikipedia.org/wiki/Facade_pattern)) are used as much as possible.
+
+Linkages between the major components is kept as loose as possible. This is particularly
+relevant in an application like this that deals heavily with networking. Most 
+of the interaction between major components of the AMP Server are achieved through 
+an asynchronous Message-passing interface.
+
+The use of multi-threading is kept to an absolute minimum. There are two reasons for
+this. First, I want to be able to run large parts of this code (not 100%) on 
+bare-metal micro-controllers that 
+lack a thread primitive. But more importantly, **I have spent too many years of my
+life debugging complex (and often non-reproducible) bugs related to concurrency errors.** 
+The best advice I've seen to improve the reliability of multi-threaded architectures
+is: **just don't do it!** 
+
+Being reasonable, there are some places where threads
+are unavoidable, or at least the work-around is very difficult. In this system, 
+**the only interaction between threads should be via Message-passing through a 
+thread-safe queue.** Anything else is asking for problems that I don't want to 
+spend time debugging. Given this philosophy, there should be no mutexes or other 
+synchronization objects in the code.
+
+The code below provide a good example of my general concern:
+
+![MT Error](assets/mt-error.jpg)
+
+Notice a few things:
+* There are some things in this function that need to happen under
+lock and some things that don't. All developers need to be on the 
+same page, which can be hard in a distributed/open-source team. One missed 
+lock and you might have a strange bug.
+* Certain locks cover certain resources. Depending on how many 
+shared resources there are this could be very complicated to keep track of.
+* It's very easy to create a situation like the one shown on line 2054 
+of this function. Notice that a lock is acquired at line 2039 but the 
+function **possibly** returns at line 2054 without releasing the lock. 
+Is this a bug? 
+
+**NOTE:** I'm not being critical of app_rpt or chan_simpleusb here, this is just the first 
+file that came up when I started searching for calls to the lock/unlock functions.
+
+On a similar note, the use of dynamic memory allocation is kept to a minimum.
+First, I want to be able to run this code on bare-metal micro-controllers that 
+lack dynamic memory. But more importantly, **I have spent too many years of my
+life debugging complex (and often non-reproducible) bugs related to 
+memory errors.** 
+
+There are certain parts of the system that do not run on the microcontroller
+platform and those parts will use things like std::string, std::vector, that
+use dynamic memory internally. But much of the core system does everything 
+on the stack.
 
 # Other Pages
 
