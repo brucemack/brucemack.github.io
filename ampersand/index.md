@@ -146,6 +146,14 @@ on the list of things to ask IANA to update in their documentation.)
 
 Ampersand will favor 16K linear PCM whenever possible, falling back to G.711 uLaw (8K) as needed.
 
+### 16K Linear "HD" Media Format Registration
+
+An IAX2 media format needs to be defined to allow nodes to negotiate this
+format during call setup. 
+
+There is no official Media Format listed for 16K linear audio in the current 
+version of the IAX2 RFC. I raised the question about the best way to represent the 16K linear media format in the IAX2 protocol on the Asterisk development forum. Someone pointed me to an older Asterisk header file that showed that media format 0x00008000 had been allocated to 16K 16-bit linear, little endian format. The same file also explicitly stated that media format 0x00000040 is for 8K linear. That shows that the IAX2 RFC is out of date. I’ve raised a request with the IANA people to have the RFC revised with this additional information. More to follow.
+
 ## Jitter Buffer
 
 The "jitter buffer" is the subject of a lot of discussion on the AllStarLink board over the 
@@ -222,7 +230,8 @@ The implementation of the G.711 approach can be found [in this Github repo](http
 
 I love the [East Coast Reflector](https://www.eastcoastreflector.com/), but there’s a fair amount of kerchunking 
 being reflected. This is to be expected given the large number of repeaters
-connected on the network. It would be nice to have a way to filter out this kind of 
+connected on the network. I'm sure the other big networks have exactly the same
+problem. It would be nice to have a way to filter out this kind of 
 activity. 
 
 I know the ASL `rxondelay=` helps to avoid false COS triggers and may eliminate some 
@@ -231,6 +240,10 @@ think that parameter
 serves a different purpose. It's basically a de-bounce on the COS line. A long 
 setting for `rxondelay=` also 
 has the undesirable effect of cutting off the beginning of a transmission.
+
+Also, listening on the ECR, I suspect that a fair amount of the kerchunks 
+are coming in on the various bridges to other digital modes (DMR, D-STAR, etc.)
+and the physical COS pin debouncing is irrelevant in those cases.
 
 I've been working on a more sophisticated kerchunk filter (KF). I have a new
 module in the Ampersand audio pipeline that watches all of the audio frames that go 
@@ -260,7 +273,7 @@ audio into a single, concatenated .WAV file. This allows a quick review of what
 the system has classified as "kerchunk." [You can listen to one test file here](assets/kerchunk-capture.wav) that was created during 6 hours from the ECR during 
 morning time EST. You can hear all sorts of strange sounds that were discarded. To 
 my ear, I can only hear one thing in this test file (towards the end) that sounded like
-voice audio.
+a fragment of voice audio.
 
 The best place for this capability is in the radio input path so that it can stop kerchunks 
 from getting into the ASL system in the first place. But what is interesting is 
