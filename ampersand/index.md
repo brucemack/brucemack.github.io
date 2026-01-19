@@ -305,18 +305,22 @@ This is used when communicating with the SDRC platform.
 ## Software Structure - Audio Flow
 
 One way to explain the structure of the Ampersand code is to describe the 
-detailed steps involved in taking a packet of IAX audio off the network and 
+detailed steps involved in taking a packet of IAX audio from the network and 
 converting it to USB sound. 
 
 **Phase 1 - Driven By IAX2 Packet Arrival**
 
 * Everything starts with UDP (IAX2) frames on the network. The `LineIAX2` class
-is listening on a UDP socket and will receive the voice frame. Keep in mind
+is listening on a UDP socket and will receive the voice frame. Function
+`LineIAX2::_processInboundIAXData()` is where the actual call to `recvfrom()`
+is located. Keep in mind
 that each frame contains exactly 20ms of audio, so this entire flow happens 
-50 time per second, regardless of the audio sampling rate.
+about 50 time per second, regardless of the audio sampling rate. Also keep 
+in mind that the arrival of these frames is asynchronous and may not 
+be perfectly spaced.
 * The frame is examined to determine which call it belongs to. The frame is
 forwarded to the correct instance of the `LineIAX2::Call` class for call-level 
-processing.
+processing. See `LineIAX2::_processFullFrameInCall()` or `LineIAX2::_processMiniFrame()` depending on whether the voice frame is full or mini.
 * The voice frame is made into an instance of the `Message` class and is then 
 put onto an internal message-passing bus. The bus is implemented by the `MultiRouter`
 class.
@@ -474,3 +478,7 @@ on the stack.
 * [ASL DSP Notes](asl-dsp-notes)
 * [55553 Parrot](parrot-55553-notes)
 * [Notes on Audio Latency, Jitter, and Related Topics](jitter-management.md)
+
+# References
+
+* [The IAX2 RFC](https://datatracker.ietf.org/doc/html/rfc5456).
