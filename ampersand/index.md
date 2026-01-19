@@ -308,12 +308,25 @@ One way to explain the structure of the Ampersand code is to describe the
 detailed steps involved in taking a packet of IAX audio from the network and 
 converting it to USB sound. 
 
+Everything described below happens on a single processing thread under 
+the control of the `EventLoop` class.
+
+**Phase 0 - Happening Continuously**
+
+* The main processing thread is looping in a class called `EventLoop`. 
+You can see that towards the bottom of `main()` in the amp-server project.
+* The `EventLoop` is keeping track of timers and monitoring for activity
+on file descriptors.
+
 **Phase 1 - Driven By IAX2 Packet Arrival**
 
-* Everything starts with UDP (IAX2) frames on the network. The `LineIAX2` class
-is listening on a UDP socket and will receive the voice frame. Function
-`LineIAX2::_processInboundIAXData()` is where the actual call to `recvfrom()`
-is located. Keep in mind
+* Everything starts with UDP (IAX2) frames on the network. `LineIAX2` class
+is listening on a UDP socket and will receive the voice frame. At startup
+`LineIAX2` has told `EventLoop` about the socket file descriptors it cares
+about, so when UDP data arrives `EventLoop` will dispatch the `LineIAX2::run2()`
+function.
+* Function `LineIAX2::_processInboundIAXData()` is where the actual call 
+to the socket `recvfrom()` happens. Keep in mind
 that each frame contains exactly 20ms of audio, so this entire flow happens 
 about 50 time per second, regardless of the audio sampling rate. Also keep 
 in mind that the arrival of these frames is asynchronous and may not 
