@@ -234,9 +234,10 @@ has the undesirable effect of cutting off the beginning of a transmission.
 
 I've been working on a more sophisticated kerchunk filter (KF). I have a new
 module in the Ampersand audio pipeline that watches all of the audio frames that go 
-by. If an audio
-spurt starts after an extended period of silence (let's assume 1 minute, but configurable) new frames are queued internally and are not passed forward in the pipeline.  If the spurt ends quickly (let's assume < 2 seconds, but configurable) those queued
-frames are discarded under the assumption that it's a kerchunk or some other transient. If the spurt lasts longer than 2s then it is considered to be legit and the queue starts playing out, with 2s of latency of course. Once the KF queue is drained it is bypassed and all subsequent audio is passed right through until another extended silence occurs. So basically, you are 2s behind only until that first spurt has been played out, and then no more delay. Hopefully it's clear that none of the audio was lost, it was just
+by. If a transmission
+starts after an extended period of silence (let's assume 1 minute, but configurable) 
+the new audio frames are queued internally and are not passed forward in the pipeline.  If the transmission ends quickly (let's assume <2 seconds, but configurable) those queued
+frames are discarded under the assumption that it's a kerchunk or some other transient. If the transmission lasts longer than 2s then it is considered to be legit and the queue starts playing out, with 2s of latency of course. Once the KF queue is drained it is bypassed and all subsequent audio is passed right through until another extended silence occurs. So basically, you are 2s behind only until that first spurt has been played out, and then no more delay. Hopefully it's clear that none of the audio was lost, it was just
 delayed initially to make sure it passed the not-a-kerchunk test.
 
 I could make this really fancy and use WSOLA to slightly speed up the playout, but I don't think that's necessary because the latency is reclaimed immediately on the next break in the QSO.
@@ -253,6 +254,13 @@ that should still be considered a kerchunk for our purposes.
 After some experimentation with the heuristics, I've found the key is to make 
 the KF aggressive after long periods of silence 
 and then very accommodating once a new transmission becomes "trusted." 
+
+During testing I adjusted the system so that it recorded all of the discarded 
+audio into a single, concatenated .WAV file. This allows a quick review of what 
+the system has classified as "kerchunk." [You can listen to one test file here](assets/kerchunk-capture.wav) that was created during 6 hours from the ECR during 
+morning time EST. You can hear all sorts of strange sounds that were discarded. To 
+my ear, I can only hear one thing in this test file (towards the end) that sounded like
+voice audio.
 
 The best place for this capability is in the radio input path so that it can stop kerchunks 
 from getting into the ASL system in the first place. But what is interesting is 
