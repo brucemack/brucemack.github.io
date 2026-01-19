@@ -220,21 +220,22 @@ The implementation of the G.711 approach can be found [in this Github repo](http
 
 ## Kerchunk Filtering
 
-I love the East Coast Reflector, but there’s a fair amount of kerchunking 
+I love the [East Coast Reflector](https://www.eastcoastreflector.com/), but there’s a fair amount of kerchunking 
 being reflected. This is to be expected given the large number of repeaters
 connected on the network. It would be nice to have a way to filter out this kind of 
 activity. 
 
-I know the ASL rxondelay= helps to avoid false COS triggers, but I 
+I know the ASL `rxondelay=` helps to avoid false COS triggers and may eliminate some 
+quick kerchunks, but I 
 think that parameter 
 serves a different purpose. It's basically a de-bounce on the COS line. A long 
-setting for rxondelay= also 
-has the undesirable effect of cutting off the beginning of each transmission.
+setting for `rxondelay=` also 
+has the undesirable effect of cutting off the beginning of a transmission.
 
 I've been working on a more sophisticated kerchunk filter (KF). I have a new
 module in the audio pipeline that watches all of the audio frames that go 
 by. If an audio
-spurt starts after an extended period of silence (let's assume 1 minute, but configurable) the frames are queued internally and not passed forward in the pipeline.  If the spurt ends quickly (let's assume < 2 seconds, but configurable) those queued
+spurt starts after an extended period of silence (let's assume 1 minute, but configurable) new frames are queued internally and are not passed forward in the pipeline.  If the spurt ends quickly (let's assume < 2 seconds, but configurable) those queued
 frames are discarded under the assumption that it's a kerchunk or some other transient. If the spurt lasts longer than 2s then it is considered to be legit and the queue starts playing out, with 2s of latency of course. Once the KF queue is drained it is bypassed and all subsequent audio is passed right through until another extended silence occurs. So basically, you are 2s behind only until that first spurt has been played out, and then no more delay. Hopefully it's clear that none of the audio was lost, it was just
 delayed initially to make sure it passed the not-a-kerchunk test.
 
@@ -244,19 +245,19 @@ The 2s period was picked so that we don't lose quick/legit transmissions. _"KC1F
 
 I've also found that applying a voice activity detect (VAD) at the very start 
 of a new transmission can allow an initial period of silence or near-silence
-to be discarded so it doesn't count against the 1,500ms 
+to be discarded so it doesn't count against the 2s 
 anti-kerchunk 
-timer. For example, if someone keyed up but remained silent for 10 seconds
+timer. For example, if someone keyed up but remained silent for 15 seconds
 that should still be considered a kerchunk for our purposes. 
 
 After some experimentation with the heuristics, I've found the key is to make 
 the KF aggressive after long periods of silence 
 and then very accommodating once a new transmission becomes "trusted." 
 
-The obvious place for this is in the radio input path so that it can stop kerchunks 
-from getting into the system in the first place. But what is really interesting is 
+The best place for this capability is in the radio input path so that it can stop kerchunks 
+from getting into the ASL system in the first place. But what is interesting is 
 that you can put this same module into the network audio path. So basically
-it can eliminate incoming network network kerchunks if desired.
+it can eliminate incoming network kerchunks if desired.
 
 # Software
 
@@ -311,7 +312,7 @@ of this function. Notice that a lock is acquired at line 2039 but the
 function **possibly** returns at line 2054 without releasing the lock. 
 Is this a bug? 
 
-**NOTE:** I'm not being critical of app_rpt or chan_simpleusb here, this is just the first 
+**NOTE:** I'm not being critical of `app_rpt` or chan_simpleusb here, this is just the first 
 file that came up when I started searching for calls to the lock/unlock functions.
 
 On a similar note, the use of dynamic memory allocation is kept to a minimum.
