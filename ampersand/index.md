@@ -302,6 +302,23 @@ nice C implementation of the Consistent Overhead Byte-Stuffing algorithm.
 This is used when communicating with the SDRC platform.
 * [An Implementation of ED25519](https://github.com/orlp/ed25519). Used for PKI.
 
+## Software Structure - High Level Diagram
+
+This is a high-level diagram of the major software components:
+
+![HLD](assets/amp-hdl.jpg)
+
+* RegistrationTask - Runs the background and performs an ASL registration 
+(via HTTPS call) every 12 minutes.
+* LineIAX2 - Implements the IAX2 protocol.
+* LineUSB - Interface to the USB audio interface.
+* SignalIn - Interface to the USB HID interface needed for COS/CTCSS signals. Also
+integrates with GPIO pins if needed.
+* SignalOut - Interface to the USB HID interface needed for the PTT signal. Also
+integrates with GPIO pins if needed.
+* Bridge - Provides audio conference capability.
+* WebUi - Provides an HTTP interface for a simple browser-based user interface.
+
 ## Software Structure - Audio Flow
 
 One way to explain the structure of the Ampersand code is to describe the 
