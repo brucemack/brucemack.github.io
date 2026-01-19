@@ -270,6 +270,38 @@ I accept PRs to the develop branch.
 
 Ampersand is released under the [GNU Public License](https://www.gnu.org/licenses/gpl-3.0.en.html). 
 
+## Software Structure - Repos
+
+The code is divided into a few repos:
+
+* [amp-core](https://github.com/Ampersand-ASL/amp-core) contains most of
+the code, but doesn't build any executables. See below. Some parts of this
+code are able to built on a microcontroller platform.
+* [amp-server](https://github.com/Ampersand-ASL/amp-server) contains the 
+code required to build the Ampersand Server on LINUX.
+* [asl-parrot](https://github.com/Ampersand-ASL/asl-parrot) contains the 
+code required to build the ASL parrot server (LINUX).
+* [amp-win](https://github.com/Ampersand-ASL/amp-server) contains the 
+code required to build the Ampersand Server on Windows.
+
+The code depends on some external/3rd-party repos that are referenced as GIT 
+submodules. 
+
+* [kc1fsz-tools-cpp](https://github.com/brucemack/kc1fsz-tools-cpp). A generic
+C++ tools library used across many KC1FSZ projects.
+* [kc1fsz-sdrc](https://github.com/brucemack/kc1fsz-sdrc) A software-defined
+repeater controller (SDRC) project. This project pre-dates the Ampersand project.
+* [The ITU G711 CODEC](https://github.com/brucemack/itu-g711-codec). Contains 
+the G711 CODEC and G711 PLC code.
+* [CMSIS DSP Mock Library](https://github.com/brucemack/cmsis-dsp-mock). A 
+"mock" (i.e. simple, not-optimized) implementation of some of the important 
+functions defined in the ARM CMSIS DSP library to improve portability of 
+code targeting an ARM microcontroller onto "normal" platforms.
+* [Craig McQueen's COBS Implementation](https://github.com/cmcqueen/cobs-c) A
+nice C implementation of the Consistent Overhead Byte-Stuffing algorithm.
+This is used when communicating with the SDRC platform.
+* [An Implementation of ED25519](https://github.com/orlp/ed25519). Used for PKI.
+
 ## Software Structure - Audio Flow
 
 One way to explain the structure of the Ampersand code is to describe the 
