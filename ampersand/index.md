@@ -245,7 +245,7 @@ serves a different purpose. It's basically a de-bounce on the COS line. A long
 setting for `rxondelay=` also 
 has the undesirable effect of cutting off the beginning of a transmission.
 
-Also, listening on the ECR, I suspect that a fair amount of the kerchunks 
+Also, listening on the ECR, I suspect that a lot of the kerchunks 
 are coming in on the various bridges to other digital modes (DMR, D-STAR, etc.)
 and the physical COS pin debouncing is irrelevant in those cases.
 
