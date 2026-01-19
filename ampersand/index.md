@@ -301,6 +301,8 @@ code targeting an ARM microcontroller onto "normal" platforms.
 nice C implementation of the Consistent Overhead Byte-Stuffing algorithm.
 This is used when communicating with the SDRC platform.
 * [An Implementation of ED25519](https://github.com/orlp/ed25519). Used for PKI.
+* [A C++ HTTP Server Library](https://github.com/yhirose/cpp-httplib). Provides
+a fully embedded HTTP server.
 
 ## Software Structure - High Level Diagram
 
@@ -318,6 +320,9 @@ integrates with GPIO pins if needed.
 integrates with GPIO pins if needed.
 * Bridge - Provides audio conference capability.
 * WebUi - Provides an HTTP interface for a simple browser-based user interface.
+There is no separate HTTP server, this uses a [a C++ HTTP Server Library](https://github.com/yhirose/cpp-httplib) to avoid the need for deploying separate processes.
+* MultiRouter - An internal publish/subscribe bus for routing messages between
+components in the server.
 
 ## Software Structure - Audio Flow
 
