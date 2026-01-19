@@ -226,6 +226,10 @@ There are a bunch of features in this spectral interpolation algorithm that try 
 
 The implementation of the G.711 approach can be found [in this Github repo](https://github.com/brucemack/itu-g711-codec).
 
+### PLC Using WSOLA
+
+(Docs to follow)
+
 ## Kerchunk Filtering
 
 I love the [East Coast Reflector](https://www.eastcoastreflector.com/), but there’s a fair amount of kerchunking 
@@ -279,6 +283,16 @@ The best place for this capability is in the radio input path so that it can sto
 from getting into the ASL system in the first place. But what is interesting is 
 that you can put this same module into the network audio path. So basically
 it can eliminate incoming network kerchunks if desired.
+
+## Hamlib Tunnel for Remote Base
+
+(Docs to follow)
+
+## IAX2 Extensions
+
+### Voice-Level Station ID
+
+(Docs to follow)
 
 # Software
 
