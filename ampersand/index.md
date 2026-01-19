@@ -324,11 +324,15 @@ There is no separate HTTP server, this uses a [a C++ HTTP Server Library](https:
 * MultiRouter - An internal publish/subscribe bus for routing messages between
 components in the server.
 
-## Software Structure - Audio Flow
+## Software Structure - Tracing the Audio Flow
 
-One way to explain the structure of the Ampersand code is to describe the 
+One good way to explain the structure of the Ampersand code is to describe the 
 detailed steps involved in taking a packet of IAX audio from the network and 
 converting it to USB sound. 
+
+Keep in mind
+that each frame contains exactly 20ms of audio, so this entire flow happens 
+about 50 time per second, regardless of the audio sampling rate.
 
 Everything described below happens on a single processing thread under 
 the control of the `EventLoop` class.
@@ -349,9 +353,7 @@ is listening on a UDP socket and will receive the voice frame. At startup
 about, so when UDP data arrives `EventLoop` will dispatch the `LineIAX2::run2()`
 function.
 * Function `LineIAX2::_processInboundIAXData()` is where the actual call 
-to the socket `recvfrom()` happens. Keep in mind
-that each frame contains exactly 20ms of audio, so this entire flow happens 
-about 50 time per second, regardless of the audio sampling rate. Also keep 
+to the socket `recvfrom()` happens. Keep 
 in mind that the arrival of these frames is asynchronous and may not 
 be perfectly spaced.
 * The frame is examined to determine which call it belongs to. The frame is
