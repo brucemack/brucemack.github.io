@@ -314,7 +314,8 @@ the control of the `EventLoop` class.
 **Phase 0 - Happening Continuously**
 
 * The main processing thread is looping in a class called `EventLoop`. 
-You can see that towards the bottom of `main()` in the amp-server project.
+You can see that towards the bottom of `main()` in the `main.cpp` file 
+of the amp-server project.
 * The `EventLoop` is keeping track of timers and monitoring for activity
 on file descriptors.
 
@@ -337,13 +338,15 @@ processing. See `LineIAX2::_processFullFrameInCall()` or `LineIAX2::_processMini
 * The voice frame is made into an instance of the `Message` class and is then 
 put onto an internal message-passing bus. The bus is implemented by the `MultiRouter`
 class.
+* The server contains a conference bridge which is the central core of the system.
+This is where all audio is collected, combined, and re-distributed. The conference bridge is implemented by the `Bridge` class.
 * The `MultiRouter` forwards the `Message` containing the voice frame to the 
-conference bridge implemented by the `Bridge` class (see the `Bridge::consume()` method).
+conference bridge (see the `Bridge::consume()` method).
 * The `Bridge` looks at the `Message` and finds the appropriate instance of
 the `BridgeCall` class. There is a `BridgeCall` for each active participant in the
 conference, including the physical radios. See `BridgeCall::consume()`.
 * The `BridgeCall` has a component responsible for call-level inbound audio called `BridgeIn`. The `Message` is passed to the `BridgeIn` class (see `BridgeIn::consume()`).
-* `BridgeIn` implements a pipeline of a few key functions. First, the `Message` is 
+* `BridgeIn` implements a pipeline. First, the `Message` is 
 passed to the jitter buffer implemented by the `SequencingBufferStd` class. 
 See `SequencingBufferStd::consume()`.
 * The `Message` is stored in the jitter buffer until it is selected for playout
@@ -352,11 +355,13 @@ in phase 2a.
 
 **Phase 2a - Driven by the 20ms Audio Clock**
 
+* The `EventLoop` is maintaining a set of timers. 
 * Every 20ms the `Bridge` class wakes up and tries to produce an audio frame
 for each conference participant.
+* Here we pick up with the next steps on the `BridgeIn` audio pipeline.
 * The first step is to prompt the jitter buffers in each `BridgeCall` to 
-play a frame. The `SequencingBufferStd` wakes up and decides which is the next
-`Message` to be played. See `SequencingBufferStd::playOut()`.
+play out a frame. The `SequencingBufferStd` wakes up and decides which is the next
+`Message` to be played based on `Message` timestamps, latency calculations, etc. See `SequencingBufferStd::playOut()` for this complicated process.
 * Once the `Message` emerges from the jitter buffer it is transcoded from its
 network encoding to a 16-bit signed PCM format of the same sample rate. So, for example,
 if the network encoding is G.711 it is transcoded to 16-bit PCM at 8kHz.
@@ -380,7 +385,8 @@ represent the "mix" of all conference participants who where talking during
 that 20ms tick. 
 * The `Bridge` loops through all of the active `BridgeCall`s, determines 
 which have audio to contribute, and calls `BridgeCall::extractInputAudio()` 
-for each, scaling appropriately based on the number of active speakers.
+for each to pull the staged frame for the current tick, scaling appropriately based 
+on the number of active speakers.
 * The `Bridge` then provides the mixed audio for that tick to each 
 conference participant by calling `BridgeCall::setOutputAudio()`.
 * The `BridgeCall` has a component responsible for handling output audio
@@ -411,7 +417,9 @@ cases. The `Message` is passed to `LineRadio::consume` for processing.
 statistical information (peak, power levels, etc.) up to date. It then
 calls back down to `LineUSB::_playPCM48k()`
 * `LineUSB::_playPCM48k()` accumulates the 20ms audio frame into a circular
-buffer that can hold about 60ms of audio. This buffer is called `LineUSB::_playAccumulator`.
+buffer that can hold about 60ms of audio. This buffer is called `LineUSB::_playAccumulator`. Some margin is required here because the USB
+sound driver/hardware is operating asynchronously from the rest of the system
+and may get slightly ahead/behind based on its own internal timing.
 * This ends phase 2c.
 
 **Phase 3 - Driven by the Availability of USB Play Buffer Space**
@@ -424,7 +432,7 @@ phase are executed. The exact timing of this process is not known
 because the USB hardware interface operates somewhat asynchronously from 
 the rest of this system.
 * `LineUSB::_playIfPossible()` is called. The contents of the `LineUSB::_playAccumulator` are pushed into the USB play buffer. A return 
-code is examined to determine how much audio was accepted. The amount 
+code is examined to determine how much audio was actually accepted. The amount 
 of audio that will be accepted is not known in advance because the USB
 hardware is operating asynchronously. Whatever audio is accepted into the
 USB play buffer is removed from the `LineUSB::_playAccumulator`.
@@ -454,7 +462,7 @@ are unavoidable, or at least the work-around is very difficult. In this system,
 **the only interaction between threads should be via Message-passing through a 
 thread-safe queue.** Anything else is asking for problems that I don't want to 
 spend time debugging. Given this philosophy, there should be no mutexes or other 
-synchronization objects in the code.
+synchronization objects in most of the code.
 
 The code below provide a good example of my general concern:
 
