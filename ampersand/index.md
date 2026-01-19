@@ -270,6 +270,117 @@ I accept PRs to the develop branch.
 
 Ampersand is released under the [GNU Public License](https://www.gnu.org/licenses/gpl-3.0.en.html). 
 
+## Software Structure - Audio Flow
+
+One way to explain the structure of the Ampersand code is to describe the 
+detailed steps involved in taking a packet of IAX audio off the network and 
+converting it to USB sound. 
+
+**Phase 1 - Driven By IAX2 Packet Arrival**
+
+* Everything starts with UDP (IAX2) frames on the network. The `LineIAX2` class
+is listening on a UDP socket and will receive the voice frame. Keep in mind
+that each frame contains exactly 20ms of audio, so this entire flow happens 
+50 time per second, regardless of the audio sampling rate.
+* The frame is examined to determine which call it belongs to. The frame is
+forwarded to the correct instance of the `LineIAX2::Call` class for call-level 
+processing.
+* The voice frame is made into an instance of the `Message` class and is then 
+put onto an internal message-passing bus. The bus is implemented by the `MultiRouter`
+class.
+* The `MultiRouter` forwards the `Message` containing the voice frame to the 
+conference bridge implemented by the `Bridge` class (see the `Bridge::consume()` method).
+* The `Bridge` looks at the `Message` and finds the appropriate instance of
+the `BridgeCall` class. There is a `BridgeCall` for each active participant in the
+conference, including the physical radios. See `BridgeCall::consume()`.
+* The `BridgeCall` has a component responsible for call-level inbound audio called `BridgeIn`. The `Message` is passed to the `BridgeIn` class (see `BridgeIn::consume()`).
+* `BridgeIn` implements a pipeline of a few key functions. First, the `Message` is 
+passed to the jitter buffer implemented by the `SequencingBufferStd` class. 
+See `SequencingBufferStd::consume()`.
+* The `Message` is stored in the jitter buffer until it is selected for playout
+in phase 2a.
+* That's the end of phase 1. The system becomes idle at this point.
+
+**Phase 2a - Driven by the 20ms Audio Clock**
+
+* Every 20ms the `Bridge` class wakes up and tries to produce an audio frame
+for each conference participant.
+* The first step is to prompt the jitter buffers in each `BridgeCall` to 
+play a frame. The `SequencingBufferStd` wakes up and decides which is the next
+`Message` to be played. See `SequencingBufferStd::playOut()`.
+* Once the `Message` emerges from the jitter buffer it is transcoded from its
+network encoding to a 16-bit signed PCM format of the same sample rate. So, for example,
+if the network encoding is G.711 it is transcoded to 16-bit PCM at 8kHz.
+* The PCM audio is then passed through the packet-loss concealment (PLC) step which 
+is implemented by the `Plc` class from the [`itu-g711-codec` repo](https://github.com/brucemack/itu-g711-codec). This is where interpolation is performed to smooth 
+over any gaps in the audio stream.
+* The output of the PLC step is still 16-bit PCM audio. The next step is to resample
+that audio up to 48K.
+* The 48K audio is packaged into a new `Message` instance and is passed into the 
+Kerchunk Filter (KF) implemented by the `KerchunkFilter` class (see `KerchunkFilter::consume()`). Here some analysis/filtering
+is performed to decide if the audio frame should be dropped, or at least delayed
+to reduce the impact of spurious kerchunks.
+* One the KF is complete the `Message` containing the 48K audio frame is **staged** 
+at the end of the `BridgeIn` pipeline.
+* That's the end of phase 2a. 
+
+**Phase 2b - Driven by the 20ms Audio Clock**
+
+* Every 20ms the `Bridge` class wakes up and produces a 48K audio frame that 
+represent the "mix" of all conference participants who where talking during 
+that 20ms tick. 
+* The `Bridge` loops through all of the active `BridgeCall`s, determines 
+which have audio to contribute, and calls `BridgeCall::extractInputAudio()` 
+for each, scaling appropriately based on the number of active speakers.
+* The `Bridge` then provides the mixed audio for that tick to each 
+conference participant by calling `BridgeCall::setOutputAudio()`.
+* The `BridgeCall` has a component responsible for handling output audio
+pipeline called `BridgeOut.` The `BridgeCall` passes the mixed frame to the
+`BridgeOut` using `BridgeOut::consume()`.
+* `BridgeOut` resamples the 48K audio to the rate required to support the 
+CODEC used by the output conference participant. For example, if the 
+participant is using the 16K SLIN CODEC the audio frame is resampled from 
+48K down to 16K.
+* `BridgeOut` then transcodes the PCM audio into the CODEC format used
+by the conference participant. This audio is packaged into a new instance 
+of the `Message` class.
+* The encoded `Message` audio is passed into the message bus `MultiRouter.`
+See `MultiRouter::consume()`.
+* This is the end of phase 2b.
+
+**Phase 2c - Driven by the 20ms Audio Clock**
+
+(The description of this phase is unique to the USB radio interface.)
+
+* The `MultiRouter` examines the `Message` created in phase 2b and 
+dispatches it to the appropriate listener. This will be an instance of 
+the `LineUSB` class in this case. See `LineUSB::consume()`.
+* `LineUSB` makes heavy use of its base class `LineRadio` since much of
+the code related to radio interfaces can be shared between USB and non-USB
+cases. The `Message` is passed to `LineRadio::consume` for processing.
+* `LineRadio::consume()` does some analysis of the audio frame to keep 
+statistical information (peak, power levels, etc.) up to date. It then
+calls back down to `LineUSB::_playPCM48k()`
+* `LineUSB::_playPCM48k()` accumulates the 20ms audio frame into a circular
+buffer that can hold about 60ms of audio. This buffer is called `LineUSB::_playAccumulator`.
+* This ends phase 2c.
+
+**Phase 3 - Driven by the Availability of USB Play Buffer Space**
+
+(The description of this phase is unique to the USB radio interface.)
+
+* The `EventLoop` object is constantly checking to see if the USB 
+play buffer is reporting that it has room. If so, the steps in this
+phase are executed. The exact timing of this process is not known 
+because the USB hardware interface operates somewhat asynchronously from 
+the rest of this system.
+* `LineUSB::_playIfPossible()` is called. The contents of the `LineUSB::_playAccumulator` are pushed into the USB play buffer. A return 
+code is examined to determine how much audio was accepted. The amount 
+of audio that will be accepted is not known in advance because the USB
+hardware is operating asynchronously. Whatever audio is accepted into the
+USB play buffer is removed from the `LineUSB::_playAccumulator`.
+* This ends phase 3. The audio frame should be heard.
+
 ## A Few Notes on Project Software Philosophy
 
 This is a C++ project. However, you'll note that there are no deep/complex
