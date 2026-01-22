@@ -559,6 +559,7 @@ on the stack.
 * [55553 Parrot](parrot-55553-notes)
 * [Notes on Audio Latency, Jitter, and Related Topics](jitter-management.md)
 
-# References
+# References/Books
 
 * [The IAX2 RFC](https://datatracker.ietf.org/doc/html/rfc5456).
+* I highly recommend [Spectral Audio Signal Processing](https://ccrma.stanford.edu/~jos/sasp/) by [Julius Smith](https://music.stanford.edu/people/julius-smith) from Stamford. The text of this book is available online at Stamford or you can get the physical book.

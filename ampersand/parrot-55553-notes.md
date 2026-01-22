@@ -3,7 +3,8 @@ title: Notes on AllStarLink Parrot Node 55553
 ---
 
 I've been using the 55553 parrot node quite a bit in my 
-research and development. I reached out to it's owner, Patrick Perdue 
+research and development. This seems to be the gold standard for 
+calibrating audio levels on ASL. I reached out to it's owner, Patrick Perdue 
 (N2DYI) and he sent me this very informative note (below) that
 gives insight into how Asterisk and parrot technology
 work. He modestly claims that he's a "terrible programmer," but 
@@ -51,3 +52,76 @@ Anyway, curious to know what sort of latency measurements you have gotten with y
 
 73
 Patrick, N2DYI, New York, NY
+
+## Further Elaboration from Patrick on 22-Jan-2026
+
+My question to Patrick: _"I have a question about your audio testing. You mentioned that you are using SoX to measure audio levels. From your description of the use of RMS, I'm assuming that you are measuring/thresholding average audio power? (i.e. not peak level). Is that right?  Could you share the exact SoX command that you are using so I can check into their algorithm. Right now I am just reading back the peak/average level I am measuring in dB, but it would be nice to be able to summarize whether the audio is good or not (i.e. your -30dB to -23dB range). As you can tell, I'm not much of an audio expert."_
+
+Yes, I'm measuring average, not peak.
+
+Here's the command I'm sending to SoX before any conversion happens. RMS is represented between 0 and 1, so I am converting that to something more human-readable.
+
+    RMS=$(sox -t raw --channels 1 --rate 8000 -e u-law "/tmp/transmission" -n stat 2>&1 | grep "RMS.* amplitude" | cut -d ":"  -f 2)
+
+There's probably a less dirty way to do this.
+
+Note that before I feed this command to SoX, I am chopping off the last 300ms of audio just for level analysis, since I have found that people often have squelch tails that mess up the average, especially with shorter transmissions, but the audio that plays back is the full capture from app_rpt's `archiveaudio` function, minus the first and last 1896 bytes, since that just seems to be padding on the original files.
+
+And here's how I'm converting the output of what SoX gives to an actual DB value.
+
+    RMS=$(echo "scale=3; (l($RMS)/l(10))*20" | bc -l)
+    RMS=${RMS%.*}
+
+## Replication of Patrick's Method
+
+Using the W1TKZ repeater ID prompt file here. That's a 16K audio file in .wav format.
+
+The SoX command:
+
+    sox -t wav --channels 1 --rate 16000 -e signed-integer id1.wav -n stat 2>&1
+
+Gives this output:
+
+    Samples read:             62042
+    Length (seconds):      3.877625
+    Scaled by:         2147483647.0
+    Maximum amplitude:     0.327942
+    Minimum amplitude:    -0.321045
+    Midline amplitude:     0.003448
+    Mean    norm:          0.067538
+    Mean    amplitude:    -0.000009
+    RMS     amplitude:     0.091297
+    Maximum delta:         0.561951
+    Minimum delta:         0.000000
+    Mean    delta:         0.040371
+    RMS     delta:         0.073179
+    Rough   frequency:         2041
+    Volume adjustment:        3.049
+
+Focusing on the RMS amplitude:
+
+    RMS=$(sox -t wav --channels 1 --rate 16000 -e signed-integer id1.wav -n stat 2>&1 | grep "RMS.* amplitude" | cut -d ":" -f 2)
+    echo $RMS
+
+Gives this result:
+
+    0.091297
+
+Using the bc calculator to convert to dB:
+
+    echo "scale=3; (l($RMS)/l(10))*20" | bc -l
+
+Gives this result:
+
+    -20.780
+
+Sanity check looking at peak:
+
+    RMS=$(sox -t wav --channels 1 --rate 16000 -e signed-integer id1.wav -n stat 2>&1 | grep "Maximum amplitude" | cut -d ":" -f 2)
+    echo "scale=3; (l($RMS)/l(10))*20" | bc -l
+
+Gives this result:
+
+    -9.660
+
+That looks good to me, since Dan was targeting -10dB for this recording.
