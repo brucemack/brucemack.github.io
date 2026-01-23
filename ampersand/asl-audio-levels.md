@@ -80,7 +80,8 @@ squares with the advice that career TV broadcast engineer Dan Brown W1DAN once g
 
 Patrick N2DYI has given me a lot of useful information about the way his parrot works
 and how levels should be computed in general. I've done a [separate article on the full details of 55553](https://mackinnon.info/ampersand/parrot-55553-notes). Bottom line: Patrick 
-does his work using RMS (average) levels, *not peak levels.* His mapping is as follows:
+does his work using RMS (average) levels, *not peak levels.* And definitely nothing 
+to do with FM deviation. His mapping is as follows:
 
 | RMS dBFS    | Qualitative         |
 |-------------|---------------------|
@@ -101,7 +102,8 @@ to -9dBFS range targeted by the `app_rpt` tuning meter.
 
 I don't have any contact at the HUBNet parrot node but I can do an empirical experiment.
 I dialed the UK parrot and injected a continuous -10dBFS tone (0.31 * 32767 peak amplitude) into 
-the network. During this test the display meter on the playback website registered a steady -10. So **that scale is calibrated in peak dBFS.**
+the network. During this test the display meter on the playback website registered a steady -10. So **that scale is calibrated in peak dBFS,** with nothing to do with 
+FM deviation.
 
 Testing at several different levels, the UK parrot lady reported that my audio was 
 "very loud" at anything above -16dBFS peak, "loud" down to around -19dBFS peak, "perfect" down to 
