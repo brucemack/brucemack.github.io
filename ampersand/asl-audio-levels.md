@@ -37,9 +37,9 @@ of conventional digital audio level units of dBFS (full-scale).
 ## app_rpt Tune Display
 
 I've been looking at the `app_rpt` code to try to figure out what "5kHz point" really 
-means in terms of the IAX2 voice data flowing onto the network. You can figure this out by counting spaces.
+means in terms of the IAX2 voice data flowing onto the network. You can only figure this out by counting spaces.
 
-The meter is driven by a peak amplitude `apeak` which is compted (`chan_simpleusb.c`) 
+The meter is driven by a peak amplitude variable `apeak` which is compted (`chan_simpleusb.c`) 
 from the minimum `amin` 
 and maximum `amax` 16-bit signed PCM values seen in each sample window:
 
@@ -48,13 +48,13 @@ and maximum `amax` 16-bit signed PCM values seen in each sample window:
 So the `apeak` value for a "full swing" audio sample (i.e. maximum possible deviation) would be
 32767.
 
-Since the meter is displayed using ASCII art, the `apeak` value needs to be converted to 
+Since the meter was built using ASCII art, the `apeak` value needs to be converted to 
 a set of = characters that display a bar across the typical 80 column text terminal.
 This happens in the `tune_rxdisplay()` function:
 
     meas = apeak
     ncols = 75
-    thresh = (meas * ncols) / 16384;
+    thresh = (meas * ncols) / 16384
 
 This implies that a full swing signal would require about 150 columns of text. Doing the 
 math the other way:
@@ -67,16 +67,16 @@ isn't explicitly stated in the code. It requires counting the columns in these l
     ast_cli(fd, "RX VOICE DISPLAY:\n");
     ast_cli(fd, "                                 v -- 3KHz        v -- 5KHz\n");
 
-I count 34 spaces to get to the 3kHz point and 51 to get to the 5kHz point. Let's just hope the user has a monospaced font! HIHI. 
+I count 34 spaces to get to the 3kHz point and 51 to get to the 5kHz point. Let's just hope the user has selected a monospaced font! HIHI. 
 
 Using the ratio above, 3kHz corresponds to an `apeak` of 7,430 and 5kHz corresponds to 11,100. In dBFS
 terms this means that 3kHz is -12 dBFS peak and 5kHz is -9 dBFS peak. (NOTE: This 
-squares with the advice that career TV broadcast engineer Dan Brown W1DAN once gave me: "always leave at least 10dB of headroom.")
+squares with the advice that career TV broadcast engineer Dan Brown W1DAN once gave me: "always leave around 10dB of headroom.")
 
 ## TX 55553 Parrot
 
 Patrick N2DYI has given me a lot of useful information about the way his parrot works
-and how levels should be computed in general. I've done a [separate article on the details](https://mackinnon.info/ampersand/parrot-55553-notes). Bottom line: Patrick 
+and how levels should be computed in general. I've done a [separate article on the full details of 55553](https://mackinnon.info/ampersand/parrot-55553-notes). Bottom line: Patrick 
 does his work using RMS (average) levels, *not peak levels.* His mapping is as follows:
 
 | RMS dBFS    | Qualitative         |
@@ -102,12 +102,12 @@ the network. The parrot reported that my audio was "very loud" and the display
 meter on the playback website registered a steady -10. So **that scale is calibrated
 in peak dBFS.**
 
-The web interface instructs the user to _"Keep your audio in the amber range"_ which
+The web interface instructs users to _"Keep your audio in the amber range"_ which
 extends from -15dBFS to -5dBFS peak. -5dbFS seems like a high target to me (TX 
 parrot tells me _"yeah ... that's just way, way, too loud."_) but at least the amber part of the scale
 is centered around the -10dBFS peak level.
 
-The web interface also displays an "RMS Level" of 6930. This checks out as well since
+The web interface also displayed an "RMS Level" of 6930 for my test. This checks out as well since:
 
     20 * log10((6930/0.707) / 32767) ~= -10
 
