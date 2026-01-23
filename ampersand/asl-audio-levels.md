@@ -10,7 +10,7 @@ this level. Obviously, getting the audio input level right is important to those
 
 The `app_rpt` tuning utility displays a real-time audio level meter to help you make
 these adjustments. Given the heritage of the ASL system and its creators, it's 
-not surprising that this meter displays audio levels in units of deviation. In fact, almost
+not surprising that this meter displays audio levels in units of FM deviation. In fact, almost
 all of the [audio setup documentation for the ASL system](https://allstarlink.github.io/adv-topics/audio-level/) is written from the perspective of deviation levels for 
 an FM modulator. Moreover, the setup documentation assumes that you have access 
 to a nice RF service monitor
@@ -65,7 +65,8 @@ math the other way:
     meas = thresh * 16384 / ncols 
 
 Working backwards to understand what 5kHz deviation means is tricky because the math 
-isn't explicitly stated in the code. It requires counting the columns in these lines:
+isn't explicitly stated in the code. It requires counting the columns in these lines 
+which are probably familiar to anyone who has used the tuning utility:
 
     ast_cli(fd, "RX VOICE DISPLAY:\n");
     ast_cli(fd, "                                 v -- 3KHz        v -- 5KHz\n");
