@@ -4,15 +4,15 @@ title: Notes on Receive Audio Level Calibration
 
 The ASL system provides a tuning utility that helps you to adjust the input (receive)
 audio level that is being passed into the ASL network from your station. This adjustment 
-relates to the receiver audio output on a radio-connected system or the microphone 
-gain on a radio-less system. The setting of the CM1xx microphone mixer also effects 
+relates to the receiver audio output for a radio-connected system or the microphone 
+gain for a radio-less system. The setting of the CM1xx microphone mixer also effects 
 this level. Obviously, getting the audio input level right is important to those who are listening to you across the network.
 
-THe `app_rpt` tuning utility displays a real-time audio level meter to help you make
+The `app_rpt` tuning utility displays a real-time audio level meter to help you make
 these adjustments. Given the heritage of the ASL system and its creators, it's 
 not surprising that this meter displays audio levels in units of deviation. In fact, almost
 all of the [audio setup documentation for the ASL system](https://allstarlink.github.io/adv-topics/audio-level/) is written from the perspective of deviation levels for 
-an FM repeater system. Moreover, the setup documentation assumes that you have access 
+an FM modulator. Moreover, the setup documentation assumes that you have access 
 to a nice RF service monitor
 like the [HP/Agilent 8921A](https://www.testwall.com/media/catalog/product/file/HP_83205A-97483.pdf). You can get a refurbished one (calibrated) for around $5,000,
 so that's no problem. :-)
@@ -37,18 +37,18 @@ of conventional digital audio level units of dBFS (full-scale).
 ## app_rpt Tune Display
 
 I've been looking at the `app_rpt` code to try to figure out what "5kHz point" really 
-means in terms of the IAX2 voice data.  It comes down to counting spaces.
+means in terms of the IAX2 voice data flowing onto the network. You can figure this out by counting spaces.
 
-The meter is driven by a peak amplitude `apeak` which is compted (chan_simpleusb.c) 
+The meter is driven by a peak amplitude `apeak` which is compted (`chan_simpleusb.c`) 
 from the minimum `amin` 
-and maximum `amax` 16-bit signed PCM values seen in the sample window:
+and maximum `amax` 16-bit signed PCM values seen in each sample window:
 
     apeak = (amax - amin) / 2
 
-So the `apeak` for a "full swing" audio sample (i.e. maximum possible deviation) would be
+So the `apeak` value for a "full swing" audio sample (i.e. maximum possible deviation) would be
 32767.
 
-Since the meter is displayed using ASCII art, the `apeak` needs to be converted to 
+Since the meter is displayed using ASCII art, the `apeak` value needs to be converted to 
 a set of = characters that display a bar across the typical 80 column text terminal.
 This happens in the `tune_rxdisplay()` function:
 
@@ -56,7 +56,7 @@ This happens in the `tune_rxdisplay()` function:
     ncols = 75
     thresh = (meas * ncols) / 16384;
 
-So a full swing signal would require about 150 columns of text. Doing the 
+This implies that a full swing signal would require about 150 columns of text. Doing the 
 math the other way:
 
     meas = thresh * 16384 / ncols 
@@ -67,16 +67,16 @@ isn't explicitly stated in the code. It requires counting the columns in these l
     ast_cli(fd, "RX VOICE DISPLAY:\n");
     ast_cli(fd, "                                 v -- 3KHz        v -- 5KHz\n");
 
-I count 34 spaces to get to the 3kHz point and 51 to get to the 5kHz point. 
+I count 34 spaces to get to the 3kHz point and 51 to get to the 5kHz point. Let's just hope the user has a monospaced font! HIHI. 
 
-So 3kHz corresponds to an `apeak` of 7,430 and 5kHz corresponds to 11,100. In dBFS
+Using the ratio above, 3kHz corresponds to an `apeak` of 7,430 and 5kHz corresponds to 11,100. In dBFS
 terms this means that 3kHz is -12 dBFS peak and 5kHz is -9 dBFS peak. (NOTE: This 
 squares with the advice that career TV broadcast engineer Dan Brown W1DAN once gave me: "always leave at least 10dB of headroom.")
 
 ## TX 55553 Parrot
 
 Patrick N2DYI has given me a lot of useful information about the way his parrot works
-and how levels should be computed in general. I've done a [separate article on the details](https://mackinnon.info/ampersand/parrot-55553-notes). Bottom line, Patrick 
+and how levels should be computed in general. I've done a [separate article on the details](https://mackinnon.info/ampersand/parrot-55553-notes). Bottom line: Patrick 
 does his work using RMS (average) levels, *not peak levels.* His mapping is as follows:
 
 | RMS dBFS    | Qualitative         |
@@ -97,5 +97,63 @@ to -9dBFS range targeted by the `app_rpt` tuning meter.
 ## UK 40894 Parrot 
 
 I don't have any contact at the HUBNet parrot node but I can do an empirical experiment.
+I dialed the UK parrot and injected a continuous -10dBFS tone (0.31 * 32767 peak amplitude) into 
+the network. The parrot reported that my audio was "very loud" and the display 
+meter on the playback website registered a steady -10. So **that scale is calibrated
+in peak dBFS.**
 
+The web interface instructs the user to _"Keep your audio in the amber range"_ which
+extends from -15dBFS to -5dBFS peak. -5dbFS seems like a high target to me (TX 
+parrot tells me _"yeah ... that's just way, way, too loud."_) but at least the amber part of the scale
+is centered around the -10dBFS peak level.
 
+The web interface also displays an "RMS Level" of 6930. This checks out as well since
+
+    20 * log10((6930/0.707) / 32767) ~= -10
+
+## Notes From David NR9V
+
+David NR9V builds AllStar audio interface hardware commercially and has spent a lot
+of time helping people tune their stations properly. His notes on this topic are 
+helpful and pretty consistent with the above.
+
+> In any digital audio system peak levels are the primary measure of signal levels being 
+> within proper range and after having put a lot of thought into this over time as far 
+> as exact numbers I think the following are what should be the "canonical" definition 
+> of peak audio levels for AllStar:
+
+| Peak level (dbFS)  |  LED Color   |    Description          |
+| -------------------|--------------|-------------------------|
+| > 0                | Flashing Red |  Clipped, Much Too High |
+| 0 to -2            | Red          |  Too High               |
+| -3 to -5           | Yellow       |  Above Normal           |
+| -6 to -9           | Green        |  Good                   |
+| -10 to -12         | Med. Green   |  Below Normal           |
+| -13 to -15         | Dark Green   |  Too Low                |
+
+> "> 0 dBFS" i.e. clipping is indicated if >= 3 sample values in a row 
+> are > ~99% full-scale.
+
+> Average values (ie. the max average power value that occurred within any 1 second 
+> window) are also important, but are somewhat secondary to peak audio levels, though 
+> not entirely secondary. The difference between peak and average levels can roughly 
+> be generalized as:
+
+| Peak - Max Avg Level (dB)  |  Desc                                           |
+| ---------------------------|-------------------------------------------------|
+| > 20                       | Weak audio, low average-to-peak power levels    |
+| 20 - 10                    | Good                                            |
+| < 10                       | Overcompressed, reduced dynamics / muddy audio  |
+
+> Weak audio typically occurs with knockoff $20 DMTF mics found on 
+> Amazon/ebay/aliexpress, etc., and with homebuilt radioless nodes that have no
+> mic AGC/compression/limiting. But there can be many other reasons why these 
+> numbers can vary considerably.
+>
+> In all these measurements, I do recommend first trimming off at least the first 
+> and last 1/2 second or so of audio, and, tossing any stats numbers for the first 
+> and last 1 second windows if those numbers substantially differ from the middle 
+> 1 second windows.
+>
+> The important thing in any parrot node is that it first and foremost always 
+> reports the actual (dBFS) peak and max average power levels. 
