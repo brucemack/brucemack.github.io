@@ -25,7 +25,7 @@ The [guidance for setting up the receive audio level](https://allstarlink.github
 
 Meanwhile, the other method that seems to be widely used - particularly for those
 few hams who might not own a service monitor - is to call one of the 
-parrot stations on the network. [Texas 55553](https://mackinnon.info/ampersand/parrot-55553-notes) or [UK 40894](https://hubnetwork.uk/parrot/) is an example of good one. However, these parrots aren't calibrated  
+parrot stations on the network. [Texas 55553](https://mackinnon.info/ampersand/parrot-55553-notes) or [UK 40894](https://hubnetwork.uk/parrot/) are examples of good ones. However, these parrots aren't calibrated  
 in terms of FM deviation units. Instead, they provide a subjective assessment
 of audio level with phrases like "pretty good" (TX 55553) or "your audio is perfect" (UK 40894). In the case of the UK parrot there is a web-based level meter that
 provides a slightly more scientific display - more below.
@@ -163,3 +163,69 @@ helpful and pretty consistent with the above.
 >
 > The important thing in any parrot node is that it first and foremost always 
 > reports the actual (dBFS) peak and max average power levels. 
+
+David also added some useful comments in reaction to the "-10dB of headroom" 
+recommendation espoused above.
+
+> Note re. "... advice that career TV broadcast engineer Dan Brown W1DAN once gave 
+> me: "always leave around 10dB of headroom." - This applies in the context 
+> of a broadcast system where you have full control over the source content but 
+> are then going into transmitter systems that are very sensitive to clipping/distortion.
+>
+> The context in ROIP is quite different however:
+> 
+> 1. We do not have control over the source content. If you encourage everyone 
+> to set their levels at -10dBFSpk, but then some users for whatever reasons set 
+* their levels at -1dBFSpk (which sounds perfectly good - not clipped or distorted 
+> at all), now you have 9dB of levels variation, resulting in highly inconsistent 
+> levels on the network. Thus in this case it's better to follow digital audio 
+> level standards than broadcast TV standards.
+>
+> 2. The vast majority of nodes are not directly driving an FM modulator input.  
+> Most nodes are either using (a) normal mic inputs on a radio device – which 
+> have thorough filtering and limiting that prevents over-deviation, or (b) 
+> radio-less or various apps that are not outputting to a transmitter.
+>
+> These contextual distinctions are important and very easy to overlook. Targeting 
+> peak levels of <= -10dBFS makes sense only in the context of USBRadio driving a 
+> direct FM modulator input. In other contexts, chief among those being IAX
+> audio levels, it does not make sense and should not be the goal. 
+
+I think David's point about the context of W1DAN's -10dB recommendation being 
+broadcast-centric is likely fair, although Dan has also setup/maintained a lot
+of FM repeater systems as well.
+
+It is also true that audio on the network varies widely, possibly on the order of 
+9dB, and possibly because of the differences in the ways these tools are 
+calibrated. That being said, the fact that all three of the existing "references" for 
+the ASL network (tune, TX 55553, and UK 40894) seem to have been encouraging a 
+level at or below -10dBFS peak can't be ignored. The top priority should be to 
+avoid clipping, but after that, the next priority should be as much consistency 
+across stations as possible.
+
+## The Ampersand Parrot Implementation
+
+Given the difference in opinion about the "right" audio level, the Ampersand
+Parrot implementation provides the actual peak dB and RMS average power dB
+levels in the read-back. So at least there's no mystery there.
+
+Per the recommendations of Patrick and David, the first and last ~500ms of the 
+recording are discarded before the analysis. This is very good advice given how 
+much leading trailing clicks/pops/silence can mess up the analysis.
+
+(TODO: Add comments about user-friendly summarization)
+
+## Other Notes
+
+[Per datasheet](https://www.mpja.com/download/36814cp%20cm108%20data.pdf), the dynamic range of the ADC in the CM108 is 81dB.
+
+[Per datasheet](https://www.micros.com.pl/mediaserver/info-uicm108b.pdf), the dynamic range of the ADC in the CM108B is 88.5dB.
+
+[Per datasheet](https://www.masterscommunications.com/products/radio-adapter/pdf/cm119-datasheet.pdf), the dynamic range of the ADC in the CM119 is 81.6dB.
+
+[Per datasheet](https://www.ti.com/lit/ds/symlink/pcm1804.pdf?ts=1769162410131&ref_url=https%253A%252F%252Fwww.google.com%252F). the dynamic range of the PCM1804 (used in the SDRC) is 112 dB.
+
+The dynamic range of the G.711 uLaw CODEC is equivalent to about 13 bits, or around 78dB.
+
+
+
