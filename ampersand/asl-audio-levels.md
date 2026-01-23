@@ -98,14 +98,20 @@ to -9dBFS range targeted by the `app_rpt` tuning meter.
 
 I don't have any contact at the HUBNet parrot node but I can do an empirical experiment.
 I dialed the UK parrot and injected a continuous -10dBFS tone (0.31 * 32767 peak amplitude) into 
-the network. The parrot reported that my audio was "very loud" and the display 
-meter on the playback website registered a steady -10. So **that scale is calibrated
-in peak dBFS.**
+the network. During this test the display meter on the playback website registered a steady -10. So **that scale is calibrated in peak dBFS.**
 
-The web interface instructs users to _"Keep your audio in the amber range"_ which
+Testing at several different levels, the UK parrot lady reported that my audio was 
+"very loud" at anything above -16dBFS peak, "loud" down to around -19dBFS peak, "perfect" down to 
+around -28dBFS peak, and "low" below that. Based on this, I surmise that the UK parrot voice
+prompts use **a scale that is calibrated in RMS (average) power dB.** Note that the 
+breakpoints are almost perfectly consistent with TX 55553 above.
+
+The voice prompts notwithstanding, the web interface instructs users to _"Keep your 
+audio in the amber range"_ which
 extends from -15dBFS to -5dBFS peak. -5dbFS seems like a high target to me (TX 
-parrot tells me _"yeah ... that's just way, way, too loud."_) but at least the amber part of the scale
-is centered around the -10dBFS peak level.
+parrot guy tells me _"yeah ... that's just way, way, too loud."_) but at least the amber part of the scale
+is centered around the -10dBFS peak level which falls in the "perfect" range from 
+the voice prompt.
 
 The web interface also displayed an "RMS Level" of 6930 for my test. This checks out as well since:
 
