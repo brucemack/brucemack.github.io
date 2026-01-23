@@ -23,16 +23,17 @@ The [guidance for setting up the receive audio level](https://allstarlink.github
 > average level does not go past the "3KHz" point, and that peak levels do 
 > not go significantly past the "5KHz" point.
 
-Meanwhile, the other method that seems to be widely used - particularly for those
+Meanwhile, the other method that seems to be widely used - particularly by those
 few hams who might not own a service monitor - is to call one of the 
 parrot stations on the network. [Texas 55553](https://mackinnon.info/ampersand/parrot-55553-notes) or [UK 40894](https://hubnetwork.uk/parrot/) are examples of good ones. However, these parrots aren't calibrated  
 in terms of FM deviation units. Instead, they provide a subjective assessment
-of audio level with phrases like "pretty good" (TX 55553) or "your audio is perfect" (UK 40894). In the case of the UK parrot there is a web-based level meter that
-provides a slightly more scientific display - more below.
+of audio level with phrases like _"pretty good"_ (TX 55553) or _"your audio is perfect"_ (UK 40894). In the case of the UK parrot there is also a web-based level meter that
+provides a more scientific display - more below.
 
 So what does all of this translate to in terms of the actual bits being transmitted on 
 the ASL network? What we need to figure out is how these various tools work in terms 
-of conventional digital audio level units of dBFS (full-scale).
+of conventional digital audio level units of dBFS (full-scale) that would be familiar
+to a modern-day VOIP engineer.
 
 ## app_rpt Tune Display
 
@@ -213,7 +214,7 @@ Per the recommendations of Patrick and David, the first and last ~500ms of the
 recording are discarded before the analysis. This is very good advice given how 
 much leading trailing clicks/pops/silence can mess up the analysis.
 
-(TODO: Add comments about user-friendly summarization)
+(TODO: Add comments about user-friendly summarization to be implemented.)
 
 ## Other Notes
 
