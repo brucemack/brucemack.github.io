@@ -35,6 +35,8 @@ the ASL network? What we need to figure out is how these various tools work in t
 of conventional digital audio level units of dBFS (full-scale) that would be familiar
 to a modern-day VOIP engineer.
 
+Admittedly, this is confusing discussion. Sometimes you hear comments like _"Why dbFS? I thought that's only for digital waveform?"_ or _"My common understanding was the reference for flat audio is 1v P-P with a 1 kHz tone"_ or _"5 kHz deviation at FM flat audio is the best practice"_. But hopefully it's clear that a VOIP audio stream is just digital numbers. There are no voltages in a VOIP data stream. There is no FM deviation in a VOIP data stream. The only thing that can be expressed in a VOIP audio sample is a value relative to the dynamic range of the CODEC being used.
+
 ## app_rpt Tune Display
 
 I've been looking at the `app_rpt` code to try to figure out what "5kHz point" really 
