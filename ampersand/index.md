@@ -114,6 +114,10 @@ with the mechanics of VOIP linking system.
 The Ampersand audio "core" runs at 48kHz. Audio is down/up-sampled when interfacing with links
 that operate at lower bandwidths. 
 
+### Audio Level Measurement in the ASL System
+
+[Please see this article](asl-audio-levels.md) for more information.
+
 ### 16K Audio (aka "ASL-HD")
 
 The existing app_rpt/chan_simpleusb code appears to make the fundamental assumption that network 

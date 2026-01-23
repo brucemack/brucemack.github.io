@@ -74,7 +74,7 @@ And here's how I'm converting the output of what SoX gives to an actual DB value
 
 ## Replication of Patrick's Method
 
-Using the W1TKZ repeater ID prompt file here. That's a 16K audio file in .wav format.
+Using the W1TKZ repeater ID prompt [file here](assets/id1.wav). That's a 16K audio file in .wav format.
 
 The SoX command:
 
@@ -115,7 +115,7 @@ Gives this result:
 
     -20.780
 
-Sanity check looking at peak:
+Sanity check looking at peak instead of average:
 
     RMS=$(sox -t wav --channels 1 --rate 16000 -e signed-integer id1.wav -n stat 2>&1 | grep "Maximum amplitude" | cut -d ":" -f 2)
     echo "scale=3; (l($RMS)/l(10))*20" | bc -l
