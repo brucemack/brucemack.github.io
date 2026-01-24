@@ -267,7 +267,7 @@ receive one comment from an experienced AllStar user:
 > tolerance using either simpleusb or usbradio. So, maybe 
 > that explains it.
 
-If someone was aligning their transmitter for 5kHz deviation
+If someone was aligning their system for 5kHz deviation
 using a very loud -3dBFS peak tone, I guess it stands to reason 
 that "normal" stations that were transmitting somewhere around
 -10dBFS peak would sound quieter.
