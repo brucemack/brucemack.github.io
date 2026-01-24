@@ -2,9 +2,12 @@
 title: Notes on Receive Audio Level Calibration 
 ---
 
+This article is all about determining the magnitude of the digital values that 
+an AllStar node sends to the network. 
+
 The ASL system provides a tuning utility that helps you to adjust the input (receive)
-audio level that is being passed into the ASL network from your station. This adjustment 
-relates to the receiver audio output for a radio-connected system or the microphone 
+audio level that is being passed into the network from your station. This adjustment 
+pertains to the receiver audio output for a radio-connected system or the microphone 
 gain for a radio-less system. The setting of the CM1xx microphone mixer also effects 
 this level. Obviously, getting the audio input level right is important to those who are listening to you across the network.
 
