@@ -257,6 +257,19 @@ value of at least +20,860, or about -3dBFS. So if the comment in the code is rig
 full deviation (5kHz?) comes from a -3dBFS tone.  That is a different calibration from the other 
 things described so far. 
 
+I'm not a Voter user so I don't have any experience here. I did 
+receive one comment from an experienced AllStar user:
+
+> Anecdotally, I have noticed that nodes using voters tend to 
+> be just a little quieter on average than those tuned within
+> tolerance using either simpleusb or usbradio. So, maybe 
+> that explains it.
+
+If someone was aligning their transmitter for 5kHz deviation
+using a very loud -3dBFS peak tone, I guess it stands to reason 
+that "normal" stations that were transmitting somewhere around
+-10dBFS peak would sound quieter.
+
 (More investigation needed.)
 
 ## Other Notes
