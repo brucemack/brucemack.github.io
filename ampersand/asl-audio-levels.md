@@ -36,7 +36,9 @@ provides a more scientific display - more below.
 So what does all of this translate to in terms of the actual bits being transmitted on 
 the ASL network? What we need to figure out is how these various tools work in terms 
 of conventional digital audio level units of dBFS (full-scale) that would be familiar
-to a modern-day VOIP engineer.
+to a modern-day VOIP engineer. **Nothing in this article is trying to second-guess the instructions
+around the use of the deviation meter in the ASL tune utility.
+I'm just trying to understand the math.**
 
 Admittedly, this is a confusing discussion. Sometimes you hear comments like _"Why dbFS? I thought that's only for digital waveforms?"_ or _"My common understanding was the reference for flat audio is 1v P-P with a 1 kHz tone"_ or _"5 kHz deviation at FM flat audio is the best practice"_. All of those comments may be true, but hopefully it's clear that a VOIP audio stream is 
 just a string of numbers. There's no way to transmit a voltage on a VOIP data stream. There is no FM deviation in a VOIP data stream. There are no milliwatts transferred through a VOIP data stream. The only thing that can be expressed in a VOIP sample is a numeric value relative to the dynamic range of the CODEC being used. A convention is needed to decide how the electrical
@@ -81,6 +83,15 @@ I count 34 spaces to get to the 3kHz point and 51 to get to the 5kHz point. Let'
 Using the ratio above, 3kHz corresponds to an `apeak` of 7,430 and 5kHz corresponds to 11,100. In dBFS
 terms this means that 3kHz is -12 dBFS peak and 5kHz is -9 dBFS peak. (NOTE: This 
 squares with the advice that career TV broadcast engineer Dan Brown W1DAN once gave me: "always leave around 10dB of headroom.")
+
+Now going back to the official ASL guidance: _"be sure that the 
+average level does not go past the 3KHz point ..."_. This meter
+measures peak, so we shouldn't confuse the -12dBFS level (3kHz) 
+with average in the RMS sense. For a pure tone the -12dBFS peak 
+point would
+correspond to a -15dB RMS level, but we're not dealing with 
+pure tones usually so I'm not sure how to translate the guidance
+around the 3kHz point into RMS dBFS. Suggestions welcomed.
 
 ## TX 55553 Parrot
 
