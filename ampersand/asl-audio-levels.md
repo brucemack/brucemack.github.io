@@ -41,8 +41,8 @@ around the use of the deviation meter in the ASL tune utility.
 I'm just trying to understand the math.**
 
 Admittedly, this is a confusing discussion. Sometimes you hear comments like _"Why dbFS? I thought that's only for digital waveforms?"_ or _"My common understanding was the reference for flat audio is 1v P-P with a 1 kHz tone"_ or _"5 kHz deviation at FM flat audio is the best practice"_. All of those comments may be true, but hopefully it's clear that a VOIP audio stream is 
-just a string of numbers. There's no way to transmit a voltage on a VOIP data stream. There is no FM deviation in a VOIP data stream. There are no milliwatts transferred through a VOIP data stream. The only thing that can be expressed in a VOIP sample is a numeric value relative to the dynamic range of the CODEC being used. A convention is needed to decide how the electrical
-measurements get mapped onto the available numeric values.
+just a string of numbers. There's no way to transmit a voltage on a VOIP data stream. There is no FM deviation in a VOIP data stream. There are no milliwatts transferred through a VOIP data stream. The only thing that can be expressed in a VOIP sample is a numeric value relative to the dynamic range of the CODEC being used. A convention is needed to map electrical
+measurements onto the available numeric values.
 
 ## app_rpt Tune Display
 
