@@ -35,7 +35,9 @@ the ASL network? What we need to figure out is how these various tools work in t
 of conventional digital audio level units of dBFS (full-scale) that would be familiar
 to a modern-day VOIP engineer.
 
-Admittedly, this is confusing discussion. Sometimes you hear comments like _"Why dbFS? I thought that's only for digital waveform?"_ or _"My common understanding was the reference for flat audio is 1v P-P with a 1 kHz tone"_ or _"5 kHz deviation at FM flat audio is the best practice"_. But hopefully it's clear that a VOIP audio stream is just digital numbers. There are no voltages in a VOIP data stream. There is no FM deviation in a VOIP data stream. There are no milliwatts in a VOIP data stream. The only thing that can be expressed in a VOIP audio sample is a value relative to the dynamic range of the CODEC being used.
+Admittedly, this is a confusing discussion. Sometimes you hear comments like _"Why dbFS? I thought that's only for digital waveforms?"_ or _"My common understanding was the reference for flat audio is 1v P-P with a 1 kHz tone"_ or _"5 kHz deviation at FM flat audio is the best practice"_. All of those comments may be true, but hopefully it's clear that a VOIP audio stream is 
+just a string of numbers. There's no way to transmit a voltage on a VOIP data stream. There is no FM deviation in a VOIP data stream. There are no milliwatts transferred through a VOIP data stream. The only thing that can be expressed in a VOIP sample is a numeric value relative to the dynamic range of the CODEC being used. A convention is needed to decide how the electrical
+measurements get mapped onto the available numeric values.
 
 ## app_rpt Tune Display
 
@@ -235,9 +237,9 @@ I'd not heard the term "[digital milliwatt](https://en.wikipedia.org/wiki/Digita
 but apparently it is an official digital telephony concept. According to the standard, this 
 uLaw stream is supposed to generate a 1kHz reference signal with 0dBm of power (one milliwatt).
 
-I don't think the actual 1mW signal is relevant to our system. But we can say 
-with confidence that this stream of uLaw values produces a 1kHz PCM16 stream with peak 
-value of +20,860, or about -3dBFS. So if the comment in the code is right, the voter thinks that 
+I don't think the actual 1mW signal is relevant in our system. But we can say 
+with some confidence that this stream of uLaw values produces a 1kHz PCM16 stream with peak 
+value of at least +20,860, or about -3dBFS. So if the comment in the code is right, the voter thinks that 
 full deviation (5kHz?) comes from a -3dBFS tone.  That is a different calibration from the other 
 things described so far. 
 
