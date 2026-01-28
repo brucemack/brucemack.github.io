@@ -1054,7 +1054,7 @@ a call token will be required in the NEW retry.
 For unknown reasons, I observe the retransmission flag is True for an 
 incoming CALLTOKEN message (from 55553).
 
-![IAX2 Capture 7](assets/protocol/iax2-capture-7.jpg)
+![IAX2 Capture 7](assets/protocol/asl-capture-7.jpg)
 
 ### Voice Packet (Full)
 
