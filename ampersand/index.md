@@ -17,7 +17,12 @@ node 672730, as long as I'm not in the middle of a compile. [I'm also on LinkedI
 
 The [original thread where this was introduced is located here](https://community.allstarlink.org/t/a-minimal-asl-node-without-asterisk-dependency-r-d/23879).
 
+I'm not an expert on VOIP or ASL. I just got into this in 
+late 2025. 
+
 The [GitHub project is here](https://github.com/Ampersand-ASL).
+
+# Table of Contents
 
 * (Will be replaced with table of contents)
 {:toc}
