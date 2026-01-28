@@ -823,10 +823,9 @@ Oh, as a #2A, DNS is refreshed every ~60 seconds.
 As in the job runs once every 60 seconds and takes anywhere between 10-30 seconds depending on how much change there is.
   5:06 PM
 On #3, what stats frequency should I run with?
-
-Jason N8EI
-  5:06 PM
-180s
+> Jason N8EI 5:06 PM
+>
+>180s
 
 ## Determining the IP Address of a Public Node
 
@@ -840,8 +839,11 @@ has the format:
 
     _iax._udp.NNNNNN.nodes.allstarlink.org
 
-where NNNNNN is the node name/number of the caller taken from the NEW message from the 
-original call (NEW Information Element 2 is "Calling Number").
+where NNNNNN is the node name/number of the target node.
+
+(A lot of what follows is generic DNS 
+protocol stuff and is not ASL-specific. I've documented
+it for my own information.)
 
 The SRV request is described in [RFC 2782](https://www.rfc-editor.org/rfc/rfc2782).
 
@@ -868,7 +870,7 @@ Body (Question 1)
 
 The DNS response contains the service host name (29999.nodes.allstarlink.org) and the port number (4569).
 
-![DNS Query 1 Response](asl-capture-4.jpg)
+![DNS Query 1 Response](assets/protocol/asl-capture-4.jpg)
 
 Header
 * ID=0xc930
@@ -892,11 +894,11 @@ Body (Answer 1)
 The second DNS query is of type A (Host Address). The service host name returned by the previous
 DNS query is sent in this query. An example is shown here:
 
-![DNS Query 2](asl-capture-5.jpg)
+![DNS Query 2](assets/protocol/asl-capture-5.jpg)
 
 The response contains the IP address:
 
-![DNS Query 2 Response](asl-capture-6.jpg)
+![DNS Query 2 Response](assets/protocol/asl-capture-6.jpg)
 
 After this sequence is complete the IP address and port number can be used to contact
 the target node. 
@@ -1352,19 +1354,6 @@ And then a series of events tracing the hangup events.
 no official/fixed frame size defined in the specification, but one frame every 20ms would
 result in 160 bytes/frame. I think the PJSIP documentation indicates that a 20ms frame rate 
 is used in that implementation.
-
-# References
-
-* [A good blog analysis on INVITE flow](https://blog.wildix.com/sip-invite-method/)
-* [A good blog on SDP format](https://andrewjprokop.wordpress.com/2013/09/30/understanding-session-description-protocol-sdp/)
-* https://aosabook.org/en/v1/asterisk.html
-* [ASL #Slack](https://allstarlink.slack.com/)
-
-
-
-
-
-
 
 # Other Pages
 
