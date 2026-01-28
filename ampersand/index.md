@@ -42,6 +42,11 @@ My hope is that Ampersand will provide a better platform for experimental work.
 
 Please see [The Ampersand Server User's Guide](https://github.com/Ampersand-ASL/amp-server/blob/main/docs/user.md) for installation instructions.
 
+# Other Links
+
+* David Gleason (NR9V) [created this interesting video](https://www.youtube.com/watch?v=vRurT4k_Jy4) that also highlights the [UCI200](https://allscan.info/products/uci200/) radio interface.
+* Tom Salzer (KJ7T) [wrote this nice article](https://etherham.com/ampersand-asl-installed-and-working/) on the EtherHam site.
+
 # Conceptual Model of the Ampersand Server
 
 _(Work in process, diagram needed)_
