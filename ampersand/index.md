@@ -592,14 +592,7 @@ setup and the various DNS discovery protocols support alternate port numbers.
 
 AMI usually runs on TCP port 5038.
 
-## Network Information
-
-IAX2 usually runs on UDP port 4569. This is the only port that needs to be open from the outside. It is possible to change this to an arbitrary port number during server
-setup and the various DNS discovery protocols support alternate port numbers.
-
-AMI usually runs on TCP port 5038.
-
-## Node Registration
+## ASL Node Registration
 
 The ASL system provides a central database that maps an 
 AllStar node number to an IP address/port. This is only
@@ -786,7 +779,7 @@ A GET will return a JSON message like this:
 }
 ```
 
-## Downloading the Node Database 
+## Downloading the ASL Node Database 
 
 This endpoint will return a large file with the registration
 status of all nodes on the network. This method of routing/validating 
@@ -794,13 +787,13 @@ is discouraged:
 
         https://snodes.allstarlink.org/gennodes.php
 
-## Statistics Posting
+## ASL Statistics Posting
 
 Format of statistic post can be seen here:
 
         [2025-10-30 23:46:26.892] WARNING[26258] app_rpt.c: statpost to URL 'http://stats.allstarlink.org/uhandler?node=644441&time=1761893052&seqno=6&nodes=T559820&apprptvers=3.6.2&apprptuptime=109&totalkerchunks=0&totalkeyups=1&totaltxtime=19&timeouts=0&totalexecdcommands=0&keyed=0&keytime=119' failed with error: Failed to connect to stats.allstarlink.org port 80 after 134860 ms: Could not connect to server
 
-## Other Intel on Registration/Stats
+## Other Intel on ASL Registration/Stats
 
 A question sent to Jason N8EI:
 
@@ -903,7 +896,7 @@ The response contains the IP address:
 After this sequence is complete the IP address and port number can be used to contact
 the target node. 
 
-## IAX Audio Notes
+## IAX2 Audio Notes
 
 The audio sample rate is 8kHz. Block size is 160. So each block represents 20ms of audio.
 
@@ -1027,7 +1020,7 @@ Initial NEW message uses CODEC Negotiation (0x2d) of "DGC."
 * When sending any frame send outbound_seq in the OSeqno field. After sending a frame **that is not an ACK** increment outbound_seq field. 
 * When a full frame is received, check the OSeqno field vs the expected value and increment the inbound_expected_seq.
 
-## Message Format/Semantics
+## IAX2 Message Format/Semantics
 
 ### NEW
 
