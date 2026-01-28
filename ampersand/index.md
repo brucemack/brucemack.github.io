@@ -33,7 +33,7 @@ The Ampersand project is not attempting to replace Asterisk. There are 1000's of
 successful Asterisk installations being used by hams and that isn't expected to change.
 My hope is that Ampersand will provide a better platform for experimental work.
 
-# Users/Installation
+# Users/Installation Guide
 
 Please see [The Ampersand Server User's Guide](https://github.com/Ampersand-ASL/amp-server/blob/main/docs/user.md) for installation instructions.
 
@@ -113,6 +113,11 @@ with the mechanics of VOIP linking system.
 
 The Ampersand audio "core" runs at 48kHz. Audio is down/up-sampled when interfacing with links
 that operate at lower bandwidths. 
+
+I've done some analysis of the Asterisk/app_rpt DSP functions which
+is [documented here](asl-dsp-notes.md). I've not followed the 
+app_rpt model in all cases, but this is very good background 
+to have.
 
 ### Audio Level Measurement in the ASL System
 
@@ -298,7 +303,12 @@ it can eliminate incoming network kerchunks if desired.
 
 (Docs to follow)
 
-# Software
+# Software Architecture
+
+The system is written in C++. I think this is a big step-up from C, but may still 
+be considered a legacy language by many. C++ was originally invented
+at Bell Laboratories for telecom applications so it's nice to use the language as 
+it was originally intended. :-)
 
 The source code for the system is developed in [this set of Github repos](https://github.com/Ampersand-ASL). The main branch is production/stable. Development activity is 
 integrated on the develop branch.
@@ -318,10 +328,13 @@ the code, but doesn't build any executables. See below. Some parts of this
 code are able to built on a microcontroller platform.
 * [amp-server](https://github.com/Ampersand-ASL/amp-server) contains the 
 code required to build the Ampersand Server on LINUX.
+* [amp-hub](https://github.com/Ampersand-ASL/amp-hub) contains the 
+code required to build the Ampersand Hub on LINUX. This would be used for "virtual" 
+or cloud nodes with no connection to radio hardware.
 * [asl-parrot](https://github.com/Ampersand-ASL/asl-parrot) contains the 
 code required to build the ASL parrot server (LINUX).
 * [amp-win](https://github.com/Ampersand-ASL/amp-server) contains the 
-code required to build the Ampersand Server on Windows.
+code required to build the Ampersand Server on Windows. (WORK IN PROCESS)
 
 The code depends on some external/3rd-party repos that are referenced as GIT 
 submodules. 
@@ -556,6 +569,817 @@ There are certain parts of the system that do not run on the microcontroller
 platform and those parts will use things like std::string, std::vector, that
 use dynamic memory internally. But much of the core system does everything 
 on the stack.
+
+# Network Protocol Notes
+
+One of the hardest part of this project is understanding the 
+details of the [IAX2 Protocol](https://datatracker.ietf.org/doc/html/rfc5456) and, importantly, how it is interpreted by Asterisk. 
+
+There are also some ASL-specific HTTP protocols used for various
+administrative tasks. These are not well documented. 
+
+Lastly, Asterisk supports an administrative protocol called AMI.
+This is a TCP protocol that can be used to send commands and 
+status requests to an Asterisk server. (NOTE: I don't plan to 
+implement this part of the system, but the background is helpful.)
+
+This section contains my notes on these various protocols.
+
+## Network Information
+
+IAX2 usually runs on UDP port 4569. This is the only port that needs to be open from the outside. It is possible to change this to an arbitrary port number during server
+setup and the various DNS discovery protocols support alternate port numbers.
+
+AMI usually runs on TCP port 5038.
+
+# AllStarLink Protocol Information 
+
+[By Bruce MacKinnon, KC1FSZ](https://www.qrz.com/db/kc1fsz)
+
+This page contains notes about the various protocols used in the AllStarLink
+network. This includes:
+* The IAX2 protocol used to conduct voice calls between nodes in the ASL network.
+* The various HTTP service protocols supported by allstarlink.org for registration,
+statistics, etc.
+* The AMI Asterisk Management Interface protocol used to support remote control/monitoring
+of an Asterisk server.
+
+Asterisk also supports SIP. Those details are covered elsewhere since SIP is a more 
+universal and well-documented protocol.
+
+## Network Information
+
+IAX2 usually runs on UDP port 4569. This is the only port that needs to be open from the outside. It is possible to change this to an arbitrary port number during server
+setup and the various DNS discovery protocols support alternate port numbers.
+
+AMI usually runs on TCP port 5038.
+
+## Node Registration
+
+The ASL system provides a central database that maps an 
+AllStar node number to an IP address/port. This is only
+relevant for "public" nodes. Any public AllStar node that wants
+to be reachable must register itself on an ongoing basis.
+
+There are two protocols that can be used for registration:
+* The HTTP endpoint, documented here.
+* An IAX registration (REGREQ, REGAUTH, REGACK). It seems
+like the ASL3 Establishment is actively discouraging the use
+of this method so I've not looked at it very closely. 
+
+The HTTP registration protocol works as follows.
+
+A JSON message is sent to the AllStarLink registry
+when a node starts up and every few minutes on an 
+ongoing basis.  This registration allows the 
+network to know the IP address that the node is running
+on. 
+
+The format of this JSON message doesn't appear to be directly
+documented, but it can be determined from looking at the 
+source code.
+Here's the JSON message (the important part):
+
+```json
+{
+    "port": 4569,
+    "data": {
+        "nodes": {
+            "61057": {
+                "node": "61057",
+                "passwd": "xxxxxx",
+                "remote": 0
+            }
+        }
+    }
+}
+```
+
+I'm not sure what the significance of the port number is
+and I have a feeling that it's not used. When you setup 
+an ASL server using the ASL portal you specify the IAX
+port number and I'm pretty sure this is what is used. (If
+anyone knows differently please let me know.)
+
+Here's an example of a command that will send the 
+properly formatted message:
+```
+curl -X POST "register.allstarlink.org" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+    "port": 7777,
+    "data": { 
+        "nodes": { 
+            "61057": { 
+                "node": "61057", 
+                "passwd": "xxxxxx", 
+                "remote": 0 
+            } 
+        } 
+    } 
+} 
+' \
+     --trace allstarlink.log
+```
+The responses look like this:
+
+Good:
+
+    {"ipaddr":"108.20.174.63","port":4569,"refresh":179,"data":["61057 successfully registered @108.20.174.63:4569."]}
+
+Bad:
+
+    {"ipaddr":"108.20.174.63","port":4569,"refresh":179,"data":["61057 failed authentication. Please check your password and node number."]}
+
+NOTE: Both return HTTP code of 200
+
+## ASL Node Query
+
+This is an HTTP query endpoint that can be sent to the ASL infrastructure
+to get status information on a specific node. This is not needed
+for normal operation. I'm not using this endpoint
+at the moment, but I know other applications do.
+
+The URL has this format:
+
+  http://stats.allstarlink.org/api/stats/61057 
+  
+A GET will return a JSON message like this:
+
+```json
+{
+    "stats":{
+        "id":31620,
+        "node":61057,
+        "data": {
+            "apprptuptime":"409053",
+            "totalexecdcommands":"0",
+            "totalkeyups":"0",
+            "totaltxtime":"0",
+            "apprptvers":"3.5.5",
+            "timeouts":"0",
+            "links":[],
+            "keyed":false,
+            "time":"1761566153",
+            "seqno":"13638",
+            "nodes":null,
+            "totalkerchunks":"0",
+            "keytime":"409063",
+            "linkedNodes":[]
+        },
+        "created_at":"2024-04-03T15:06:30.000000Z",
+        "updated_at":"2025-10-27T11:55:53.000000Z",
+        "user_node":{
+            "Node_ID":74479,
+            "User_ID":"KC1FSZ",
+            "Status":"Active",
+            "name":"61057",
+            "ipaddr":"108.20.174.63",
+            "port":4569,
+            "regseconds":1761438377,
+            "iptime":"2025-10-07 19:49:05",
+            "node_frequency":"",
+            "node_tone":"",
+            "node_remotebase":false,
+            "node_freqagile":"0",
+            "callsign":"KC1FSZ",
+            "access_reverseautopatch":"0",
+            "access_telephoneportal":"1",
+            "access_webtransceiver":"1",
+            "access_functionlist":"0",
+            "is_nnx":"No",
+            "server":{
+                "Server_ID":44296,
+                "User_ID":"KC1FSZ",
+                "Server_Name":"microlink-1",
+                "Affiliation":"",
+                "SiteName":"",
+                "Logitude":"-71.29633",
+                "Latitude":"42.290464",
+                "Location":"Wellesley\/MA",
+                "TimeZone":null,
+                "udpport":4569,
+                "proxy_ip":null
+            }
+        }
+    },
+    "node":{
+        "Node_ID":74479,
+        "User_ID":"KC1FSZ",
+        "Status":"Active",
+        "name":"61057",
+        "ipaddr":"108.20.174.63",
+        "port":4569,
+        "regseconds":1761564172,
+        "iptime":"2025-10-07 19:49:05",
+        "node_frequency":"",
+        "node_tone":"",
+        "node_remotebase":false,
+        "node_freqagile":"0",
+        "callsign":"KC1FSZ",
+        "access_reverseautopatch":"0",
+        "access_telephoneportal":"1",
+        "access_webtransceiver":"1",
+        "access_functionlist":"0",
+        "is_nnx":"No",
+        "server":{
+            "Server_ID":44296,
+            "User_ID":"KC1FSZ",
+            "Server_Name":"microlink-1",
+            "Affiliation":"",
+            "SiteName":"",
+            "Logitude":"-71.29633",
+            "Latitude":"42.290464",
+            "Location":"Wellesley\/MA",
+            "TimeZone":null,
+            "udpport":4569,
+            "proxy_ip":null
+        }
+    },
+    "keyups":[],
+    "time":1.2359619140625
+}
+```
+
+## Downloading the Node Database 
+
+This endpoint will return a large file with the registration
+status of all nodes on the network. This method of routing/validating 
+is discouraged:
+
+        https://snodes.allstarlink.org/gennodes.php
+
+## Statistics Posting
+
+Format of statistic post can be seen here:
+
+        [2025-10-30 23:46:26.892] WARNING[26258] app_rpt.c: statpost to URL 'http://stats.allstarlink.org/uhandler?node=644441&time=1761893052&seqno=6&nodes=T559820&apprptvers=3.6.2&apprptuptime=109&totalkerchunks=0&totalkeyups=1&totaltxtime=19&timeouts=0&totalexecdcommands=0&keyed=0&keytime=119' failed with error: Failed to connect to stats.allstarlink.org port 80 after 134860 ms: Could not connect to server
+
+## Other Intel on Registration/Stats
+
+A question sent to Jason N8EI:
+
+> Hi Jason: A few questions about registration/stats. If there are docs, feel free to point me instead of typing. There are times when both the Philadelphia Hub and the East Coast Reflector reject my connections. I get the feeling that (a) my node isn’t “100% registered” all the time and (b) those two hubs are using the same logic to validate me. I am sending a re-registration every two minutes and I’m not sending any stats (yet). My node isn’t running at all times (yet).
+Do I need to be sending stats to be fully visible on the network and accepted by these hubs?
+The Cloudflare thing made me aware that some nodes are doing a file download to get the node directory.  I’m not doing that, I’m 100% DNS. How often does the download happen?  Is it possible that some nodes are missing me because I am not up 100% of the time.
+Ideally, how often should I register and how often should I send stats?
+
+Jason's response:
+
+> For #1, if you're talking about the statpost in app_rpt, that has no bearing on your registration stats or, in the default case, being authenticated to another node. 
+>
+> For #2, the file is only being updated once every 5 minutes. So if you come online after being offline for 10 minutes, then there's a maximum of 300 seconds + whatever randomization skew there is until the the next download. The default cycle time on ASL3 was 2 minutes, now it's 5. If they're using something older or custom, it could be more or less aggressive on the download.
+5:04
+>
+> For #3, you cannot re-authenticate more than once every 120 seconds with a recommendation of 180 seconds. We actually will HTTP 429 a registration attempt that is too soon.
+5:04
+Oh, as a #2A, DNS is refreshed every ~60 seconds.
+5:04
+As in the job runs once every 60 seconds and takes anywhere between 10-30 seconds depending on how much change there is.
+  5:06 PM
+On #3, what stats frequency should I run with?
+
+Jason N8EI
+  5:06 PM
+180s
+
+## Determining the IP Address of a Public Node
+
+The preferred way to determine the IPv4 address/port of an AllStar node is using DNS.
+The ASL3 infrastructure is keeping the nodes.allstarlink.org domain up to date with the
+most-recently registered address of each active public node. This is a very elegant 
+solution.
+
+Two DNS queries are needed. The first DNS query is of type SRV (Server Selection). The name 
+has the format:
+
+    _iax._udp.NNNNNN.nodes.allstarlink.org
+
+where NNNNNN is the node name/number of the caller taken from the NEW message from the 
+original call (NEW Information Element 2 is "Calling Number").
+
+The SRV request is described in [RFC 2782](https://www.rfc-editor.org/rfc/rfc2782).
+
+[Here's a good handout](https://mislove.org/teaching/cs4700/spring11/handouts/project1-primer.pdf) that 
+provides the basics of the DNS packet format.
+
+The DNS query is a UDP packet set to the server on port 53. An example of a 
+query packet is here:
+
+![DNS Query 1](assets/protocol/asl-capture-3.jpg)
+
+Packet analysis for reference/education:
+
+Header
+* ID=0xc930
+* QR=0 (query)
+* OPCODE=0, AA=0, TC=0, RD=0, RA=0, Z=0, RCODE=0
+* QDCOUNT=1
+
+Body (Question 1)
+* QNAME 
+* QTYPE=0x0021 (decimal 33) means SRV query
+* QCLASS=0x0001 internet
+
+The DNS response contains the service host name (29999.nodes.allstarlink.org) and the port number (4569).
+
+![DNS Query 1 Response](asl-capture-4.jpg)
+
+Header
+* ID=0xc930
+* QR=1 (query)
+* OPCODE=0, AA=0, TC=0, RD=0, RA=1, Z=0, RCODE=0
+* QDCOUNT=1, ANCOUNT=1
+
+Body (Question 1)
+* Domain name
+* QTYPE=0x0021 (decimal 33) means SRV query
+* QCLASS=0x0000 internet
+
+Body (Answer 1)
+* Compressed domain name (0xc00c)
+* TYPE=0x0021 (decimal 33) means SRV query
+* CLASS=0x0001 internet
+* TTL=0x0000 0x003c
+* RDLENGTH=0x0023 (35) 
+* (The SRV record with PRI, WEIGHT, PORT, HOSTNAME)
+
+The second DNS query is of type A (Host Address). The service host name returned by the previous
+DNS query is sent in this query. An example is shown here:
+
+![DNS Query 2](asl-capture-5.jpg)
+
+The response contains the IP address:
+
+![DNS Query 2 Response](asl-capture-6.jpg)
+
+After this sequence is complete the IP address and port number can be used to contact
+the target node. 
+
+## IAX Audio Notes
+
+The audio sample rate is 8kHz. Block size is 160. So each block represents 20ms of audio.
+
+## Notes on Initial Handshake
+
+After an outgoing call is accepted by the remote server there are a few important
+(but somewhat hidden) handshakes that are needed. I'm not sure what all of these 
+mean, but if you don't follow the handshake the connection will be dropped.
+
+The server will send a text frame that looks like this:
+
+    !NEWKEY!
+
+The caller should respond with an identical text frame. Please note that these
+text frames *include the null termination character*.
+
+Then the caller should sent three other text frame:
+
+    T nnnnn COMPLETE
+    L<space>
+    T nnnnn CONNECTED,nnnnn,mmmmm
+
+Where nnnnn=local node number and mmmmm=remote (called) node number
+
+## Ongoing Handshake
+
+There are requirements in order to keep a connection up. I've
+seen remote Asterisk servers terminate my connection if I'm not doing
+all of these things:
+
+* When a PING is received, generate a PONG
+* When a LAGRQ is received, generate a LAGRP
+* Every 10 seconds send a PING
+* Every 10 seconds send a text record with this format:
+
+        L n0,n1,n2,...
+
+where n0,n1,n2 are the node numbers of any nodes that are connected.
+
+## IAX2 Message Flow Examples 
+
+### Call from AllStarLink Telephone Portal
+
+A network capture was made of a node receiving a call from the AllStarLink
+Telephone Portal. In WireShark it looks like this:
+
+![ASL Capture 1](assets/protocol/asl-capture-1.jpg)
+
+* (From Caller) Full Packet, Type=Control(4), Subclass=NEW
+* (To Caller)  Full Packet, Type=Control(4), Subclass=CALLTOKEN
+* (From Caller) Full Packet, Type=Control(4), Subclass=NEW
+* (To Caller) ACK
+* (To Caller) AUTHREQ
+* (From Caller) AUTHREP
+* (To Caller) ACK
+* (To Caller) ACCEPT
+* (To Caller) Full Packet, Type=Control(4), Subclass=RINGING
+* (From Caller) Full Packet, Type=IAX(6), Sublcass=ACK
+* (From Caller) Full Packet, Type=IAX(6), Sublcass=ACK
+* (From Caller) Full Packet, Type=Voice(2)
+* (To Caller) Type=IAX(6), Sublcass=ACK(4)
+* (From Caller) Mini voice packet
+* (From Caller) Mini voice packet
+* ...
+* (To Caller) Full Packet, Type=Control(4), Subclass=ANSWER
+* (To Caller) Full Packet, Type=Control(4), Subclass=Stop Sounds
+
+### Call From Another ASL Node
+
+I connected to node 29999 using the telephone portal and pressed *361057 to
+request a connection to my 61057 node. 
+
+![IAX2 Capture 2](assets/protocol/iax2-capture-2.jpg)
+
+Notes:
+* The usual CALLTOKEN challenge is used on the first NEW.
+* The second NEW contains 
+  - An IE with the username (6) of "radio"
+  - An IE with the desired CODEC
+* There is no AUTHREQ/AUTHREP challenge. It appears that the connection
+from the remote note is unauthenticated.
+* No RINGING phase. The ANSWER/stop sounds is sent immediately after the ACCEPT.
+* At the very start of the call we received these TEXT packet:
+    - !NEWKEY!
+    - T 29999 COMPLETE
+    - T 29999 CONNECTED,29999,61057
+* For more information about the TEXT protocol see: https://wiki.allstarlink.org/wiki/IAX_Text_Protocol
+* The "T" messages are telemetry. See: https://allstarlink.github.io/adv-topics/telemetry/.
+One important thing is that it is up to the receiving node to decide what to 
+do with these messages (for example, announce them). One of the documents mentions
+that a T STATUS message is sent in response to a *70 DTMF command, which makes
+me wonder whether the voicing of this information is completely local?
+* Per documentation "There are several messages being exchanged that alter the 
+behavior of the app_rpt application. It's unclear as to their purpose ... !NEWKEY!
+is meant to be some sort of handshake. When a party receives this command it should 
+send it back."
+* Immediately after receiving those TEXT packets, the following was sent, which 
+is consistent with the above comment in the docs:
+    - !NEWKEY!
+* There are some TEXT packets exchanged every 10 seconds. It looks like 
+a text packet with "L" is being sent every ~10 seconds. And from 29999 we get this
+every ~10 seconds:
+
+        L R1010,TKC1FSZ-P,T29283,T48335,T29285,T1951,T29284,T49999,T1980,T1950,R1020
+
+which is the list of notes currently connected. Per documentation _"Sent periodically by a node to broadcast all node linked to it."_
+* On remote-initiated disconnect a TEXT message is received: !DISCONNECT!
+* Immediately after the !DISCONNECT! is received a HANGUP is sent from local->remote.
+
+![IAX2 Capture 3](assets/protocol/iax2-capture-3.jpg)
+
+### Call Out To Parrot (55553)
+
+Initial NEW message uses CODEC Negotiation (0x2d) of "DGC." 
+
+## Sequence Number Notes
+
+* When a NEW is received, reset the inbound inbound_expected_seq to 1 (i.e next message).
+* When a NEW is received, reset the outbound_seq to 1.
+* When sending a frame, set the ISeqno field to inbound_expected_seq.
+* When sending any frame send outbound_seq in the OSeqno field. After sending a frame **that is not an ACK** increment outbound_seq field. 
+* When a full frame is received, check the OSeqno field vs the expected value and increment the inbound_expected_seq.
+
+## Message Format/Semantics
+
+### NEW
+
+Used to initiate a call. This actually comes in twice, once at the very 
+beginning and once after a CALLTOKEN challenge is issued.
+
+Here's an example of the NEW message from the Telephone Portal after the 
+CALLTOKEN challenge:
+
+        0000 | 85 67 00 00 00 00 00 34  00 00 06 01 0b 02 00 02  ·g·····4 ········
+        0010 | 01 06 33 36 31 30 35 37  2d 01 44 02 0a 39 39 39  ··361057 -·D··999
+        0020 | 33 37 31 32 34 34 34 26  01 00 27 01 00 28 02 00  3712444& ··'··(··
+        0030 | 00 39 04 00 00 00 00 04  06 4b 43 31 46 53 5a 0a  ·9······ ·KC1FSZ·
+        0040 | 02 65 6e 1c 0a 35 30 39  32 35 35 37 38 32 37 06  ·en··509 2557827·
+        0050 | 0b 61 6c 6c 73 74 61 72  2d 73 79 73 09 04 00 00  ·allstar -sys····
+        0060 | 00 04 38 09 00 00 00 00  00 00 00 00 04 08 04 00  ··8····· ········
+        0070 | 00 00 04 37 09 00 00 00  00 00 00 00 00 04 0c 02  Â·Â·Â·7Â·Â·Â·Â· Â·Â·Â·Â·Â·Â·Â·Â·
+        0080 | 00 02 1f 04 33 61 99 c9  36 33 31 37 35 39 38 38  Â·Â·Â·Â·3aÂ·Â· 63175988
+        0090 | 33 32 33 32 3f 65 34 62  39 30 31 37 65 31 30 32  3232?e4b 9017e102
+        00A0 | 63 31 66 38 33 31 65 36  64 62 36 61 62 31 62 63  c1f831e6 db6ab1bc
+        00B0 | 38 35 65 62 63 65 31 65  61 32 34 30 65           85ebce1e a240e   
+
+Name of caller (4) = KC1FSZ
+Calling number (2) = My mobile number
+
+### CALLTOKEN 
+
+Used to respond to an initial NEW request. Tells the the originator that
+a call token will be required in the NEW retry.
+
+For unknown reasons, I observe the retransmission flag is True for an 
+incoming CALLTOKEN message (from 55553).
+
+![IAX2 Capture 7](assets/protocol/iax2-capture-7.jpg)
+
+### Voice Packet (Full)
+
+G.711 μ-law payload contains the actual 8-bit μ-law encoded audio samples. The size of 
+this payload depends on the packetization interval.  20ms of audio at 8kHz a sampling
+rate is 160 bytes.
+
+### Voice Packet (Mini)
+
+At least one full voice packet must be sent before a mini packet is allowed. 
+
+A full voice packet is required when 16-bit timestamp of the mini packet wraps around
+to zero.
+
+### VNAK
+
+This message is used to pro-actively request retransmission of missing messages.
+The name notwithstanding, it seems to be used for any type of missing messages - 
+not just voice.
+
+What I have observed is that when an Asterisk server is missing a message
+from the sequence it will wait about 8 seconds and then start sending VNAK 
+messages fairly aggressively, perhaps one every second until the gap is 
+resolve.
+
+### AUTHREQ
+
+Sent from the server to the client to request authentication. Contains a 9-digit challenge,
+which is a random number.
+
+### AUTHREP
+
+Send from the client to the server in response to an AUTHREQ.
+
+Contains the RSA signature for the server's challenge. This is Base-64 encoded. The 
+signature will be validated by the server using a public RSA key. Digest hash is SHA1.
+
+Sample code to illustrate the mechanics:
+
+```python
+"""
+This is a demonstration of the challenge validation process 
+used by AllStarLink (IAX2).
+
+Copyright (C) 2025, Bruce MacKinnon KC1FSZ
+"""
+import base64
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.hazmat.primitives import serialization
+from cryptography.exceptions import InvalidSignature
+
+"""
+From RFC-5456, Section 8.6.16:
+
+The purpose of the RSA RESULT information element is to offer an RSA
+response to an authentication CHALLENGE.  It carries the UTF-8-
+encoded challenge result.  The result is computed as follows: first,
+compute the SHA1 digest [RFC3174] of the challenge string and second,
+RSA sign the SHA1 digest using the private RSA key as specified in
+PKCS #1 v2.0 [PKCS].  The RSA keys are stored locally.
+
+Upon receiving an RSA RESULT information element, its value must be
+verified with the sender's public key to match the SHA1 digest
+[RFC3174] of the challenge string.
+"""
+
+# The RSA public key is provided in the ASL3 installation. On the Pi
+# appliance distribution it is located at:
+#   /usr/share/asterisk/keys/allstar.pub
+# The public key is in PEM format:
+public_key_pem = "-----BEGIN PUBLIC KEY-----\n\
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCu3h0BZQQ+s5kNM64gKxZ5PCpQ\n\
+9BVzhl+PWVYXbEtozlJVVs1BHpw90GsgScRoHh4E76JuDYjEdCTuAwg1YkHdrPfm\n\
+BUjdw8Vh6wPFmf3ozR6iDFcps4/+RkCUb+uc9v0BqZIzyIdpFC6dZnJuG5Prp7gJ\n\
+hUaYIFwQxTB3v1h+1QIDAQAB\n\
+-----END PUBLIC KEY-----\n"
+public_key = serialization.load_pem_public_key(public_key_pem.encode("utf-8"))
+
+# The RSA challenge string is a 9-digit number created randomly by 
+# the server creating the AUTHREQ message. Here is an example that 
+# was captured from the network during an actual connection:
+rsa_challenge = "570639908"
+
+# The RSA signature is created by the client attempting to connect.
+# This is created using the client's private key. The signature
+# is sent back in the AUTHREP message. Here is an example that
+# was captured from the network during an actual connection:
+rsa_challenge_result_base64 = "ZanWw1+Wx5TWWX6g4890bmnflMgk8ZyyRdjINenNmzq3eYWfPMpcfMFIrHfX0gxOzGeNflcbOqr1m6GMnCoE92h+fMlIEZceUuCZXh+GZ4ywiy3RJluvE/Cj/vkh5Af38jb5PjT2dJB/HMZ8mSZ7qDQgcjjotNRmWVGhAMte9Nc="
+
+# The signature in the AUTHREP message is actually a base-64 encoding 
+# of the signature:
+rsa_challenge_result = base64.b64decode(rsa_challenge_result_base64.encode("utf-8"))
+
+# Here is where the actual validation happens:
+public_key.verify(rsa_challenge_result,
+    rsa_challenge.encode("utf-8"), 
+    padding.PKCS1v15(), 
+    hashes.SHA1())
+
+# If we get here the validation is good, otherwise an exception is raised
+print("AUTHREP signature validated, all good!")
+```
+## CODEC Negotiation
+
+The protocol supports CODEC negotiation.  
+
+The caller specifies the supported CODECs in the NEW 
+message. The NEW message MUST specify the list of
+supported CODECs using the format IE.
+
+The CODEC designators are defined [in section 8.7 on
+Media Formats](https://datatracker.ietf.org/doc/html/rfc5456#section-8.7). A bitmap is used to allow
+multiple CODECs to be specified at the same time.
+
+The server designates the chosen CODEC in the ACCEPT
+message. An ACCEPT message MUST include the 'format' 
+IE to indicate its desired CODEC to the originating 
+peer.  The CODEC format MUST be one of the formats
+sent in the associated NEW command.
+
+## The AMI Protocol
+
+This is an administrative protocol that is not needed for normal operation.
+
+AMI is a TCP protocol running on 5038. This section talks about the most basic exchanges
+needed to command a node to call another.
+
+End of line is CR/LF (0x0d 0x0a).
+
+### Connection
+
+After a connection the server sends this:
+
+        Asterisk Call Manager/11.0.0
+        (blank)
+
+### Login
+
+Client sends this:
+
+        Action: Login
+        Username: bruce
+        Secret: xxxx
+        (blank)
+
+Server sends this:
+
+        Response: Success
+        Message: Authentication accepted
+
+        Event: FullyBooted
+        Privilege: system,all
+        Uptime: 814
+        LastReload: 814
+        Status: Fully Booted
+
+        Event: SuccessfulAuth
+        Privilege: security,all
+        EventTV: 2025-11-03T08:37:48.971-0500
+        Severity: Informational
+        Service: AMI
+        EventVersion: 1
+        AccountID: bruce
+        SessionID: 0x7f000020d8
+        LocalAddress: IPV4/TCP/0.0.0.0/5038
+        RemoteAddress: IPV4/TCP/192.168.8.235/60072
+        UsingPassword: 0
+        SessionTV: 2025-11-03T08:37:48.971-0500
+
+### Status Polling
+
+(This is specific to the Node Remote iPhone App)
+
+Client sends this:
+
+        ACTION: RptStatus
+        COMMAND: XStat
+        NODE: 61057
+        ActionID: getXStat
+        (blank)
+
+Server sends this:
+
+        Response: Success
+        ActionID: getXStat
+        Node: 61057
+        LinkedNodes: <NONE>
+        Var: RPT_ALINKS=0
+        Var: RPT_LINKS=0
+        Var: RPT_NUMALINKS=0
+        Var: RPT_NUMLINKS=0
+        Var: RPT_AUTOPATCHUP=0
+        Var: RPT_ETXKEYED=0
+        Var: RPT_TXKEYED=0
+        Var: RPT_RXKEYED=0
+        parrot_ena: 0
+        sys_ena: 0
+        tot_ena: 0
+        link_ena: 0
+        patch_ena: 0
+        patch_state: 4
+        sch_ena: 0
+        user_funs: 0
+        tail_type: 0
+        iconns: 0
+        tot_state: 2
+        ider_state: 2
+        tel_mode: 2
+        (blank)
+
+### Initiating a Connection
+
+The scenario is asking node 61056 to connect to node 29999.
+
+Client sends this:
+
+        ACTION: COMMAND
+        COMMAND: rpt cmd 61057 ilink 3 29999
+        (blank)
+
+I'm not sure what the significance of the "3" is, possibly similar to "*3 nnnn"?
+
+Server sends this:
+
+        Response: Success
+        Message: Command output follows
+        Output: 
+        (blank)
+
+And then the server sends a series of events that trace through the establishment
+of the call.
+
+After the call is established you can see it in the subsequent status polling.
+For example, here's a status message from the server with a live connection 
+up:
+
+        Response: Success
+        ActionID: getXStat
+        Node: 61057
+        Conn: 29999     173.199.119.177     0           OUT        00:00:00         ESTABLISHED         
+        LinkedNodes: R1010, R1020, T1950, T1951, T1980, T29283, T29284, T29285, T29999, T48335, T49999
+        Var: RPT_NUMLINKS=1
+        Var: RPT_LINKS=1,T29999
+        Var: RPT_NUMALINKS=1
+        Var: RPT_ALINKS=1,29999TU
+        Var: RPT_ETXKEYED=1
+        Var: RPT_TXKEYED=1
+        Var: RPT_AUTOPATCHUP=0
+        Var: RPT_RXKEYED=0
+        parrot_ena: 0
+        sys_ena: 0
+        tot_ena: 0
+        link_ena: 0
+        patch_ena: 0
+        patch_state: 4
+        sch_ena: 0
+        user_funs: 0
+        tail_type: 0
+        iconns: 0
+        tot_state: 1
+        ider_state: 2
+        tel_mode: 2
+
+Notice the "Conn" line appears and the "LinkedLinks" line lists all of the nodes
+accessible via 29999. David NR9V has pointed out that this is essentially a "1D"
+(flat) list of linked nodes with no way to tell which linked nodes came from 
+which connections.
+
+## Dropping All Connections
+
+Client sends this:
+
+        ACTION: COMMAND
+        COMMAND: rpt cmd 61057 ilink 6 0
+
+Server sends this:
+
+        Response: Success
+        Message: Command output follows
+        Output: 
+
+And then a series of events tracing the hangup events.
+
+# CODECs Supported By ASL
+
+* G711 (uLaw and ALaw) - Audio sampled at 8kHz, one 160 byte frame every 20ms.
+* [G722](https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.722-198811-S!!PDF-E&type=items) - Audio sampled at 14 bits 16kHz produces a 64kbit/second stream. There is
+no official/fixed frame size defined in the specification, but one frame every 20ms would
+result in 160 bytes/frame. I think the PJSIP documentation indicates that a 20ms frame rate 
+is used in that implementation.
+
+# References
+
+* [A good blog analysis on INVITE flow](https://blog.wildix.com/sip-invite-method/)
+* [A good blog on SDP format](https://andrewjprokop.wordpress.com/2013/09/30/understanding-session-description-protocol-sdp/)
+* https://aosabook.org/en/v1/asterisk.html
+* [ASL #Slack](https://allstarlink.slack.com/)
+
+
+
+
+
+
 
 # Other Pages
 
