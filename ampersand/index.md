@@ -592,21 +592,6 @@ setup and the various DNS discovery protocols support alternate port numbers.
 
 AMI usually runs on TCP port 5038.
 
-# AllStarLink Protocol Information 
-
-[By Bruce MacKinnon, KC1FSZ](https://www.qrz.com/db/kc1fsz)
-
-This page contains notes about the various protocols used in the AllStarLink
-network. This includes:
-* The IAX2 protocol used to conduct voice calls between nodes in the ASL network.
-* The various HTTP service protocols supported by allstarlink.org for registration,
-statistics, etc.
-* The AMI Asterisk Management Interface protocol used to support remote control/monitoring
-of an Asterisk server.
-
-Asterisk also supports SIP. Those details are covered elsewhere since SIP is a more 
-universal and well-documented protocol.
-
 ## Network Information
 
 IAX2 usually runs on UDP port 4569. This is the only port that needs to be open from the outside. It is possible to change this to an arbitrary port number during server
