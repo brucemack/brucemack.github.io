@@ -1451,7 +1451,8 @@ address is transient and is only valid for communication netween nodes 1111 and 
 its apparent address/port *from the perspective of node 1111*.
 * Node 61057 sends and OPENRES message back to node 1111 with node's 2222 apparent 
 address and port. 
-* Node 1111 uses this information to place a call to node 2222. All of the normal 
+* Node 1111 uses this information to place a call to node 2222 through 
+the transient opening. All of the normal 
 IAX2 call negotiation and authentication takes place and the call proceeds as normal.
 
 A few important notes:
