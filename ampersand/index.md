@@ -1468,6 +1468,13 @@ so nodes shouln't retain these mappings between calls.
 * This process isn't limited to cellular/CGNAT. It will work for calls into 
 normal home internet connections as well.
 
+# Firewall Traversal (IPv6 Only)
+
+The problem is easier with IPv6 because there is no NAT, but you still
+need to address the inbound firewall problem. 
+
+(Docs to follow)
+
 # CODECs Supported By ASL
 
 * G711 (uLaw and ALaw) - Audio sampled at 8kHz, one 160 byte frame every 20ms.
