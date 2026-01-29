@@ -1403,9 +1403,8 @@ to solve the same problem. See the description of PING/OPEN/OVER
 
 I've emphasized the word **unsolicited** above for an important reason. Although
 a random node on the internet can't send a UDP packet to the IAX2 port on your
-node arbitrarily, it turns out that most internet routers allow bi-directional UDP 
-traffic flow in the context of a live communication session that you established
-explicitly. In other words: if you start sending UDP packets to a remote node from 
+firewalled node arbitrarily, it turns out that most internet routers allow bi-directional UDP 
+traffic flow in the context of a live communication session that you originate. In other words: if you start sending UDP packets to a remote node from 
 UDP port 4569 (for example), most internet routers will open the return path 
 temporarily, **as long as the communications sessions remains active.** This is the 
 concept of "UDP hole-punching" and it is essential to making the internet work from
@@ -1413,7 +1412,7 @@ behind NAT routers (including CGNAT).
 
 This **temporary** UDP firewall opening will automatically close after a minute 
 or so of non-use. This
-is the reason that the IAX2 protocol defines a PING/PONG protocol and the 
+is likely the reason that the IAX2 protocol defines a PING/PONG protocol and the 
 implementations use it every ~10 seconds. There is constant bi-directional 
 traffic on an IAX2 connection even when you aren't talking.
 
@@ -1426,7 +1425,7 @@ IAX2 port 4569. Assume that node 2222 is running in a repeater site on a celluar
 hotspot that uses CGNAT and has no firewall openings. Assume that node 61057
 (the broker) is running on a cloud server with a fixed IP address and open IAX2 ports.
 
-Assume that node 1111 wants to call into node 2222. The flow is as follows:
+Assume that node 1111 wants to call into the repeater on node 2222. The flow is as follows:
 
 * All Ampersand servers (including 2222) reguarly POKE node 61057. As per the IAX2 
 RFC, node 61057 send the PONG back. Nothing special here.
@@ -1440,15 +1439,15 @@ with the IP address/port of node 1111.
 * Node 2222 receives this POKE message, pulls the address/port number of node 1111 out 
 of the message, and immediately sends a POKE message to node 1111.
 * Because node 1111 has its IAX2 port opened it will receive this POKE. It responds
-with a PONG (per IAX2 protocol). However, the POKE response is enhanced with an extra
-field that contains the "apparent address and port" of node 1111.
+with a PONG (per IAX2 protocol). However, the PONG response is enhanced with an extra
+field that contains the "apparent address and port" of node 2222 from node 1111's perspective.
 This field is already specified in the IAX2 RFC, but is used for other message types
 related to call transfer.
 * When node 2222 recieves the PONG from node 1111 it gets its own "apparent address/port" from the message that tells it what dynamic address/port combination is 
 currently assigned by the cellular carrier. Per the behavior of CGNAT, this apparent
-address is transient and is only valid for communication with node 2222.
+address is transient and is only valid for communication netween nodes 1111 and 2222.
 * Node 2222 sends back a PONG request to node 61057 with an extra field that contains
-its apparent address/port **from the perspective of node 1111*.
+its apparent address/port *from the perspective of node 1111*.
 * Node 61057 sends and OPENRES message back to node 1111 with node's 2222 apparent 
 address and port. 
 * Node 1111 uses this information to place a call to node 2222. All of the normal 
@@ -1464,8 +1463,8 @@ because the transient UDP hole-punches stay open for at least 30 seconds.
 * OPENREQ/OPENRES are protocol extensions.
 * For mobile hotspots in a fixed location the transient address/port 
 assigned to a UDP communication session appears to stay fixed. Once you 
-start a _different_ session you will very likely get a new address/port.
-So nodes shouln't retain these mappings between calls.
+start a _different_ session you will very likely get a new address/port
+so nodes shouln't retain these mappings between calls.
 * This process isn't limited to cellular/CGNAT. It will work for calls into 
 normal home internet connections as well.
 
