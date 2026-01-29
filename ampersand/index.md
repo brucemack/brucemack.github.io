@@ -1419,7 +1419,7 @@ traffic on an IAX2 connection even when you aren't talking.
 
 This hole-punching behavior is the essential ingredient to my work-around for CGNAT.
 My solution involves a "broker" server that runs somewhere on the network that 
-has a fixed IP address. This broker faciliates connection handshakes only - **it is not in the middle of active calls**. 
+has a fixed IP address. This broker faciliates connection handshakes only - **it is not in the middle of active calls**. This is not a proxy in the usual sense.
 
 Assume that node 1111 is a normal AllStarLink node with an open firewall to 
 IAX2 port 4569. Assume that node 2222 is running in a repeater site on a celluar 
