@@ -1386,10 +1386,11 @@ use of [carrier-grade NAT (CGNAT)](https://en.wikipedia.org/wiki/Carrier-grade_N
 Again, I'm not going to describe CGNAT in detail here - you can look it up.
 If you are using CGNAT, the bottom line is:
 * Your address/port number **as they appear on the outside network** are 
-unpredictable because they are assigned dynamically by the carrier.
+unpredictable because they are assigned dynamically by the carrier. Your
+address/port may change between calls.
 * Even if you figured out your outside address/port number, the carriers don't
 support the ability to open the network for **unsolicited** inbound traffic 
-to your node.
+to your node. They really don't want you to be running servers.
 
 There is a CGNAT (Total Wireless) 4G/LTE hotspot at my repeater site so I've been experimenting with solutions to this problem. What follows is a description
 of some IAX2 protocol extensions that I've implemented to solve the CGNAT 
