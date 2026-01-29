@@ -580,7 +580,7 @@ platform and those parts will use things like std::string, std::vector, that
 use dynamic memory internally. But much of the core system does everything 
 on the stack.
 
-# Network Protocol Notes
+# IAX2/ASL Network Protocol Notes
 
 One of the hardest part of this project is understanding the 
 details of the [IAX2 Protocol](https://datatracker.ietf.org/doc/html/rfc5456) and, importantly, how it is interpreted by Asterisk. 
@@ -1169,6 +1169,15 @@ public_key.verify(rsa_challenge_result,
 # If we get here the validation is good, otherwise an exception is raised
 print("AUTHREP signature validated, all good!")
 ```
+### POKE
+
+This message is unusual in that it is used outside of the context of 
+any call. The source/dest call IDs and in/out sequence numbers should 
+all be zero. Per the RFC, when a station receives a POKE it should
+respond with a PONG. This is an extremely useful function for validating
+actual network connectivity in a low-overhead way. I have tested this
+using Asterisk implementations and it seems to work fine.
+
 ## CODEC Negotiation
 
 The protocol supports CODEC negotiation.  
@@ -1349,6 +1358,112 @@ Server sends this:
         Output: 
 
 And then a series of events tracing the hangup events.
+
+# Firewall/CGNAT Traversal (IPv4 Only)
+
+Firewall issues seem to be the most common problem 
+that people have when setting up their AllStar node. The understanding
+of IP networking is uneven across the ham commnuity. 
+
+The IAX2 protocols runs exclusively on UDP. There are a few HTTP (TCP)
+protocols used for administrative purposes like registration. Finally, DNS
+uses UDP.
+
+With a very few exceptions, networks allow **outbound** UDP/TCP traffic 
+without restriction. If you set up an AllStar node properly, you should 
+be able to register (HTTP/TCP) and place calls to other nodes (IAX/UDP) without
+making adjustments to your firewall. This part is pretty easy.
+
+Recieving inbound calls is more complicated because it requires you to 
+receive an **unsolicited** UDP packet (NEW) from the caller. The process
+for allowing this inbound UDP traffic to reach your node involves some combination
+of firewall rules and NAT port forwarding configuration. I won't include
+the details here because they are well documented in other places.
+
+The more complicated case involves low-cost mobile/celluar networks
+that generally don't support the concept of port forwarding due to the 
+use of [carrier-grade NAT (CGNAT)](https://en.wikipedia.org/wiki/Carrier-grade_NAT).
+Again, I'm not going to describe CGNAT in detail here - you can look it up.
+If you are using CGNAT, the bottom line is:
+* Your address/port number **as they appear on the outside network** are 
+unpredictable because they are assigned dynamically by the carrier.
+* Even if you figured out your outside address/port number, the carriers don't
+support the ability to open the network for **unsolicited** inbound traffic 
+to your node.
+
+There is a CGNAT (Total Wireless) 4G/LTE hotspot at my repeater site so I've been experimenting with solutions to this problem. What follows is a description
+of some IAX2 protocol extensions that I've implemented to solve the CGNAT 
+problem for my nodes that use cellular hotspots. 
+
+## UDP Hole Punching
+
+I've emphasized the word **unsolicited** above for an important reason. Although
+a random node on the internet can't send a UDP packet to the IAX2 port on your
+node arbitrarily, it turns out that most internet routers allow bi-directional UDP 
+traffic flow in the context of a live communication session that you established
+explicitly. In other words: if you start sending UDP packets to a remote node from 
+UDP port 4569 (for example), most internet routers will open the return path 
+temporarily, **as long as the communications sessions remains active.** This is the 
+concept of "UDP hole-punching" and it is essential to making the internet work from
+behind NAT routers (including CGNAT).
+
+This **temporary** UDP firewall opening will automatically close after a minute 
+or so of non-use. This
+is the reason that the IAX2 protocol defines a PING/PONG protocol and the 
+implementations use it every ~10 seconds. There is constant bi-directional 
+traffic on an IAX2 connection even when you aren't talking.
+
+This hole-punching behavior is the essential ingredient to my work-around for CGNAT.
+My solution involves a "broker" server that runs somewhere on the network that 
+has a fixed IP address. This broker faciliates connection handshakes only - **it is not in the middle of active calls**. 
+
+Assume that node 1111 is a normal AllStarLink node with an open firewall to 
+IAX2 port 4569. Assume that node 2222 is running in a repeater site on a celluar 
+hotspot that uses CGNAT and has no firewall openings. Assume that node 61057
+(the broker) is running on a cloud server with a fixed IP address and open IAX2 ports.
+
+Assume that node 1111 wants to call into node 2222. The flow is as follows:
+
+* All Ampersand servers (including 2222) reguarly POKE node 61057. As per the IAX2 
+RFC, node 61057 send the PONG back. Nothing special here.
+* What is important is that the act of sending a regular POKE to 61057 keeps a UDP 
+hole open from node 61057 _to every Ampersand node on the network_. 
+* Node 1111 sends an OPENREQ message to node 61057 that contains the target node 
+number that it wants to call (2222 in this case).
+* Node 61057 uses its open path back to node 2222 to tell it that node 1111 is 
+interested in making a call. This is a POKE message that contains an extra field 
+with the IP address/port of node 1111.
+* Node 2222 receives this POKE message, pulls the address/port number of node 1111 out 
+of the message, and immediately sends a POKE message to node 1111.
+* Because node 1111 has its IAX2 port opened it will receive this POKE. It responds
+with a PONG (per IAX2 protocol). However, the POKE response is enhanced with an extra
+field that contains the "apparent address and port" of node 1111.
+This field is already specified in the IAX2 RFC, but is used for other message types
+related to call transfer.
+* When node 2222 recieves the PONG from node 1111 it gets its own "apparent address/port" from the message that tells it what dynamic address/port combination is 
+currently assigned by the cellular carrier. Per the behavior of CGNAT, this apparent
+address is transient and is only valid for communication with node 2222.
+* Node 2222 sends back a PONG request to node 61057 with an extra field that contains
+its apparent address/port **from the perspective of node 1111*.
+* Node 61057 sends and OPENRES message back to node 1111 with node's 2222 apparent 
+address and port. 
+* Node 1111 uses this information to place a call to node 2222. All of the normal 
+IAX2 call negotiation and authentication takes place and the call proceeds as normal.
+
+A few important notes:
+* Nothing in the above sequence involves authentication. The POKE/PONG 
+messages are unauthenticated/untrusted in the IAX2 protocol. Just because
+node 1111 expresses interest in connecting to node 2222 doesn't mean it 
+will be allowed to connect. The normal AllStar authentication will still happen.
+* This process needs to happen in a timely manner, but speed isn't critical 
+because the transient UDP hole-punches stay open for at least 30 seconds.
+* OPENREQ/OPENRES are protocol extensions.
+* For mobile hotspots in a fixed location the transient address/port 
+assigned to a UDP communication session appears to stay fixed. Once you 
+start a _different_ session you will very likely get a new address/port.
+So nodes shouln't retain these mappings between calls.
+* This process isn't limited to cellular/CGNAT. It will work for calls into 
+normal home internet connections as well.
 
 # CODECs Supported By ASL
 
