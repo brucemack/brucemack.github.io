@@ -1395,6 +1395,10 @@ There is a CGNAT (Total Wireless) 4G/LTE hotspot at my repeater site so I've bee
 of some IAX2 protocol extensions that I've implemented to solve the CGNAT 
 problem for my nodes that use cellular hotspots. 
 
+This borrows heavily from similar protocols used on the EchoLink network
+to solve the same problem. See the description of PING/OPEN/OVER 
+[in my documentation of the EchoLink protocol](https://github.com/brucemack/microlink/blob/main/docs/el_supplement.md).
+
 ## UDP Hole Punching
 
 I've emphasized the word **unsolicited** above for an important reason. Although
