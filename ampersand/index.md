@@ -1392,11 +1392,18 @@ address/port may change between calls.
 support the ability to open the network for **unsolicited** inbound traffic 
 to your node. They really don't want you to be running servers.
 
+I've seen two common work-arounds for this problem:
+* Use of a VPN solution like Tailscale or similar.
+* Use of cloud-hosted intermediary "hub nodes."
+
+Both usually involve ongoing hosting costs and the second involves 
+some added latency.
+
 There is a CGNAT (Total Wireless) 4G/LTE hotspot at my repeater site so I've been experimenting with solutions to this problem. What follows is a description
 of some IAX2 protocol extensions that I've implemented to solve the CGNAT 
 problem for my nodes that use cellular hotspots. 
 
-This borrows heavily from similar protocols used on the EchoLink network
+This concept borrows heavily from similar protocols used on the EchoLink network
 to solve the same problem. See the description of PING/OPEN/OVER 
 [in my documentation of the EchoLink protocol](https://github.com/brucemack/microlink/blob/main/docs/el_supplement.md).
 
