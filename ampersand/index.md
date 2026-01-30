@@ -144,7 +144,9 @@ USB audio interfaces. This resampling requires a steep
 low-pass filter in both directions. The filter is applied after
 the up-conversion (interpolation) and before the down-conversion (decimation). 
 
-Insufficient attenuation leads to spectral leakage (aliasing), resulting in distortion and reduced audio quality for the user, violating standard transmission requirements. The "standard" seems to be in the -40dB to -80dB range as measured 15%
+Insufficient attenuation in the stop-band of this filter leads to 
+spectral leakage (aliasing), resulting in distortion and reduced audio quality for the user, violating standard transmission requirements. The "standard" seems to be in the
+range of -40dB to -60dB attenuation as measured 15%
 up from the Nyquist rate. So in the case of the 8K filter we'll check for 
 aliasing suppression at 4.6kHz and for the 16K filter we'll check at 9kHZ.
 
