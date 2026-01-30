@@ -140,34 +140,36 @@ to have.
 
 A resampling filter is needed to convert between the 8K audio
 used by the existing CODECs and the 48K audio used in the 
-various USB audio interfaces. This resampling requires a steep
+USB audio interfaces. This resampling requires a steep
 low-pass filter in both directions. The filter is applied after
 the up-conversion (interpolation) and before the down-conversion (decimation). 
 
-Insufficient attenuation leads to spectral leakage (aliasing), resulting in distortion and reduced audio quality for the user, violating standard transmission requirements. The "standard"
-seems to be in the -40dB to -80dB range as measured 15%
-up from the Nyquist rate.
+Insufficient attenuation leads to spectral leakage (aliasing), resulting in distortion and reduced audio quality for the user, violating standard transmission requirements. The "standard" seems to be in the -40dB to -80dB range as measured 15%
+up from the Nyquist rate. So in the case of the 8K filter we'll check for 
+aliasing suppression at 4.6kHz and for the 16K filter we'll check at 9kHZ.
 
 An analysis of the existing decimation/interpolation LPF filter
 in `app_rpt` shows that the 31-tap filter currently used doesn't
-come close to that target. See the blue curve in the figure
-below. The existing attenuation is about -9dB at 4.6kHz.
+come close to the standard. See the blue curve in the figure
+below. The existing attenuation is only about -9dB at 4.6kHz.
 
 I've implemented a steeper (and more expensive) filter in 
 Ampersand. See the orange curve in the figure below. Anti-aliasing
-suppression is about -50dB at 4.6kHz. The pass-band is also a bit
-wider. 
+suppression is now about -50dB at 4.6kHz. The pass-band is also a bit
+wider. The filter is designed using a Kaiser window. (Particulars:
+cut-off is 4.3kHz, taps is 91, Kaiser beta 1.0).
 
-**I am not an audiophile** so I can't say whether this makes a
-difference. I'm just pointing out that the current implementation
-is out of spec and can be improved. I suspect that the original
-`app_rpt` implementation may have been optimized for slower
-processors from the mid 2000's.
+I'm a nerd, but **not an audio nerd** so I can't say whether this 
+makes a huge difference. I'm just pointing out that the current 
+implementation is pretty far out of spec and can be improved. I suspect 
+that the original `app_rpt` filter may have been optimized 
+for slower processors from the mid 2000's. Since we're trying to be 
+state-of-the-art, it's best to upgrade these filters.
 
 ![8K LPF](assets/lpf-8k-1.jpg)
 
 NOTES:
-* Blue curve is the 31-tap FIR from app_rpt.
+* Blue curve is the 31-tap FIR from `app_rpt`.
 * Orange curve is the 91-tap FIR used in Ampersand.
 
 ### 16K Audio (aka "ASL-HD")
