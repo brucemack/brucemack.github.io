@@ -44,6 +44,7 @@ Please see [The Ampersand Server User's Guide](https://github.com/Ampersand-ASL/
 
 # Other Links
 
+* [The original discussion thread](https://community.allstarlink.org/t/a-minimal-asl-node-without-asterisk-dependency-r-d/23879) on the AllStarLink community forum.
 * David Gleason (NR9V) [created this interesting video](https://www.youtube.com/watch?v=vRurT4k_Jy4) that also highlights the [UCI200](https://allscan.info/products/uci200/) radio interface.
 * Tom Salzer (KJ7T) [wrote this nice article](https://etherham.com/ampersand-asl-installed-and-working/) on the EtherHam site.
 
@@ -124,6 +125,8 @@ with the mechanics of VOIP linking system.
 The Ampersand audio "core" runs at 48kHz. Audio is down/up-sampled when interfacing with links
 that operate at lower bandwidths. 
 
+## Analysts of Existing Asterisk/app_rpt DSP
+
 I've done some analysis of the Asterisk/app_rpt DSP functions which
 is [documented here](asl-dsp-notes.md). I've not followed the 
 app_rpt model in all cases, but this is very good background 
@@ -132,6 +135,40 @@ to have.
 ### Audio Level Measurement in the ASL System
 
 [Please see this article](asl-audio-levels.md) for more information.
+
+### Improvements on app_rpt Resampling Filter
+
+A resampling filter is needed to convert between the 8K audio
+used by the existing CODECs and the 48K audio used in the 
+various USB audio interfaces. This resampling requires a steep
+low-pass filter in both directions. The filter is applied after
+the up-conversion (interpolation) and before the down-conversion (decimation). 
+
+Insufficient attenuation leads to spectral leakage (aliasing), resulting in distortion and reduced audio quality for the user, violating standard transmission requirements. The "standard"
+seems to be in the -40dB to -80dB range as measured 15%
+up from the Nyquist rate.
+
+An analysis of the existing decimation/interpolation LPF filter
+in `app_rpt` shows that the 31-tap filter currently used doesn't
+come close to that target. See the blue curve in the figure
+below. The existing attenuation is about -9dB at 4.6kHz.
+
+I've implemented a steeper (and more expensive) filter in 
+Ampersand. See the orange curve in the figure below. Anti-aliasing
+suppression is about -50dB at 4.6kHz. The pass-band is also a bit
+wider. 
+
+**I am not an audiophile** so I can't say whether this makes a
+difference. I'm just pointing out that the current implementation
+is out of spec and can be improved. I suspect that the original
+`app_rpt` implementation may have been optimized for slower
+processors from the mid 2000's.
+
+![8K LPF](assets/lpf-8k-1.jpg)
+
+NOTES:
+* Blue curve is the 31-tap FIR from app_rpt.
+* Orange curve is the 91-tap FIR used in Ampersand.
 
 ### 16K Audio (aka "ASL-HD")
 
@@ -147,14 +184,16 @@ operate with narrow
 audio bandwidths, but "pure digital" links (i.e. desktop-to-desktop) sound much better in 16K.
 
 Since the Ampersand audio core runs at 48K, a decimation/interpolation low-pass filter is needed during the 
-down/up sampling process. I've used a 45-tap FIR filter designed using [the Parks-McClellan algorithm](https://github.com/brucemack/firpm-py).
+down/up sampling process. I've used a 71-tap FIR filter designed using a cut-off frequency of 7700 and a Kaiser window (beta=1).
 
 The ideal cut-off frequency of this filter should be at 8kHz, but there is a transition band. I've 
-started the transition at 7kHz. Here's the transfer function of the filter used in the system:
+started the transition at 7.7kHz. Here's the transfer function of the filter used in the system:
 
-![16K LPF](assets/hd-lpf.jpg){: width="400" }
+![16K LPF](assets/lpf-16k-1.jpg)
 
-This looks decently flat in the passband, rolls off steeply, and attenuates anything that could create aliases.
+This looks decently flat in the passband, rolls off steeply, and meets
+the guideline of -40 to -60dB of alias attenuation starting at around
+9kHz.
 
 Ampersand's 16K CODEC is just 16-bit linear PCM represented in little-endian format. According to the official 
 [IANA Registry for IAX](https://www.iana.org/assignments/iax-parameters/iax-parameters.xhtml) there
