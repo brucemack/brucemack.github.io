@@ -125,7 +125,7 @@ with the mechanics of VOIP linking system.
 The Ampersand audio "core" runs at 48kHz. Audio is down/up-sampled when interfacing with links
 that operate at lower bandwidths. 
 
-## Analysts of Existing Asterisk/app_rpt DSP
+### Analysts of Existing Asterisk/app_rpt DSP
 
 I've done some analysis of the Asterisk/app_rpt DSP functions which
 is [documented here](asl-dsp-notes.md). I've not followed the 
