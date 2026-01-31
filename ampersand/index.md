@@ -1510,13 +1510,18 @@ A few important notes:
 messages are unauthenticated/untrusted in the IAX2 protocol. Just because
 node 1111 expresses interest in connecting to node 2222 doesn't mean it 
 will be allowed to connect. The normal AllStar authentication will still happen.
+* Because the POKE/PONG messages are untrusted, there is no database access
+required by the broker. The broker is very light-weight.
 * This process needs to happen in a timely manner, but speed isn't critical 
 because the transient UDP hole-punches stay open for at least 30 seconds.
-* OPENREQ/OPENRES are protocol extensions.
+* OPENREQ/OPENRES are protocol extensions. If the concept has merit they 
+should be documented as official revisions to the IAX2 RFC.
 * For mobile hotspots in a fixed location the transient address/port 
 assigned to a UDP communication session appears to stay fixed. Once you 
 start a _different_ session you will very likely get a new address/port
 so nodes shouln't retain these mappings between calls.
+* I've not worked much with mobile/cellular stations that are physically moving 
+around. I don't know how the CGNAT system works in that case.
 * This process isn't limited to cellular/CGNAT. It will work for calls into 
 normal home internet connections as well.
 
