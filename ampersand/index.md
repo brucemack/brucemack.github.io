@@ -1427,7 +1427,7 @@ The more complicated case involves low-cost mobile/celluar networks
 that generally don't support the concept of port forwarding due to the 
 use of [carrier-grade NAT (CGNAT)](https://en.wikipedia.org/wiki/Carrier-grade_NAT).
 Again, I'm not going to describe CGNAT in detail here - you can look it up.
-If you are using CGNAT, the bottom line is:
+If your provider is using CGNAT, the bottom line is:
 * Your address/port number **as they appear on the outside network** are 
 unpredictable because they are assigned dynamically by the carrier. Your
 address/port may change between calls.
