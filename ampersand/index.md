@@ -1530,22 +1530,23 @@ need to address the inbound firewall problem.
 # Identification of Active Talker 
 
 One of the nice things that the DMR linking system provides is the call sign 
-of the active talker. From that I can tell, this even works in talk groups
+of the active talker. From what I can tell, this even works in talk groups
 where there are multiple people talking to each other. It would be good to
 extend AllStar to do the same thing.
 
 I've defined a new telemetry command called "TALKERID" for this purpose.
-In my implementation, an IAX text message with the "T" prefix (used for telemetry)
-is sent every 10 seconds or whenever the active talker on a call is changed.
+In the Ampersand implementation, an IAX2 text message with the "T" prefix 
+(used for telemetry)
+is sent every 10 seconds or whenever the active talker on a call changes.
 This isn't a frame-by-frame source identification - that kind of granularity
 isn't necessary.
 
 The message looks like this:
 
-    T 672731 TALKER,KC1FSZ
+    T 672731 TALKER,KC1FSZ Bruce
 
-The implementation limits the text (KC1FSZ in this case) to 16 characters. The
-intent is to use this for callsigns.
+The implementation limits the text ("KC1FSZ Bruce" in this case) to 16 characters. The
+intent is to use this for callsigns and first names.
 
 There are a few keys to making this work. 
 
@@ -1585,6 +1586,11 @@ this would work, but I'm sure it's possible.
 If a node is being unsed as link to an analog radio/repeater system where no
 information about the actual talker is available the callsign of the station 
 itself should be used.
+
+Obviously this feature isn't supported on the existing ASL network. Ideally
+the concept can be refined and then widely implemented so that talker 
+information will be fully propagated to all network end-points sometime in 
+my lifetime.
 
 # CODECs Supported By ASL
 
