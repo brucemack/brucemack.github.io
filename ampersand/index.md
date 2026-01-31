@@ -159,7 +159,7 @@ I've implemented a steeper (and more expensive) filter in
 Ampersand. See the orange curve in the figure below. Anti-aliasing
 suppression is now about -50dB at 4.6kHz. The pass-band is also a bit
 wider. The filter is designed using a Kaiser window. (Particulars:
-cut-off is 4.3kHz, taps is 91, Kaiser beta 1.0).
+cut-off is 3.9kHz, taps is 91, Kaiser beta 1.0).
 
 I'm a nerd, but **not an audio nerd** so I can't say whether this 
 makes a huge difference. I'm just pointing out that the current 
