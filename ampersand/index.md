@@ -1527,6 +1527,65 @@ need to address the inbound firewall problem.
 
 (Docs to follow)
 
+# Identification of Active Talker 
+
+One of the nice things that the DMR linking system provides is the call sign 
+of the active talker. From that I can tell, this even works in talk groups
+where there are multiple people talking to each other. It would be good to
+extend AllStar to do the same thing.
+
+I've defined a new telemetry command called "TALKERID" for this purpose.
+In my implementation, an IAX text message with the "T" prefix (used for telemetry)
+is sent every 10 seconds or whenever the active talker on a call is changed.
+This isn't a frame-by-frame source identification - that kind of granularity
+isn't necessary.
+
+The message looks like this:
+
+    T 672731 TALKER,KC1FSZ
+
+The implementation limits the text (KC1FSZ in this case) to 16 characters. The
+intent is to use this for callsigns.
+
+There are a few keys to making this work. 
+
+The Ampersand node configuration screen allows a node owner 
+to specify the text that will be transmitted when their node is **originating** 
+audio traffic. This text is arbitrary (16 characters), but I would expect this 
+would be your callsign and first name. This text is relevant to 
+audio that originates from from hardware audio interfaces (i.e. USB) on your node. 
+
+The node actively captures this telemetry message so that it always knows who the 
+active talker is on the other end of any connection that is contributing audio.
+
+The Ampersand home screen displays the last TALKERID for
+each connected node. The talker is highlighted in green if active audio is being
+received from the node. The first token of the TALKERID (up to the first space)
+is used to form a QRZ link for convenience.
+
+![Talker](assets/talker.jpg)
+
+The conference bridge inside of the Ampersand node transmits the 
+talker ID corresponding to **whichever line the current audio activity is coming from**.
+Any time the source of the audio changes (i.e. when a new person starts talking)
+the TALKERID telemetry message should be sent to all connected nodes that are 
+receiving the audio feed. The TALKERID is re-asserted every 10 seconds for the 
+benefit of a newly-connected node that missed the last talker change.
+
+There is no special handling of the case when two nodes are talking into 
+a conference bridge at exactly the same time. The decision about which talker ID to 
+forward to the node output is arbitrary in this case, and not worth getting too
+worried about.
+
+If a node is being used as a bridge to some other digital network technology 
+that supports a similar concept, it should be enhanced to forward the analogous
+talker ID. I am not familar enough with the DMR/D-Star/YSF bridges to know how
+this would work, but I'm sure it's possible.
+
+If a node is being unsed as link to an analog radio/repeater system where no
+information about the actual talker is available the callsign of the station 
+itself should be used.
+
 # CODECs Supported By ASL
 
 * G711 (uLaw and ALaw) - Audio sampled at 8kHz, one 160 byte frame every 20ms.
