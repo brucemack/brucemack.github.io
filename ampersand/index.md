@@ -1567,7 +1567,8 @@ is used to form a QRZ link for convenience.
 
 The conference bridge inside of the Ampersand node transmits the 
 TALKERID corresponding to **whichever line the current audio activity is coming from**.
-Any time the source of the audio changes (i.e. when a new person starts talking)
+Any time the source of the audio changes (i.e. when a new person starts talking
+or when the TALKERID associated with a node connection in a conference hub switches)
 the TALKERID telemetry message should be sent to all connected nodes that are 
 receiving the audio feed. The TALKERID is re-asserted every 10 seconds for the 
 benefit of a newly-connected node that missed the last talker change.
@@ -1576,6 +1577,9 @@ There is no special handling of the case when two nodes are talking into
 a conference bridge at exactly the same time. The decision about which talker ID to 
 forward to the node output is arbitrary in this case, and not worth getting too
 worried about.
+
+This protocol does not expose the path across which the audio originated, 
+although that could be interesting for debugging purposes.
 
 If a node is being used as a bridge to some other digital network technology 
 that supports a similar concept, it should be enhanced to forward the analogous
