@@ -1545,7 +1545,7 @@ The message looks like this:
 
     T 672731 TALKERID,KC1FSZ Bruce
 
-The implementation limits the text ("KC1FSZ Bruce" in this case) to 16 characters.
+The implementation limits the text ("KC1FSZ Bruce" in this case) to 32 characters.
 
 There are a few keys to making this work. 
 
