@@ -1525,14 +1525,6 @@ around. I don't know how the CGNAT system works in that case.
 * This process isn't limited to cellular/CGNAT. It will work for calls into 
 normal home internet connections as well.
 
-**NOTE:** Thanks to Allan (WA3WCO) for pointing out this [ASL Enhancement Request](https://github.com/AllStarLink/ASL3/issues/130). It seems like there is another
-IAX2 text message "K" (for "keyed") that is potentially related to this. Although
-not implemented fully. If nodes could pass forward the keyed status of nodes
-from which audio is being received - specifically which contributing node was 
-keyed - this could help a lot. The problem of converting the node number to more
-friendly text woudl still need to be solved, but there's likely an ASL HTTP 
-API for that already.
-
 # Firewall Traversal (IPv6 Only)
 
 The problem is easier with IPv6 because there is no NAT, but you still
@@ -1607,6 +1599,14 @@ Obviously this feature isn't supported on the existing ASL network. Ideally
 the concept can be refined and then widely implemented so that talker 
 information will be fully propagated to all network end-points sometime in 
 my lifetime.
+
+**NOTE:** Thanks to Allan (WA3WCO) for pointing out this [ASL Enhancement Request](https://github.com/AllStarLink/ASL3/issues/130). It seems like there is another
+IAX2 text message "K" (for "keyed") that is potentially related to this. Although
+not implemented fully. If nodes could pass forward the keyed status of nodes
+from which audio is being received - specifically which contributing node was 
+keyed - this could help a lot. The problem of converting the node number to more
+friendly text woudl still need to be solved, but there's likely an ASL HTTP 
+API for that already.
 
 # CODECs Supported By ASL
 
