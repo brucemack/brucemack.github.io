@@ -1545,14 +1545,13 @@ The message looks like this:
 
     T 672731 TALKER,KC1FSZ Bruce
 
-The implementation limits the text ("KC1FSZ Bruce" in this case) to 16 characters. The
-intent is to use this for callsigns and first names.
+The implementation limits the text ("KC1FSZ Bruce" in this case) to 16 characters.
 
 There are a few keys to making this work. 
 
 The Ampersand node configuration screen allows a node owner 
 to specify the text that will be transmitted when their node is **originating** 
-audio traffic. This text is arbitrary (16 characters), but I would expect this 
+audio traffic. This text is arbitrary, but I would expect this 
 would be your callsign and first name. This text is relevant to 
 audio that originates from from hardware audio interfaces (i.e. USB) on your node. 
 
@@ -1567,7 +1566,7 @@ is used to form a QRZ link for convenience.
 ![Talker](assets/talker.jpg)
 
 The conference bridge inside of the Ampersand node transmits the 
-talker ID corresponding to **whichever line the current audio activity is coming from**.
+TALKERID corresponding to **whichever line the current audio activity is coming from**.
 Any time the source of the audio changes (i.e. when a new person starts talking)
 the TALKERID telemetry message should be sent to all connected nodes that are 
 receiving the audio feed. The TALKERID is re-asserted every 10 seconds for the 
