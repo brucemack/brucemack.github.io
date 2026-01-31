@@ -1605,7 +1605,7 @@ IAX2 text message "K" (for "keyed") that is potentially related to this. Althoug
 not implemented fully. If nodes could pass forward the keyed status of nodes
 from which audio is being received - specifically which contributing node was 
 keyed - this could help a lot. The problem of converting the node number to more
-friendly text woudl still need to be solved, but there's likely an ASL HTTP 
+friendly text would still need to be solved, but there's likely an ASL HTTP 
 API for that already.
 
 # CODECs Supported By ASL
