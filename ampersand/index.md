@@ -1436,7 +1436,7 @@ support the ability to open the network for **unsolicited** inbound traffic
 to your node. They really don't want you to be running servers.
 
 I've seen two common work-arounds for this problem:
-* Use of a VPN solution like Tailscale or similar.
+* Use of a VPN solution like Tailscale or similar. Lately, [44NetConnect](https://connect.44net.cloud/) has also become a viable solution here.
 * Use of cloud-hosted intermediary "hub nodes."
 
 Both usually involve ongoing hosting costs and the second involves 
@@ -1524,6 +1524,14 @@ so nodes shouln't retain these mappings between calls.
 around. I don't know how the CGNAT system works in that case.
 * This process isn't limited to cellular/CGNAT. It will work for calls into 
 normal home internet connections as well.
+
+**NOTE:** Thanks to Allan (WA3WC) for pointing out this [ASL Enhancement Request](https://github.com/AllStarLink/ASL3/issues/130). It seems like there is another
+IAX2 text message "K" (for "keyed") that is potentially related to this. Although
+not implemented fully. If nodes could pass forward the keyed status of nodes
+from which audio is being received - specifically which contributing node was 
+keyed - this could help a lot. The problem of converting the node number to more
+friendly text woudl still need to be solved, but there's likely an ASL HTTP 
+API for that already.
 
 # Firewall Traversal (IPv6 Only)
 
