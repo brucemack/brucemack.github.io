@@ -1543,7 +1543,7 @@ isn't necessary.
 
 The message looks like this:
 
-    T 672731 TALKERID,KC1FSZ Bruce
+    T 61057 TALKERID,KC1FSZ Bruce
 
 The implementation limits the text ("KC1FSZ Bruce" in this case) to 32 characters.
 
