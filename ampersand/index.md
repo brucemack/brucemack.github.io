@@ -1525,7 +1525,7 @@ around. I don't know how the CGNAT system works in that case.
 * This process isn't limited to cellular/CGNAT. It will work for calls into 
 normal home internet connections as well.
 
-**NOTE:** Thanks to Allan (WA3WC) for pointing out this [ASL Enhancement Request](https://github.com/AllStarLink/ASL3/issues/130). It seems like there is another
+**NOTE:** Thanks to Allan (WA3WCO) for pointing out this [ASL Enhancement Request](https://github.com/AllStarLink/ASL3/issues/130). It seems like there is another
 IAX2 text message "K" (for "keyed") that is potentially related to this. Although
 not implemented fully. If nodes could pass forward the keyed status of nodes
 from which audio is being received - specifically which contributing node was 
