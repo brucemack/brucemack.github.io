@@ -1537,13 +1537,13 @@ extend AllStar to do the same thing.
 I've defined a new telemetry command called "TALKERID" for this purpose.
 In the Ampersand implementation, an IAX2 text message with the "T" prefix 
 (used for telemetry)
-is sent every 10 seconds or whenever the active talker on a call changes.
+is sent every 10 seconds or whenever the active talker on a node changes.
 This isn't a frame-by-frame source identification - that kind of granularity
 isn't necessary.
 
 The message looks like this:
 
-    T 672731 TALKER,KC1FSZ Bruce
+    T 672731 TALKERID,KC1FSZ Bruce
 
 The implementation limits the text ("KC1FSZ Bruce" in this case) to 16 characters.
 
