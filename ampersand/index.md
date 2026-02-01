@@ -155,6 +155,13 @@ in `app_rpt` shows that the 31-tap filter currently used doesn't
 come close to the standard. See the blue curve in the figure
 below. The existing attenuation is only about -9dB at 4.6kHz.
 
+To clarify the nature of the distortion with an example, 
+when resampling a 48K audio signal down to 8K, the image 
+reflection is centered around the 4kHz Nyquist 
+rate. If there is energy in the original 48K signal at 4.5kHz 
+it will be reflected into the 8K audio as an alias signal 
+at 3.5kHz. Obviously, this is undesirable. 
+
 I've implemented a steeper (and more expensive) filter in 
 Ampersand. See the orange curve in the figure below. Anti-aliasing
 suppression is now about -50dB at 4.6kHz. The pass-band is also a bit
