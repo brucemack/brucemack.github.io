@@ -42,7 +42,15 @@ My hope is that Ampersand will provide a better platform for experimental work.
 
 # Users/Installation Guide
 
-Please see [The Ampersand Server User's Guide](https://github.com/Ampersand-ASL/amp-server/blob/main/docs/user.md) for installation instructions.
+There are a few different components.
+
+* Please see [The Ampersand Server User's Guide](https://github.com/Ampersand-ASL/amp-server/blob/main/docs/user.md) for installation instructions. This is 
+the package that most people care about. Thanks to David (NR9V) for his assistance 
+with the design and testing of this system.
+* Please see [The Ampersand Hub User's Guide](https://github.com/Ampersand-ASL/amp-hub/blob/main/docs/user.md) for information about installing a hub server. This
+would typically be run in the cloud. Thanks to Frank (KG9M) for his assistance with design and testing of this system.
+* Please see [The ASL Parrot User's Guide](https://github.com/Ampersand-ASL/asl-parrot/blob/main/docs/parrot-deploy.md) for information about installing the parrot server.
+Thanks to Jason (N8EI) for his assistance with the design and testing of this system.
 
 # Current Work In Process
 
