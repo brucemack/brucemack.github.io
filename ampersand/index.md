@@ -10,8 +10,8 @@ hubs, direct audio connections, etc.).
 around ham radio linking. 
 * To maintain compatibility with the rest of the ASL ecosystem. This **is not** a fork
 of ASL or an attempt to create a parallel network. I don't know all the history
-since I'm relatively new to this, but it seems like there is a lot of drama/feuding 
-in the AllStar space. I'm not interested in drama.
+since I'm relatively new to this, but it appears there is a lot of drama/feuding 
+in the AllStar space. I'm keen to stay away from any of the drama.
 
 This project was originated in October of 2025 by [Bruce MacKinnon (KC1FSZ)](https://www.qrz.com/db/KC1FSZ)
 of the [Wellesley Amateur Radio Society](https://ema.arrl.org/wellesley-amateur-radio-society/) in Wellesley, MA. Please reach out using the e-mail address provided in QRZ. You can try me on AllStar 
@@ -80,7 +80,7 @@ user interface is provided via an integrated HTTP server.
 
 The home tab:
 
-![UI Home](assets/ui-home.jpg)
+![UI Home](assets/ui-home-2.jpg)
 
 The configuration tab:
 
