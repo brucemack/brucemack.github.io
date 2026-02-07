@@ -48,6 +48,23 @@ Please see [The Ampersand Server User's Guide](https://github.com/Ampersand-ASL/
 * David Gleason (NR9V) [created this interesting video](https://www.youtube.com/watch?v=vRurT4k_Jy4) that also highlights the [UCI200](https://allscan.info/products/uci200/) radio interface.
 * Tom Salzer (KJ7T) [wrote this nice article](https://etherham.com/ampersand-asl-installed-and-working/) on the EtherHam site.
 
+# Ampersand Server User Interface
+
+The Ampersand server runs on Linux or Windows. A browser-based 
+user interface is provided via an integrated HTTP server. 
+
+The home tab:
+
+![UI Home](assets/ui-home.jpg)
+
+The configuration tab:
+
+![UI Configuration](assets/amp-server-config.jpg)
+
+The log tab:
+
+![UI Log](assets/ui-log.jpg)
+
 # Conceptual Model of the Ampersand Server
 
 _(Work in process, diagram needed)_
