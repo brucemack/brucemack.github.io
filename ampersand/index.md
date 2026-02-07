@@ -9,7 +9,9 @@ hubs, direct audio connections, etc.).
 * To provide a platform for research and experimentation to advance the state-of-the-art
 around ham radio linking. 
 * To maintain compatibility with the rest of the ASL ecosystem. This **is not** a fork
-of ASL or an attempt to create a parallel network.
+of ASL or an attempt to create a parallel network. I don't know all the history
+since I'm relatively new to this, but it seems like there is a lot of drama/feuding 
+in the AllStar space. I'm not interested in drama.
 
 This project was originated in October of 2025 by [Bruce MacKinnon (KC1FSZ)](https://www.qrz.com/db/KC1FSZ)
 of the [Wellesley Amateur Radio Society](https://ema.arrl.org/wellesley-amateur-radio-society/) in Wellesley, MA. Please reach out using the e-mail address provided in QRZ. You can try me on AllStar 
@@ -41,6 +43,21 @@ My hope is that Ampersand will provide a better platform for experimental work.
 # Users/Installation Guide
 
 Please see [The Ampersand Server User's Guide](https://github.com/Ampersand-ASL/amp-server/blob/main/docs/user.md) for installation instructions.
+
+# Current Work In Process
+
+There are many thing that Asterisk can do that Ampersand cannot. The goal
+is not to replicate all of those features. The goal is to provide the minimal
+set of capabilities for most "normal" internet linking situations and experiment
+with new things that are not part of Asterisk.
+
+My current focus areas:
+
+* Windows UI support.
+* Private node support.
+* IPv6 support/PKI authentication.
+* PTT/CTCSS signal support.
+* Basic repeater controller functionality.
 
 # Other Links
 
