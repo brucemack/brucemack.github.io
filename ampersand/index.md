@@ -407,6 +407,68 @@ it can eliminate incoming network kerchunks if desired.
 
 (Docs to follow)
 
+## Performance/Speeds-And-Feeds
+
+I've not done a huge amount of performance testing/tuning so far. The question
+of scalability will certainly come up so here are some notes that are relevant.
+
+### Capacity Critical Path
+
+My thinking is that the most demanding case for a system like this is a large
+conference server. Specifically, handling the **transmit path** out of a 
+large conference server. In general, it seems like there are many more listeners 
+than talkers in the conference. 
+
+The details of the software flow are provided below, but the most important functions
+in the transmit path for a large conference are:
+
+* For each 20ms frame:
+  - Mix the PCM audio for whatever small number of stations are talking. In 
+    Ampersand this process is happening on 48K audio. 
+  - For each listener who is dialed into the conference:
+    - Down-sample the 48K audio to whatever rate is used by the CODEC
+      that the listener is using. This will be 8K or 16K.
+    - Encode the down-sampled audio according to the CODEC being used
+      (i.e. SLIN, G711 uLaw, etc.)
+    - Format a UDP packet that conforms to the IAX2 standard. In the vast
+      majority of the cases this will be an IAX2 "mini frame," so the formatting
+      consists of adding 4 bytes of header information to the packet.
+    - Push the UDP frame into the network kernel for transmission.
+
+If there are any other things happening, I would consider that to be overhead
+which should be removed if possible. 
+
+From my measurements, it turns out that the most intensive step in Ampersand
+implementation is the audio down-sampling. This is either a 6:1 or 3:1 decimation
+which requires a good quality low-pass filter to avoid aliasing. I looked into
+this area and made some optimizations to make sure things were as efficient as 
+possible. This led to a few interesting points.
+* There are well-known optimizations when creating decimation filters. Check out 
+_Multirate Digital Signal Processing_ Crochiere/Rabiner which seems to be the
+standard book in this space.
+* There are libraries for the ARM architecture that help leverage special 
+hardware. I run a lot of my stuff on a Raspberry Pi which is based on the ARM Cortex-A76 processor (ARMv8-A architecture). This process includes the NEON SIMD 
+accelerator which makes vector math much faster. The decimation from 48K to 8K takes about 25 microseconds. 
+
+There are certainly clever things that could be done to avoid duplicate 
+down-samplings. If two listeners are using the same CODEC then we should be
+able to share the result of the down-sample between both of them. This
+gets a bit tricky when you consider that some of the connections to the 
+conferences (i.e radios) may or may not have echo enabled, so the "mix" 
+might be different across nodes. To keep things simple I'm not doing
+anything clever. 
+
+If we have a conference with 128 listeners, then the total time required 
+to perform the down-sampling on a single thread is 128 x 25uS or about 4ms.
+
+Network time needs to be considered as well. From my measurements, it 
+takes about 1.5ms to push out 128 IAX voice frames on my Pi 5.
+
+If we assume that each voice frame is around 320 bytes (between 160 bytes for 8K uLaw  and 640 byes for 16K SLIN), and assume 128 listeners, that means that we're 
+pushing about 40K of data in each 20ms interval. And if we assume all of this happens
+50 time per second, we end up with a network load of around 16 Mbs, which seems
+reasonable in the modern world.
+
 # Software Architecture
 
 The system is written in C++. I think this is a big step-up from C, but may still 
