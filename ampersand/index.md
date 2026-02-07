@@ -61,6 +61,7 @@ with new things that are not part of Asterisk.
 
 My current focus areas:
 
+* A microcontroller implementation targeting the RP2350 and the ESP-S3.
 * Windows UI support.
 * Private node support.
 * IPv6 support/PKI authentication.
