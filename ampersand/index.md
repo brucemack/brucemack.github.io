@@ -409,7 +409,9 @@ it can eliminate incoming network kerchunks if desired.
 
 ## Performance/Speeds-And-Feeds
 
-I've not done a huge amount of performance testing/tuning so far. The question
+I've not done a huge amount of performance testing/tuning so far. Here's
+[a link to a discussion on the ASL forum](https://community.allstarlink.org/t/asl3-with-large-number-of-connections/24202) that talks about the 
+different factors that come up with large Asterisk systems. The question
 of scalability will certainly come up so here are some notes that are relevant.
 
 ### Capacity Critical Path
@@ -435,13 +437,13 @@ in the transmit path for a large conference are:
       consists of adding 4 bytes of header information to the packet.
     - Push the UDP frame into the network kernel for transmission.
 
-If there are any other things happening, I would consider that to be overhead
-which should be removed if possible. 
+If there are any other things happening, I would consider that 
+to be overhead which should be removed if possible. All of this needs to happen every 20ms without fail, or audio quality starts to degrade.
 
 From my measurements, it turns out that the most intensive step in the Ampersand
 implementation is the audio down-sampling. This is either a 6:1 or 3:1 decimation
-which requires a good quality low-pass filter to avoid aliasing. I"m using 
-71 taps or 91 taps, depending on the target audio rate. I looked into
+which requires a good quality low-pass filter to avoid aliasing. I'm using 
+71 or 91 FIR taps, depending on the target audio rate. I looked into
 this area and made some optimizations to make sure things were efficient. This led to a few interesting points.
 * Everything can be done in fixed-point. 
 * There are well-known optimizations when creating decimation filters. Check out 
@@ -450,15 +452,16 @@ standard book in this space.
 * There are libraries for the ARM architecture that help leverage special 
 math hardware. I run a lot of my stuff on a Raspberry Pi 5 which is based on the ARM Cortex-A76 processor (ARMv8-A architecture). This processor includes the NEON SIMD 
 accelerator which makes vector math much faster. The decimation of one audio 
-frame from 48K to 8K takes about 25 microseconds. 
+frame from 48K to 8K takes about 25 microseconds. I've not looked closely at
+x86_64 to see if there are equivalent accelerators. 
 
 There are certainly clever things that could be done to avoid duplicate 
 down-samplings. If two listeners are using the same CODEC then we should be
 able to share the result of the down-sample between both of them. This
 gets a bit tricky when you consider that some of the connections to the 
 conferences (i.e radios) may or may not have echo enabled, so the "mix" 
-might be different across nodes. To keep things simple I'm not doing
-anything clever. 
+might be different from listener to listener. To keep things simple I'm not doing
+anything clever.
 
 If we have a conference with 128 listeners, then the total time required 
 to perform the down-sampling on a single thread is 128 x 25uS or about 4ms.
@@ -468,7 +471,7 @@ takes about 1.5ms to push out 128 IAX voice frames on my Pi 5.
 
 If we assume that each voice frame is around 320 bytes (between 160 bytes for 8K uLaw  and 640 byes for 16K SLIN), and assume 128 listeners, that means that we're 
 pushing about 40K of data in each 20ms interval. And if we assume all of this happens
-50 time per second, we end up with a network load of around 16 Mbs, which seems
+50 time per second, we end up with a network load of around 16 Mbs which seems
 reasonable in the modern world.
 
 # Software Architecture
