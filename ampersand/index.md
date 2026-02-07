@@ -447,8 +447,9 @@ this area and made some optimizations to make sure things were efficient. This l
 _Multirate Digital Signal Processing_ Crochiere/Rabiner which seems to be the
 standard book in this space.
 * There are libraries for the ARM architecture that help leverage special 
-hardware. I run a lot of my stuff on a Raspberry Pi which is based on the ARM Cortex-A76 processor (ARMv8-A architecture). This process includes the NEON SIMD 
-accelerator which makes vector math much faster. The decimation from 48K to 8K takes about 25 microseconds. 
+math hardware. I run a lot of my stuff on a Raspberry Pi 5 which is based on the ARM Cortex-A76 processor (ARMv8-A architecture). This processor includes the NEON SIMD 
+accelerator which makes vector math much faster. The decimation of one audio 
+frame from 48K to 8K takes about 25 microseconds. 
 
 There are certainly clever things that could be done to avoid duplicate 
 down-samplings. If two listeners are using the same CODEC then we should be
