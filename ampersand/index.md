@@ -424,7 +424,7 @@ in the transmit path for a large conference are:
 
 * For each 20ms frame:
   - Mix the PCM audio for whatever small number of stations are talking. In 
-    Ampersand this process is happening on 48K audio. 
+    Ampersand this process is happening at 48K. 
   - For each listener who is dialed into the conference:
     - Down-sample the 48K audio to whatever rate is used by the CODEC
       that the listener is using. This will be 8K or 16K.
@@ -438,11 +438,11 @@ in the transmit path for a large conference are:
 If there are any other things happening, I would consider that to be overhead
 which should be removed if possible. 
 
-From my measurements, it turns out that the most intensive step in Ampersand
+From my measurements, it turns out that the most intensive step in the Ampersand
 implementation is the audio down-sampling. This is either a 6:1 or 3:1 decimation
-which requires a good quality low-pass filter to avoid aliasing. I looked into
-this area and made some optimizations to make sure things were as efficient as 
-possible. This led to a few interesting points.
+which requires a good quality low-pass filter to avoid aliasing. I"m using 
+71 taps or 91 taps, depending on the target audio rate. I looked into
+this area and made some optimizations to make sure things were efficient. This led to a few interesting points.
 * There are well-known optimizations when creating decimation filters. Check out 
 _Multirate Digital Signal Processing_ Crochiere/Rabiner which seems to be the
 standard book in this space.
