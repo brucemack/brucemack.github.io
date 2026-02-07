@@ -83,7 +83,9 @@ The home tab:
 
 ![UI Home](assets/ui-home-2.jpg)
 
-The configuration tab:
+The configuration tab is shown below. There are no configuration files. The 
+system is configured/managed using a browser, similar to the experience
+setting up a home router or a SIP phone.
 
 ![UI Configuration](assets/amp-server-config.jpg)
 
