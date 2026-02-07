@@ -38,11 +38,12 @@ focused on supporting a **minimal set of capabilities needed by hams.**
 
 The Ampersand project is not attempting to replace Asterisk. There are 1000's of 
 successful Asterisk installations being used by hams and that isn't expected to change.
-My hope is that Ampersand will provide a better platform for experimental work.
+My hope is that Ampersand will provide a better platform for experimental work. There
+are already a few features in Ampersand that are not available in Asterisk.
 
 # Users/Installation Guide
 
-There are a few different components.
+There are a few different components, each with its own guide:
 
 * Please see [The Ampersand Server User's Guide](https://github.com/Ampersand-ASL/amp-server/blob/main/docs/user.md) for installation instructions. This is 
 the package that most people care about. Thanks to David (NR9V) for his assistance 
@@ -54,12 +55,7 @@ Thanks to Jason (N8EI) for his assistance with the design and testing of this sy
 
 # Current Work In Process
 
-There are many thing that Asterisk can do that Ampersand cannot. The goal
-is not to replicate all of those features. The goal is to provide the minimal
-set of capabilities for most "normal" internet linking situations and experiment
-with new things that are not part of Asterisk.
-
-My current focus areas:
+My current development is focused in these:
 
 * A microcontroller implementation targeting the RP2350 and the ESP-S3.
 * Windows UI support.
