@@ -190,7 +190,7 @@ the up-conversion (interpolation) and before the down-conversion (decimation).
 
 Insufficient attenuation in the stop-band of this filter leads to 
 spectral leakage (aliasing), resulting in distortion and reduced audio quality for the user, violating standard transmission requirements. The "standard" seems to be in the
-range of -40dB to -60dB attenuation as measured 15%
+range of -40dB attenuation as measured 15%
 up from the Nyquist rate. So in the case of the 8K filter we'll check for 
 aliasing suppression at 4.6kHz and for the 16K filter we'll check at 9kHZ.
 
@@ -443,6 +443,7 @@ implementation is the audio down-sampling. This is either a 6:1 or 3:1 decimatio
 which requires a good quality low-pass filter to avoid aliasing. I"m using 
 71 taps or 91 taps, depending on the target audio rate. I looked into
 this area and made some optimizations to make sure things were efficient. This led to a few interesting points.
+* Everything can be done in fixed-point. 
 * There are well-known optimizations when creating decimation filters. Check out 
 _Multirate Digital Signal Processing_ Crochiere/Rabiner which seems to be the
 standard book in this space.
