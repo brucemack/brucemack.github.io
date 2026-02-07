@@ -45,9 +45,12 @@ are already a few features in Ampersand that are not available in Asterisk.
 
 There are a few different components, each with its own guide:
 
-* Please see [The Ampersand Server User's Guide](https://github.com/Ampersand-ASL/amp-server/blob/main/docs/user.md) for installation instructions. This is 
+* Please see [The Ampersand Server User's Guide](https://github.com/Ampersand-ASL/amp-server/blob/main/docs/user.md) for installation instructions on Linux. This is 
 the package that most people care about. Thanks to David (NR9V) for his assistance 
 with the design and testing of this system.
+* Please see [The Ampersand Windows User's Guide](https://github.com/Ampersand-ASL/amp-win/blob/main/docs/user.md) for installation instructions on Windows. This is
+a very early release and probably not ready for prime-time, but I keep on getting
+asked whether the server runs on Windows.
 * Please see [The Ampersand Hub User's Guide](https://github.com/Ampersand-ASL/amp-hub/blob/main/docs/user.md) for information about installing a hub server. This
 would typically be run in the cloud. Thanks to Frank (KG9M) for his assistance with design and testing of this system.
 * Please see [The ASL Parrot User's Guide](https://github.com/Ampersand-ASL/asl-parrot/blob/main/docs/parrot-deploy.md) for information about installing the parrot server.
@@ -58,7 +61,7 @@ Thanks to Jason (N8EI) for his assistance with the design and testing of this sy
 My current development is focused in these:
 
 * A microcontroller implementation targeting the RP2350 and the ESP-S3.
-* Windows UI support.
+* Windows UI support, something on par with the IaxRpt phone (not a high bar).
 * Private node support.
 * IPv6 support/PKI authentication.
 * PTT/CTCSS signal support.
