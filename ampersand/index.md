@@ -233,9 +233,6 @@ at 48K (USB device), resampled down to 8K (since most are using the G.711 uLaw
 CODEC), and then resampled back up to 48K for playback (USB device) the interesting
 question is: how much distortion is introduced during those two resampling steps?
 
-If there was no distortion at all then no power would ever appear outside of the 
-fundamental frequency. 
-
 I'm not sure of the official methodology for this kind of test, but here's what I 
 did. The idea is to sweep across a range of frequencies. At each frequency:
 * Generate a tone at a 48K sampling rate.
@@ -247,6 +244,9 @@ did. The idea is to sweep across a range of frequencies. At each frequency:
 * Compute the energy at all other frequency **not including** the fundamental.
 * Compute the power ratio of the "other frequency power" vs. fundamental power
 to get the distortion in dBc.
+
+If there was no distortion at all then no power would ever appear outside of the 
+fundamental frequency. 
 
 Here's the result that compares the existing `app_rpt` resampling process (blue) with 
 the revised Ampersand process (orange). Lower numbers represent lower 
