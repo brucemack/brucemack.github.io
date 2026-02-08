@@ -208,9 +208,9 @@ at 3.5kHz. Obviously, this is undesirable.
 
 I've implemented a steeper (and more expensive) filter in 
 Ampersand. See the orange curve in the figure below. Anti-aliasing
-suppression is now about -50dB at 4.6kHz. The pass-band is also a bit
+suppression is now about -33dB at 4.6kHz. The pass-band is also a bit
 wider. The filter is designed using a Kaiser window. (Particulars:
-cut-off is 3.9kHz, taps is 91, Kaiser beta 1.0).
+cut-off is 4.2kHz, taps is 91, Kaiser beta 3.0).
 
 I'm a nerd, but **not an audio nerd** so I can't say whether this 
 makes a huge difference. I'm just pointing out that the current 
@@ -224,6 +224,52 @@ state-of-the-art, it's best to upgrade these filters.
 NOTES:
 * Blue curve is the 31-tap FIR from `app_rpt`.
 * Orange curve is the 91-tap FIR used in Ampersand.
+
+David NR9V recommended that a total distortion analysis should be performed 
+to compare the 
+Ampersand resampling filter with the existing `app_rpt` filter. This test should
+simulate the actual end-to-end path through the system. Since audio is sampled
+at 48K (USB device), resampled down to 8K (since most are using the G.711 uLaw
+CODEC), and then resampled back up to 48K for playback (USB device). The interesting
+question is: how much distortion is introduced during those two resampling steps?
+
+I'm not sure of the official methodology for this kind of test, but here's what I 
+did. The basic idea is to sweep across a range of frequencies. At each frequency:
+* Generate a tone at a 48K sampling rate.
+* Resample to 8K.
+* Resample to 48K.
+* Run a 1024-point FFT.
+* Find the bin that represents the test tone (I'm calling this the "fundamental bin").
+* Compute the energy at the fundamental frequency.
+* Compute the energy at all other frequency **not including** the fundamental.
+* Compute the power ratio in dBc (i.e. other power vs fundamental power).
+
+If there was no distortion at all then no power would ever appear outside of the 
+fundamental frequency. 
+
+Here's the result that compares the existing `app_rpt` resampling process (blue) with 
+the revised Ampersand process (orange). Lower numbers are better represent lower 
+distortion. Here we can see
+the two filters behave very similarly until about 1200kHz when the more sophisticated
+filter starts to out-perform.
+
+![Resampling Distortion](assets/resampling-distortion.jpg)
+
+A few methodology notes:
+* My test assumed the 8K SLIN CODEC. I did not include the small distortion 
+effects of the G.711 uLaw CODEC since that has nothing to do with the choice
+of resampling filter. It would be interesting to do a test that isolates
+that effect as well.
+* There is no window applied in the FFT.
+* The sweep involves frequencies that are **even multiples** of the resolution 
+bandwidth of the FFT. In this case it's 48,000/1024 = 46.875 Hz. Without this 
+restriction you end up with measurement distortion caused by spectral "bin
+spreading."
+* The noise floor of my FFT methodology was measured by performing the 
+total distortion analysis on the original test tone before any resampling. 
+I measured a distortion of about -91dB flat across the band. I think we
+can attribute that to quantization effects and other imperfections in my 
+test setup.
 
 ### 16K Audio (aka "ASL-HD")
 
