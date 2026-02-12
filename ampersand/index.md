@@ -1117,6 +1117,41 @@ The response contains the IP address:
 After this sequence is complete the IP address and port number can be used to contact
 the target node. 
 
+## An Alternate Authentication Mechanism: Web Transceiver
+
+There is another legacy authentication scheme used by some nodes on the network
+called Web Transceiver mode. 
+This mode is used by DVSwitch mobile and SharkRF M1KE, but likely others. [This page from the AllStarLink documentation](https://allstarlink.github.io/user-guide/externalapps/) 
+gives some information about the apps involved.
+
+The WT authentication protocol isn't explicitly documented, but here is what I 
+can figure out so far:
+
+* A caller first contacts an API endpoint at register.allstarink.org and authenticates. **(Need to find
+out the exact URL and protocol here)**.
+* If the authentication succeeds, AllStarLink provides a temporary token to 
+the caller. 
+* The caller puts the token into the IAX2 NEW message that is used to connect to the 
+target node. **(Need to figure out what IE is used for this.)**
+* The target node takes the token from the NEW message and calls a different AllStarLink 
+API (HTTP GET) using this URL format:
+
+     https://register.allstarlink.org/cgi-bin/authwebphone.pl?TOKENHERE
+
+* AllStarLink checks the token for validity and returns a response that has 
+Content-Type "text/html; charset=UTF-8." However, the response content is just a line of plain, newline terminated text. Looking at an example extensions.conf file, it appears 
+that there are two possible results.
+
+This is given back for a token that is not recognized:
+
+    ???
+
+This is the positive response:
+
+    OHYES
+
+* If the target node receives a positive response then connection is accepted.
+
 ## IAX2 Audio Notes
 
 The audio sample rate is 8kHz. Block size is 160. So each block represents 20ms of audio.
