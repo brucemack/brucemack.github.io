@@ -1131,9 +1131,11 @@ I think it goes something like this:
 **(Need to find out the exact URL format and protocol here)**.
 * If the authentication succeeds, AllStarLink provides a temporary token to 
 the caller. 
-* The caller puts the token into the IAX2 NEW message that is used to connect to the 
-target node. Judging from the extensions.conf file, I'm pretty sure this token gets
-placed into the USERNAME (0x06) information element of the NEW message. This is the
+* The caller creates a NEW message to initiate the connection to the target 
+node. The USERNAME (0x06) information element must contain the string "allstar-public."
+The caller also must provide the token issued by the registration API. Judging from 
+the extensions.conf file, I'm pretty sure this token gets
+placed into the CALLING NAME (0x04) information element of the NEW message. This is the
 relevant configuration statement:
 
         exten => s,n,Set(RESP=${CURL(https://register.allstarlink.org/cgi-bin/authwebphone.pl?${CALLERID(name)})})
