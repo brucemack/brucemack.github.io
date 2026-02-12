@@ -1133,7 +1133,8 @@ I think it goes something like this:
 the caller. 
 * The caller puts the token into the IAX2 NEW message that is used to connect to the 
 target node. Judging from the extensions.conf file, I'm pretty sure this token gets
-placed into the USERNAME (0x06) information element of the NEW message:
+placed into the USERNAME (0x06) information element of the NEW message. This is the
+relevant configuration statement:
 
         exten => s,n,Set(RESP=${CURL(https://register.allstarlink.org/cgi-bin/authwebphone.pl?${CALLERID(name)})})
 
