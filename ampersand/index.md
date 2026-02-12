@@ -1124,8 +1124,8 @@ called Web Transceiver mode.
 This mode is used by DVSwitch mobile and SharkRF M1KE, but likely others. [This page from the AllStarLink documentation](https://allstarlink.github.io/user-guide/externalapps/) 
 gives some information about the apps involved.
 
-The WT authentication protocol isn't explicitly documented, but here is what I 
-can figure out so far:
+The WT authentication protocol isn't explicitly documented anywhere that I can find, but 
+I think it goes something like this:
 
 * A caller first contacts an API endpoint at register.allstarink.org and authenticates. 
 **(Need to find out the exact URL format and protocol here)**.
@@ -1135,12 +1135,12 @@ the caller.
 target node. Judging from the extensions.conf file, I'm pretty sure this token gets
 placed into the USERNAME (0x06) information element of the NEW message:
 
-    exten => s,n,Set(RESP=${CURL(https://register.allstarlink.org/cgi-bin/authwebphone.pl?${CALLERID(name)})})
+        exten => s,n,Set(RESP=${CURL(https://register.allstarlink.org/cgi-bin/authwebphone.pl?${CALLERID(name)})})
 
 * The target node takes the token from the NEW message and calls a different AllStarLink 
 API (HTTP GET) using this URL format:
 
-     https://register.allstarlink.org/cgi-bin/authwebphone.pl?YOURTOKENHERE
+        https://register.allstarlink.org/cgi-bin/authwebphone.pl?YOURTOKENHERE
 
 * AllStarLink checks the token for validity and returns a response that has 
 Content-Type "text/html; charset=UTF-8." However, the response content is just a line of plain, newline terminated text. Looking at an example extensions.conf file, it appears 
