@@ -1119,10 +1119,13 @@ the target node.
 
 ## An Alternate Authentication Mechanism: Web Transceiver
 
-There is another legacy authentication scheme used by some nodes on the network
-called Web Transceiver mode. 
+There is another legacy authentication scheme call "Web Transceiver" that is used by 
+some nodes on the network. 
 This mode is used by DVSwitch mobile and SharkRF M1KE, but likely others. [This page from the AllStarLink documentation](https://allstarlink.github.io/user-guide/externalapps/) 
-gives some information about the apps involved.
+gives some more information about the apps involved.
+
+Looking at that `app_rpt` code, it appears that users who authenticate using the 
+WT method have limited control capabilities on the target node.
 
 The WT authentication protocol isn't explicitly documented anywhere that I can find, but 
 I think it goes something like this:
