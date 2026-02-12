@@ -1132,7 +1132,7 @@ I think it goes something like this:
 * If the authentication succeeds, AllStarLink provides a temporary token to 
 the caller. 
 * The caller creates a NEW message to initiate the connection to the target 
-node. The USERNAME (0x06) information element must contain the string "allstar-public."
+node. The USERNAME (0x06) information element must contain the string `allstar-public`.
 The caller also must provide the token issued by the registration API. Judging from 
 the extensions.conf file, I'm pretty sure this token gets
 placed into the CALLING NAME (0x04) information element of the NEW message. This is the
@@ -1157,9 +1157,9 @@ This is the positive response:
 
     OHYES
 
-* If the target node receives a positive OHYES response then connection is accepted.
+* If the target node receives a positive OHYES response then the call is accepted.
 
-For any of this to work, the target node must be configured in the ASL portal. Select yes
+For any of this to work the target node must be configured in the ASL portal. Select yes
 on the "Allow WebTransceiver/RepeaterPhone/DVSwitch access?" option.
 
 ## IAX2 Audio Notes
