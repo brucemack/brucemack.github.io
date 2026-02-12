@@ -19,10 +19,12 @@ node 672730, as long as I'm not in the middle of a compile. [I'm also on LinkedI
 
 The [original thread where this was introduced is located here](https://community.allstarlink.org/t/a-minimal-asl-node-without-asterisk-dependency-r-d/23879).
 
-I'm not an expert on VOIP or ASL. I just got into this in 
-late 2025. 
-
 The [GitHub project is here](https://github.com/Ampersand-ASL).
+
+I'm not an expert on AllStarLink. I just got into this in late 2025. I've given a 
+few talks at Amateur Radio clubs on this work and I'd be happy to dial into your
+club meeting if you want an overview of what this project is all about.
+
 
 # Table of Contents
 
