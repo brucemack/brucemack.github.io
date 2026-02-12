@@ -1127,16 +1127,20 @@ gives some information about the apps involved.
 The WT authentication protocol isn't explicitly documented, but here is what I 
 can figure out so far:
 
-* A caller first contacts an API endpoint at register.allstarink.org and authenticates. **(Need to find
-out the exact URL and protocol here)**.
+* A caller first contacts an API endpoint at register.allstarink.org and authenticates. 
+**(Need to find out the exact URL format and protocol here)**.
 * If the authentication succeeds, AllStarLink provides a temporary token to 
 the caller. 
 * The caller puts the token into the IAX2 NEW message that is used to connect to the 
-target node. **(Need to figure out what IE is used for this.)**
+target node. Judging from the extensions.conf file, I'm pretty sure this token gets
+placed into the USERNAME (0x06) information element of the NEW message:
+
+    exten => s,n,Set(RESP=${CURL(https://register.allstarlink.org/cgi-bin/authwebphone.pl?${CALLERID(name)})})
+
 * The target node takes the token from the NEW message and calls a different AllStarLink 
 API (HTTP GET) using this URL format:
 
-     https://register.allstarlink.org/cgi-bin/authwebphone.pl?TOKENHERE
+     https://register.allstarlink.org/cgi-bin/authwebphone.pl?YOURTOKENHERE
 
 * AllStarLink checks the token for validity and returns a response that has 
 Content-Type "text/html; charset=UTF-8." However, the response content is just a line of plain, newline terminated text. Looking at an example extensions.conf file, it appears 
@@ -1150,7 +1154,10 @@ This is the positive response:
 
     OHYES
 
-* If the target node receives a positive response then connection is accepted.
+* If the target node receives a positive OHYES response then connection is accepted.
+
+For any of this to work, the target node must be configured in the ASL portal. Select yes
+on the "Allow WebTransceiver/RepeaterPhone/DVSwitch access?" option.
 
 ## IAX2 Audio Notes
 
