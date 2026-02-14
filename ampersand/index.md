@@ -572,14 +572,16 @@ initial greeting, but at least you can hear that the mixing is working properly.
 * The parrot's network test reports a "ping time 0ms" because the parrot and the hub
 are both running in the same AWS region.
 * After the parrot is finished talking I keyed up the Allscan UCI90 on the second of
-my two desktop nodes and talked into the parrot. The recording captures the audio
+my two desktop nodes and talked into the parrot via the hub. The recording captures the audio
 coming back through the hub on the cross-country link. The audio sounds smooth to me.
 * There are a few "bings" in the background of the recording. That is the Windows
 sound when you change the volume level. I was lowering the volume to limit audio feedback
 between my two desktop nodes. That has nothing to do with the test.
 
 The metrics being captured show that the processing time for each audio cycle is 
-about 12ms, so there's not a lot of margin here. 
+about 12ms, so there's not a lot of margin here. This is a single-threaded
+process which I think is best for this kind of timing-critical application because it 
+leads to a simple, very predictable design.
 
 From some preliminary testing, I'm pretty sure that the breaking point has 
 more to with network efficiency than processing speed. Supporting 500 clients
