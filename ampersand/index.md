@@ -461,8 +461,7 @@ it can eliminate incoming network kerchunks if desired.
 
 ## Performance/Speeds-And-Feeds
 
-I've not done a huge amount of performance testing/tuning so far. Here's
-[a link to a discussion on the ASL forum](https://community.allstarlink.org/t/asl3-with-large-number-of-connections/24202) that talks about the 
+Here's [a link to a discussion on the ASL forum](https://community.allstarlink.org/t/asl3-with-large-number-of-connections/24202) that talks about the 
 different factors that come up with large Asterisk systems. The question
 of scalability will certainly come up so here are some notes that are relevant.
 
@@ -500,7 +499,11 @@ this area and made some optimizations to make sure things were efficient. This l
 * Everything can be done in fixed-point. 
 * There are well-known optimizations when creating decimation filters. Check out 
 _Multirate Digital Signal Processing_ Crochiere/Rabiner which seems to be the
-standard book in this space.
+standard book in this space. Specifically:
+  - When decimating from 48K to 8K (or 16K), the decimation low-pass filter
+    can skip the data output points that will be discarded in the decimation.
+  - Since the low-pass filter has linear phase the coefficients are symmetrical.
+    This allows an optimization that cuts the number of multiplies in half.
 * There are libraries for the ARM architecture that help leverage special 
 math hardware. I run a lot of my stuff on a Raspberry Pi 5 which is based on the ARM Cortex-A76 processor (ARMv8-A architecture). This processor includes the NEON SIMD 
 accelerator which makes vector math much faster. The decimation of one audio 
@@ -525,6 +528,68 @@ If we assume that each voice frame is around 320 bytes (between 160 bytes for 8K
 pushing about 40K of data in each 20ms interval. And if we assume all of this happens
 50 time per second, we end up with a network load of around 16 Mbs which seems
 reasonable in the modern world.
+
+### Capacity Testing (February 2026)
+
+I recently did some testing to try to quantify the limiting factors. My test
+consisted of a single hub server running in the AWS cloud with a large number of 
+test nodes connected and listening to the conference audio at the same time.
+
+As expected, 
+the limiting factor is the speed of distributing conference audio to the  
+conference listeners. If the distribution of an audio frame can't be 
+completed (including the network part) in <20ms the frame gets lost and audio 
+quality degrades.
+
+I developed a test node that will open an arbitrary number of listen-only connections
+simultaneously. This allows a high volume of callers to be simulated.  Unfortunately,
+this test isn't perfect because it doesn't fully simulate the distribution of the clients
+across different networks. I partially addressed this by running my test nodes in four 
+different AWS regions (NoCal US, Ohio US, Central Canada, and Ireland).
+
+The hub for this test ran on an AWS c6g.large instance (costs about $30/month). According
+to some discussion on one of the VOIP forums this instance type is frequently used to 
+host PBX systems. It is CPU and network optimized. The instance uses an ARM Graviton2 
+processor that includes support for the NEON instruction for DSP acceleration (see above).
+
+Bottom line: the breaking point is around 500 connections. [I made this recording of the test](https://ampersand-asl.s3.us-west-1.amazonaws.com/releases/hubtest-500.wav) so you can hear what the audio sounds like at scale. A few notes about what you're listening to:
+* The test hub was started in the AWS Northern Virginia, US region.
+* I launched four copies of my load test node, each making
+125 connections to the test hub. These connections originated from NorCal, Ohio, Central Canada,
+and Ireland. All of these connections requested the G711 ulaw CODEC.
+* I launched two normal instances of the Ampersand server on my desktop in Massachusetts
+and connected both to the test hub, requesting the 16K HD CODEC.
+* I started the audio recorder on the first of my two my Windows desktop nodes.
+* I commanded the hub to report its status using DTMF *70. The read-back announces 502 
+connections and lists off the first few connections. (NOTE: The first time I ran this test
+it tried to read off all 502 connections, obviously that needed to be changed!)
+* I commanded the hub to connect to the 61057 parrot using DTMF *361057. Here the audio
+gets a bit muddled because the hub's telemetry announcement is overlapped by the parrot's
+initial greeting, but at least you can hear that the mixing is working properly.
+* The parrot's network test reports a "ping time 0ms" because the parrot and the hub
+are both running in the same AWS region.
+* After the parrot is finished talking I keyed up the Allscan UCI90 on the second of
+my two desktop nodes and talked into the parrot. The recording captures the audio
+coming back through the hub. The audio sounds smooth to me.
+
+The metrics being captured show that the processing time for each audio cycle is 
+about 12ms, so there's not a lot of margin here at this level.
+
+From some preliminary testing, I'm pretty sure that the next breaking point has 
+more to with network efficiency than processing speed. Supporting 500 clients
+requires 25,000 UDP writes/second, all to different end-points. There are some
+optimizations that are needed to be able to push up to the next level, specifically
+I see that some of the really high-end gamers/streamers are using the [sendmmsg() system call](https://man7.org/linux/man-pages/man2/sendmmsg.2.html) to cut down on the 
+number of system calls required.
+
+Minor point: the ASL protocol defines a text message "L" that sends the list of 
+connections to all connected nodes every 10 seconds. When you have >500 nodes
+connected at the same time this message gets pretty big. I arbitrarily decided
+to cut the list short at 1500 bytes - everything above that gets lost. Maybe
+this will matter to someone? I doubt it.
+
+I will be sure to fix the stat API so that is posts the comprehensive list of 
+connections. 
 
 # Software Architecture
 
@@ -1444,8 +1509,7 @@ using Asterisk implementations and it seems to work fine.
 The protocol supports CODEC negotiation.  
 
 The caller specifies the supported CODECs in the NEW 
-message. The NEW message MUST specify the list of
-supported CODECs using the format IE.
+message. 
 
 The CODEC designators are defined [in section 8.7 on
 Media Formats](https://datatracker.ietf.org/doc/html/rfc5456#section-8.7). A bitmap is used to allow
@@ -1456,6 +1520,52 @@ message. An ACCEPT message MUST include the 'format'
 IE to indicate its desired CODEC to the originating 
 peer.  The CODEC format MUST be one of the formats
 sent in the associated NEW command.
+
+### Encoding of the CODEC PREF (0x2b) Information Element
+
+This element is a string that expresses the preferred CODECs
+in rank order.  It's not explicitly stated in the RFC, but looking 
+at the code it appears that the CODECs
+are mapped to single letters starting with "A."
+
+* A - AST_FORMAT_G723
+* B - AST_FORMAT_GSM
+* C - AST_FORMAT_ULAW
+* D - AST_FORMAT_ALAW
+* E - AST_FORMAT_G726
+* F - AST_FORMAT_ADPCM
+* G - AST_FORMAT_SLIN
+* H - AST_FORMAT_LPC10
+* I - AST_FORMAT_G729
+* J - AST_FORMAT_SPEEX
+* K - AST_FORMAT_SPEEX16
+* L - AST_FORMAT_ILBC
+* M - AST_FORMAT_G726_AAL2
+* N - AST_FORMAT_G722
+* O - AST_FORMAT_SLIN16
+* P - AST_FORMAT_JPEG
+* Q - AST_FORMAT_PNG
+* R - AST_FORMAT_H261
+* S - AST_FORMAT_H263
+* T - AST_FORMAT_H263P
+* U - AST_FORMAT_H264
+* V - AST_FORMAT_MP4
+* W - AST_FORMAT_T140_RED
+* X - AST_FORMAT_T140
+* Y - AST_FORMAT_SIREN7
+* Z - AST_FORMAT_SIREN14
+* [ - 0, /* reserved; was AST_FORMAT_TESTLAW */
+* \ - AST_FORMAT_G719
+* ] - 0, /* Place holder */
+* ^ - 0, /* Place holder */
+* _ - 0, /* Place holder */
+* ` - 0, /* Place holder */
+* a - 0, /* Place holder */
+* b - 0, /* Place holder */
+* c - 0, /* Place holder */
+* d - 0, /* Place holder */
+* e - AST_FORMAT_OPUS
+* f - AST_FORMAT_VP8
 
 ## The AMI Protocol
 
