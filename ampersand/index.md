@@ -535,9 +535,8 @@ I recently did some testing to try to quantify the limiting factors. My test
 consisted of a single hub server running in the AWS cloud with a large number of 
 test nodes connected and listening to the conference audio at the same time.
 
-As expected, 
-the limiting factor is the speed of distributing conference audio to the  
-conference listeners. If the distribution of an audio frame can't be 
+As expected, the limiting factor is the speed of distributing conference 
+audio to the conference listeners. If the distribution of an audio frame can't be 
 completed (including the network part) in <20ms the frame gets lost and audio 
 quality degrades.
 
@@ -545,7 +544,7 @@ I developed a test node that will open an arbitrary number of listen-only connec
 simultaneously. This allows a high volume of callers to be simulated.  Unfortunately,
 this test isn't perfect because it doesn't fully simulate the distribution of the clients
 across different networks. I partially addressed this by running my test nodes in four 
-different AWS regions (NoCal US, Ohio US, Central Canada, and Ireland).
+different AWS regions (Northern Virginia US, Ohio US, Central Canada, and Ireland).
 
 The hub for this test ran on an AWS c6g.large instance (costs about $30/month). According
 to some discussion on one of the VOIP forums this instance type is frequently used to 
@@ -553,16 +552,19 @@ host PBX systems. It is CPU and network optimized. The instance uses an ARM Grav
 processor that includes support for the NEON instruction for DSP acceleration (see above).
 
 Bottom line: the breaking point is around 500 connections. [I made this recording of the test](https://ampersand-asl.s3.us-west-1.amazonaws.com/releases/hubtest-500.wav) so you can hear what the audio sounds like at scale. A few notes about what you're listening to:
-* The test hub was started in the AWS Northern Virginia, US region.
+* The test hub was started in the AWS NorCal US region. The hub process is
+set to use the Linux RR (real-time) scheduler policy with a priority of 50.
 * I launched four copies of my load test node, each making
-125 connections to the test hub. These connections originated from NorCal, Ohio, Central Canada,
+125 connections to the test hub. These connections originated from Northern Virginia, 
+Ohio, Central Canada,
 and Ireland. All of these connections requested the G711 ulaw CODEC.
 * I launched two normal instances of the Ampersand server on my desktop in Massachusetts
 and connected both to the test hub, requesting the 16K HD CODEC.
-* I started the audio recorder on the first of my two my Windows desktop nodes.
+* I started the audio recorder on the first of my two Windows desktop nodes.
 * I commanded the hub to report its status using DTMF *70. The read-back announces 502 
 connections and lists off the first few connections. (NOTE: The first time I ran this test
-it tried to read off all 502 connections, obviously that needed to be changed!)
+it tried to read off all 502 connections and overflowed the TTS queue - obviously that needed 
+to be changed!)
 * I commanded the hub to connect to the 61057 parrot using DTMF *361057. Here the audio
 gets a bit muddled because the hub's telemetry announcement is overlapped by the parrot's
 initial greeting, but at least you can hear that the mixing is working properly.
@@ -570,12 +572,15 @@ initial greeting, but at least you can hear that the mixing is working properly.
 are both running in the same AWS region.
 * After the parrot is finished talking I keyed up the Allscan UCI90 on the second of
 my two desktop nodes and talked into the parrot. The recording captures the audio
-coming back through the hub. The audio sounds smooth to me.
+coming back through the hub on the cross-country link. The audio sounds smooth to me.
+* There are a few "bings" in the background of the recording. That is the Windows
+sound when you change the volume level. I was lowering the volume to limit audio feedback
+between my two desktop nodes. That has nothing to do with the test.
 
 The metrics being captured show that the processing time for each audio cycle is 
-about 12ms, so there's not a lot of margin here at this level.
+about 12ms, so there's not a lot of margin here. 
 
-From some preliminary testing, I'm pretty sure that the next breaking point has 
+From some preliminary testing, I'm pretty sure that the breaking point has 
 more to with network efficiency than processing speed. Supporting 500 clients
 requires 25,000 UDP writes/second, all to different end-points. There are some
 optimizations that are needed to be able to push up to the next level, specifically
@@ -588,8 +593,8 @@ connected at the same time this message gets pretty big. I arbitrarily decided
 to cut the list short at 1500 bytes - everything above that gets lost. Maybe
 this will matter to someone? I doubt it.
 
-I will be sure to fix the stat API so that is posts the comprehensive list of 
-connections. 
+I will be sure to fix the stats API so that is posts the comprehensive list of 
+connections. People might care about that more.
 
 # Software Architecture
 
