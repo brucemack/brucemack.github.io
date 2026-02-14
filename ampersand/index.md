@@ -601,8 +601,8 @@ connections. People might care about that more.
 
 NOTE: **This test did not work on the first try**. The high volume testing uncovered
 a number of crashes, bugs, and other inefficiencies in my implementation. Getting 
-these things ironed out was probably the biggest value in this kind of experimentation. There
-may not be any practical use for a 500-user conference hub. Maybe some day.
+these things ironed out was probably the biggest value in this experiment. There
+may not be much practical use for a 500-user conference hub. Maybe some day.
 
 David NR9V has put out [the 1,000 caller challenge](https://community.allstarlink.org/t/a-minimal-asl-node-without-asterisk-dependency-r-d/23879/34?u=kc1fsz). I will need 
 to circle back to this testing later. :-)
