@@ -532,7 +532,7 @@ reasonable in the modern world.
 ### Capacity Testing (February 2026)
 
 I recently did some testing to try to quantify the limiting factors. My test
-consisted of a single hub server running in the AWS cloud with a large number of 
+consisted of a single Ampersand hub server running in the AWS cloud with a large number of 
 test nodes connected and listening to the conference audio at the same time.
 
 As expected, the limiting factor is the speed of calculating and distributing conference 
@@ -1096,6 +1096,13 @@ is discouraged:
 Format of statistic post can be seen here:
 
         [2025-10-30 23:46:26.892] WARNING[26258] app_rpt.c: statpost to URL 'http://stats.allstarlink.org/uhandler?node=644441&time=1761893052&seqno=6&nodes=T559820&apprptvers=3.6.2&apprptuptime=109&totalkerchunks=0&totalkeyups=1&totaltxtime=19&timeouts=0&totalexecdcommands=0&keyed=0&keytime=119' failed with error: Failed to connect to stats.allstarlink.org port 80 after 134860 ms: Could not connect to server
+
+I've found that the URL should have a .php on the end:
+
+    http://stats.allstarlink.org/uhandler.php
+
+If there are multiple nodes running from the same apparent IP address posting
+stats then it is likely that only one will succeed. The others get a 401 Unauthorized.
 
 ## Other Intel on ASL Registration/Stats
 
