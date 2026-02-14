@@ -599,6 +599,8 @@ this will matter to someone? I doubt it.
 I will be sure to fix the stats API so that is posts the comprehensive list of 
 connections. People might care about that more.
 
+Related note (thanks to Allan WA3WCO) - [here's a GitHub issue on a similar topic in the app_rpt code](https://github.com/AllStarLink/app_rpt/issues/930).
+
 NOTE: **This test did not work on the first try**. The high volume testing uncovered
 a number of crashes, bugs, and other inefficiencies in my implementation. Getting 
 these things ironed out was probably the biggest value in this experiment. There
