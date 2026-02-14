@@ -535,7 +535,7 @@ I recently did some testing to try to quantify the limiting factors. My test
 consisted of a single hub server running in the AWS cloud with a large number of 
 test nodes connected and listening to the conference audio at the same time.
 
-As expected, the limiting factor is the speed of distributing conference 
+As expected, the limiting factor is the speed of calculating and distributing conference 
 audio to the conference listeners. If the distribution of an audio frame can't be 
 completed (including the network part) in <20ms the frame gets lost and audio 
 quality degrades.
@@ -553,7 +553,8 @@ processor that includes support for the NEON instruction for DSP acceleration (s
 
 Bottom line: the breaking point is around 500 connections. [I made this recording of the test](https://ampersand-asl.s3.us-west-1.amazonaws.com/releases/hubtest-500.wav) so you can hear what the audio sounds like at scale. A few notes about what you're listening to:
 * The test hub was started in the AWS NorCal US region. The hub process is
-set to use the Linux RR (real-time) scheduler policy with a priority of 50.
+set to use the Linux RR (real-time) scheduler policy with a priority of 50. These 
+are settings recommended on a VOIP/PBX forum.
 * I launched four copies of my load test node, each making
 125 connections to the test hub. These connections originated from Northern Virginia, 
 Ohio, Central Canada,
@@ -595,6 +596,14 @@ this will matter to someone? I doubt it.
 
 I will be sure to fix the stats API so that is posts the comprehensive list of 
 connections. People might care about that more.
+
+NOTE: **This test did not work on the first try**. The high volume testing uncovered
+a number of crashes, bugs, and other inefficiencies in my implementation. Getting 
+these things ironed out was probably the biggest value in this kind of experimentation. There
+may not be any practical use for a 500-user conference hub. Maybe some day.
+
+David NR9V has put out [the 1,000 caller challenge](https://community.allstarlink.org/t/a-minimal-asl-node-without-asterisk-dependency-r-d/23879/34?u=kc1fsz). I will need 
+to circle back to this testing later. :-)
 
 # Software Architecture
 
