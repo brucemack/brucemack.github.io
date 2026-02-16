@@ -1551,46 +1551,24 @@ sent in the associated NEW command.
 This element is a string that expresses the preferred CODECs
 in rank order.  It's not explicitly stated in the RFC, but looking 
 at the code it appears that the CODECs
-are mapped to single letters starting with "A."
+are mapped to single letters starting with "B."
 
-* A - AST_FORMAT_G723
-* B - AST_FORMAT_GSM
-* C - AST_FORMAT_ULAW
-* D - AST_FORMAT_ALAW
-* E - AST_FORMAT_G726
-* F - AST_FORMAT_ADPCM
-* G - AST_FORMAT_SLIN
-* H - AST_FORMAT_LPC10
-* I - AST_FORMAT_G729
-* J - AST_FORMAT_SPEEX
-* K - AST_FORMAT_SPEEX16
-* L - AST_FORMAT_ILBC
-* M - AST_FORMAT_G726_AAL2
-* N - AST_FORMAT_G722
-* O - AST_FORMAT_SLIN16
-* P - AST_FORMAT_JPEG
-* Q - AST_FORMAT_PNG
-* R - AST_FORMAT_H261
-* S - AST_FORMAT_H263
-* T - AST_FORMAT_H263P
-* U - AST_FORMAT_H264
-* V - AST_FORMAT_MP4
-* W - AST_FORMAT_T140_RED
-* X - AST_FORMAT_T140
-* Y - AST_FORMAT_SIREN7
-* Z - AST_FORMAT_SIREN14
-* [ - 0, /* reserved; was AST_FORMAT_TESTLAW */
-* \ - AST_FORMAT_G719
-* ] - 0, /* Place holder */
-* ^ - 0, /* Place holder */
-* _ - 0, /* Place holder */
-* ` - 0, /* Place holder */
-* a - 0, /* Place holder */
-* b - 0, /* Place holder */
-* c - 0, /* Place holder */
-* d - 0, /* Place holder */
-* e - AST_FORMAT_OPUS
-* f - AST_FORMAT_VP8
+* B - AST_FORMAT_G723
+* C - AST_FORMAT_GSM
+* D - AST_FORMAT_ULAW
+* E - AST_FORMAT_ALAW
+* F - (0x0010) AST_FORMAT_G726
+* G - AST_FORMAT_ADPCM
+* H - AST_FORMAT_SLIN
+* I - AST_FORMAT_LPC10
+* J - AST_FORMAT_G729
+* K - AST_FORMAT_SPEEX
+* L - ILBC
+* M - (0x0800) G.726 AAL2   
+* N - G.722
+* O - AMR
+* P - (0x4000) Not used
+* Q - (0x8000) SLIN 16K
 
 ## The AMI Protocol
 
@@ -1961,10 +1939,46 @@ keyed - this could help a lot. The problem of converting the node number to more
 friendly text would still need to be solved, but there's likely an ASL HTTP 
 API for that already.
 
-# CODECs Supported By ASL
+# CODEC Notes
 
-* G711 (uLaw and ALaw) - Audio sampled at 8kHz, one 160 byte frame every 20ms.
-* [G722](https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.722-198811-S!!PDF-E&type=items) - Audio sampled at 14 bits 16kHz produces a 64kbit/second stream. There is
+## G.711 (uLaw and ALaw)
+
+Audio is sampled at 8kHz, one 160 byte frame every 20ms. Ampersand is currently only
+supporting the uLaw format. This is a 64kbs datastream.
+
+## G.726
+
+This is an 8kHz CODEC that supports a variety of bitrates. The most common one,
+and the one that we are using for Ampersand, is the 32kbs rate. It turns out 
+that is CODEC is the default for many HamVOIP distributions.
+
+* [Official specification is here](https://www.itu.int/rec/T-REC-G.726).
+* [Test vectors are here](https://www.itu.int/rec/T-REC-G.726-199103-I!AppII).
+* [This application node from TI](https://www.ti.com/lit/an/spra118/spra118.pdf) is 
+very helpful because it points out some errors in the official specification.
+
+The encoder converts PCM samples into 4-bit samples. There is a packing convention
+required here. Ampersand/Asterisk are using the "G.726 AAL2 packing" (defined 
+in [ITU-T I.366.2, Annex E](https://www.itu.int/rec/T-REC-I.366.2-200011-I/en)) which is a big-endian format used for ATM AAL2 transport. In 
+AAL2, the most significant bit (MSB) of the first code word aligns with the MSB of the byte.
+
+Here's the picture from ITU-T I.366.2 Annex E:
+
+![AAL2](assets/aal2.jpg)
+
+I think there is some confusion in the IAX documentation. Section 2.15 of the IAX2
+RFC lists media format 0x00000010 as "G.726" and format 0x00000800 as "G.726 AAL2." 
+However, I tried to connect to a few nodes (UK parrot 40894 and ECR 27339) using 
+the 0x800 media format and was rejected. When I switched to format 0x10 the connection 
+was accepted and the G.726 audio sounded fine in both directions. I've implemented
+the AAL2 variant as I understand it (big-endian packing) so I'm not sure what's 
+going on here. I will stick with 0x10 since the nodes I tested accepted it.
+
+## G722
+
+Not implemented by Ampsersand.
+
+[G722 Specification](https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.722-198811-S!!PDF-E&type=items) - Audio sampled at 14 bits 16kHz produces a 64kbit/second stream. There is
 no official/fixed frame size defined in the specification, but one frame every 20ms would
 result in 160 bytes/frame. I think the PJSIP documentation indicates that a 20ms frame rate 
 is used in that implementation.
