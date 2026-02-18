@@ -609,6 +609,50 @@ may not be much practical use for a 500-user conference hub. Maybe some day.
 David NR9V has put out [the 1,000 caller challenge](https://community.allstarlink.org/t/a-minimal-asl-node-without-asterisk-dependency-r-d/23879/34?u=kc1fsz). I will need 
 to circle back to this testing later. :-)
 
+## CODEC Notes
+
+### G.711 (uLaw and ALaw)
+
+Audio is sampled at 8kHz, one 160 byte frame every 20ms. Ampersand is currently only
+supporting the uLaw format. This is a 64kbs datastream.
+
+### G.726
+
+This is an 8kHz CODEC that supports a variety of bitrates. The most common one,
+and the one that we are using for Ampersand, is the 32kbs rate. It turns out 
+that is CODEC is the default for many HamVOIP distributions.
+
+* [Official specification is here](https://www.itu.int/rec/T-REC-G.726).
+* [Test vectors are here](https://www.itu.int/rec/T-REC-G.726-199103-I!AppII).
+* [This application node from TI](https://www.ti.com/lit/an/spra118/spra118.pdf) is 
+very helpful because it points out some errors in the official specification.
+
+The encoder converts PCM samples into 4-bit samples. There is a packing convention
+required here. Ampersand/Asterisk are using the "G.726 AAL2 packing" (defined 
+in [ITU-T I.366.2, Annex E](https://www.itu.int/rec/T-REC-I.366.2-200011-I/en)) which is a big-endian format used for ATM AAL2 transport. In 
+AAL2, the most significant bit (MSB) of the first code word aligns with the MSB of the byte.
+
+Here's the picture from ITU-T I.366.2 Annex E:
+
+![AAL2](assets/aal2.jpg)
+
+I think there is some confusion in the IAX documentation. Section 2.15 of the IAX2
+RFC lists media format 0x00000010 as "G.726" and format 0x00000800 as "G.726 AAL2." 
+However, I tried to connect to a few nodes (UK parrot 40894 and ECR 27339) using 
+the 0x800 media format and was rejected. When I switched to format 0x10 the connection 
+was accepted and the G.726 audio sounded fine in both directions. I've implemented
+the AAL2 variant as I understand it (big-endian packing) so I'm not sure what's 
+going on here. I will stick with 0x10 since the nodes I tested accepted it.
+
+### G722
+
+Not implemented by Ampsersand.
+
+[G722 Specification](https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.722-198811-S!!PDF-E&type=items) - Audio sampled at 14 bits 16kHz produces a 64kbit/second stream. There is
+no official/fixed frame size defined in the specification, but one frame every 20ms would
+result in 160 bytes/frame. I think the PJSIP documentation indicates that a 20ms frame rate 
+is used in that implementation.
+
 # Software Architecture
 
 The system is written in C++. I think this is a big step-up from C, but may still 
@@ -1939,49 +1983,40 @@ keyed - this could help a lot. The problem of converting the node number to more
 friendly text would still need to be solved, but there's likely an ASL HTTP 
 API for that already.
 
-# CODEC Notes
+# VOTER Implementation
 
-## G.711 (uLaw and ALaw)
+This is a big topic and it deserves a section to itself. I won't repeat
+all of the VOTER documentation, please see these sources for more detail:
+* [About VOTER](https://allstarlink.github.io/voter/about-voter/)
+* [The VOTER Protocol](https://allstarlink.github.io/voter/voter-protocol/)
+* [The RTCM VOTER Firmware](https://github.com/AllStarLink/Voter/tree/master/VOTER_RTCM-firmware)
 
-Audio is sampled at 8kHz, one 160 byte frame every 20ms. Ampersand is currently only
-supporting the uLaw format. This is a 64kbs datastream.
+## VOTER Protocol Documentation
 
-## G.726
+There are some gaps in the VOTER protcol documentation so these notes
+should be considered a supplement to the [official VOTER protocol documentation](https://allstarlink.github.io/voter/voter-protocol/).
 
-This is an 8kHz CODEC that supports a variety of bitrates. The most common one,
-and the one that we are using for Ampersand, is the 32kbs rate. It turns out 
-that is CODEC is the default for many HamVOIP distributions.
+### Regarding the Header Fractional Time (Octets 4-7)
 
-* [Official specification is here](https://www.itu.int/rec/T-REC-G.726).
-* [Test vectors are here](https://www.itu.int/rec/T-REC-G.726-199103-I!AppII).
-* [This application node from TI](https://www.ti.com/lit/an/spra118/spra118.pdf) is 
-very helpful because it points out some errors in the official specification.
+The documentation states that there are two cases for this field:
+* In normal mode the field contains the fractional time in nanoseconds.
+* In general-purpose (mixer) mode the field contains a sequence number.
 
-The encoder converts PCM samples into 4-bit samples. There is a packing convention
-required here. Ampersand/Asterisk are using the "G.726 AAL2 packing" (defined 
-in [ITU-T I.366.2, Annex E](https://www.itu.int/rec/T-REC-I.366.2-200011-I/en)) which is a big-endian format used for ATM AAL2 transport. In 
-AAL2, the most significant bit (MSB) of the first code word aligns with the MSB of the byte.
+In normal mode the time appears to be an even multiple of 0.02s, or 20,000,000ns.
 
-Here's the picture from ITU-T I.366.2 Annex E:
+Will (N0XGA) provided this information about general-purpose mode:
 
-![AAL2](assets/aal2.jpg)
+> For General Purpose packets the nanosecond field does indeed increment by one for 
+every packet and the seconds is just unix time. Importantly, that packet counter 
+still increments even if there are no packets sent!  That is, the packet counter 
+counts up by 1 every 20ms even if the client isn't sending any packets, so if  you 
+have a 1 second pause in reception, the first packet after the pause will be +20 
+from the last packet.  Note also that the spec says if you are using ADPCM that only 
+send a packet every 40ms, the packet counter increments by two.  Put more simply, 
+the "packet count" is really just a counter value that starts at 0 at boot 
+and increments every 20ms no matter what.  That is how I ended up coding it.
 
-I think there is some confusion in the IAX documentation. Section 2.15 of the IAX2
-RFC lists media format 0x00000010 as "G.726" and format 0x00000800 as "G.726 AAL2." 
-However, I tried to connect to a few nodes (UK parrot 40894 and ECR 27339) using 
-the 0x800 media format and was rejected. When I switched to format 0x10 the connection 
-was accepted and the G.726 audio sounded fine in both directions. I've implemented
-the AAL2 variant as I understand it (big-endian packing) so I'm not sure what's 
-going on here. I will stick with 0x10 since the nodes I tested accepted it.
-
-## G722
-
-Not implemented by Ampsersand.
-
-[G722 Specification](https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.722-198811-S!!PDF-E&type=items) - Audio sampled at 14 bits 16kHz produces a 64kbit/second stream. There is
-no official/fixed frame size defined in the specification, but one frame every 20ms would
-result in 160 bytes/frame. I think the PJSIP documentation indicates that a 20ms frame rate 
-is used in that implementation.
+I think he meant to say "+50 from the last packet" above, but the point still stands.
 
 # Other Pages
 
