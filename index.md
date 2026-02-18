@@ -1,7 +1,6 @@
 ---
 layout: home
 ---
-# Projects
 
 * [An implementation of the AllStar VOIP linking protocol](ampersand). This
 is one of the more ambitious radio software projects I've taken on. This
