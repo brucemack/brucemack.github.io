@@ -25,7 +25,6 @@ I'm not an expert on AllStarLink. I just got into this in late 2025. I've given 
 few talks at Amateur Radio clubs on this work and I'd be happy to dial into your
 club meeting if you want an overview of what this project is all about.
 
-
 # Table of Contents
 
 * (Will be replaced with table of contents)
@@ -58,12 +57,39 @@ would typically be run in the cloud. Thanks to Frank (KG9M) for his assistance w
 * Please see [The ASL Parrot User's Guide](https://github.com/Ampersand-ASL/asl-parrot/blob/main/docs/parrot-deploy.md) for information about installing the parrot server.
 Thanks to Jason (N8EI) for his assistance with the design and testing of this system.
 
+# Credits
+
+I've received help from a lot of people along the way. This project wouldn't be
+as far along without the following contributors:
+
+* David NR9V was the first to show interest in the project. David has a lot of
+experience with VOIP systems and engineering in general. He has a company 
+called [AllScan](http://www.allscan.info) that makes a successful line of hardware
+interfaces for AllStar and other linking technologies. Pretty much all of my 
+development and testing has been doing using AllScan hardware. David has contributed
+many design ideas.
+* Patrick N2DYI has provided a lot of technical expertise. He also created the 55553
+parrot which I used extensively during the initial debug of my system.
+* Jason N8EI has provided a lot of technical expertise and has spent a lot of 
+time answering my questions. Jason also helped with the packaging of the ASL parrot node.
+* Frank KG9M came up with the idea of a "virtual node" (cloud node), provided a lot
+of design input, and tested the initial versions of the system.
+* Tom KJ7T provided early feedback on the web user interface and has also provided
+good publicity via his excellent newsletter [Random Wire](https://www.randomwire.us).
+* Tom NN6H of the Sierra Foothills Radio Club provided a lot of expertise on the 
+VOTER implementation and also helped debug my initial implementation of a VOTER
+server.
+* Mason N5LSN has answered a lot of questions about VOTER and was also kind enough
+to loan me some of his VOTER client hardware for testing.
+* Joe KA9OPL is a UI expert and provided testing and feedback on the Windows
+version of the system. Joe helped to make the web user interface more accessible.
+
 # Current Work In Process
 
 My current development is focused in these:
 
-* A microcontroller implementation targeting the RP2350 and the ESP-S3.
-* Windows UI support, something on par with the IaxRpt phone (not a high bar).
+* The VOTER interface.
+* A microcontroller implementation targeting the RP2350 and the ESP32-S3.
 * Private node support.
 * IPv6 support/PKI authentication.
 * PTT/CTCSS signal support.
@@ -1989,7 +2015,16 @@ This is a big topic and it deserves a section to itself. I won't repeat
 all of the VOTER documentation, please see these sources for more detail:
 * [About VOTER](https://allstarlink.github.io/voter/about-voter/)
 * [The VOTER Protocol](https://allstarlink.github.io/voter/voter-protocol/)
+* [An important reference from KC2IRV that talks about synchronization requirements](https://allstarsimulcast.com/index.php/intro-to-radio-simulcast/).
+* [A good intro video on simulcast](https://www.youtube.com/watch?v=_XmfubdUqOU).
+* [A video about simulcast systems](https://www.youtube.com/watch?v=1krkUGRrV-w)
+* [An article that gives some parameters](http://www.simulcastsolutions.com/frequency.asp).
+* [An interesting article](https://www.blog.adtran.com/en/the-hidden-crisis-in-public-safety-communication-the-simulcast-problem) that talks about the risks to public safety communications.
+
+Some other VOTER projects:
 * [The RTCM VOTER Firmware](https://github.com/AllStarLink/Voter/tree/master/VOTER_RTCM-firmware)
+* [VOTER2](https://community.allstarlink.org/t/announcing-the-voter2/23768) which
+appears to be specific to the MTR-2000.
 
 ## VOTER Protocol Documentation
 
@@ -2017,6 +2052,24 @@ the "packet count" is really just a counter value that starts at 0 at boot
 and increments every 20ms no matter what.  That is how I ended up coding it.
 
 I think he meant to say "+50 from the last packet" above, but the point still stands.
+
+### Small Documentation Error - Ping Packet Size
+
+The beleive the [VOTER Protocol documentation](https://allstarlink.github.io/voter/voter-protocol) contains a
+small but important error. The definition of PING reads as follows:
+
+> **Payload type 5 - "PING" (Connectivity Test)**
+> Octets 24 and up contain 200 bytes of payload for evaluation of connectivity quality. 
+When a client receives this packet, it is intended to be transmitted (with the payload
+information intact) immediately back to the host from which it came. The actual 
+contents of the payload are not specifically defined for the purposes of this protocol, 
+and is entirely determined by the implementation of the applicable function in the host.
+
+This suggests that the PING message can be 24 + 200 = 224 octets in length. However, 
+after some strange problems and a review of the VOTER firmware I can see that the 
+static/global buffer allocated for reading the PING messages is only 24 + 164 = 188 bytes 
+in length. Unforunately, sending the bytes above the 188 byte limit may result in 
+a write into an unexpected area of memory in the VOTER/RTCM device. **BE CAREFUL!**
 
 # Other Pages
 
