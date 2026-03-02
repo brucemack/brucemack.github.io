@@ -1814,7 +1814,9 @@ Server sends this:
 
 And then a series of events tracing the hangup events.
 
-# Firewall/CGNAT Traversal (IPv4 Only)
+# Firewall/CGNAT Traversal 
+
+## IPv4 Only
 
 Firewall issues seem to be the most common problem 
 that people have when setting up their AllStar node. The understanding
@@ -1862,7 +1864,7 @@ This concept borrows heavily from similar protocols used on the EchoLink network
 to solve the same problem. See the description of PING/OPEN/OVER 
 [in my documentation of the EchoLink protocol](https://github.com/brucemack/microlink/blob/main/docs/el_supplement.md).
 
-## UDP Hole Punching
+### UDP Hole Punching
 
 I've emphasized the word **unsolicited** above for an important reason. Although
 a random node on the internet can't send a UDP packet to the IAX2 port on your
@@ -1937,14 +1939,16 @@ around. I don't know how the CGNAT system works in that case.
 * This process isn't limited to cellular/CGNAT. It will work for calls into 
 normal home internet connections as well.
 
-# Firewall Traversal (IPv6 Only)
+## IPv6 Only
 
 The problem is easier with IPv6 because there is no NAT, but you still
 need to address the inbound firewall problem. 
 
 (Docs to follow)
 
-# Identification of Active Talker 
+# Protocol Extensions
+
+## Identification of Active Talker 
 
 One of the nice things that the DMR linking system provides is the call sign 
 of the active talker. From what I can tell, this even works in talk groups
@@ -2019,6 +2023,15 @@ from which audio is being received - specifically which contributing node was
 keyed - this could help a lot. The problem of converting the node number to more
 friendly text would still need to be solved, but there's likely an ASL HTTP 
 API for that already.
+
+# Microcontroller Version
+
+(More docs to follow)
+
+Some YouTube demos:
+
+* [First working demo](https://www.youtube.com/watch?v=jJ4XgNbKhGQ)
+* [Demo of 16K HD with a better speaker](https://www.youtube.com/watch?v=Nk3CeN_qvHs)
 
 # VOTER Implementation
 
