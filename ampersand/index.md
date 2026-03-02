@@ -1599,6 +1599,17 @@ respond with a PONG. This is an extremely useful function for validating
 actual network connectivity in a low-overhead way. I have tested this
 using Asterisk implementations and it seems to work fine.
 
+## Protocol Notes Related to M1KE Devices.
+
+Here's an example of a NEW message from a M1KE device operating in IAX2 mode.
+
+        0000 | 9a 5a 00 00 00 00 00 03  00 00 06 01 0b 02 00 02  ·Z······ ········
+        0010 | 02 06 35 38 31 36 31 34  04 04 4b 47 39 4d 09 04  ··581614 ··KG9M··
+        0020 | 00 00 00 00 08 04 00 00  00 2e 06 05 66 72 61 6e  ········ ·.··fran
+        0030 | 6b 01 06 36 37 32 37 33  31 36 00                 k··67273 16·
+
+IE 0x05 is "frank" which is the security context for the call.
+
 ## CODEC Negotiation
 
 The protocol supports CODEC negotiation.  
