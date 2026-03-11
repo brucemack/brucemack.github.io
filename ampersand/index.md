@@ -2095,6 +2095,50 @@ static/global buffer allocated for reading the PING messages is only 24 + 164 = 
 in length. Unforunately, sending the bytes above the 188 byte limit may result in 
 a write into an unexpected area of memory in the VOTER/RTCM device. **BE CAREFUL!**
 
+## Exploration of GPS-less Voting
+
+Jim Dixon's (W6BIL) design of the AllStar VOTER is impressive. I don't know a lot about
+advanced repeaters, but I do know that voting (receive) and simulcasting (transmit) 
+capabilities exist in **very expensive** commercial/public satety radio systems.
+The fact that hams have access to these functions using hardware that can be 
+built/bought for a few hundred dollars is amazing.
+
+From what I can see, the key concept that underlies the VOTER system is **synchronization.** The synchronization requirements on receive and transmit 
+are different. In this section I am only focused on the receive (voter) side of the 
+problem. I'll write more about synchronized transmit (simulcast) in a different
+section.
+
+The following paragraph from [Jim's documentation](https://allstarlink.github.io/voter/about-voter/#history) lays out the challenge:
+
+> The main problem to overcome is that when you have multiple streams of audio information from multiple receivers, you need a concise and accurate way of synchronizing all of the audio, so that if switching of streams occurs, there will be no inconsistencies in the audio. This is far more easily done on conventional, RF-linked voting systems, being that the delay between the receiver and the transmitter site is very minimal (basically the speed of light) and is painfully consistent. Not so on the Internet. The packet delays can be extremely long and varied, and it makes the task of synchronization far more difficult.
+
+From my testing of various parts of the Ampersand system, and in particular 
+my attempts at building smooth packet loss concealment (PLC) algorithms, I can attest
+that what Jim said above is true. It doesn't take much of a discontinuity 
+in the audio stream to create a click, pop, or other audible artifact. 
+
+The original VOTER design resorts to a clever solution to solve the audio stream
+synchronization problem: GPS-derived clocks. This can be acheived through the use
+of inexpensive GPS/GNSS modules.
+
+Given multiple audio streams collected form multiple receivers in a voting 
+network, the job of reconciling and choosing the "winning" stream happens 
+inside of the central VOTER server. One of the best things about GPS 
+synchronization of the audio streams is that the server's job becomes very 
+easy. Each 20ms audio frame is timestamped with a GPS time (rounded to the 
+nearest 20ms interval), so the server just needs to buffer these frames, line
+them up, and select the best one at each audio tick. There is very little
+computation required to perform this job.
+
+The question I've been wondering about is: do you really need GPS to achieve the 
+required accuracy? Is there a way to make the hardware even simpler?
+
+I became more interested in this question after coming across [this paper published in the 2007 IEEE International Conference on Communications](https://bregni.faculty.polimi.it/papers/icc2007_simulcast.pdf). The authors of this 
+paper were exploring the potential of non-GPS time synchronizaiton methods for use
+in **simulcast** transmitters in an FM-analog UHF repeater system. From what I can tell,
+the requirements for simulcast are much more stringent than they are for 
+receiver voting.
+
 # Other Pages
 
 * [Notes on Receive Audio Level Calibration](asl-audio-levels.md)
