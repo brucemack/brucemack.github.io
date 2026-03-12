@@ -2148,7 +2148,8 @@ the requirements for simulcast are much more stringent than they are for
 receiver voting. The paper proposes the use of plain-old [Network Time Protocol (NTP)](https://datatracker.ietf.org/doc/html/rfc5905) instead of GPS to obtain the necessary time 
 sync.
 
-Based on my initial testing, **I don't think you need GPS to do receiver voting.** My reasoning is summarized below. Send me a comment if you think I'm looking at this the wrong way. 
+Based on my initial testing, **I don't think you need GPS to do receiver voting,** assuming
+you're willing to do some calculations on the server side of the voter system. My reasoning is summarized below. Send me a comment if you think I'm looking at this the wrong way. 
 
 ### When Does Synchronization Matter?
 
