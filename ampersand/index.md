@@ -2273,8 +2273,8 @@ recording.
 It should be noted that in 2011 when the VOTER system was originally designed
 the CPU resources needed to perform some of these DSP alignment tricks in real-time was 
 much more expensive. At that time it made a lot of sense to leverage GPS-disciplined 
-clocks. Given the processing power available to us now, the same problem can be solved
-in a different, more software-oriented way.
+clocks. Given the processing power available to us now, the same problem can be 
+probably be solved in a different, more software-oriented way.
 
 # Other Pages
 
