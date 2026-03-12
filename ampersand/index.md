@@ -2217,7 +2217,7 @@ streams that differ in time synchronization (phase) will not correlate strongly 
 cases, may even exhibit negative cross-correlation. 
 
 I've found that a good way to get an accurate estimate of the phase delay of one stream with respect to another
-is to evaluate the cross-correlation using a range of time delays. Assuming that the NTP clock synchronization method can bring the streams to within ~4ms of each other, cross-correlations
+is to evaluate the cross-correlation across a range of time delays. Assuming that the NTP clock synchronization method can bring the streams to within ~4ms of each other, cross-correlations
 using delays from -2ms to +2ms can be evaluated until a peak is found. The offset that 
 results from this search provides a highly accurate measurement of how much one stream needs to 
 be advanced/delayed to provide a smooth transition during a switch from another. Given that 
