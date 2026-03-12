@@ -2099,7 +2099,7 @@ a write into an unexpected area of memory in the VOTER/RTCM device. **BE CAREFUL
 
 Jim Dixon's (W6BIL) design of the AllStar VOTER is impressive. I don't know a lot about
 advanced repeaters, but I do know that voting (receive) and simulcasting (transmit) 
-capabilities exist in **very expensive** commercial/public-satety radio systems.
+capabilities exist in **very expensive** commercial/public-safety radio systems.
 The fact that hams have access to these functions using hardware that can be 
 built/bought for a few hundred dollars is amazing.
 
@@ -2118,10 +2118,10 @@ that what Jim said above is true. It doesn't take much of a discontinuity
 in the audio stream to create a click, pop, or other audible artifact. 
 
 The original VOTER design employs a clever solution to solve the audio stream
-synchronization problem: a GPS-derived clock. This can be acheived using
+synchronization problem: a GPS-derived clock. This can be achieved using
 an inexpensive GPS/GNSS module.
 
-Given multiple audio streams collected form multiple receivers across a voting 
+Given multiple audio streams collected from multiple receivers across a voting 
 network, the job of reconciling and choosing the "winning" stream happens 
 inside of the central VOTER server. One of the best things about GPS 
 synchronization of the audio streams is that the server's job becomes very 
@@ -2134,7 +2134,7 @@ The question I've been wondering about is: do you really need GPS to achieve the
 required accuracy? Is there a way to make the hardware even simpler?
 
 I became more interested in this question after coming across [this paper published in the 2007 IEEE International Conference on Communications](https://bregni.faculty.polimi.it/papers/icc2007_simulcast.pdf). The authors of this 
-paper were exploring the potential of non-GPS time synchronizaiton methods for use
+paper were exploring the potential of non-GPS time synchronization methods for use
 in **simulcast** transmitters in an FM-analog UHF repeater system. From what I can tell,
 the requirements for simulcast are much more stringent than they are for 
 receiver voting. The paper proposes the use of plain-old [Network Time Protocol (NTP)](https://datatracker.ietf.org/doc/html/rfc5905) instead of GPS to obtain the necessary time 
@@ -2151,7 +2151,7 @@ case the timing requirements are no different from any other AllStar audio strea
 nodes.
 
 Precision starts to matter in the transitions between receivers. If the switch between one 
-active receiver and another results in a sudden/discontinous jump in the audio samples a pop
+active receiver and another results in a sudden/discontinuous jump in the audio samples a pop
 will be audible. The VOTER design uses the GPS time stamps to align audio streams closely and 
 to minimize "jumps."
 
@@ -2160,25 +2160,25 @@ This research focuses on the handling of receiver switches.
 ### NTP On A Microcontroller
 
 The NTP protocol was introduced in 1985 and is very simple. An NTP client can be implemented
-on a microcontroller very easily. I tested my implementaiton on an RP2040 controller that was
-also conneced to a GPS/GNSS module connected in order to calibrate. My conclusion is that
+on a microcontroller very easily. I tested my implementation on an RP2040 controller that was
+also connected to a GPS/GNSS module connected in order to calibrate. My conclusion is that
 the a microcontorller's onboard clock can easily maintain synchronization with "GPS time" with 4ms.
-Better synchronization can probably be achieved with more sophistiated methods, assuming the 
+Better synchronization can probably be achieved with more sophisticated methods, assuming the 
 controller's crystal oscillator is of reasonable quality. No OCXO/TCXO is required, but the "normal"
-oscilator needs to be pretty good.
+oscillator needs to be pretty good.
 
 Here's a screen shot captured from a test run:
 
 ![NTP1](assets/ntp-1.png)
 
 This shows a few things:
-* Each "Last GPS PPS" line shows the time observed when the GPS modules's PPS signal ticks. As you can see, the time in microseconds (the long number starting with 177) is drifting by about 4 microseconds per second. This demonstrates the inaccuracy/instability of the microcontroller crystal. But
+* Each "Last GPS PPS" line shows the time observed when the GPS module's PPS signal ticks. As you can see, the time in microseconds (the long number starting with 177) is drifting by about 4 microseconds per second. This demonstrates the inaccuracy/instability of the microcontroller crystal. But
 keep this in perspective, an audio sample happens once every 125uS so a few uS of drift in a second 
-doesn't create a noticable problem.
+doesn't create a noticeable problem.
 * The NTP-derived time observed on the PPS ticks has pretty good phase alignment. There are three 
 zeros in all of the time stamps. We are able to find the beginning of each GPS second with decent accuracy. 
 * The "Adjusting Time" line shows when the NTP algorithm steps in to correct the microccontroller's
-clock. This happen every minute or so and should help to clean up some of the drift.
+clock. This happens every minute or so and should help to clean up some of the drift.
 
 Using this approach we can build VOTER packet timestamps that would allow the server to 
 synchronize audio streams to within ~4ms. However, testing shows that this isn't good enough
@@ -2186,38 +2186,76 @@ synchronize audio streams to within ~4ms. However, testing shows that this isn't
 ### Help From DSP
 
 Further adjustments to the audio stream are required to eliminate the potential 4ms alignment
-problem. After some testing, I've come up with two approaches to this problem.
+problem. After some testing, I've come up with a few approaches to this problem. 
 
-In the case where multiple receivers are "hearing" the same transmitting station, the RSSI values
-are used by the voter logic to select which will contribute its audio to the AllStar
-conference. Although only one receiver is selected by the voter at a time, **the audio stream for 
-all eligible receivers is available in the server for examination**. These audio streams will differ in a few ways:
+When multiple receivers are "hearing" the same transmitting station, the voter 
+logic uses RSSI values to select which will contribute its audio to the AllStar
+conference. Only one receiver is selected by the voter at a time, but **the audio stream for 
+all eligible receivers is available in the server for examination**. These audio streams will 
+differ in a few ways:
 * They will have different noise levels, which is the whole point of a voter system.
 * They may differ in amplitude, depending on how well matched the receivers are.
 * They may differ in phase, depending on how well sampling clocks are synchronized.
 
-However, the fact remains that all streams will bare a **strong resemblance** to each other 
+However, the fact remains that all streams will bear a **strong resemblance** to each other 
 given that they all originate from the same transmitter. This "strong resemblance" can be 
 quantified using DSP techniques: specifically, a cross-correlation between the streams. 
 
 Streams that differ in noise level and amplitude will show a strong cross-correlation. However,
-streams that differ in phase will not correlate strongly and, in extreme cases, may even 
-exhibit negative cross-correlation. 
+streams that differ in time synchronization (phase) will not correlate strongly and, in extreme 
+cases, may even exhibit negative cross-correlation. 
 
 A good way to get an accurate measurement of the phase delay of one stream with respect to another
 is to evaluate the cross-correlation using a range of delays. Assuming that the NTP clock synchronization method can bring the streams to within ~4ms of each other, cross-correlations
 using delays from -2ms to +2ms can be evaluated until a peak is found. The offset that 
-results from this calculation is a highly accurate measurement of how much one stream needs to 
-be advanced/delayed to provide a smooth transition during a switch.
+results from this search provides a highly accurate measurement of how much one stream needs to 
+be advanced/delayed to provide a smooth transition during a switch from another. Given that 
+the time 
+offset between streams moves very slowly, the offset calculated using this method should be 
+quite sticky.
+
+Once the relative offset between two streams is identified, the range of offsets that needs
+to be tested to keep the streams in sync with each other is small. Ironically, the thing 
+that is most likely to invalidate the correlation-based offset estimate between two audio streams 
+is the NTP-driven clock correction process. For this reason, it might make sense to suspend 
+(or at least slow down) NTP synchronizations for a client that is actively receiving.
 
 Unlike many things in the AllStar system that run at the audio frame level (i.e. 20ms of audio),
-this algorithm must run at the sample level. 
+this algorithm must run at the sample level. Assuming the range of potential offset errors 
+is within +/-2ms, only 32 trials are needed to narrow the accuracy to the 125uS level that is
+theoretically achievable using the GPS clock synchronization. The algorithm I have chosen 
+evaluates the cross-correlation on the last three frames of audio (60ms) which gives more than
+enough samples to establish a strong cross-correlation between two phase-matched versions of
+the same transmission.
 
-can be explored by advancing or delaying one of the two streams. 
+Finally, another technique that can be used to minimize pops/clicks resulting from receiver
+switching is to blend the transition from one to another. My implementation performs a linear
+cross-fade between the "old" and "new" receiver.
 
 ### One Test
 
-(TO BE COMPLETED)
+[This audio recording](https://ampersand-asl.s3.us-west-1.amazonaws.com/releases/ASL-QSO-2.wav) provides
+a demonstration of the result of this algorithm. This was made using a bench simulation that I
+hope resembles a real-world scenario.
+
+The test starts with an 8K audio recording captured from a real AllStar node. This is called 
+stream A. 
+
+Stream B is made by copying stream A, offsetting it by 8ms, and applying a gain of about +1dB.
+This simulates a second receiver hearing the same audio with a slightly different level
+setting and a significant imperfection in clock synchronization.
+
+Next, white noise with a level of -35dBFS was added to both streams. Different noise was used for each to simulate uncorrelated noise at two different locations.
+
+Next, a simulated RSSI feed was connected to each stream that would cause the voting logic to switch between streams every second. 
+
+Next, these two streams (plus the RSSI data) were converted to standard VOTER protocol format 
+and fed into the Ampersand VOTER server implementation. The output is captured in recording linked
+above.
+
+Even though the audio streams were significantly out of phase and switched back and forth nearly 
+120 times during the 2 minute clip, there are no significant voter-related audio artifacts in the 
+recording.
 
 # Other Pages
 
