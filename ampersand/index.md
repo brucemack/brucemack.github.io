@@ -2316,7 +2316,7 @@ I have not tested this, but it is my belief that the use of a fancy US-based "st
 important. What _is_ important is that all clients in a voter network are synchronized to the 
 same time source. It would probably make sense to add an NTP server onto the VOTER server to allow
 clients to derive their timing synchronization from a central, independent source. (Geopolitical 
-alignments could also be taken into account when making this selectionm, as needed.)
+alignments could also be taken into account when making this selection, as needed.)
 
 To take this even further, I note that Jim (W6BIL)'s [VOTER protocol design](https://allstarlink.github.io/voter/voter-protocol/#payload-type-0-authentication-plus-flags) contains a PING connectivty
 test message type. Given this nice statement from Jim:
