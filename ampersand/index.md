@@ -2167,8 +2167,10 @@ This research focuses on the handling of receiver switches in a different way.
 
 ### NTP on a Microcontroller
 
-The NTP protocol was introduced in 1985. It's very simple. An NTP client can be implemented
-on a microcontroller easily. I tested my implementation on an RP2040 controller that was
+The NTP protocol was introduced in 1985. To paraphrase an old joke: I could get into a detailed
+explanation of NTP, but I don't have the time. Suffice to say, the protocol is 
+very simple. An NTP client can be implemented
+on a microcontroller easily. Michael (N5ZR) has demonstrated NTP on an ESP32. I built my implementation on an RP2040 controller that was
 also connected to a GPS/GNSS module in order to calibrate. My conclusion is that a microcontroller's onboard clock can easily maintain synchronization to within about 4ms of "GPS 
 time." Even better synchronization can probably be achieved with more sophisticated methods, assuming the 
 controller's crystal oscillator is of reasonable quality. No OCXO/TCXO is required, but the "normal"
@@ -2261,7 +2263,7 @@ hope resembles a real-world scenario.
 The test starts with an 8K audio recording captured from a real AllStar node. This is called 
 stream A. 
 
-Stream B is made by copying stream A, offsetting it by 8ms, and applying a gain of about +1dB.
+Stream B is made by copying stream A, offsetting it by 4ms, and applying a gain of about +1dB.
 This simulates a second receiver hearing the same audio with a slightly different level
 setting and an extreme imperfection in clock synchronization.
 
@@ -2277,6 +2279,37 @@ above.
 Even though the audio streams were significantly out of phase and switched back and forth nearly 
 120 times during the 2 minute clip, there are no significant voter-related audio artifacts in the 
 recording.
+
+### How Robust is Cross-Correlation?
+
+Here's a test that demonstrates the effectiveness of the DSP. In this test, the two receive
+streams are offset by 2ms and are both added to loud, independent white noise sources of -8dBFS.
+As you [can tell from this recording](https://ampersand-asl.s3.us-west-1.amazonaws.com/releases/ASL-QSO-3.wav), the QSO is barely audible under the noise.
+
+A histogram of the cross-correlation search was created that covers the first 5 seconds of the
+clip. As can be seen from the chart, the search still "locks" onto the 2ms phase error despite
+the poor conditions.
+
+![Hist 1](assets/hist-1.png)
+
+### Which NTP Server?
+
+My testing was performed using time-a.nist.gov (129.6.15.28), a Stratum 1 NIST Internet Time Service server located in Gaithersburg, Maryland. One could argue that a weakness of this design
+is that it depends on (a) the public internet and (b) it depends on the reliabilty of the NIST
+infrastructure. 
+
+I have not tested this, but it is my belief that the use of a fancy "stratum 1" NTP source is not
+important. What _is_ important is that all clients in a voter network are synchronized to the 
+same time source. It would probably make sense to add an NTP server onto the VOTER server to allow
+clients to derive their timing synchronization from a central, independent source.
+
+To take this even further, I note that Jim (W6BIL)'s [VOTER protocol design](https://allstarlink.github.io/voter/voter-protocol/#payload-type-0-authentication-plus-flags) contains a PING connectivty
+test message type. Given this nice statement from Jim:
+
+> The actual contents of the payload are not specifically defined for the purposes of this protocol, and is entirely determined by the implementation of the applicable function in the host.
+
+the PING protocol could probably carry out an NTP-like time synchronization function which
+could eliminate the need for out-of-band timing protocols entirely. This is something for future research.
 
 ### Conclusion
 
