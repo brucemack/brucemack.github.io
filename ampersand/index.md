@@ -2185,22 +2185,22 @@ Using this approach we can build VOTER packet timestamps that would allow the se
 synchronize audio streams to within ~4ms. However, testing shows that this isn't good enough to 
 achieve high-quality audio.
 
-### Help From DSP
+### A Litter Help From DSP
 
 Further adjustments to the audio stream are required to eliminate the potential 4ms alignment
 problem. After some testing, I've come up with a few approaches to this problem. 
 
 When multiple receivers are "hearing" the same transmitting station, the voter 
 logic uses RSSI values to select which will contribute its audio to the AllStar
-conference. Only one receiver is selected by the voter at a time, but **the audio stream for 
-all eligible receivers is available in the server for examination**. These audio streams will 
+conference. Only one receiver is selected by the voter at a time, but **the audio streams for 
+all eligible receivers are available in the server for examination**. These audio streams will 
 differ in a few ways:
 * They will have different noise levels, which is the whole point of a voter system.
 * They may differ in amplitude, depending on how well matched the receivers are.
-* They may differ in phase, depending on how well sampling clocks are synchronized.
+* They may differ in phase, depending on how well the sampling clocks are synchronized.
 
-However, the fact remains that all streams will bear a **strong resemblance** to each other 
-given that they all originate from the same transmitter. This "strong resemblance" can be 
+However, the fact remains that all streams will bear a strong resemblance to each other 
+given that **they all originate from the same transmitter.** This "strong resemblance" can be 
 quantified using DSP techniques: specifically, a cross-correlation between the streams. 
 
 Streams that differ in noise level and amplitude will show a strong cross-correlation. However,
@@ -2208,13 +2208,20 @@ streams that differ in time synchronization (phase) will not correlate strongly 
 cases, may even exhibit negative cross-correlation. 
 
 A good way to get an accurate measurement of the phase delay of one stream with respect to another
-is to evaluate the cross-correlation using a range of delays. Assuming that the NTP clock synchronization method can bring the streams to within ~4ms of each other, cross-correlations
+is to evaluate the cross-correlation using a range of time delays. Assuming that the NTP clock synchronization method can bring the streams to within ~4ms of each other, cross-correlations
 using delays from -2ms to +2ms can be evaluated until a peak is found. The offset that 
 results from this search provides a highly accurate measurement of how much one stream needs to 
 be advanced/delayed to provide a smooth transition during a switch from another. Given that 
 the time 
 offset between streams moves very slowly, the offset calculated using this method should be 
 quite sticky.
+
+This process of "searching" for the optimal phase adjustment is a problem that is often 
+referred to in the DSP literature as "phase correlation." It's a problem that shows up 
+in many signal-processing contexts so there are plenty of techniques to be borrowed. Advanced 
+algorithms start the search for the 
+best delay using a coarse grid and then refine the step size as the search space is 
+narrowed. My approach is a simple linear search through the range of possible delays.
 
 Once the relative offset between two streams is identified, the range of offsets that needs
 to be tested to keep the streams in sync with each other is small. Ironically, the thing 
@@ -2227,12 +2234,13 @@ this algorithm must run at the sample level. Assuming the range of potential off
 is within +/-2ms, only 32 trials are needed to narrow the accuracy to the 125uS level that is
 theoretically achievable using the GPS clock synchronization. The algorithm I have chosen 
 evaluates the cross-correlation on the last three frames of audio (60ms) which gives more than
-enough samples to establish a strong cross-correlation between two phase-matched versions of
-the same transmission.
+enough samples to establish a strong cross-correlation between two phase-matched (but noisy) versions 
+of the same transmission.
 
 Finally, another technique that can be used to minimize pops/clicks resulting from receiver
 switching is to blend the transition from one to another. My implementation performs a linear
-cross-fade between the "old" and "new" receiver.
+cross-fade between the "old" and "new" receiver. A raised-cosine transition would have even 
+less spectral content.
 
 ### One Test
 
@@ -2245,11 +2253,12 @@ stream A.
 
 Stream B is made by copying stream A, offsetting it by 8ms, and applying a gain of about +1dB.
 This simulates a second receiver hearing the same audio with a slightly different level
-setting and a significant imperfection in clock synchronization.
+setting and an extreme imperfection in clock synchronization.
 
-Next, white noise with a level of -35dBFS was added to both streams. Different noise was used for each to simulate uncorrelated noise at two different locations.
+Next, white noise with a level of -35dBFS was added to both streams. Different noise was used for 
+streams A and B to simulate uncorrelated noise at two different receiver locations.
 
-Next, a simulated RSSI feed was connected to each stream that would cause the voting logic to switch between streams every second. 
+Next, a simulated RSSI feed was connected to each stream that would cause the voting logic to switch between streams A and B every second. I think this represents an extreme case.
 
 Next, these two streams (plus the RSSI data) were converted to standard VOTER protocol format 
 and fed into the Ampersand VOTER server implementation. The output is captured in recording linked
