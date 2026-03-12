@@ -2140,30 +2140,31 @@ the requirements for simulcast are much more stringent than they are for
 receiver voting. The paper proposes the use of plain-old [Network Time Protocol (NTP)](https://datatracker.ietf.org/doc/html/rfc5905) instead of GPS to obtain the necessary time 
 sync.
 
-Based on my initial testing, **I don't think you need GPS to do receiver voting.** Send me a comment if I'm looking at this the wrong way. My reasoning is summarized below.
+Based on my initial testing, **I don't think you need GPS to do receiver voting.** My reasoning is summarized below. Send me a comment if you think I'm looking at this the wrong way. 
 
-### When Synchronization Matters
+### When Does Synchronization Matter?
 
 When a single VOTER client is streaming audio to a VOTER server precise time synchronization
 isn't important. The audio playout will be smooth as long as the client is sampling at a rate 
-very close to 8kHz and the network packets are arriving at the server on time,  In this
+very close to 8kHz and the network packets are arriving at the server on time. In this
 case the timing requirements are no different from any other AllStar audio stream flowing between 
 nodes.
 
-Precision starts to matter in the transitions between receivers. If the switch between one 
-active receiver and another results in a sudden/discontinuous jump in the audio samples a pop
-will be audible. The VOTER design uses the GPS time stamps to align audio streams closely and 
-to minimize "jumps."
+Precision starts to matter in the transitions between voting receivers. If the switch between one 
+active receiver and another results in a sudden/discontinuous jump in the audio samples an
+annoying pop
+will be audible. The VOTER design uses the GPS time stamps to align audio streams closely  
+to minimize these kinds of "jumps."
 
-This research focuses on the handling of receiver switches.
+This research focuses on the handling of receiver switches in a different way.
 
-### NTP On A Microcontroller
+### NTP on a Microcontroller
 
-The NTP protocol was introduced in 1985 and is very simple. An NTP client can be implemented
-on a microcontroller very easily. I tested my implementation on an RP2040 controller that was
+The NTP protocol was introduced in 1985. It's very simple. An NTP client can be implemented
+on a microcontroller easily. I tested my implementation on an RP2040 controller that was
 also connected to a GPS/GNSS module connected in order to calibrate. My conclusion is that
-the a microcontorller's onboard clock can easily maintain synchronization with "GPS time" with 4ms.
-Better synchronization can probably be achieved with more sophisticated methods, assuming the 
+the a microcontroller's onboard clock can easily maintain synchronization within about 4ms of "GPS 
+time." Even better synchronization can probably be achieved with more sophisticated methods, assuming the 
 controller's crystal oscillator is of reasonable quality. No OCXO/TCXO is required, but the "normal"
 oscillator needs to be pretty good.
 
@@ -2173,7 +2174,7 @@ Here's a screen shot captured from a test run:
 
 This shows a few things:
 * Each "Last GPS PPS" line shows the time observed when the GPS module's PPS signal ticks. As you can see, the time in microseconds (the long number starting with 177) is drifting by about 4 microseconds per second. This demonstrates the inaccuracy/instability of the microcontroller crystal. But
-keep this in perspective, an audio sample happens once every 125uS so a few uS of drift in a second 
+keep this in perspective - an audio sample happens once every 125uS so a few uS of drift in a second 
 doesn't create a noticeable problem.
 * The NTP-derived time observed on the PPS ticks has pretty good phase alignment. There are three 
 zeros in all of the time stamps. We are able to find the beginning of each GPS second with decent accuracy. 
@@ -2181,7 +2182,8 @@ zeros in all of the time stamps. We are able to find the beginning of each GPS s
 clock. This happens every minute or so and should help to clean up some of the drift.
 
 Using this approach we can build VOTER packet timestamps that would allow the server to 
-synchronize audio streams to within ~4ms. However, testing shows that this isn't good enough
+synchronize audio streams to within ~4ms. However, testing shows that this isn't good enough to 
+achieve high-quality audio.
 
 ### Help From DSP
 
@@ -2256,6 +2258,14 @@ above.
 Even though the audio streams were significantly out of phase and switched back and forth nearly 
 120 times during the 2 minute clip, there are no significant voter-related audio artifacts in the 
 recording.
+
+### Conclusion
+
+It should be noted that in 2011 when the VOTER system was originally designed
+the CPU resources needed to perform some of these DSP alignment tricks in real-time was 
+much more expensive. At that time it made a lot of sense to leverage GPS-disciplined 
+clocks. Given the processing power available to us now, the same problem can be solved
+in a different, more software-oriented way.
 
 # Other Pages
 
