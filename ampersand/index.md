@@ -2309,12 +2309,14 @@ offsets at any point in time. Going with the maximum likelihood offset gets you 
 
 My testing was performed using `time-a.nist.gov` (129.6.15.28), a Stratum 1 NIST Internet Time Service server located in Gaithersburg, Maryland. One could argue that a weakness of my design
 is that it depends on (a) the public internet and (b) the reliabilty of the NIST
-infrastructure. 
+infrastructure. The authors of the 2007 conference paper would surely object to the fact that
+NIST is a US-controlled entity.
 
-I have not tested this, but it is my belief that the use of a fancy "stratum 1" NTP source is not
+I have not tested this, but it is my belief that the use of a fancy US-based "stratum 1" NTP source is not
 important. What _is_ important is that all clients in a voter network are synchronized to the 
 same time source. It would probably make sense to add an NTP server onto the VOTER server to allow
-clients to derive their timing synchronization from a central, independent source. 
+clients to derive their timing synchronization from a central, independent source. (Geopolitical 
+alignments could also be taken into account when making this selectionm, as needed.)
 
 To take this even further, I note that Jim (W6BIL)'s [VOTER protocol design](https://allstarlink.github.io/voter/voter-protocol/#payload-type-0-authentication-plus-flags) contains a PING connectivty
 test message type. Given this nice statement from Jim:
