@@ -2204,7 +2204,7 @@ Streams that differ in noise level and amplitude will show a strong cross-correl
 streams that differ in time synchronization (phase) will not correlate strongly and, in extreme 
 cases, may even exhibit negative cross-correlation. 
 
-A good way to get an accurate measurement of the phase delay of one stream with respect to another
+I've found that a good way to get an accurate estimate of the phase delay of one stream with respect to another
 is to evaluate the cross-correlation using a range of time delays. Assuming that the NTP clock synchronization method can bring the streams to within ~4ms of each other, cross-correlations
 using delays from -2ms to +2ms can be evaluated until a peak is found. The offset that 
 results from this search provides a highly accurate measurement of how much one stream needs to 
@@ -2234,8 +2234,12 @@ evaluates the cross-correlation on the last three frames of audio (60ms) which g
 enough samples to establish a strong cross-correlation between two phase-matched (but noisy) versions 
 of the same transmission.
 
+It's also worth noting that the default "linger" paramter in the AllStar VOTER implementation 
+is 120ms. This leaves plenty of time to analyze cross-correlations between the active receiver
+and the next-best candidates before needing to make a switch.
+
 Finally, another technique that can be used to minimize pops/clicks resulting from receiver
-switching is to blend the transition from one to another. My implementation performs a linear
+switching is to blend the transition from one stream to another. My implementation performs a linear
 cross-fade between the "old" and "new" receiver. A raised-cosine transition would have even 
 less spectral content.
 
