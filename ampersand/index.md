@@ -2284,13 +2284,16 @@ recording.
 
 Here's a test that demonstrates the effectiveness of the DSP. In this test, the two receive
 streams are offset by 2ms and are both added to loud, independent white noise sources of -8dBFS.
-As you [can tell from this recording](https://ampersand-asl.s3.us-west-1.amazonaws.com/releases/ASL-QSO-3.wav), the QSO is barely audible under the noise.
+As you [can tell from this recording](https://ampersand-asl.s3.us-west-1.amazonaws.com/releases/ASL-QSO-3.wav), the QSO is barely audible above the noise.
 
 A histogram of the cross-correlation search was created that covers the first 5 seconds of the
 clip. As can be seen from the chart, the search still "locks" onto the 2ms phase error despite
 the poor conditions.
 
 ![Hist 1](assets/hist-1.png)
+
+The ~35% hit rate doesn't seem great, until you compare it to all of the other possible
+offsets at any point in time. Going with the maximum likelihood offset gets you to the right answer. 
 
 ### Which NTP Server?
 
