@@ -2239,7 +2239,7 @@ Unlike many things in the AllStar system that run at the audio frame level (i.e.
 this algorithm must run at the sample level. Assuming the range of potential offset errors 
 is within +/-2ms, only 32 trials are needed to narrow the accuracy to the 125uS level that is
 theoretically achievable using the GPS clock synchronization. The algorithm I have chosen 
-evaluates the cross-correlation on the last three frames of audio (60ms) which gives more than
+evaluates the cross-correlation on the trailing three frames of audio (60ms) which gives more than
 enough samples to establish a strong cross-correlation between two phase-matched (but noisy) versions 
 of the same transmission.
 
