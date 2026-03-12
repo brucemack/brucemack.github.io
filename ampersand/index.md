@@ -2202,7 +2202,8 @@ all eligible receivers are available in the server for examination**. These audi
 differ from each other in a few ways:
 * They will have different noise levels, which is the whole point of a voter system.
 * They may differ in amplitude, depending on how well matched the receivers are.
-* They may differ in phase, depending on how well the sampling clocks are synchronized.
+* They may differ in phase, depending on how well the sampling clocks are synchronized and 
+how far the receivers/transmitters are from each other.
 
 However, the fact remains that all streams will bear a strong resemblance to each other 
 given that **they all originate from the same transmitter.** This "strong resemblance" can be 
