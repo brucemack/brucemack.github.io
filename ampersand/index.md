@@ -2277,8 +2277,8 @@ and fed into the Ampersand VOTER server implementation. The output is captured i
 above.
 
 Even though the audio streams were significantly out of phase and switched back and forth nearly 
-120 times during the 2 minute clip, there are no significant voter-related audio artifacts in the 
-recording.
+120 times during the 2 minute clip, to my ear it's hard to detect any voter-related artifacts
+in the recording. I'm guessing the repeater connoisseurs may be able to hear a defect or two ...
 
 ### How Robust is Cross-Correlation?
 
