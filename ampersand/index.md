@@ -2262,7 +2262,7 @@ streams A and B to simulate uncorrelated noise at two different receiver locatio
 Next, a simulated RSSI feed was connected to each stream that would cause the voting logic to switch between streams A and B every second. I think this represents an extreme case.
 
 Next, these two streams (plus the RSSI data) were converted to standard VOTER protocol format 
-and fed into the Ampersand VOTER server implementation. The output is captured in recording linked
+and fed into the Ampersand VOTER server implementation. The output is captured in the recording linked
 above.
 
 Even though the audio streams were significantly out of phase and switched back and forth nearly 
@@ -2272,10 +2272,9 @@ recording.
 ### Conclusion
 
 It should be noted that in 2011 when the VOTER system was originally designed
-the CPU resources needed to perform some of these DSP alignment tricks in real-time was 
+the CPU resources needed to perform some of these DSP alignment tricks in real-time were 
 much more expensive. At that time it made a lot of sense to leverage GPS-disciplined 
-clocks. Given the processing power available to us now, the same problem can be 
-probably be solved in a different, more software-oriented way.
+clocks. Given the processing power available to us now, the same problem can probably be solved in a different, more software-oriented way.
 
 # Other Pages
 
