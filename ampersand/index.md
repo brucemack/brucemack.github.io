@@ -2146,7 +2146,15 @@ paper were exploring the potential of non-GPS time synchronization methods for u
 in **simulcast** transmitters in an FM-analog UHF repeater system. From what I can tell,
 the requirements for simulcast are much more stringent than they are for 
 receiver voting. The paper proposes the use of plain-old [Network Time Protocol (NTP)](https://datatracker.ietf.org/doc/html/rfc5905) instead of GPS to obtain the necessary time 
-sync.
+sync. 
+
+(As an aside, it seems that the authors of this paper were focused on GPS-free
+solutions as a way to eliminate dependencies on US government-operated systems or possibly to 
+address situations when GPS reception was not reliable. The policitcal issue is probably 
+less important now than it was in 2007 given the diversity of navitation systems now in orbit. Howeer, the reliability issue is more accute now than it was in 2007 given the
+deployment of GPS-jamming technology. Neither of these motivations seem particularly relevant
+in the ham repeater context, but the technical problem is still highly relevant. But I might
+think of this differently if some adversary started GPS-jamming our club's Wednesday night net!)
 
 Based on my initial testing, **I don't think you need GPS to do receiver voting,** assuming
 you're willing to do some calculations on the server side of the voter system. My reasoning is summarized below. Send me a comment if you think I'm looking at this the wrong way. 
