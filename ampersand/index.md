@@ -2235,7 +2235,7 @@ narrowed. My approach is a simple linear search through the range of possible de
 Once the relative offset between two streams is identified, the range of offsets that needs
 to be tested to keep the streams in sync with each other is small. Ironically, the thing 
 that is most likely to invalidate the correlation-based offset estimate between two audio streams 
-is the NTP-driven clock correction process. For this reason, it might make sense to suspend 
+is the NTP-driven clock correction process running in the clients. For this reason, it might make sense to suspend 
 (or at least slow down) NTP synchronizations for a client that is actively receiving.
 
 Unlike many things in the AllStar system that run at the audio frame level (i.e. 20ms of audio),
@@ -2312,7 +2312,7 @@ test message type. Given this nice statement from Jim:
 
 > The actual contents of the payload are not specifically defined for the purposes of this protocol, and is entirely determined by the implementation of the applicable function in the host.
 
-the PING protocol could probably carry out an NTP-like time synchronization function which
+the PING protocol could probably carry NTP-like time synchronization content which
 could eliminate the need for out-of-band timing protocols entirely. This is something for future research.
 
 The one advantage of using a legit stratum 1 NTP server is that it allows GPS-based clients
