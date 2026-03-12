@@ -2170,7 +2170,8 @@ nodes.
 Precision starts to matter in the transitions between voting receivers. If the switch between one 
 active receiver and another results in a sudden/discontinuous jump in the audio samples an
 annoying pop
-will be audible. The VOTER design uses the GPS time stamps to align audio streams closely to minimize these kinds of "jumps."
+will be audible. Even worse, if the audio stream moves ahead/behind enough to hide/duplicate
+a syllable then the intelligibility of the QSO starts to degrade. The VOTER design uses the GPS time stamps to align audio streams closely to minimize these unnatural "jumps."
 
 This research focuses on the handling of receiver switches in a different way.
 
