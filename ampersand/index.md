@@ -2130,6 +2130,14 @@ nearest 20ms interval) so the server just needs to buffer these frames, line
 them up, and select the best one at each audio tick. There is very little
 computation required to perform this job.
 
+Of course even this scheme doesn't provide a "perfect" solution. As was pointed 
+out to me by Mason (N5LSN), even with perfect synchronization the receivers will rarely 
+hear the exact same thing at the exact same time. Depending on the differing 
+distances of the transmitting station from the receivers, the speed of light
+(~1 mile per 5.2uS) enters into the calculation. A 20 mile distance between 
+receivers results in a ~100uS misalignment in audio streams, even with a "perfect" time 
+reference/synchronizations system.
+
 The question I've been wondering about is: do you really need GPS to achieve the 
 required accuracy? Is there a way to make the hardware even simpler?
 
@@ -2215,7 +2223,7 @@ quite sticky.
 
 This process of "searching" for the optimal phase adjustment is a problem that is often 
 referred to in the DSP literature as "phase correlation." It's a problem that shows up 
-in many signal-processing contexts so there are plenty of techniques to be borrowed. Advanced 
+in many signal-processing contexts (radar esp.) so there are plenty of techniques to be borrowed. Advanced 
 algorithms start the search for the 
 best delay using a coarse grid and then refine the step size as the search space is 
 narrowed. My approach is a simple linear search through the range of possible delays.
@@ -2234,7 +2242,7 @@ evaluates the cross-correlation on the last three frames of audio (60ms) which g
 enough samples to establish a strong cross-correlation between two phase-matched (but noisy) versions 
 of the same transmission.
 
-It's also worth noting that the default "linger" paramter in the AllStar VOTER implementation 
+It's also worth noting that the default "linger" parameter in the AllStar VOTER implementation 
 is 120ms. This leaves plenty of time to analyze cross-correlations between the active receiver
 and the next-best candidates before needing to make a switch.
 
