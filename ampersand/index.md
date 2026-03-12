@@ -2242,7 +2242,11 @@ best delay using a coarse grid and then refine the step size as the search space
 narrowed. My approach is a simple linear search through the range of possible delays.
 
 Once the relative offset between two streams is identified, the range of offsets that needs
-to be tested to keep the streams in sync with each other is small. Ironically, the thing 
+to be tested to keep the streams in sync with each other becomes smaller. Jitter is certainly
+an issue when it comes to the _arrival_ of voice packets from the network, but jitter (aka phase
+noise) of the
+sampling clock itself is a much smaller issue - a handful of microseconds per second as shown
+in the NTP test above. Ironically, the thing 
 that is most likely to invalidate the correlation-based offset estimate between two audio streams 
 is the NTP-driven clock correction process running in the clients. For this reason, it might make sense to suspend 
 (or at least slow down) NTP synchronizations for a client that is actively receiving. I'm thinking
