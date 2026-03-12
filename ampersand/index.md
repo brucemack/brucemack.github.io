@@ -2117,9 +2117,9 @@ my attempts at building smooth packet loss concealment (PLC) algorithms, I can a
 that what Jim said above is true. It doesn't take much of a discontinuity 
 in the audio stream to create a click, pop, or other audible artifact. 
 
-The original VOTER design resorts to a clever solution to solve the audio stream
-synchronization problem: GPS-derived clocks. This can be acheived through the use
-of inexpensive GPS/GNSS modules.
+The original VOTER design employs a clever solution to solve the audio stream
+synchronization problem: a GPS-derived clock. This can be acheived using
+an inexpensive GPS/GNSS module.
 
 Given multiple audio streams collected form multiple receivers across a voting 
 network, the job of reconciling and choosing the "winning" stream happens 
@@ -2140,21 +2140,22 @@ the requirements for simulcast are much more stringent than they are for
 receiver voting. The paper proposes the use of plain-old [Network Time Protocol (NTP)](https://datatracker.ietf.org/doc/html/rfc5905) instead of GPS to obtain the necessary time 
 sync.
 
-Based on my initial testing, I don't think you need GPS to do receiver voting. I might 
-be wrong so send me a comment if I'm looking at this wrong. My findings are summarized 
-here:
+Based on my initial testing, **I don't think you need GPS to do receiver voting.** Send me a comment if I'm looking at this the wrong way. My reasoning is summarized below.
 
 ### When Synchronization Matters
 
 When a single VOTER client is streaming audio to a VOTER server precise time synchronization
-isn't important. As long as the client is sampling at a rate very close to 8kHz and as 
-long as packet are arriving at the server on time, the audio playout will be smooth. In this
+isn't important. The audio playout will be smooth as long as the client is sampling at a rate 
+very close to 8kHz and the network packets are arriving at the server on time,  In this
 case the timing requirements are no different from any other AllStar audio stream flowing between 
 nodes.
 
-When precision matters is around the transitions between active receivers.
+Precision starts to matter in the transitions between receivers. If the switch between one 
+active receiver and another results in a sudden/discontinous jump in the audio samples a pop
+will be audible. The VOTER design uses the GPS time stamps to align audio streams closely and 
+to minimize "jumps."
 
-(TO BE COMPLETED)
+This research focuses on the handling of receiver switches.
 
 ### NTP On A Microcontroller
 
@@ -2184,8 +2185,36 @@ synchronize audio streams to within ~4ms. However, testing shows that this isn't
 
 ### Help From DSP
 
-(TO BE COMPLETED)
+Further adjustments to the audio stream are required to eliminate the potential 4ms alignment
+problem. After some testing, I've come up with two approaches to this problem.
 
+In the case where multiple receivers are "hearing" the same transmitting station, the RSSI values
+are used by the voter logic to select which will contribute its audio to the AllStar
+conference. Although only one receiver is selected by the voter at a time, **the audio stream for 
+all eligible receivers is available in the server for examination**. These audio streams will differ in a few ways:
+* They will have different noise levels, which is the whole point of a voter system.
+* They may differ in amplitude, depending on how well matched the receivers are.
+* They may differ in phase, depending on how well sampling clocks are synchronized.
+
+However, the fact remains that all streams will bare a **strong resemblance** to each other 
+given that they all originate from the same transmitter. This "strong resemblance" can be 
+quantified using DSP techniques: specifically, a cross-correlation between the streams. 
+
+Streams that differ in noise level and amplitude will show a strong cross-correlation. However,
+streams that differ in phase will not correlate strongly and, in extreme cases, may even 
+exhibit negative cross-correlation. 
+
+A good way to get an accurate measurement of the phase delay of one stream with respect to another
+is to evaluate the cross-correlation using a range of delays. Assuming that the NTP clock synchronization method can bring the streams to within ~4ms of each other, cross-correlations
+using delays from -2ms to +2ms can be evaluated until a peak is found. The offset that 
+results from this calculation is a highly accurate measurement of how much one stream needs to 
+be advanced/delayed to provide a smooth transition during a switch.
+
+Unlike many things in the AllStar system that run at the audio frame level (i.e. 20ms of audio),
+this algorithm must run at the sample level. 
+
+
+can be explored by advancing or delaying one of the two streams. 
 
 ### One Test
 
