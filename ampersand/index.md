@@ -2199,9 +2199,9 @@ problem. After some testing, I've come up with a few approaches to this problem.
 
 When multiple receivers are "hearing" the same transmitting station, the voter 
 logic uses RSSI values to select which will contribute its audio to the AllStar
-conference. Only one receiver is selected by the voter at a time, but **the audio streams for 
-all eligible receivers are available in the server for examination**. These audio streams will 
-differ from each other in a few ways:
+conference. Only one receiver is selected by the voter at a time. However, the audio streams for 
+**all eligible receivers** are available in the server for examination. When multiple streams
+are available, the streams will differ from each other in a few ways:
 * They will have different noise levels, which is the whole point of a voter system.
 * They may differ in amplitude, depending on how well matched the receivers are.
 * They may differ in phase, depending on how well the sampling clocks are synchronized and 
