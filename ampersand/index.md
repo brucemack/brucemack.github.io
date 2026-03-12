@@ -2213,7 +2213,6 @@ be advanced/delayed to provide a smooth transition during a switch.
 Unlike many things in the AllStar system that run at the audio frame level (i.e. 20ms of audio),
 this algorithm must run at the sample level. 
 
-
 can be explored by advancing or delaying one of the two streams. 
 
 ### One Test
