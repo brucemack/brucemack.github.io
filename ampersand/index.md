@@ -2180,10 +2180,9 @@ zeros in all of the time stamps. We are able to find the beginning of each GPS s
 clock. This happens every minute or so and should help to clean up some of the drift.
 
 Using this approach we can build VOTER packet timestamps that would allow the server to 
-synchronize audio streams to within ~4ms. However, testing shows that this isn't good enough to 
-achieve high-quality audio.
+synchronize audio streams to within ~4ms of each other. However, testing shows that this isn't good enough to achieve high-quality voter audio.
 
-### A Litter Help From DSP
+### A Little Help From DSP
 
 Further adjustments to the audio stream are required to eliminate the potential 4ms alignment
 problem. After some testing, I've come up with a few approaches to this problem. 
