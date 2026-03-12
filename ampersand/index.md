@@ -2241,11 +2241,12 @@ algorithms start the search for the
 best delay using a coarse grid and then refine the step size as the search space is 
 narrowed. My approach is a simple linear search through the range of possible delays.
 
-Once the relative offset between two streams is identified, the range of offsets that needs
-to be tested to keep the streams in sync with each other becomes smaller. Jitter is certainly
-an issue when it comes to the _arrival_ of voice packets from the network, but jitter (aka phase
-noise) of the
-sampling clock itself is a much smaller issue - a handful of microseconds per second as shown
+Once the relative offset between two streams is determined, the range of offsets that needs
+to be tested to keep the streams in sync with each other becomes narrower. Ideally, some kind
+of software phase-locked loop can be used to track the error and adjust it smoothly. Jitter is certainly
+significant when it comes to the _arrival_ of voice packets from the network, but that isn't relevant
+to the tracking of the sampling clock. The jitter (aka phase noise) of the
+sampling clock itself is a much smaller problem - a handful of microseconds per second as shown
 in the NTP test above. Ironically, the thing 
 that is most likely to invalidate the correlation-based offset estimate between two audio streams 
 is the NTP-driven clock correction process running in the clients. For this reason, it might make sense to suspend 
