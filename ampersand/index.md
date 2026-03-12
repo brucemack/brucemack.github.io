@@ -2113,7 +2113,7 @@ The following paragraph from [Jim's documentation](https://allstarlink.github.io
 > The main problem to overcome is that when you have multiple streams of audio information from multiple receivers, you need a concise and accurate way of synchronizing all of the audio, so that if switching of streams occurs, there will be no inconsistencies in the audio. This is far more easily done on conventional, RF-linked voting systems, being that the delay between the receiver and the transmitter site is very minimal (basically the speed of light) and is painfully consistent. Not so on the Internet. The packet delays can be extremely long and varied, and it makes the task of synchronization far more difficult.
 
 From my testing of various parts of the Ampersand system, and in particular 
-my attempts at building smooth packet loss concealment (PLC) algorithms, I can attest
+my attempts to build a smooth packet loss concealment (PLC) algorithm, I can attest
 that what Jim said above is true. It doesn't take much of a discontinuity 
 in the audio stream to create a click, pop, or other audible artifact. 
 
@@ -2323,6 +2323,8 @@ It should be noted that in 2011 when the VOTER system was originally designed
 the CPU resources needed to perform some of these DSP alignment tricks in real-time were 
 much more expensive. At that time it made a lot of sense to leverage GPS-disciplined 
 clocks. Given the processing power available to us now, the same problem can probably be solved in a different, more software-oriented way.
+
+I hope that this research can help others to create even simpler/cheaper voter clients.
 
 # Other Pages
 
