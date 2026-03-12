@@ -2153,7 +2153,7 @@ solutions as a way to eliminate dependencies on US government-operated systems o
 address situations when GPS reception was not reliable. The policitcal issue is probably 
 less important now given the diversity of navitation systems now in orbit. However, the reliability issue is more accute now than it was in 2007 given the
 deployment of GPS-jamming technology. Neither of these motivations seem particularly relevant
-in the ham repeater context, but the technical problem is still highly relevant. But I might
+in the ham repeater context, but the technical problem is still highly relevant. I might
 think of this differently if some adversary started GPS-jamming our club's Wednesday night net!)
 
 Based on my initial testing, **I don't think you need GPS to do receiver voting,** assuming
