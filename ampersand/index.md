@@ -2153,8 +2153,7 @@ nodes.
 Precision starts to matter in the transitions between voting receivers. If the switch between one 
 active receiver and another results in a sudden/discontinuous jump in the audio samples an
 annoying pop
-will be audible. The VOTER design uses the GPS time stamps to align audio streams closely  
-to minimize these kinds of "jumps."
+will be audible. The VOTER design uses the GPS time stamps to align audio streams closely to minimize these kinds of "jumps."
 
 This research focuses on the handling of receiver switches in a different way.
 
@@ -2162,8 +2161,7 @@ This research focuses on the handling of receiver switches in a different way.
 
 The NTP protocol was introduced in 1985. It's very simple. An NTP client can be implemented
 on a microcontroller easily. I tested my implementation on an RP2040 controller that was
-also connected to a GPS/GNSS module connected in order to calibrate. My conclusion is that
-the a microcontroller's onboard clock can easily maintain synchronization within about 4ms of "GPS 
+also connected to a GPS/GNSS module in order to calibrate. My conclusion is that a microcontroller's onboard clock can easily maintain synchronization to within about 4ms of "GPS 
 time." Even better synchronization can probably be achieved with more sophisticated methods, assuming the 
 controller's crystal oscillator is of reasonable quality. No OCXO/TCXO is required, but the "normal"
 oscillator needs to be pretty good.
