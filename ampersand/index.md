@@ -2245,7 +2245,9 @@ Once the relative offset between two streams is identified, the range of offsets
 to be tested to keep the streams in sync with each other is small. Ironically, the thing 
 that is most likely to invalidate the correlation-based offset estimate between two audio streams 
 is the NTP-driven clock correction process running in the clients. For this reason, it might make sense to suspend 
-(or at least slow down) NTP synchronizations for a client that is actively receiving.
+(or at least slow down) NTP synchronizations for a client that is actively receiving. I'm thinking
+that the ~150 butes of "implementation defined" payload in the PING message (payload type 5) provided
+by Jim's protocol might be used to keep the clients apprised of where they stand in the voting process.
 
 Unlike many things in the AllStar system that run at the audio frame level (i.e. 20ms of audio),
 this algorithm must run at the sample level. Assuming the range of potential offset errors 
