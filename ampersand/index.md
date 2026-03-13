@@ -2255,7 +2255,7 @@ that the ~150 bytes of "implementation defined" payload in the PING message (pay
 by Jim's protocol might be used to keep the clients apprised of where they stand in the voting process.
 
 Unlike many things in the AllStar system that run at the audio frame level (i.e. 20ms of audio),
-this algorithm must run at the sample level. Assuming the range of potential offset errors 
+this algorithm must run at or near the sample level (125uS). Assuming the range of potential offset errors 
 is within +/-2ms, only 32 trials are needed to narrow the accuracy to the 125uS level that is
 theoretically achievable using the GPS clock synchronization. The algorithm I have chosen 
 evaluates the cross-correlation on the trailing three frames of audio (60ms) which gives more than
