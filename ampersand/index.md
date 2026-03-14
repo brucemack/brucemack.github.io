@@ -684,13 +684,13 @@ is used in that implementation.
 This is a tedious topic that needs to be addressed in any repeater controller. There is a
 fairly complicated set of timers and state-machines that coordinate the flow of audio
 and control signals. Since it seems like some people are using their AllStar nodes as their
-repeater controller as well, the level of sophistication needed is more than you'd expect
-for a simple VOIP/ROIP application. Certainly the AllStar people are doing _way_ more 
-complex nodes than I ever encountered while working on EchoLink. 
+repeater controller the level of sophistication needed is more than you'd expect
+for a simple VOIP/ROIP application. It seems like you need to have full controller capability
+to be taken seriously. Certainly the AllStar people are building _way_ more 
+complex nodes than I ever encountered while working on EchoLink. It's quite cool. 
 
 It would be nice to separate the discussion of timers, repeater ID, CTCSS, delays, duplex, etc.
-into separate sections, but it turns out that these things are all very intertwined in
-a modern controller. I'll work on trying to organize this clearly, but that may be difficult
+into separate sections, but it turns out that these things are all very intertwined. I'll work on trying to organize this clearly, but that may be difficult
 to do. :-)
 
 Thanks to Patrick (N2DYI) and Gary (KK6RQ) for their review/suggestions on this stuff.
@@ -844,6 +844,10 @@ While in the Drain State:
 * Any audio received from the radio is ignored.
 * Once the delay line is completely empty we close the audio gate and enter the idle state.
 * If the COS and/or CTCSS/DCS signals are asserted (according to the squelch type) we enter the assessment state.
+
+## Duplex Behavior
+
+(TO FOLLOW)
 
 # Software Architecture
 
