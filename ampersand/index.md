@@ -672,7 +672,7 @@ going on here. I will stick with 0x10 since the nodes I tested accepted it.
 
 ### G722
 
-Not implemented by Ampsersand.
+Not implemented by Ampersand.
 
 [G722 Specification](https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.722-198811-S!!PDF-E&type=items) - Audio sampled at 14 bits 16kHz produces a 64kbit/second stream. There is
 no official/fixed frame size defined in the specification, but one frame every 20ms would
@@ -688,6 +688,11 @@ repeater controller, the sophistication needed is more than you'd expect
 for a simple VOIP/ROIP application. It seems like you need to have full controller capability
 to be taken seriously. Certainly the AllStar people are building _way_ more 
 complex nodes than I ever encountered while working on EchoLink. It's quite cool. 
+
+It also turns out that some of the features that are usually associated with fancy
+"professional grade" repeater systems are useful on the low-end as well. For example,
+SA818 radio modules seem to cut off the first part of transmissions after a long period of 
+silence. An audio delay line in the transmit path can help to improve this experience.
 
 It would be nice to separate the discussion of timers, repeater ID, CTCSS, delays, duplex, etc.
 into separate sections, but it turns out that these things are all very intertwined. I'll work on trying to organize this clearly, but that may be difficult
