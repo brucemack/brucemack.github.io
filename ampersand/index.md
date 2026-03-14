@@ -679,6 +679,172 @@ no official/fixed frame size defined in the specification, but one frame every 2
 result in 160 bytes/frame. I think the PJSIP documentation indicates that a 20ms frame rate 
 is used in that implementation.
 
+## Repeater Logic/Timing/State Machines
+
+This is a tedious topic that needs to be addressed in any repeater controller. There is a
+fairly complicated set of timers and state-machines that coordinate the flow of audio
+and control signals. Since it seems like some people are using their AllStar nodes as their
+repeater controller as well, the level of sophistication needed is more than you'd expect
+for a simple VOIP/ROIP application. Certainly the AllStar people are doing _way_ more 
+complex nodes than I ever encountered while working on EchoLink. 
+
+It would be nice to separate the discussion of timers, repeater ID, CTCSS, delays, duplex, etc.
+into separate sections, but it turns out that these things are all very intertwined in
+a modern controller. I'll work on trying to organize this clearly, but that may be difficult
+to do. :-)
+
+Thanks to Patrick (N2DYI) and Gary (KK6RQ) for their review/suggestions on this stuff.
+
+### The Transmit Path
+
+**Goals**
+
+* Prevent the first part of a transmission from being clipped off, even in cases where the
+radio’s key-up behavior is slow (ex: SA818 modules, but maybe other radios). Try to move away
+from having to tell everyone to wait for a few seconds at the beginning of their transmissions
+to allow a transmitter to key up (this delay should be provided automatically if the
+hardware requires it).
+* Provide a hang time at the end of a transmission to prevent excessive key up/key down.
+* Provide support for a “chicken interval” at the end of a transmission during which the CTCSS/DCS
+tone is either turned off, phase-reversed, or changed to another arbitrary frequency in the
+brief interval before the transmitter is unkeyed.
+* Allow the rules for CTCSS/DCS tone generation and hang times to be different depending on
+whether the audio being transmitted is from the conference (human-generated) or telemetry (machine-generated).
+* Provide a smooth audio experience when conference audio and telemetry audio are overlapping.
+* Keep audio latency to a minimum.
+* Operate independently of the receive path to maintain flexibility with respect to duplex modes
+
+**Parameters**
+
+* CTCSS/DCS encoder on/off
+* CTCSS/DCS frequency/code
+* CTCSS break mode (chicken, reverse, secondary frequency)
+* Send CTCSS/DCS during telemetry?
+* Keyup interval
+* Hang interval
+* Chicken interval (Time between CTCSS break and unkeying)
+
+All intervals are in milliseconds. Any of the intervals can be set to zero to disable the relevant feature.
+
+**Transmit System Logic/State Machine**
+
+There are two audio delay lines, one for conference audio (people speaking) and one for 
+telemetry that includes machine-generated voice prompts and CW ID. These delay lines are
+separated because some of the rules for dealing with these two streams are different.
+
+We start in the idle state.
+
+While in the Idle State:
+
+* The PTT signal is deasserted
+* The CTCSS/DCS encoder is off.
+* If conference/telemetry audio is received it is pushed onto the back of the
+appropriate delay line and we enter pre-transmit mode.
+
+While In Pre-Transmit State:
+
+* The PTT signal is asserted.
+* If at any time while in this state there is audio seen in the conference delay line the 
+CTCSS/DCS encoder is turned on in normal mode. 
+* If at any time while in this state there is audio seen in the telemetry delay line **and**
+the "Send CTCSS/DCS During Telemetry" option is on, the CTCSS/DCS encoder is turned on 
+in normal mode.
+* Any conference/telemetry received is pushed onto the back of the appropriate delay line.
+* Pre-transmit state lasts for the time defined by the keyup interval. Once this interval expires we enter transmit state.
+
+While in Transmit State:
+
+* The PTT signal is asserted.
+* If at any time while in this state there is audio seen in the conference delay line the 
+CTCSS/DCS encoder is turned on in normal mode. 
+* If at any time while in this state there is audio seen in the telemetry delay line **and**
+the "Send CTCSS/DCS During Telemetry" option is on, the CTCSS/DCS encoder is turned on 
+in normal mode.
+* Any conference/telemetry received is pushed onto the back of the appropriate delay line.
+* Any audio on the conference/telemetry delay lines is popped, mixed (as needed), 
+and sent to the radio.
+* Once both delay lines are completely empty:
+ - If the last audio sent to the radio included any audio from the conference delay line we enter the hang state.
+ - If the last audio sent to the radio came from the telemetry delay line we jump to the chicken state. There is no need to create a courtesy tone or hang interval following machine-generated traffic.
+
+While in Courtesy State:
+
+* The PTT signal is asserted.
+* The CTCSS/DCS encoder carries its state from the transmit state.
+* The courtesy tone is enabled.
+* The courtesy state lasts as long as is required to generate the courtesy tone. Once this interval expires we enter the hang state.
+* Any conference/telemetry audio received is pushed onto the back of the appropriate delay line
+and we re-enter the transmit state. It is important to note that we bypass the pre-transmit state in this case. No further audio delay is needed since the transmitter is already keyed up.
+
+While in Hang State:
+
+* The PTT signal is asserted.
+* The CTCSS/DCS encoder carries its state from the transmit state.
+* The hang state lasts as long as the hang interval. Once this interval expires we enter the chicken state.
+* Any conference/telemetry audio received is pushed onto the back of the appropriate delay line
+and we re-enter the transmit state. It is important to note that we bypass the pre-transmit state in this case. No further audio delay is needed since the transmitter is already keyed up.
+
+While in Chicken State:
+
+* The PTT signal is asserted
+* The CTCSS/DCS encoder is in off/reverse/alternate frequency mode according to the configuration.
+* Any conference/telemetry audio received is pushed onto the back of the appropriate delay line.
+* The chicken state lasts for the chicken interval. Once this interval expires we enter the idle state.
+
+### The Receive Path
+
+**Goals**
+
+* Avoid losing the beginning part of any legit transmission.
+* Avoid contributing a crash into the conference at the tail of a transmission.
+* Debounce the COS/CTCSS/DCSS signals to avoid false detects.
+* Provide optional kerchunk suppression to prevent short transmissions (<2 seconds) from being contributed to the conference. Note that a short transmission that closely follows other legit traffic is not considered to be a kerchunk.
+* Keep latency to a minimum.
+* Operate independently of the transmit path to maintain flexibility with respect to duplex modes
+
+**Configuration Parameters**
+
+* Squelch type parameter that determines whether to use carrier squelch or tone squelch.
+* Debounce Interval
+* Squelch Tail Interval
+* Kerchunk Interval
+* Idle Interval
+
+All intervals are in milliseconds. Any of the intervals can be set to zero to disable the relevant feature.
+
+**Receive System Logic/State Machine**
+
+The system contains an audio delay line. Audio can be pushed onto the back of the delay line per the conditions below. Audio will be popped off the front of the delay line and sent to the conference whenever the audio gate is opened. If the audio gate is closed then audio just accumulates in the delay line.
+
+The term "CTCSS/DCS signal" is used below to indicate either (a) the state of a hardware signal driven by a receive or (b) the state of the soft decoder which is derived from the audio stream.
+
+We start in the idle state with the audio gate closed.
+
+While in the Idle State:
+
+* Any audio received from the radio is ignored.
+* If the COS and/or CTCSS/DCS are asserted (according to the squelch type) we enter the assessment state.
+
+While in the Assessment State:
+
+* Any audio received from the radio is pushed onto the back of the delay line. We don’t want to lose anything while we assess whether this is a legitimate transmission.
+* The assessment state lasts for the longer of the debounce interval or the kerchunk interval. If we have been in the receive state recently (where “recently” is defined by the idle interval), the kerchunk interval is ignored in this condition and we only consider the debounce interval. We do this because the kerchunk interval is probably fairly long (a few seconds) and we don’t want to carry this much latency once a legit QSO is up and running.
+* If the COS and/or CTCSS/DCS signals are deasserted (according to the squelch type) we enter the idle state and the delay line is flushed. The assumption in this case is that this was not a legit transmission and no audio was ever contributed to the conference.
+* Once the assessment state has expired we open the audio gate and enter the receive state.
+* Delayed audio now starts to flow into the conference.
+
+While in the Receive State:
+
+* Any audio received from the radio is pushed onto the back of the delay line.
+* If the COS and/or CTCSS/DCS signals are deasserted (according to the squelch type) we trim audio from the back of the delay line by the equivalent of the squelch tail interval. The assumption is that the last part of any received audio just prior to the COS/CTCSS drop is a crash. For example, if the squelch tail interval was set to 200ms, 10 20ms frames of audio will be trimmed from the back of the delay line.
+* After this trim has been performed we move to the drain state. Note that delayed audio is still flowing out to the conference since the gate is still opened.
+
+While in the Drain State:
+
+* Any audio received from the radio is ignored.
+* Once the delay line is completely empty we close the audio gate and enter the idle state.
+* If the COS and/or CTCSS/DCS signals are asserted (according to the squelch type) we enter the assessment state.
+
 # Software Architecture
 
 The system is written in C++. I think this is a big step-up from C, but may still 
@@ -1887,10 +2053,10 @@ has a fixed IP address. This broker faciliates connection handshakes only - **it
 
 Assume that node 1111 is a normal AllStarLink node with an open firewall to 
 IAX2 port 4569. Assume that node 2222 is running in a repeater site on a celluar 
+Assume that node 1111 wants to call into the repeater on node 2222. The flow is as follows:
 hotspot that uses CGNAT and has no firewall openings. Assume that node 61057
 (the broker) is running on a cloud server with a fixed IP address and open IAX2 ports.
 
-Assume that node 1111 wants to call into the repeater on node 2222. The flow is as follows:
 
 * All Ampersand servers (including 2222) reguarly POKE node 61057. As per the IAX2 
 RFC, node 61057 send the PONG back. Nothing special here.
