@@ -764,7 +764,7 @@ in normal mode.
 * Any audio on the conference/telemetry delay lines is popped, mixed (as needed), 
 and sent to the radio.
 * Once both delay lines are completely empty:
- - If the last audio sent to the radio included any audio from the conference delay line we enter the hang state.
+ - If the last audio sent to the radio included any audio from the conference delay line we enter the courtesy state.
  - If the last audio sent to the radio came from the telemetry delay line we jump to the chicken state. There is no need to create a courtesy tone or hang interval following machine-generated traffic.
 
 While in Courtesy State:
