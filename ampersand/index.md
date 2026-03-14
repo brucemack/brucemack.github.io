@@ -683,8 +683,8 @@ is used in that implementation.
 
 This is a tedious topic that needs to be addressed in any repeater controller. There is a
 fairly complicated set of timers and state-machines that coordinate the flow of audio
-and control signals. Since it seems like some people are using their AllStar nodes as their
-repeater controller the level of sophistication needed is more than you'd expect
+and control signals. Since some people are using their AllStar nodes as their
+repeater controller, the sophistication needed is more than you'd expect
 for a simple VOIP/ROIP application. It seems like you need to have full controller capability
 to be taken seriously. Certainly the AllStar people are building _way_ more 
 complex nodes than I ever encountered while working on EchoLink. It's quite cool. 
@@ -721,6 +721,7 @@ whether the audio being transmitted is from the conference (human-generated) or 
 * CTCSS break mode (chicken, reverse, secondary frequency)
 * Send CTCSS/DCS during telemetry?
 * Keyup interval
+* Courtesy tone enabled?
 * Hang interval
 * Chicken interval (Time between CTCSS break and unkeying)
 
@@ -730,7 +731,8 @@ All intervals are in milliseconds. Any of the intervals can be set to zero to di
 
 There are two audio delay lines, one for conference audio (people speaking) and one for 
 telemetry that includes machine-generated voice prompts and CW ID. These delay lines are
-separated because some of the rules for dealing with these two streams are different.
+separated because some of the rules for dealing with these two streams are different. Courtesy
+tones and CTCSS/DCS tones are not considered to be telemetry in this description.
 
 We start in the idle state.
 
@@ -739,7 +741,7 @@ While in the Idle State:
 * The PTT signal is deasserted
 * The CTCSS/DCS encoder is off.
 * If conference/telemetry audio is received it is pushed onto the back of the
-appropriate delay line and we enter pre-transmit mode.
+appropriate delay line and we enter pre-transmit state.
 
 While In Pre-Transmit State:
 
@@ -761,11 +763,11 @@ CTCSS/DCS encoder is turned on in normal mode.
 the "Send CTCSS/DCS During Telemetry" option is on, the CTCSS/DCS encoder is turned on 
 in normal mode.
 * Any conference/telemetry received is pushed onto the back of the appropriate delay line.
-* Any audio on the conference/telemetry delay lines is popped, mixed (as needed), 
+* Any audio on the conference or telemetry delay lines is popped, mixed (as needed), 
 and sent to the radio.
 * Once both delay lines are completely empty:
- - If the last audio sent to the radio included any audio from the conference delay line we enter the courtesy state.
- - If the last audio sent to the radio came from the telemetry delay line we jump to the chicken state. There is no need to create a courtesy tone or hang interval following machine-generated traffic.
+  - If the last audio sent to the radio included any audio from the conference delay line we enter the courtesy state.
+  - If the last audio sent to the radio came from the telemetry delay line we jump to the chicken state. There is no need to create a courtesy tone or hang interval following machine-generated traffic.
 
 While in Courtesy State:
 
@@ -816,7 +818,7 @@ All intervals are in milliseconds. Any of the intervals can be set to zero to di
 
 The system contains an audio delay line. Audio can be pushed onto the back of the delay line per the conditions below. Audio will be popped off the front of the delay line and sent to the conference whenever the audio gate is opened. If the audio gate is closed then audio just accumulates in the delay line.
 
-The term "CTCSS/DCS signal" is used below to indicate either (a) the state of a hardware signal driven by a receive or (b) the state of the soft decoder which is derived from the audio stream.
+The term "CTCSS/DCS signal" is used below to indicate either (a) the state of a hardware signal driven by a receiver or (b) the state of the soft decoder which is derived from the audio stream.
 
 We start in the idle state with the audio gate closed.
 
@@ -836,7 +838,7 @@ While in the Assessment State:
 While in the Receive State:
 
 * Any audio received from the radio is pushed onto the back of the delay line.
-* If the COS and/or CTCSS/DCS signals are deasserted (according to the squelch type) we trim audio from the back of the delay line by the equivalent of the squelch tail interval. The assumption is that the last part of any received audio just prior to the COS/CTCSS drop is a crash. For example, if the squelch tail interval was set to 200ms, 10 20ms frames of audio will be trimmed from the back of the delay line.
+* If the COS and/or CTCSS/DCS signals are deasserted (according to the squelch type) we trim audio from the back of the delay line by the equivalent of the squelch tail interval. The assumption is that the last part of any received audio just prior to the COS/CTCSS/DCS drop is a crash. For example, if the squelch tail interval was set to 200ms, 10 20ms frames of audio will be trimmed from the back of the delay line.
 * After this trim has been performed we move to the drain state. Note that delayed audio is still flowing out to the conference since the gate is still opened.
 
 While in the Drain State:
