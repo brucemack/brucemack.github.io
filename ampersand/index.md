@@ -2345,6 +2345,10 @@ clocks. Given the processing power available to us now, the same problem can pro
 
 I hope that this research can help others to create even simpler/cheaper voter clients.
 
+## Othe VOTER Stuff
+
+* RSSI: https://pmc.ncbi.nlm.nih.gov/articles/PMC9499186/
+
 # Other Pages
 
 * [Notes on Receive Audio Level Calibration](asl-audio-levels.md)
