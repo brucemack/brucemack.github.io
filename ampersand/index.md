@@ -2272,6 +2272,98 @@ static/global buffer allocated for reading the PING messages is only 24 + 164 = 
 in length. Unforunately, sending the bytes above the 188 byte limit may result in 
 a write into an unexpected area of memory in the VOTER/RTCM device. **BE CAREFUL!**
 
+## GPS Interface Notes
+
+Voter clients use a GPS/GNSS module to establish a precise time reference. There are two parts 
+to the GPS interface:
+
+* The serial NMEA messages (ex: `$GPRMC,194013,A,4032.94888,N,10511.83890,W,0.005,,020121,,,D*62`)
+* The PPS signal, which pulses once per second and would generally be used to trigger an interrupt.
+
+The serial messages are used at the beginning of the synchronization process to 
+establish the location and to obtain the full YYYY-MM-DD HH:MM:SS date/time. Once
+the PPS signal is pulsing regularly and a valid GPS/GNSS "fix" has been obtained 
+the only thing that the serial messages are used for is to monitor the continued
+validity of the fix - there is no further need for the location/time information
+since the location is assumed to be constant and the time is being incremented by
+the PPS interrupt.
+
+The number of satelites in view is taken from the $GPGSV message. The time/date is taken
+from the $GPRMC message. The validity of the fix is taken from the $GPGGS message.
+
+
+### GNGGA Message
+
+Example:
+
+    $GNGGA,141147.000,,,,,0,00,25.5,,,,,,*7C
+
+* UTC Of Fix: 141147.000
+* GPS Quality Indicator: 0 (Fix Not Valid)
+* Number of SVs in use: 00
+
+    $GNGGA,153808.000,4218.22204,N,07118.08341,W,1,07,2.7,44.3,M,-28.9,M,,*40
+
+* UTC Of Fix: 133808.000
+* GPS Quality Indicator: 1 (GPS Fix)
+
+### GPGSV
+
+$GPGSV indicates GPS and SBAS satellites.
+
+Example:
+
+    $GPGSV,1,1,02,01,,,13,14,,,22,0*61
+
+* Total number of messages of this type in this cycle: 1 
+* Message number: 1
+* **Total number of SVs visible: 02**
+* Repating block
+  * PRN number: 01
+  * Evevation
+  * Azmuth
+  * SNR
+
+Example when multiple satelites are in view.
+
+    $GPGSV,3,1,11,01,64,085,22,02,36,049,10,03,15,129,25,07,21,186,,0*63
+    $GPGSV,3,2,11,08,12,074,,13,06,277,,14,71,313,16,17,51,273,27,0*6E
+    $GPGSV,3,3,11,19,23,260,,22,55,310,,30,42,218,27,0*51
+
+* **Total number of SVs visible: 11**
+
+### GPRMC
+
+Provides the date/time detail that is applicable to the **last PPS signal**. So the arrival of
+this serial message isn't useful for precise timing, but it is very important to process it 
+quickly (before the end of the current second).
+
+Examples with time/date alignment shown below:
+
+	$GPRMC,194013,A,4032.94888,N,10511.83890,W,0.005,,020121,,,D*62
+	       hhmmss                                     ddmmyy
+
+    $GNRMC,141704.000,V,,,,,,,240326,,,N,V*2F
+	       hhmmss             ddmmyy
+
+    $GPRMC,170047.00,A,4121.23302,N,00201.31654,W,2.703,   ,200417,   , ,A*64
+    $GPRMC,hhmmss.ss,A,llll.ll,   a,yyyyy.yy,   a,x.x,  x.x,ddmmyy,x.x,a,m*hh
+           |         | |          | |           | |     |   |      |   | | \- 13 Checksum
+           |         | |          | |           | |     |   |      |   | \--- 12 Mode indicator, (A=Autonomous, D=Differential, E=Estimated, N=Data not valid)
+           |         | |          | |           | |     |   |      |   \----- 11 E or W of magnetic variation
+           |         | |          | |           | |     |   |      \--------- 10 Magnetic variation degrees (Easterly var. subtracts from true course)
+           |         | |          | |           | |     |   \----------------  9 UTC date of fix
+           |         | |          | |           | |     \--------------------  8 Track made good in degrees True
+           |         | |          | |           | \--------------------------  7 Speed over ground in knots
+           |         | |          | |           \----------------------------  6 E or W of longitude
+           |         | |          | \----------------------------------------  5 Longitude of fix
+           |         | |          \------------------------------------------  4 N or S of latitude
+           |         | \-----------------------------------------------------  3 Latitude of fix
+           |         \-------------------------------------------------------  2 Data status (A=Valid position, V=navigation receiver warning)
+           \-----------------------------------------------------------------  1 UTC time of fix
+
+
+
 ## Exploration of GPS-less Voting
 
 Jim Dixon's (W6BIL) design of the AllStar VOTER is impressive. I don't know a lot about
