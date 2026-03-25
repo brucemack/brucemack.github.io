@@ -2291,8 +2291,10 @@ the PPS interrupt.
 The number of satelites in view is taken from the $GPGSV message. The time/date is taken
 from the $GPRMC message. The validity of the fix is taken from the $GPGGS message.
 
-
 ### GNGGA Message
+
+This is a more general version of the GPGGA message (GPS only). GNGGA includes other 
+constelations.
 
 Example:
 
@@ -2361,6 +2363,38 @@ Examples with time/date alignment shown below:
            |         | \-----------------------------------------------------  3 Latitude of fix
            |         \-------------------------------------------------------  2 Data status (A=Valid position, V=navigation receiver warning)
            \-----------------------------------------------------------------  1 UTC time of fix
+
+
+## Synchronization of Audio with GPS Clock
+
+The audio quality of the VOTER system depends on synchronization of the audio sampling
+clocks across the network. A GPS or NTP reference clock is used to achieve this synchronization.
+
+The original Jim Dixon VOTER design used a 9.6 MHz oscillator as the master clock for the PIC 
+microprocessor. This clock is divided down by an integer to obtain the 8kHz audio sampling clock. Because 
+the PIC chip used in the design has an integrated ADC and DAC, the required analog-to-digital and 
+digital-to-analog conversions can be performed by a timer-driven interrupt service routine (ISR) that runs 
+on every 8 kHz "tick."
+
+The use of integrated ADC/DACs makes the hardware simpler, but it also limits the range of microcontrollers
+that can be used for this application. Furthermore, the integrated ADC/DACs tend to have lower performance
+specifications that modern CODECs designed specifically for audio applications. The most common integrated
+ADCs seem to have 12-bits of resolution, as compared to 16-bit for the CM108 used in other parts of the 
+AllStar network. 
+
+The ISR-driven sample clock architecture may also be limiting at higher audio rates. Digital audio systems
+usually address this problem using a direct-memory access (DMA) approach.
+
+Can the required audio synchronization be achieved using DMA transfer, possibly to an external CODEC?
+
+
+
+
+
+
+
+
+
 
 
 
