@@ -2387,17 +2387,6 @@ usually address this problem using a direct-memory access (DMA) approach.
 
 Can the required audio synchronization be achieved using DMA transfer, possibly to an external CODEC?
 
-
-
-
-
-
-
-
-
-
-
-
 ## Exploration of GPS-less Voting
 
 Jim Dixon's (W6BIL) design of the AllStar VOTER is impressive. I don't know a lot about
