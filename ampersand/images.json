@@ -27,14 +27,15 @@
     },
     "os_list": [
         {
-            "name": "Ampersand 20260609 (Trixie)",
-            "description": "Ampersand Appliance 20260609",
+            "name": "Ampersand 20260610 (Trixie)",
+            "description": "Ampersand Appliance 20260610",
             "website": "https://github.com/Ampersand-ASL",
             "icon": "https://www.allstarlink.org/assets/images/allstar-logo-small.png",
-            "url": "https://ampersand-asl.s3.us-west-1.amazonaws.com/releases/image-amp-server-20260609.zip",
-            "release_date": "2026-06-09",
+            "url": "https://ampersand-asl.s3.us-west-1.amazonaws.com/releases/image-amp-server-20260610.zip",
+            "release_date": "2026-06-10",
             "devices": [ "pi5-64bit", "pi4-64bit" ],
-            "init_format": "cloudinit-rpi"
+            "init_format": "cloudinit-rpi",
+            "image_download_size": 800000000
         }
     ]
 }
