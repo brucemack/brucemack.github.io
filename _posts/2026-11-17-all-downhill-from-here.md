@@ -40,15 +40,16 @@ Choosing My Route
 I hiked southbound (SOBO). This decision was mostly driven by scheduling.
 I had several other trips/family events scheduled for the first part 
 of the summer so my start date was going to be in the second half of July.
-At that point in the year a NOBO trip is infeasible. I didn't seriously consider 
+At that point in the year a northbound trip is infeasible. I didn't seriously consider a
 flip-flop because that option is too complicated for a poor planner like
 me. A SOBO journey was the only viable option.
 
-I'm surely biased, but I think SOBO is the best way to hike the AT. This
+I'm surely biased, but I think late-season SOBO is the best way to hike the AT. This
 is argued endlessly on the internet so I won't reiterate. For me the key
-advantages are:
+advantages of a late-season SOBO hike are:
 
-* Works great for someone leaving late in the summer.
+* Works great for someone with other things going on in the first
+part of the summer.
 * No bugs.
 * Very little humidity.
 * If you move quickly, you should be able to finish before significant
@@ -57,14 +58,17 @@ snowfalls in the south.
 * Once you hit Vermont the large crowds are gone.
 * Once you hit Massachusetts you are often alone.
 * Great fall colors for most of the trip.
-* It's faster. It's not a coincidence that the AT FKTs were set going south.
+* SOBO is faster. It's not a coincidence that the AT FKTs were set going south.
 * It's meant to be. It's not a coincidence that the rock at the start 
 of the approach trail at Amicalola Falls says "AT Maine to Georgia."
+* The SOBO hiker personality type tends to be more focused on hiking
+(as opposed to partying), more easy-going, and less prone to fear-mongering
+and other trail drama.
 
 If you go SOBO (and you should!):
 * Make sure you are in good physical shape with some reasonable hiking experience.
 There is very little honeymoon on the trail in Maine. You'll immediately
-encounter long food carries and extremely strenuous climbing.
+encounter some long food carries and extremely strenuous climbing.
 * Make sure you are comfortable hiking/camping alone. There will be lots of 
 NOBO company for the first month or so, but thereafter your trip 
 will will be a mostly solitary experience. Given my late start, I didn't 
