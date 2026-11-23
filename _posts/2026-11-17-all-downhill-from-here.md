@@ -203,10 +203,13 @@ fast. I saw a bunch of people get off trail due to various repetitive
 stress injuries. You need to force yourself to take things easy at
 the start.
 
-I didn't do more than 12 miles per day for the first three weeks, including my pre-hike.
+I didn't do more than 12 miles per day for the first three weeks, including my pre-hike. You need to force yourself to slow down at
+the start, especially because you'll be feeling fresh and will be
+anxious to start racking up some miles. 
 
 There were some days in southern Maine and New Hampshire where I had
-a hard time covering more than 8 miles in a 12 hour hiking day.
+a hard time covering more than 8 miles in a 12 hour hiking day. The
+terrain was brutal.
 
 I started to feel much stronger after the White Mountains.
 
@@ -215,20 +218,22 @@ days in eastern Vermont (farm country) where I started to test my legs.
 
 By the time I hit Massachusetts I as comfortable walking 20-25 miles 
 per day.  Further south I started to make a few 30 mile days when needed
-to land at an important waypoint (i.e. reaching a restaurant in the Shenandoahs before closing, meeting a shuttle on time, getting to a town
+to land at an important waypoint (i.e. reaching a store/restaurant before closing, meeting a shuttle driver on time, getting to a town
 a day ahead of schedule just because, etc.).
 
 My longest "normal" day (i.e. repeatable) was 33 miles.
 
-My longest 24-hour period was 48 miles during the Four-State
-Challenge. 
+My longest 24-hour period was 48 miles during the AT Four-State
+Challenge across MD and WV.
 
 I found it necessary to be up early and hiking during every minute
 of daylight. As the days got shorter I almost always hiked for an 
-hour or two in the dark in the morning. I dislike hiking in the dark
+hour or two in the dark in the morning. I disliked hiking in the dark
 at night, but sometimes it was unavoidable to reach a suitable campsite.
 I found that breaking camp in the dark in the morning was *way* easier
-than making camp in the dark at night - thus the morning skew.
+than making camp in the dark at night - thus the morning skew. I 
+particularly hated coming into a tent/shelter site in the dark and 
+not being able to quickly locate the water source and/or bear box.
 
 I took a 30 minute break at lunch. I tried to avoid any other significant
 breaks during the day, aside from drawing water. I tried to eat snacks/drink water while moving.
@@ -236,6 +241,8 @@ breaks during the day, aside from drawing water. I tried to eat snacks/drink wat
 I took the steep uphills and steep downhills very slowly. 
 
 My "planning pace" for a typical day's milestones was 2.5 miles per hour. 
+There were very few days that ended up faster/slower than that pace.
+
 I tried to avoid setting my milage goal (i.e. campsite for the night)
 until after lunch. I found that having maximum flexibility during the day improved my mental state and reduced the chances of "falling short" for
 the day.
@@ -245,6 +252,91 @@ it helpful to supply for 4 20-mile days and then try to finish the stretch
 in 3 days.  Finishing a food carry a day early provided me with a huge
 mental boost. This approach provided a good margin in case something went
 wrong - I never ran out of food on the trail.
+
+I tried to minimize the number of zero days on the trail. I did NEROs
+into towns frequently.
+
+I rarely hiked directly with others. It was better to hike at my
+own pace at all times. My "own pace" varied across the day. That said,
+in the few cases that I hiked with other people the milage went by 
+very quickly given the interesting/free-ranging conversations 
+that would inevitably come up on trail. :-)
+
+You'll hear this advice often and it's true: "fast" hikers don't walk
+fast, they just walk for more hours.
+
+Stops
+-----
+
+Zero Days
+---------
+
+I took 9 full zero days (i.e. no hiking) at these places:
+
+* Shaw's Hiker Hostel, Monson, ME. Recovery from the 100 Mile Wilderness.
+* The Libby Hostel, Gorham, NH. Rest before the Whites.
+* Lake of the Clouds Hut, Mt. Washington, NH. Unexpected bad weather day in an exposed area.
+* The Mt. Washington Hotel, Crawford Notch, NH. Nice weekend off with Laura.
+* Hampton Inn Hotel, Stroudsburg, PA. Needed a mental break. 
+* Home, while passing close from the trail in New York. Home for a previously scheduled eye-doctor appointment and to visit family.
+* The White Tree Inn, Buena Vista, VA. Unexpected zero to dodge hurricane Isaias.
+* The Appalachian Trailer, Hot Springs, NC. Double zero rest before the Smokies.
+
+Nights Off Trail
+----------------
+
+On average, I got off trail for the night every 4.5 days. That provided
+a very good balance between making miles south and having a break for a 
+hot shower and a good meal. I also used these trips off trail to resupply.
+
+I really liked all of the places I stayed so I can recommend all of the following
+without reservation. A few place were more "primitive," but compared to 
+sleeping in my tent all nights off trail felt luxurious. 
+
+My advice to hikers: 
+* I didn't appreciate this before I left, but the AT hiker hostels
+are generally a great experience. A lot of trail culture is experienced
+through the hostels. In general, hostels are better equipped to accommodate hikers than hotels. For example: try drying a wet tent
+at a nice hotel. 
+* Do some homework before staying at a random hostel
+on trail. There are some really bad (possibly dangerous) ones that you want to avoid. I'm 
+not going to get into those details - you can figure it out by talking
+to the hikers moving in the opposite direction. Be careful out there.
+* FarOut is great, but it only lists the hotels that have specifically
+registered. There are sometimes better places to stay that aren't in FarOut.
+
+I spent the night at each of these places:
+
+* Shaw's Hiker Hostel, Monson, ME.
+* The Sterling Inn, Caratunk, ME.
+* The Sugarloaf Resort, Stratton, ME.
+* Pine Ellis Hiker Hostel, Andover, ME.
+* AMC Lake of the Clouds Hut, Mt. Washington, NH. 
+* AMC Mizpah Spring Hut, Mt. Pierce, NH.
+* The Mt. Washington Hotel, Crawford Notch, NH.
+* The Notch Hostel, Franconia Notch, NH.
+* Hampton Inn Hotel, Manchester Center, VT.
+* Hotel Downstreet, North Adams, MA.
+* Home, while passing close from the trail in New York.
+* AMC Mohican Outdoor Center, PA.
+* Holiday Inn Express outside of Duncannon, PA.
+* Hampton Inn Hotel, Stroudsburg, PA. 
+* Ironmaster's Mansion Hostel, Pine Grove Furnace State Park, PA.  
+* Stay-At-Swatara Hostel, Jonestown, PA.
+* Quality Inn, Harpers Ferry, WV.
+* PATC Bear's Den Hostel, Virginia Roller Coaster, VA.
+* The White Tree Inn, Buena Vista, VA.
+* Four Pines Hostel, VA.
+* Woods Hole Hostel, Pearisburg, VA.
+* Merry Inn Hiker Hostel, Marion, VA.
+* The Broken Fiddle, Damascus, VA.
+* Boots Off Hostel, Hampton, TN.
+* Uncle Johnnies Hostel, Erwin, TN.
+* The Appalachian Trailer Hostel, Hot Springs, NC. 
+* Rambling Roots Hostel, Bryson City, NC
+* Green Dragon Hostel, Hiawassee, GA
+* Above the Clouds Hostel, Suches, GA
+* The Amicalola Lodge, Amicalola State Park, GA
 
 
 
