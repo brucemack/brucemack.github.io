@@ -490,13 +490,13 @@ Whenever in town I forced myself to eat a lot. Seriously.
 
 I carried a bear canister (BV450) most of the trip. I would do the same
 again. It was very nice not to be fooling around with marginal bear
-hangs at night after long hike. It was very nice not to have to
+hangs at night after a long day of hiking. I slept better not having to
 worry about mice/critters. There were places in the south where I don't
 think there were any suitable branches for bear hangs, especially in 
-the rhododendron forests.
+the dense rhododendron forests.
 
 Ironically, I sent my bear canister home just before entering GA. Now
-GA is the only state that requires them to be carried.
+GA is the only state that requires them to be carried at all times.
 
 All this said, I was under-caloried and lost about 40 pounds during 
 my trip. Not ideal.
