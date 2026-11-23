@@ -262,6 +262,8 @@ in the few cases that I hiked with other people the milage went by
 very quickly given the interesting/free-ranging conversations 
 that would inevitably come up on trail. :-)
 
+I tried to avoid injury/illness. Both can cost days off trail.
+
 You'll hear this advice often and it's true: "fast" hikers don't walk
 fast, they just walk for more hours.
 
@@ -401,14 +403,15 @@ needed to "warm up" that part of my body more carefully.
 In my opinion, I avoided illness by doing the following:
 * Washed hands with soap aggressively, even at lunch breaks. 
 * At water sources, moved up stream to the point of inconvenience. Chances
-are most people won't bother going to that spot.
+are most people won't bother going up to that spot.
 * Never accepted unpackaged foods. It's tempting to take 
 burgers, hotdogs, or pancakes from trail angels. I only took bags
 of chips and/or drinks.
 * Minimized use of the tables at shelters. This is less of an issue
 for late-season SOBOs, but noro is a real issue on trail.
-* I washed my spoon and pot with boiling water/soap after very use. 
+* I washed my spoon and pot with boiling water/soap after every meal. 
 You are using more gas, but it's worth avoiding illness.
+* I used bug-spray (Sawyer Picaridan) to avoid lyme disease. I've heard that DEET is more effective, but that it also dissolves the material that hiking gear is made from.
 
 Random Tips
 -----------
