@@ -400,6 +400,17 @@ you'll probably never finish.
 Some pains would go away in the afternoon. This generally meant that I 
 needed to "warm up" that part of my body more carefully. 
 
+I fell a bunch of times. A few things I noticed:
+* Falls were most common when setting out immediately after a rest
+stop of some kind. I needed to force myself to get going slowly 
+after a stop.
+* Blue blazes and/or awkward hikes down to water sources were the 
+most dangerous, partially because I didn't always approach these
+places with the same focus as the "real trail."
+* I found that listening to music/podcasts/books could distract me
+from being careful about footing. I needed to walk in silence in very 
+uneven/tangled terrain. This is a "walking a chewing gum at the same time" problem.  
+
 In my opinion, I avoided illness by doing the following:
 * Washed hands with soap aggressively, even at lunch breaks. 
 * At water sources, moved up stream to the point of inconvenience. Chances
