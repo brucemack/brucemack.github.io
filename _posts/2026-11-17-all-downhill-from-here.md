@@ -15,12 +15,12 @@ treating this page like a how-to guide.
 There are many ways to have a successful thru hike of the AT. Here I 
 document *one way that worked for me*. I'm certainly not claiming that this
 is the only way, or even the best way to hike the Trail. This is just one way
-that worked for a 58 year-old reasonably good physical 
+that worked for a 58 year-old in reasonably good physical 
 condition and with some thru-hiking experience.
 
 You may come up with a much better way. Hike your own hike!
 
-![LT1](/assets/images/IMG_0316.jpg)
+![AT1](/assets/images/IMG_1393.jpg)
 
 General Overview
 ----------------
