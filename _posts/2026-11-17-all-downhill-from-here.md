@@ -32,7 +32,7 @@ approach trail in Amicalola State Park after my official finish (about 9 miles).
 
 There were a few really bad days, but generally speaking I enjoyed
 every minute of this adventure. I would strongly encourage everyone to 
-give it a try. The trail will change your life.
+give it a try. The AT will change your life.
 
 Choosing My Route
 -----------------
