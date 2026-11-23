@@ -102,8 +102,8 @@ preparing ones self for the hike.
 More below.
 * I did a four day pre-hike in Maine as a warm-up prior to my ascent of Mount Katahdin. More below.
 
-Long Trail Hike, 2025
----------------------
+Long Trail Hike, August 2025
+----------------------------
 
 I got some great advice which I strongly endorse: _if you are even
 remotely considering hiking the Appalachian Trail, hike the Vermont
@@ -126,16 +126,21 @@ AT Shake-Down Hike
 Two weeks before driving to Maine I did a three day shake-down hike.
 I live in New England so I decided to do my shake-down on the AT 
 in the White
-Mountains. In hind-sight, that was a questionable decision, but it
+Mountains. In hind-sight that was a questionable decision, but it
 worked well and increased my chances of success on the AT.
 
-I drove to the parking lot at Lafayette Campground and parked my car
-in the part of the lot used by overnight hikers. I
-hiked up the popular Old Bridal Path trail past the Greenleaf Hut and
-then up to the summit of Mt. Lafayette to pick up the AT. I hiked
+Itinerary:
+
+* I drove to the parking lot at Lafayette Campground and parked my car
+in the part of the lot used by overnight hikers. 
+* I hiked up the popular Old Bridal Path trail past the Greenleaf Hut and
+then up to the summit of Mt. Lafayette to pick up the AT. 
+* I hiked
 north across Garfield and a few others mountains in the Presidential Range.
-I camped at the Garfield Ridge Campsite on my first night and Ethan Pond on 
-my second. I met a shuttle driver from the excellent [Notch Hostel](https://notchhostel.com/)
+I took long breaks to visit the Galehead and Zealand Falls AMC huts.
+* I camped at the Garfield Ridge Campsite on my first night.
+* I camped at Ethan Pond on my second night. 
+* I met a shuttle driver from the excellent [Notch Hostel](https://notchhostel.com/)
 at Crawford Notch on the evening of the third day and shuttled back to
 my car at Lafayette.
 
