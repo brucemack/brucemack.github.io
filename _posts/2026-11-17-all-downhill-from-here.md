@@ -35,7 +35,7 @@ Choosing My Route
 
 I hiked southbound (SOBO). This decision was mostly driven by scheduling.
 I had several other trips/family events scheduled for the first part 
-of the summer so my start date was going to in the second half of July.
+of the summer so my start date was going to be in the second half of July.
 At that point in the year a NOBO trip is infeasible. I didn't seriously consider 
 flip-flop because that option is too complicated for a poor planner like
 me. A SOBO journey was the only viable option.
@@ -54,12 +54,14 @@ snowfalls in the south.
 * Once you hit Massachusetts you are often alone.
 * Great fall colors for most of the trip.
 * It's faster. It's not a coincidence that the AT FKTs were set going south.
+* It's meant to be. It's not a coincidence that the rock at the start 
+of the approach trail at Amicalola Falls says "AT Maine to Georgia."
 
 If you go SOBO (and you should!):
 * Make sure you are in good physical shape with some reasonable hiking experience.
 There is very little honeymoon on the trail in Maine. You'll immediately
 encounter long food carries and extremely strenuous climbing.
-* Make sure you are comfortable hiking alone. There will be lots of 
+* Make sure you are comfortable hiking/camping alone. There will be lots of 
 NOBO company for the first month or so, but thereafter your trip 
 will will be a mostly solitary experience. Given my late start, I didn't 
 encounter any other southbounders until New Hampshire. I was camping
