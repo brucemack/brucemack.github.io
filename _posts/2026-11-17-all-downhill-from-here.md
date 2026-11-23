@@ -29,6 +29,8 @@ I'm going to assume that you know what the Appalachian Trail
 is about. I hiked southbound (SOBO) starting on July 20 and ending on November 17, 2026. The trail itself was 2,197.7 miles long in 2026. I also hiked for 
 a few days in the north prior to my official start (about 50 miles) and did the AT 
 approach trail in Amicalola State Park after my official finish (about 9 miles). So total mileage was around 2,260. My hike lasted around 130 days.
+ 
+I averaged about 17.5 miles per day. I took about 10 days off.
 
 There were a few really bad days, but generally speaking I enjoyed
 every minute of this adventure. I would strongly encourage everyone to 
@@ -249,8 +251,14 @@ the day.
 My "planning pace" for resupplies was 20 miles per day. Mentally, I found
 it helpful to supply for 4 20-mile days and then try to finish the stretch
 in 3 days.  Finishing a food carry a day early provided me with a huge
-mental boost. This approach provided a good margin in case something went
+mental boost. Plus, I could eat two days of food on the third day! This approach provided a good margin in case something went
 wrong - I never ran out of food on the trail.
+
+A big determinant of daily milage was the elevation profile of the
+day. I tried to avoid days with more than 5,500 feet of vertical gain
+or days with a grade of more than 600 feet/mile. Sometimes this was 
+impossible to avoid. The most "up" I did in one day was in the Smokies when
+I had a day with 8,500 feet of vertical ascent. That was tough going.
 
 I tried to minimize the number of zero days on the trail. I did NEROs
 into towns frequently.
@@ -434,7 +442,7 @@ Food
 ----
 
 I've heard it said: the main challenge of the first third of the trail
-is physical, the second third is mental, and the third third is 
+is physical, the second third is mental, and the last third is 
 nutritional. This was completely true in my case. It's hard to provide
 general advice on this topic because everyone's body is different, but
 I had all of the usual food problems on the trail.
@@ -443,12 +451,12 @@ After a few months on trail my fitness was no longer a limiting
 factor. I could hike for 24 hours if desired. Instead, my limit was
 calories. I would often feel myself "running out of gas" towards
 the end of the day. Any time I was lucky enough to pass a store, deli,
-coffee shop, or gas station during the day the extra mileage gained
+coffee shop, or gas station the extra mileage gained
 as a result of the "calorie boost" was significant. I first discovered
 this after stopping at the AT-favorite Abracadabra Coffee Co. in
-Woodstock, VT. After two ice creams and a donut I felt like superman. I walked another 15 miles into the night after that afternoon stop.
+Woodstock, VT. After two ice creams and a donut I felt like superman. I walked another 15 miles into the night after that afternoon food stop.
 
-Food carry is a balance. Too little and you need to stop in town 
+Food carry is a fine balance. Too little and you need to stop in town 
 constantly. Too much and you're too heavy to hike. I found the sweet spot for me was between three and four days of carry. There were some places
 (100 Mile Wilderness, Smokies, NJ) where 6 days was required due 
 to lack of resupply options.
