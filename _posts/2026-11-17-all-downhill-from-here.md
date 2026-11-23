@@ -26,9 +26,13 @@ General Overview
 ----------------
 
 I'm going to assume that you know what the Appalachian Trail 
-is about. I hiked southbound (SOBO) starting on July 20 and ending on November 17, 2026. The trail itself was 2,197.7 miles in 2026. I also hiked for 
+is about. I hiked southbound (SOBO) starting on July 20 and ending on November 17, 2026. The trail itself was 2,197.7 miles long in 2026. I also hiked for 
 a few days in the north prior to my official start (about 50 miles) and did the AT 
-approach trail in Amicalola State Park after my official finish (about 9 miles). So total mileage was around 2,260 and total hiking days was around 130.
+approach trail in Amicalola State Park after my official finish (about 9 miles). So total mileage was around 2,260. My hike lasted around 130 days.
+
+There were a few really bad days, but generally speaking I enjoyed
+every minute of this adventure. I would strongly encourage everyone to 
+give it a try. The trail will change your life.
 
 Choosing My Route
 -----------------
