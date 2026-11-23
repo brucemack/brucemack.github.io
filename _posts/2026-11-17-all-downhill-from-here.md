@@ -76,7 +76,7 @@ encounter any other southbounders until New Hampshire. I was camping
 alone about 50% of the time in the south. 
 * Unless you like the cold, be ready for a relatively fast hike. It's
 counter-intuitive for us northerners, but the southern part of the AT gets
-cold in late October. You'll spend a lot of time above 5,000 feet in NC, TC, and GA.
+cold in late October. You'll spend a lot of time above 5,000 feet (and below freezing) in NC, TN, and GA.
 
 Preparation Notes
 -----------------
@@ -88,11 +88,28 @@ At my age, preparation was critical to success.  A lot of physical training is r
 want to enjoy the trip. I started off in reasonably good shape because my preparation started 
 about two years before I stepped onto the trail.
 
+Key elements of my preparations:
+* I hiked the VT Long Trail, see below.
+* I walked 5-12 miles every day for two years leading up to the hike.  My longer training days were often made up of two walks, one in early
+morning and one in the evening before dinner.
+* I did basic weight training at a local gym for about 18 months prior to the hike. I 
+used weights every other day and rotated through push (arms), pull (arms), and legs. You 
+will use your arms a lot on this trip so don't neglect that part of your training. In my view, weight training is the most effective step 
+you can take to avoid injury on a long-distance hiking trip, especially for us older folks.
+* I read [_Appalachian Trials_](https://www.amazon.com/Appalachian-Trials-Psychological-Emotional-Thru-Hike/dp/0985090103/ref=monarch_sidesheet_title) by Zach Davis. I think this is the best book for 
+preparing ones self for the hike. 
+* I did a three day shake-down hike prior to starting my hike in Maine.
+More below.
+* I did a four day pre-hike in Maine as a warm-up prior to my ascent of Mount Katahdin. More below.
+
+Long Trail Hike, 2025
+---------------------
+
 I got some great advice which I strongly endorse: _if you are even
 remotely considering hiking the Appalachian Trail, hike the Vermont
 Long Trail first._ I followed this advice and it made all the difference.
 [I documented my Long Trail trip here](https://mackinnon.info/2025/09/01/one-way-north.html). A VT Long Trail thru-hike helps in a few ways:
-* The Long Trail hike lets you figure out whether you even like thru-hiking. A weekend
+* The Long Trail lets you figure out whether you even like thru-hiking. A weekend
 of backpacking just isn't enough - you need to be on trail for a few weeks
 to really understand the ups/downs of the sport. 
 * The Long Trail will teach you everything you need to know about gear and logistics.
@@ -103,23 +120,12 @@ encounter on the AT.
 * A successful end-to-end hike of the Long Trail gives you a huge
 confidence boost.
 
-Key elements of my 
-training:
-* I walked 5-12 miles every day for two years leading up to the hike.  My longer training days were often made up of two walks, one in early
-morning and one in the evening before dinner.
-* I did basic weight training at a local gym for about 18 months prior to the hike. I 
-used weights every other day and rotated through push (arms), pull (arms), and legs. You 
-will use your arms a lot on this trip so don't neglect that part of your training. In my view, weight training is the most effective step 
-you can take to avoid injury on a long-distance hiking trip, especially for us older folks.
-* I did a three day shake-down hike prior to starting my hike in Maine.
-More below.
-* I did a four day pre-hike in Maine as a warm-up prior to my ascent of Mount Katahdin. More below.
-
-Shake-Down Hike
----------------
+AT Shake-Down Hike
+------------------
 
 Two weeks before driving to Maine I did a three day shake-down hike.
-I live in New England so I decided to do my shake-down in the White
+I live in New England so I decided to do my shake-down on the AT 
+in the White
 Mountains. In hind-sight, that was a questionable decision, but it
 worked well and increased my chances of success on the AT.
 
@@ -129,24 +135,57 @@ hiked up the popular Old Bridal Path trail past the Greenleaf Hut and
 then up to the summit of Mt. Lafayette to pick up the AT. I hiked
 north across Garfield and a few others mountains in the Presidential Range.
 I camped at the Garfield Ridge Campsite on my first night and Ethan Pond on 
-my second. I met an AT shuttle driver from the excellent [Notch Hostel](https://notchhostel.com/)
+my second. I met a shuttle driver from the excellent [Notch Hostel](https://notchhostel.com/)
 at Crawford Notch on the evening of the third day and shuttled back to
 my car at Lafayette.
 
 This was a challenging trail section that provided realistic conditions
-to test out my gear, food, and fitness. I was exhausted at the end
+to test out my gear, food, and fitness. I was exhausted/sore at the end
 of the three days and was glad to have a few days of rest before
-driving to Maine. Once was enough so I skipped this section when walking south on my
-AT thru-hike. :-)
+driving to Maine. Once was enough so I skipped this section of the AT when walking south on my thru-hike. :-)
 
-Pre-Hike
---------
+Pre-Hike in Maine
+-----------------
 
 I'm a big fan of Baxter State Park and have always enjoyed hiking
 in the "back country" north of Mt. Katahdin. I decided to add a few
 days to my trip in order to completely explore the northern section
 of the park. This section served as a great warm-up before tackling 
-the mountain on start day.  
+the mountain on start day. It also provided a good way to force some
+days of low mileage to ease into my hiking routine. 
+
+One challenge that Baxter Park hikers need to deal with is obtaining
+the necessary permits. This requires morning phone calls to the 
+Baxter reservation office on consecutive mornings 4 months before your
+start date. Fortunately, the north of the park is not heavily traveled
+and I was able to get what I needed. 
+
+I was very fortunate that my wife was willing/able to drive me to Maine
+so transportation was relatively easy for me. My pre-hike went like this:
+
+* Drive to a hotel in Bangor to spend night 1. 
+* Drive north to Monson, ME to leave two food boxes at the excellent
+[Shaw's Hiker Hostel](http://www.shawshikerhostel.com/): one to be received
+in the middle of the 100 Mile Wilderness and one to be received at the 
+end.
+* Drive further north to Abol Bridge Campground to leave a food box for
+pickup at the start of the 100 Mile Wilderness. In my experience, this
+campground is not particularly "hiker-friendly," but I was able to 
+convince them to help me out with this box drop.
+* Drive further north to the excellent [Matagamon Wilderness Campground](https://www.matagamon.com/).  Here we rended a cabin for night 2.
+* The next morning, make the short drive into the Baxter Park Matagamon Gate and start the hike south through the park.
+* Hike south to South Branch Lake Campground for night 3. About 10 miles.
+* Hike south to Russell Pond Campground for night 4. About 12 miles.
+* Hike south to Nesowadnehunk Field Campground for night 5. About 12 miles.
+* Hike south to Katahdin Stream Campground for night 6. About 10 miles, mostly
+along the park tote road.
+* Summit Katahdin to start the AT on the next morning, then return to Katahdin Stream Campground
+for one more night.
+
+I had obtained permits for three nights at Katahdin Stream in case of 
+bad weather, but fortunately I didn't need all of them.
+
+
 
 
 
