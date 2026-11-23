@@ -30,6 +30,44 @@ is about. I hiked southbound (SOBO) starting on July 20 and ending on November 1
 a few days in the north prior to my official start (about 50 miles) and did the AT 
 approach trail in Amicalola State Park after my official finish (about 9 miles). So total mileage was around 2,260 and total hiking days was around 130.
 
+Choosing My Route
+-----------------
+
+I hiked southbound (SOBO). This decision was mostly driven by scheduling.
+I had several other trips/family events scheduled for the first part 
+of the summer so my start date was going to in the second half of July.
+At that point in the year a NOBO trip is infeasible. I didn't seriously consider 
+flip-flop because that option is too complicated for a poor planner like
+me. A SOBO journey was the only viable option.
+
+I'm surely biased, but I think SOBO is the best way to hike the AT. This
+is argued endlessly on the internet so I won't reiterate. For me the key
+advantages are:
+
+* Works great for someone leaving late in the summer.
+* No bugs.
+* Very little humidity.
+* If you move quickly, you should be able to finish before significant
+snowfalls in the south.
+* The hardest sections of the trail are finished early.
+* Once you hit Vermont the large crowds are gone.
+* Once you hit Massachusetts you are often alone.
+* Great fall colors for most of the trip.
+* It's faster. It's not a coincidence that the AT FKTs were set going south.
+
+If you go SOBO (and you should!):
+* Make sure you are in good physical shape with some reasonable hiking experience.
+There is very little honeymoon on the trail in Maine. You'll immediately
+encounter long food carries and extremely strenuous climbing.
+* Make sure you are comfortable hiking alone. There will be lots of 
+NOBO company for the first month or so, but thereafter your trip 
+will will be a mostly solitary experience. Given my late start, I didn't 
+encounter any other southbounders until New Hampshire. I was camping
+alone about 50% of the time in the south. 
+* Unless you like the cold, be ready for a relatively fast hike. It's
+counter-intuitive for us northerners, but the southern part of the AT gets
+cold in late October. You'll spend a lot of time above 5,000 feet in NC, TC, and GA.
+
 Preparation Notes
 -----------------
 
