@@ -179,21 +179,72 @@ campground was not particularly "hiker-friendly," but I was able to
 convince them to help me out with this box drop. Your mileage may vary.
 * Drove further north to the excellent [Matagamon Wilderness Campground](https://www.matagamon.com/).  Here we rented a cabin for night 2.
 * The next morning, made the short drive into the Baxter Park Matagamon Gate, signed-in, and started the hike south through the park.
-* Hiked south to the South Branch Lake Campground for night 3. About 10 miles.
+* Hiked south to the South Branch Pond Campground for night 3. About 10 miles.
 * Hiked south to the Russell Pond Campground for night 4. About 12 miles.
 * Hiked south to the Nesowadnehunk Field Campground for night 5, including
 a long stop at the spectacular Wassataquoik Lake. About 12 miles.
 * Hiked south to Katahdin Stream Campground for night 6, including
-stops at Kidney Pond and Daicey Pond. About 12 miles, much
+stops at Ledge Falls (bath and shave), Kidney Pond, and Daicey Pond. About 12 miles, much
 along the park tote road.
 * The next morning, summited Katahdin to start the AT, then returned to Katahdin Stream Campground
 for one more night. About 11 miles.
 
 I had obtained permits for three nights at Katahdin Stream in case of 
-bad weather, but fortunately I didn't need all of them.
+bad weather. Fortunately I didn't need all of them.
 
-Importantly, none of the days in this phase of the trip required more than 12 miles
-of hiking. This start is easy on your legs.
+Importantly, *none of the days in this phase of the trip required more than 12 miles
+of hiking*. This start is easy on your legs.
+
+Notes on Pace/Hours
+-------------------
+
+The biggest risk on an AT thru-hike is injury due to starting too 
+fast. I saw a bunch of people get off trail due to various repetitive
+stress injuries. You need to force yourself to take things easy at
+the start.
+
+I didn't do more than 12 miles per day for the first three weeks, including my pre-hike.
+
+There were some days in southern Maine and New Hampshire where I had
+a hard time covering more than 8 miles in a 12 hour hiking day.
+
+I started to feel much stronger after the White Mountains.
+
+I did my first 20 mile day in Vermont. There were a few very smooth 
+days in eastern Vermont (farm country) where I started to test my legs.
+
+By the time I hit Massachusetts I as comfortable walking 20-25 miles 
+per day.  Further south I started to make a few 30 mile days when needed
+to land at an important waypoint (i.e. reaching a restaurant in the Shenandoahs before closing, meeting a shuttle on time, getting to a town
+a day ahead of schedule just because, etc.).
+
+My longest "normal" day (i.e. repeatable) was 33 miles.
+
+My longest 24-hour period was 48 miles during the Four-State
+Challenge. 
+
+I found it necessary to be up early and hiking during every minute
+of daylight. As the days got shorter I almost always hiked for an 
+hour or two in the dark in the morning. I dislike hiking in the dark
+at night, but sometimes it was unavoidable to reach a suitable campsite.
+I found that breaking camp in the dark in the morning was *way* easier
+than making camp in the dark at night - thus the morning skew.
+
+I took a 30 minute break at lunch. I tried to avoid any other significant
+breaks during the day, aside from drawing water. I tried to eat snacks/drink water while moving.
+
+I took the steep uphills and steep downhills very slowly. 
+
+My "planning pace" for a typical day's milestones was 2.5 miles per hour. 
+I tried to avoid setting my milage goal (i.e. campsite for the night)
+until after lunch. I found that having maximum flexibility during the day improved my mental state and reduced the chances of "falling short" for
+the day.
+
+My "planning pace" for resupplies was 20 miles per day. Mentally, I found
+it helpful to supply for 4 20-mile days and then try to finish the stretch
+in 3 days.  Finishing a food carry a day early provided me with a huge
+mental boost. This approach provided a good margin in case something went
+wrong - I never ran out of food on the trail.
 
 
 
