@@ -170,22 +170,25 @@ in the middle of the 100 Mile Wilderness and one to be received at the
 end.
 * Drive further north to Abol Bridge Campground to leave a food box for
 pickup at the start of the 100 Mile Wilderness. In my experience, this
-campground is not particularly "hiker-friendly," but I was able to 
-convince them to help me out with this box drop.
+campground was not particularly "hiker-friendly," but I was able to 
+convince them to help me out with this box drop. Your mileage may vary.
 * Drive further north to the excellent [Matagamon Wilderness Campground](https://www.matagamon.com/).  Here we rended a cabin for night 2.
-* The next morning, make the short drive into the Baxter Park Matagamon Gate and start the hike south through the park.
-* Hike south to South Branch Lake Campground for night 3. About 10 miles.
-* Hike south to Russell Pond Campground for night 4. About 12 miles.
-* Hike south to Nesowadnehunk Field Campground for night 5. About 12 miles.
-* Hike south to Katahdin Stream Campground for night 6. About 10 miles, mostly
+* The next morning, make the short drive into the Baxter Park Matagamon Gate, sign-in, and start the hike south through the park.
+* Hike south to the South Branch Lake Campground for night 3. About 10 miles.
+* Hike south to the Russell Pond Campground for night 4. About 12 miles.
+* Hike south to the Nesowadnehunk Field Campground for night 5, including
+a long stop at the spectacular Wassataquoik Lake. About 12 miles.
+* Hike south to Katahdin Stream Campground for night 6, including
+stops at Kidney Pond and Daicey Pond. About 12 miles, much
 along the park tote road.
-* Summit Katahdin to start the AT on the next morning, then return to Katahdin Stream Campground
+* The next morning, summit Katahdin to start the AT, then return to Katahdin Stream Campground
 for one more night.
 
 I had obtained permits for three nights at Katahdin Stream in case of 
 bad weather, but fortunately I didn't need all of them.
 
-
+Importantly, none of the days in this phase of the trip required more than 12 miles
+of hiking.
 
 
 
