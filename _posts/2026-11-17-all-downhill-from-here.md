@@ -33,19 +33,78 @@ approach trail in Amicalola State Park after my official finish (about 9 miles).
 Preparation Notes
 -----------------
 
-At my age, preparation was critical to success. I saw lots of younger 
-hikers who were successful "right off the couch," but that wasn't me.
+I saw lots of younger 
+hikers who were successful "right off the couch." That wasn't me.
 
-I got some great advice at some point along the way: _if you are even
+At my age, preparation was critical to success.  A lot of physical training is required, particularly if you 
+want to enjoy the trip. I started off in reasonably good shape because my preparation started 
+about two years before I stepped onto the trail.
+
+I got some great advice which I strongly endorse: _if you are even
 remotely considering hiking the Appalachian Trail, hike the Vermont
 Long Trail first._ I followed this advice and it made all the difference.
-[I documented my Long Trail trip here](2025-09-01-one-way-north.md). The
-VT Long Trail hike helps in a few ways:
-* You can figure out whether you even like thru-hiking.
-* You learn everything you need to know about gear and logistics.
+[I documented my Long Trail trip here](https://mackinnon.info/2025/09/01/one-way-north.html). A VT Long Trail thru-hike helps in a few ways:
+* The Long Trail hike lets you figure out whether you even like thru-hiking. A weekend
+of backpacking just isn't enough - you need to be on trail for a few weeks
+to really understand the ups/downs of the sport. 
+* The Long Trail will teach you everything you need to know about gear and logistics.
 * If you can complete the Long Trail, you have the physical/mental 
 fitness needed to finish the AT - no question about it. The terrain in 
-the north section of the Long Trail is as challenging as anything you'll
+the northern Vermont is as challenging as anything you'll
 encounter on the AT.
+* A successful end-to-end hike of the Long Trail gives you a huge
+confidence boost.
+
+Key elements of my 
+training:
+* I walked 5-12 miles every day for two years leading up to the hike.  My longer training days were often made up of two walks, one in early
+morning and one in the evening before dinner.
+* I did basic weight training at a local gym for about 18 months prior to the hike. I 
+used weights every other day and rotated through push (arms), pull (arms), and legs. You 
+will use your arms a lot on this trip so don't neglect that part of your training. In my view, weight training is the most effective step 
+you can take to avoid injury on a long-distance hiking trip, especially for us older folks.
+* I did a three day shake-down hike prior to starting my hike in Maine.
+More below.
+* I did a four day pre-hike in Maine as a warm-up prior to my ascent of Mount Katahdin. More below.
+
+Shake-Down Hike
+---------------
+
+Two weeks before driving to Maine I did a three day shake-down hike.
+I live in New England so I decided to do my shake-down in the White
+Mountains. In hind-sight, that was a questionable decision, but it
+worked well and increased my chances of success on the AT.
+
+I drove to the parking lot at Lafayette Campground and parked my car
+in the part of the lot used by overnight hikers. I
+hiked up the popular Old Bridal Path trail past the Greenleaf Hut and
+then up to the summit of Mt. Lafayette to pick up the AT. I hiked
+north across Garfield and a few others mountains in the Presidential Range.
+I camped at the Garfield Ridge Campsite on my first night and Ethan Pond on 
+my second. I met an AT shuttle driver from the excellent [Notch Hostel](https://notchhostel.com/)
+at Crawford Notch on the evening of the third day and shuttled back to
+my car at Lafayette.
+
+This was a challenging trail section that provided realistic conditions
+to test out my gear, food, and fitness. I was exhausted at the end
+of the three days and was glad to have a few days of rest before
+driving to Maine. Once was enough so I skipped this section when walking south on my
+AT thru-hike. :-)
+
+Pre-Hike
+--------
+
+I'm a big fan of Baxter State Park and have always enjoyed hiking
+in the "back country" north of Mt. Katahdin. I decided to add a few
+days to my trip in order to completely explore the northern section
+of the park. This section served as a great warm-up before tackling 
+the mountain on start day.  
+
+
+
+
+
+MORE TO FOLLOW
+
 
 
