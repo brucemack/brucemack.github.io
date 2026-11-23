@@ -199,7 +199,7 @@ Notes on Pace/Hours
 -------------------
 
 The biggest risk on an AT thru-hike is injury due to starting too 
-fast. I saw a bunch of people get off trail due to various repetitive
+fast. I saw a bunch of people forced off trail due to various repetitive
 stress injuries. You need to force yourself to take things easy at
 the start.
 
@@ -265,22 +265,24 @@ that would inevitably come up on trail. :-)
 You'll hear this advice often and it's true: "fast" hikers don't walk
 fast, they just walk for more hours.
 
-Stops
------
-
 Zero Days
 ---------
 
-I took 9 full zero days (i.e. no hiking) at these places:
+Zero days are important for recovery, both physical and mental.
+Take your zeroes even if you are trying to move quickly - it pays
+off in the long run. I took 10 full zero days (i.e. no hiking) at these places:
 
 * Shaw's Hiker Hostel, Monson, ME. Recovery from the 100 Mile Wilderness.
-* The Libby Hostel, Gorham, NH. Rest before the Whites.
+* The Libby Hostel, Gorham, NH. Rest before hitting the Whites.
 * Lake of the Clouds Hut, Mt. Washington, NH. Unexpected bad weather day in an exposed area.
 * The Mt. Washington Hotel, Crawford Notch, NH. Nice weekend off with Laura.
 * Hampton Inn Hotel, Stroudsburg, PA. Needed a mental break. 
 * Home, while passing close from the trail in New York. Home for a previously scheduled eye-doctor appointment and to visit family.
 * The White Tree Inn, Buena Vista, VA. Unexpected zero to dodge hurricane Isaias.
-* The Appalachian Trailer, Hot Springs, NC. Double zero rest before the Smokies.
+* Day off to attend the Virginia Tech vs. Georgia Tech football game 
+with my son, Blacksburg, VA.
+* The Appalachian Trailer, Hot Springs, NC. Double zero rest before 
+entering the Great Smoky Mountain National Park.
 
 Nights Off Trail
 ----------------
@@ -290,20 +292,20 @@ a very good balance between making miles south and having a break for a
 hot shower and a good meal. I also used these trips off trail to resupply.
 
 I really liked all of the places I stayed so I can recommend all of the following
-without reservation. A few place were more "primitive," but compared to 
+without reservation. A few of these place were more "primitive" than 
+others, but compared to 
 sleeping in my tent all nights off trail felt luxurious. 
 
 My advice to hikers: 
 * I didn't appreciate this before I left, but the AT hiker hostels
-are generally a great experience. A lot of trail culture is experienced
-through the hostels. In general, hostels are better equipped to accommodate hikers than hotels. For example: try drying a wet tent
+are generally a great experience. A lot of trail culture is embodied in the hostels. In general, hostels are better equipped to accommodate hikers than hotels. For example: try drying a wet tent
 at a nice hotel. 
 * Do some homework before staying at a random hostel
 on trail. There are some really bad (possibly dangerous) ones that you want to avoid. I'm 
 not going to get into those details - you can figure it out by talking
 to the hikers moving in the opposite direction. Be careful out there.
 * FarOut is great, but it only lists the hotels that have specifically
-registered. There are sometimes better places to stay that aren't in FarOut.
+registered themselves. There are sometimes better places to stay that aren't in FarOut.
 
 I spent the night at each of these places:
 
@@ -317,7 +319,7 @@ I spent the night at each of these places:
 * The Notch Hostel, Franconia Notch, NH.
 * Hampton Inn Hotel, Manchester Center, VT.
 * Hotel Downstreet, North Adams, MA.
-* Home, while passing close from the trail in New York.
+* Home, while passing through New York.
 * AMC Mohican Outdoor Center, PA.
 * Holiday Inn Express outside of Duncannon, PA.
 * Hampton Inn Hotel, Stroudsburg, PA. 
@@ -331,16 +333,86 @@ I spent the night at each of these places:
 * Merry Inn Hiker Hostel, Marion, VA.
 * The Broken Fiddle, Damascus, VA.
 * Boots Off Hostel, Hampton, TN.
-* Uncle Johnnies Hostel, Erwin, TN.
+* Uncle Johnny's Hostel, Erwin, TN.
 * The Appalachian Trailer Hostel, Hot Springs, NC. 
 * Rambling Roots Hostel, Bryson City, NC
 * Green Dragon Hostel, Hiawassee, GA
 * Above the Clouds Hostel, Suches, GA
 * The Amicalola Lodge, Amicalola State Park, GA
 
+Nights On Trail
+---------------
 
+I slept on trail about 95 nights. Most of the time I slept in 
+my tent (Zpacks Solo Plex 1P). I usually camped at established 
+shelter or tent sites because flat tent spots were easier to find 
+in those places. 
 
+I slept in shelters about 8 times:
+* Three nights in the Smokies where it is mandated.
+* The other times during severe whether.
 
+I stealth-camped (i.e. random spot in the woods) about 25 nights. This
+generally happened in cases where I was too tired to make it to a 
+more established site or when an exceptionally cool spot was seen.
+
+I don't have a philosophical problem with the AT shelters, but I generally
+got better sleep in my tent due to reduced concerns about drifters,
+late-arriving hikers, snoring, mice, and snakes. 
+
+Drifters can be a problem in shelter areas, particularly those built
+close to road crossings. I only ran into this twice and it's not
+too hard to manage. My advice would be:
+* When rolling into a shelter area I never took off my pack until 
+I had sized up the crew that was already there. Its very easy to 
+say something like "hi, just checking this place out" and keep moving
+if the crowd doesn't feel right to you.
+* Likewise, I generally avoided unpacking much until just before
+bed in case I decided to move along. That said, I never had a case
+where I decided to leave after parking for the night.
+* Trust your instincts. If the company at a shelter doesn't seem
+right, just move on - not a big deal. Sometimes just moving down the 
+trail 15 minutes
+and setting up at a stealth spot in the woods will result in a 
+much better night sleep.
+
+Injuries/Illness
+----------------
+
+I'm not a doctor so take all of this for what it's worth. 
+
+On a trip like this, you'll need to know your body well enough
+to distinguish between "really injured/sick" and "just very uncomfortable."
+I never got injured or sick, but I was very uncomfortable a lot, especially
+at the beginning of the hike.
+
+Maybe it's just me, but significant leg/foot pain is inevitable when you are hiking
+so many miles over such bad terrain. I rotated through a number of aches and pains, some lasting for days. My strategy was to start every day 
+hiking very slowly and to try to hike at a 
+pace just below the threshold of any significant discomfort, paying particular attention
+to the difference between morning and evening pains. I found that by
+"hiking through" my various pains they would eventually go way. If 
+you get too worried and/or get off trail for every significant pain 
+you'll probably never finish.
+
+Some pains would go away in the afternoon. This generally meant that I 
+needed to "warm up" that part of my body more carefully. 
+
+In my opinion, I avoided illness by doing the following:
+* Washed hands with soap aggressively, even at lunch breaks. 
+* At water sources, moved up stream to the point of inconvenience. Chances
+are most people won't bother going to that spot.
+* Never accepted unpackaged foods. It's tempting to take 
+burgers, hotdogs, or pancakes from trail angels. I only took bags
+of chips and/or drinks.
+* Minimized use of the tables at shelters. This is less of an issue
+for late-season SOBOs, but noro is a real issue on trail.
+* I washed my spoon and pot with boiling water/soap after very use. 
+You are using more gas, but it's worth avoiding illness.
+
+Random Tips
+-----------
+* Reflective stuff
 
 
 
