@@ -156,19 +156,19 @@ I'm a big fan of Baxter State Park and have always enjoyed hiking
 in the "back country" north of Mt. Katahdin. I decided to add a few
 days to my AT hike in order to completely explore the northern region
 of the park. This served as a great warm-up before tackling 
-Katahdin on AT start day. It also provided a good way to force some
+Katahdin on my official AT start day. It also provided a good way to force some
 days of low mileage to ease into my hiking routine. 
 
 One challenge that Baxter Park hikers need to deal with is obtaining
 the necessary permits. This required phone calls to the 
-Baxter reservation office on consecutive mornings 4 months before your
+Baxter reservation office on consecutive mornings 4 months before my
 start date. Fortunately, the north of the park is not heavily traveled
 and I was able to get the permits I needed.
 
 I was very fortunate that my wife was willing/able to drive me to Maine
 so transportation was relatively easy for me. My pre-hike went like this:
 
-* Drove to a hotel in Bangor to spend night 1. 
+* Drove to a hotel in Bangor, ME to spend night 1. 
 * Drove north to Monson, ME to leave two food boxes at the excellent
 [Shaw's Hiker Hostel](http://www.shawshikerhostel.com/): one to be received
 in the middle of the 100 Mile Wilderness and one to be received at the 
@@ -200,14 +200,13 @@ Notes on Pace/Hours
 
 The biggest risk on an AT thru-hike is injury due to starting too 
 fast. I saw a bunch of people forced off trail due to various repetitive
-stress injuries. You need to force yourself to take things easy at
-the start.
-
-I didn't do more than 12 miles per day for the first three weeks, including my pre-hike. You need to force yourself to slow down at
+stress injuries. You need to force yourself to slow down at
 the start, especially because you'll be feeling fresh and will be
 anxious to start racking up some miles. 
 
-There were some days in southern Maine and New Hampshire where I had
+I didn't do more than 12 miles per day for the first three weeks, including my pre-hike. 
+
+There were some areas in southern Maine and New Hampshire where I had
 a hard time covering more than 8 miles in a 12 hour hiking day. The
 terrain was brutal.
 
@@ -424,11 +423,84 @@ for late-season SOBOs, but noro is a real issue on trail.
 You are using more gas, but it's worth avoiding illness.
 * I used bug-spray (Sawyer Picaridan) to avoid lyme disease. I've heard that DEET is more effective, but that it also dissolves the material that hiking gear is made from.
 
+Food
+----
+
+I've heard it said: the main challenge of the first third of the trail
+is physical, the second third is mental, and the third third is 
+nutritional. This was completely true in my case. It's hard to provide
+general advice on this topic because everyone's body is different, but
+I had all of the usual problems.
+
+After a few months on trail my fitness was no longer a limiting 
+factor. I could hike for 24 hours if desired. Instead, my limit was
+calories. I would often feel myself "running out of gas" towards
+the end of the day. Any time I was lucky enough to pass a store, deli,
+coffee shop, or gas station during the day the extra mileage gained
+as a result of the "calorie boost" was significant. I first discovered
+this after stopping at the AT-favorite Abracadabra Coffee Co. in
+Woodstock, VT one afternoon. After two ice creams and a donut I felt like superman. I walked another 15 miles into the night after that stop.
+
+Food carry is a balance. Too little and you need to stop in town 
+constantly. Too much and you're too heavy to hike. I found the sweet spot for me was between three and four days of carry. There were some places
+(100 Mile Wilderness, Smokies, NJ) where 6 days was required due 
+to lack of resupply options.
+
+I resupplied from stores about half the time and received supply boxes about half the time. I really liked the resupply boxes because of their
+efficiency, but this required someone who is willing/able to do the work
+to pack/send them. I was lucky that my wife was willing to do this.
+
+During some parts of my trip I found it was better to cook my high-calorie 
+dinner at lunch time and eat my lunch in the evening before bed. This
+gave me some more energy for hiking during the afternoon.
+
+I alternated between packaged backpacking meals (Mountain House, Peak, etc.) and homemade bags of dried food.
+
+Random food notes:
+* I had very good luck using the [Greenbelly Meals 2Go](https://www.greenbelly.co/). 700 calories in one shot in the afternoon.
+* I ate a lot of Snickers bars.
+* I ate a lot of Cliff Builder protein bars.
+* I ate a lot of fig bars.
+* I ate a lot of Carnation Breakfast Essentials.
+* My favorite homemade breakfast packet:
+  - Oatmeal
+  - Powdered milk
+  - Flax seed
+  - Freeze-dried blueberries
+* Most lunches:
+  - Tuna or chicken packet
+  - Mayo
+  - Cholula hot sauce
+  - Tortilla
+* My favorite homemade dinner packet (ala Andrew Skurka):
+  - Freeze dried refried beans
+  - Rice 
+  - Taco seasoning
+  - Cheese
+  - Chips
+
+Whenever in town I forced myself to eat a lot. Seriously.
+
+I carried a bear canister (BV450) most of the trip. I would do the same
+again. It was very nice not to be fooling around with marginal bear
+hangs at night after long hike. It was very nice not to have to
+worry about mice/critters. There were places in the south where I don't
+think there were any suitable branches for bear hangs, especially in 
+the rhododendron forests.
+
+All this said, I was under-caloried and lost about 40 pounds during 
+my trip. Not ideal.
+
 Random Tips
 -----------
-* Reflective stuff
 
-
+* Put some reflective tape on your bear canister and phone case.
+* Put some reflective string on the outside of your pack. One time
+I almost lost my pack in the dark.
+* Put some reflective string on the outside of your tent if not
+there already. When getting up at night it's very easy to lose 
+track of your tent in the dark. This is even more important when 
+it is very foggy.
 
 MORE TO FOLLOW
 
