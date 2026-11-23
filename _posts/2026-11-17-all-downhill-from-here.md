@@ -405,10 +405,17 @@ stop of some kind. I needed to force myself to get going slowly
 after a stop.
 * Blue blazes and/or awkward hikes down to water sources were the 
 most dangerous, partially because I didn't always approach these
-places with the same focus as the "real trail."
+places with the same care as the "real trail."
 * I found that listening to music/podcasts/books could distract me
 from being careful about footing. I needed to walk in silence in very 
-uneven/tangled terrain. This is a "walking a chewing gum at the same time" problem.  
+uneven/tangled terrain. This is a classic "walking a chewing gum at the same time" problem. When the treadway became easier in the south
+I was able to listen to audio books more safely.
+
+Giardia, food poisoning, and lyme disease are real threats 
+on the trail - much more dangerous than bears or snakes.
+I encountered hikers with all of these ailments. Norovirus is 
+more of a problem
+for the early-season NOBOs so I never saw that on my trip.
 
 In my opinion, I avoided illness by doing the following:
 * Washed hands with soap aggressively, even at lunch breaks. 
@@ -430,7 +437,7 @@ I've heard it said: the main challenge of the first third of the trail
 is physical, the second third is mental, and the third third is 
 nutritional. This was completely true in my case. It's hard to provide
 general advice on this topic because everyone's body is different, but
-I had all of the usual problems.
+I had all of the usual food problems on the trail.
 
 After a few months on trail my fitness was no longer a limiting 
 factor. I could hike for 24 hours if desired. Instead, my limit was
@@ -439,7 +446,7 @@ the end of the day. Any time I was lucky enough to pass a store, deli,
 coffee shop, or gas station during the day the extra mileage gained
 as a result of the "calorie boost" was significant. I first discovered
 this after stopping at the AT-favorite Abracadabra Coffee Co. in
-Woodstock, VT one afternoon. After two ice creams and a donut I felt like superman. I walked another 15 miles into the night after that stop.
+Woodstock, VT. After two ice creams and a donut I felt like superman. I walked another 15 miles into the night after that afternoon stop.
 
 Food carry is a balance. Too little and you need to stop in town 
 constantly. Too much and you're too heavy to hike. I found the sweet spot for me was between three and four days of carry. There were some places
@@ -457,7 +464,7 @@ gave me some more energy for hiking during the afternoon.
 I alternated between packaged backpacking meals (Mountain House, Peak, etc.) and homemade bags of dried food.
 
 Random food notes:
-* I had very good luck using the [Greenbelly Meals 2Go](https://www.greenbelly.co/). 700 calories in one shot in the afternoon.
+* I had very good luck using the [Greenbelly Meals 2Go](https://www.greenbelly.co/) snacks. 700 calories in one shot in the afternoon.
 * I ate a lot of Snickers bars.
 * I ate a lot of Cliff Builder protein bars.
 * I ate a lot of fig bars.
@@ -488,8 +495,13 @@ worry about mice/critters. There were places in the south where I don't
 think there were any suitable branches for bear hangs, especially in 
 the rhododendron forests.
 
+Ironically, I sent my bear canister home just before entering GA. Now
+GA is the only state that requires them to be carried.
+
 All this said, I was under-caloried and lost about 40 pounds during 
 my trip. Not ideal.
+
+![AT2](/assets/images/IMG_0978.jpg)
 
 Random Tips
 -----------
@@ -501,6 +513,10 @@ I almost lost my pack in the dark.
 there already. When getting up at night it's very easy to lose 
 track of your tent in the dark. This is even more important when 
 it is very foggy.
+* Always cultivate friendly conversations with day-hikers that you
+encounter in the woods. They will often turn into a free ride
+into town.
+
 
 MORE TO FOLLOW
 
