@@ -390,6 +390,8 @@ Drifters and/or folks with mental problems can occasionally be a
 problem in shelter areas, particularly those built very
 close to road crossings. I only ran into this twice and it's not
 too hard to manage. My advice would be:
+* All other things being equal, I avoided shelters and campsites that 
+were close to a road.
 * When rolling into a shelter area I never took off my pack until 
 I had sized up the crew that was already there. It's very easy to 
 say something like "hi, just checking this place out" and keep moving
