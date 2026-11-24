@@ -40,11 +40,11 @@ give it a try. The AT will change you.
 Choosing My Route
 -----------------
 
-I hiked southbound (SOBO). This decision was mostly driven by scheduling.
+I hiked southbound (SOBO) starting in Maine. This decision was mostly driven by scheduling.
 I had other trips/family events scheduled for the first part 
 of the summer so my start date needed to be in the second half of July.
 At that point in the year a northbound trip is infeasible. I didn't seriously consider a
-flip-flop because that option is too complicated for a poor planner like
+flip-flop because that is too complicated for a poor planner like
 me. A SOBO journey was the only viable option.
 
 I'm surely biased, but I think late-season SOBO is the best way to hike the AT. This
@@ -57,7 +57,7 @@ part of the summer.
 * Very little humidity.
 * If you move quickly, you should be able to finish before significant
 snowfalls in the south.
-* The hardest sections of the trail got finished early.
+* The hardest part of the trail gets finished early.
 * Once you hit Vermont the large crowds are gone.
 * Once you hit Massachusetts you are often alone.
 * Great fall colors for most of the trip.
@@ -79,7 +79,7 @@ encounter any other southbounders until New Hampshire. I was camping
 alone about 50% of the time in the south. 
 * Unless you like the cold, be ready for a relatively fast hike. It's
 counter-intuitive for us northerners, but the southern part of the AT gets
-cold in late October. You'll spend a lot of time above 5,000 feet (and below freezing) in NC, TN, and GA.
+cold in late October. You'll spend a lot of time above 5,000 feet (and below freezing) in NC, TN, and GA. The fear of snow had me up early and hiking south every morning!
 
 Preparation Notes
 -----------------
@@ -122,6 +122,10 @@ northern Vermont is as challenging as anything you'll
 encounter on the AT.
 * A successful end-to-end hike of the Long Trail gives you a huge
 confidence boost.
+* The Long Trail overlaps the AT for 100 miles so you'll build 
+some first-hand familiarity with the AT. I purposely timed my
+Long Trail hike to overlap the AT NOBO bubble in order to  
+meet and learn from these experienced AT hikers.
 
 My AT Shake-Down Hike
 ---------------------
