@@ -112,8 +112,7 @@ I got some great advice which I strongly endorse: _if you are even
 remotely considering hiking the Appalachian Trail, hike the Vermont
 Long Trail first._ I followed this advice and it made all the difference.
 [I documented my Long Trail trip here](https://mackinnon.info/2025/09/01/one-way-north.html). A VT Long Trail thru-hike helps in a few ways:
-* The Long Trail lets you figure out whether you even like thru-hiking. A weekend
-of backpacking just isn't enough - you need to be on trail for a few weeks
+* The Long Trail lets you figure out whether you enjoy thru-hiking. A weekend backpacking trip just isn't enough - you need to be on trail for a few weeks
 to really understand the ups/downs of the sport. 
 * The Long Trail will teach you everything you need to know about gear and logistics.
 * If you can complete the Long Trail, you have the physical/mental 
@@ -124,8 +123,7 @@ encounter on the AT.
 confidence boost.
 * The Long Trail overlaps the AT for 100 miles so you'll build 
 some first-hand familiarity with the AT. I purposely timed my
-Long Trail hike to overlap the AT NOBO bubble in order to  
-meet and learn from these experienced AT hikers.
+Long Trail hike to overlap the AT NOBO bubble in order to meet and learn from these experienced AT hikers.
 
 My AT Shake-Down Hike
 ---------------------
