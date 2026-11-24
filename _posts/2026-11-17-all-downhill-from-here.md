@@ -592,7 +592,7 @@ days.
 I think this is solid advice. That said, I wasn't able to articulate
 a clear reason why I was doing the hike, although I was pretty 
 confident that the "why" would reveal itself along the way. Zach's advice notwithstanding, I started my trip whyless. Fortunately, when the bad days
-came I never considered quitting. Fortunately, as the trip went on I did
+came I never considered quitting. As the trip went on I did
 get more clarity on the reasons why I was hiking.  Things all worked out
 in the end. 
 
@@ -695,7 +695,7 @@ where I lost it.
 When you depend on your phone for navigation it is critical 
 to keep it dry. Obviously, you want to avoid submerging the phone. 
 However, a more subtle/common problem can occur when a few drops of water
-get on the phone's screen. Very often a damp touch screen becomes temporarily unusable. My solution was to keep my phone in a thin Zip-lock 
+get on the phone's screen. Very often a damp capacitive touch screen becomes temporarily unusable. My solution was to keep my phone in a thin Zip-lock 
 whenever it was wet out. The phone could still be used (sort of) through 
 the bag. I also carried a bandanna in a separate Zip-lock to dry off
 the phone screen if needed. That said, there were two days 
