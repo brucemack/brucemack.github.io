@@ -613,45 +613,59 @@ Electronics
 -----------
 
 I carried:
-* An iPhone 17 with the FarOut app loaded. 
-* A Nitecore NU-25 headlamp.
-* A Nitecore NB-10000 Gen 3 power bank (10,000 mAh capacity)
-* A Garmin InReach Mini 2
+* An iPhone 17 with the FarOut app. 
+* A Nitecore NU25 headlamp.
+* A Nitecore NB10000 Gen 3 power bank (10,000 mAh capacity)
+* A Garmin InReach Mini 2 satellite messenger.
 * A cheap Casio wrist watch with an alarm.
 
 I used the ubiquitous FarOut app for navigation. I won't get
 into a long description of FarOut because it is covered well
-in other places. The most important uses of FarOut in my experience
-were:
+in other places. The most important uses of FarOut:
 * Commentary on water sources, particularly through the droughts
 in PA and VA.
-* Help getting back on the trail during a few places (less than 10)
-where lost it. 
+* Route planning.
+* Help getting back on the trail in a few places (less than 10)
+where I lost it. 
 * Reassurance that I was still on the trail, particularly during night hiking.
 
 When you depend on your phone for navigation it is critical 
-to keep it dry. Obviously, you want to avoid a submerged phone. 
+to keep it dry. Obviously, you want to avoid submerging the phone. 
 However, a more subtle/common problem can occur when a few drops of water
-get on the phone's screen. Very often a damp touch screen is unusable.
-My solution was to keep my phone in a thin Zip-lock 
-bag when it was wet out. The phone could still be used (sort of) through 
+get on the phone's screen. Very often a damp touch screen becomes temporarily unusable. My solution was to keep my phone in a thin Zip-lock 
+whenever it was wet out. The phone could still be used (sort of) through 
 the bag. I also carried a bandanna in a separate Zip-lock to dry off
-the phone screen if needed. All this being said, there were two days 
+the phone screen if needed. That said, there were two days 
 on my trip when I couldn't access FarOut because it was too wet
 to use my phone reliably. This could be a significant problem.
 
-After one such failure, I got in the habit of writing down the 
-mile numbers of the future water sources and campsites at each 
-resupply stop. This gave me a back-up to use in the case that either
-my phone was not working, or it was raining so hard that I didn't
+After one such failure, I got into the habit of writing down the 
+mile numbers of all the water sources and campsites down the track from each resupply stop. This gave me a back-up to use in case that either
+my phone wasn't working or it was raining so hard that I didn't
 dare pull it out.
+
+I traveled with my phone in low power and airplane modes at all times.
 
 The Garmin InReach Mini worked great for sending daily check-in messages to my family. I also used the Garmin text feature occasionally, but
 the satellite messaging feature on the iPhone was generally faster. 
+I only turned on my Garmin in the evening for as long as it took to 
+transmit the check-in message, download any texts, and download the weather forecast. The battery life on the Garmin is very good. 
 
+The Nitecore NU25 is a great headlamp. I could get around 8 hours of
+night hiking on a single charge. The low-power "moonlight" mode was
+bright enough for in-camp usage. 
 
+When leaving town with a fully charged phone, headlamp, and power bank
+I was able to go about 6 days without running out of power. For 
+long stretches (more than 3 days) I tended to be conservative with 
+power - mostly by limiting podcast/audio books.
 
-TO FOLLOW
+One problem to watch out for: an iPhone will draw from a power
+bank as long as it is connected. If you fall asleep while charging
+your iPhone you can accidentally drain the bank completely. After 
+learning this the hard way I set my alarm during phone charging. The Nitecore
+headlamp does not have this problem - it stops drawing power
+as soon as it is fully charged.
 
 Random Tips
 -----------
