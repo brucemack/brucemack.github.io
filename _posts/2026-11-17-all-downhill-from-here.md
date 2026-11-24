@@ -100,7 +100,7 @@ used weights every other day and rotated through push (arms), pull (arms), and l
 will use your arms a lot on this trip so don't neglect that part of your training. In my view, weight training is the most effective step 
 you can take to avoid injury on a long-distance hiking trip, especially for us older folks.
 * I read [_Appalachian Trials_](https://www.amazon.com/Appalachian-Trials-Psychological-Emotional-Thru-Hike/dp/0985090103/ref=monarch_sidesheet_title) by Zach Davis. I think this is the best book for 
-preparing ones self for the hike. 
+preparing yourself for the hike. 
 * I did a three day shake-down hike prior to starting my hike in Maine.
 More below.
 * I did a four day pre-hike in Maine as a warm-up prior to my ascent of Mount Katahdin. More below.
@@ -291,18 +291,18 @@ off in the long run. I took 10 full zero days (i.e. no hiking) at these places:
 * The White Tree Inn, Buena Vista, VA. Unexpected zero to dodge hurricane Isaias.
 * Day off to attend the Virginia Tech vs. Georgia Tech football game 
 with my son, Blacksburg, VA.
-* The Appalachian Trailer, Hot Springs, NC. Double zero rest before 
+* The Appalachian Trailer Hostel, Hot Springs, NC. Double zero to rest before 
 entering the Great Smoky Mountain National Park.
 
 Nights Off Trail
 ----------------
 
-On average, I got off trail for the night every 4.5 days. That provided
+On average, I got off trail for the night every 5 days. That provided
 a very good balance between making miles south and having a break for a 
 hot shower and a good meal. I also used these trips off trail to resupply.
 
 I really liked all of the places I stayed so I can recommend all of the following
-without reservation. A few of these place were more "primitive" than 
+without hesitation. A few of these place were more "primitive" than 
 others, but compared to 
 sleeping in my tent all nights off trail felt luxurious. 
 
@@ -315,7 +315,7 @@ on trail. There are some really bad (possibly dangerous) ones that you want to a
 not going to get into those details - you can figure it out by talking
 to the hikers moving in the opposite direction. Be careful out there.
 * FarOut is great, but it only lists the hotels that have specifically
-registered themselves. There are sometimes better places to stay that aren't in FarOut.
+registered themselves. There are sometimes better places to stay that aren't listed in FarOut.
 
 I spent the night at each of these places:
 
@@ -341,7 +341,7 @@ I spent the night at each of these places:
 * Four Pines Hostel, VA.
 * Woods Hole Hostel, Pearisburg, VA.
 * Merry Inn Hiker Hostel, Marion, VA.
-* The Broken Fiddle, Damascus, VA.
+* The Broken Fiddle Hostel, Damascus, VA.
 * Boots Off Hostel, Hampton, TN.
 * Uncle Johnny's Hostel, Erwin, TN.
 * The Appalachian Trailer Hostel, Hot Springs, NC. 
@@ -354,7 +354,7 @@ Nights On Trail
 ---------------
 
 I slept on trail about 95 nights. Most of the time I slept in 
-my tent (Zpacks Solo Plex 1P). I usually camped at established 
+my tent (Zpacks Solo Plex 1P). I usually camped at an established 
 shelter or tent sites because flat tent spots were easier to find 
 in those places. 
 
@@ -370,7 +370,8 @@ I don't have a philosophical problem with the AT shelters, but I generally
 got better sleep in my tent due to reduced concerns about drifters,
 late-arriving hikers, snoring, mice, and snakes. 
 
-Drifters can be a problem in shelter areas, particularly those built
+Drifters and/or folks with mental problems can occasionally be a 
+problem in shelter areas, particularly those built very
 close to road crossings. I only ran into this twice and it's not
 too hard to manage. My advice would be:
 * When rolling into a shelter area I never took off my pack until 
@@ -381,10 +382,15 @@ if the crowd doesn't feel right to you.
 bed in case I decided to move along. That said, I never had a case
 where I decided to leave after parking for the night.
 * Trust your instincts. If the company at a shelter doesn't seem
-right, just move on - not a big deal. Sometimes just moving down the 
+right, just move on - it's not a big deal. Sometimes just moving down the 
 trail 15 minutes
 and setting up at a stealth spot in the woods will result in a 
 much better night sleep.
+
+It interesting to see that the trail authorities are working on 
+removing all "non-conformant" shelters that are less than 1 mile 
+from a road. I'm assuming this is being done to manage the issue
+of non-hikers living in the AT shelters.
 
 Injuries/Illness
 ----------------
