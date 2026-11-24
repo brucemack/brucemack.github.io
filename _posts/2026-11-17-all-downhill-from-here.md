@@ -250,6 +250,9 @@ not being able to quickly locate the water source and/or bear box.
 I took a 30 minute break at lunch. I tried to avoid any other significant
 breaks during the day, aside from drawing water. I tried to eat snacks/drink water while moving.
 
+If I needed to dry out my gear I would take a longer lunch break
+at a place with good sun exposure.
+
 I took the steep uphills and steep downhills very slowly. 
 
 My "planning pace" for a typical day's milestones was 2.5 miles per hour. 
@@ -557,7 +560,8 @@ Ironically, I sent my bear canister home just before entering GA. Now
 GA is the only state that requires them to be carried at all times.
 
 I carried a stove and cooked hot meals for all breakfasts and dinners. To
-me, the extra weight was well worth it. Resupplying isobutane canisters
+me, the extra weight was well worth it. A hot meal is good for your
+mental health, especially on a cold and/or rainy day. Resupplying isobutane canisters
 on the trail was very easy.
 
 All this said, I was under-caloried and lost about 40 pounds during 
