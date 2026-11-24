@@ -555,10 +555,11 @@ I started off with 1L and 700mL Smartwater bottles for carrying
 water. Once I got to PA and the drought became a bigger issue
 I added a second 1L bottle for longer carries. 
 
-I used the Sawyer Squeeze filter and a 2L CNOC water bladder. I also
+I used the Sawyer Squeeze filter and a 2L CNOC water bladder. These
+were very common on trail. I also
 made a scoop by cutting the off the bottom of a 12oz plastic 
-Coke bottle. In the south a scoop is critical because there are many
-water sources that are too shallow to fill up a CNOC directly.
+Coke bottle. In the south a scoop became critical because there were many
+water sources that were too shallow to fill up a CNOC directly.
 
 I had some problems with water supply given the drought that 
 was going on in PA and VA during my hike. Any time I passed 
@@ -572,6 +573,9 @@ My main advice is: pay close attention to the water commentary
 in FarOut and, when in doubt, carry some extra. The mental 
 tax of worrying about being thirsty is high so carrying a bit 
 of extra makes the day much more enjoyable.
+
+And don't forget to sleep with your filter and carry it on your
+body once it gets cold. A Sawyer filter that has frozen is ineffective.
 
 The Mental Game
 ---------------
