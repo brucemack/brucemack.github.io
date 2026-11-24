@@ -583,12 +583,12 @@ The Mental Game
 Many have said this before: a multi-month hiking trip is more
 mental than physical. I would generally agree. 
 
-One of the things that Zach Davis stresses in his "Appalachian Trials"
+One of the things that Zach Davis stresses in his _Appalachian Trials_
 book is the importance of having a clear "reason why" for your trip before 
-you leave. His argument is that the novelty of the hiking experience will 
+you leave. He argues that the novelty of the hiking experience will 
 wear off after a few weeks and, when things get bad, hikers who don't 
 have a strong reason for being on trail will often quit. It's a voluntary 
-activity and there's nothing *really* forcing you to stay out there.
+activity and there's nothing *really forcing you* to stay out there.
 Zach goes so far as to suggest that you should write your "why" on a slip of
 paper and carry it on your hike to use as a reminder during the inevitable bad
 days.
@@ -603,13 +603,15 @@ in the end.
 Be cautious about basing your expectations for the trip on YouTube. There
 are some very informative YouTubers/vloggers on the AT, but I feel
 like most videos focus on the exciting/entertaining parts of the hike
-while skipping the boring/painful/uncomfortable parts. The pictures
-that I took of my own trip have the same bias. If nothing else,
+while skipping the boring/painful/uncomfortable/dangerous parts. The pictures
+that I took of my own trip have this same bias. If nothing else,
 I didn't want to get my phone wet by taking a picture in the pouring 
 rain! 
 
 Here are a few tips for dealing with the mental side of an AT hike:
 
+* Take preparation/shake-down seriously. Try to avoid doing anything
+for the first time on your actual thru-hike.  
 * Don't plan too far ahead - that can become overwhelming. Just focus on
 getting to the next water source, the next campsite, and the next
 resupply. I'm a bad planner so perhaps this is self-serving, but when
@@ -629,7 +631,7 @@ other hikers on the trail provided a big morale boost.
 Challenge are fun ways to break up the routine of the trip.
 * Always introduce yourself to others at the shelters/campsites and
 make an effort to eat dinner with the group. The human contact (even
-with hkers that you know you'll never see again) will help you
+with hikers that you know you'll never see again) will help you
 to maintain your sanity.
 
 Gear
