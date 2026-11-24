@@ -28,12 +28,12 @@ General Overview
 I'm going to assume that you know what the Appalachian Trail 
 is about. I hiked southbound (SOBO) starting on July 20 and ending on November 17, 2026. The trail itself was 2,197.7 miles long in 2026. I also hiked for 
 a few days in the north prior to my official start (about 50 miles) and did the AT 
-approach trail in Amicalola State Park after my official finish (about 9 miles). So my total mileage was around 2,260. My hike lasted around 130 days.
+approach trail in Amicalola State Park in the south after my official finish (about 9 miles). So my total mileage was around 2,260. My hike lasted around 130 days.
  
 I averaged about 17.5 miles per day. I took about 10 days off. My daily
 mileage started around 10-12 miles per day and ended around 25 miles per day.
 
-There were a few really bad days, but generally speaking I enjoyed
+There were a few really bad days on trail, but generally speaking I enjoyed
 every minute of this adventure. I would strongly encourage everyone to 
 give it a try. The AT will change you.
 
@@ -41,7 +41,7 @@ Choosing My Route
 -----------------
 
 I hiked southbound (SOBO). This decision was mostly driven by scheduling.
-I had several other trips/family events scheduled for the first part 
+I had other trips/family events scheduled for the first part 
 of the summer so my start date needed to be in the second half of July.
 At that point in the year a northbound trip is infeasible. I didn't seriously consider a
 flip-flop because that option is too complicated for a poor planner like
@@ -53,22 +53,22 @@ advantages of a late-season SOBO hike are:
 
 * Works great for someone with other things going on in the first
 part of the summer.
-* No bugs.
+* Very few bugs.
 * Very little humidity.
 * If you move quickly, you should be able to finish before significant
 snowfalls in the south.
-* The hardest sections of the trail are finished early.
+* The hardest sections of the trail got finished early.
 * Once you hit Vermont the large crowds are gone.
 * Once you hit Massachusetts you are often alone.
 * Great fall colors for most of the trip.
 * SOBO is faster. It's not a coincidence that AT FKTs are usually set going south.
-* It's meant to be. It's not a coincidence that the rock at the start 
+* The trail was meant to be hiked SOBO. It's not a coincidence that the rock at the start 
 of the approach trail at Amicalola Falls says "AT Maine to Georgia."
 * The SOBO hiker personality type tends to be more focused on hiking
 (as opposed to partying), more easy-going, and less prone to fear-mongering
 and other trail drama.
 
-If you go SOBO (and you should!):
+If you hike SOBO (and you should!):
 * Make sure you are in good physical shape with some reasonable hiking experience.
 There is very little honeymoon on the trail in Maine. You'll immediately
 encounter some long food carries and extremely strenuous climbing.
