@@ -393,16 +393,16 @@ I had sized up the crew that was already there. It's very easy to
 say something like "hi, just checking this place out" and keep moving
 if the crowd doesn't feel right to you.
 * Likewise, I generally avoided unpacking much until just before
-bed in case I decided to move along. That said, I never had a case
+bed in case I decided later to move along. That said, I never had a case
 where I decided to leave after parking for the night.
 * Trust your instincts. If the company at a shelter doesn't seem
 right, just move on - it's not a big deal. Sometimes just moving down the 
 trail 15 minutes
 and setting up at a stealth spot in the woods will result in a 
-much better night sleep.
+much better nights sleep.
 
 It's interesting to see that the trail authorities are working on 
-demolishing the "non-conformant" shelters that are less than 1 mile 
+demolishing a few "non-conformant" shelters that are less than 1 mile 
 from a road. I'm assuming this is being done to manage the issue
 of non-hikers living in the AT shelters.
 
