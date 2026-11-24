@@ -402,18 +402,18 @@ of non-hikers living in the AT shelters.
 Getting Around
 --------------
 
-There are cases where rides were needed to get into towns. A few 
+There were cases where I needed a ride to get into town. A few 
 notes from my experience:
-* Hitchhiking is pretty easy at major trail crossings. The 
-locals know about hikers and many seem to enjoy picking up 
+* Hitchhiking was pretty easy at major trail crossings. The 
+locals knew about the trail and many seemed to enjoy picking up 
 hikers.
-* Local shuttles are a good way to provide more certainty. The
-local shuttle drivers also know the ins/outs of AT road crossings,
-some of which are obscure US Forest Service Roads that won't be
+* Local shuttles were a good way to provide more certainty. The
+local shuttle drivers also knew the ins/outs of AT road crossings,
+some of which are obscure US Forest Service Roads that wouldn't be
 familiar to "normal" people. 
-* Uber actually works in some places on the trail.
-* Outfitters always maintain a list of local shuttles/taxis.
-* The best way to find out about good shuttle drivers is through
+* Uber actually worked in some places on the trail.
+* Outfitters always maintained a list of local shuttles/taxis.
+* The best way to find out about good shuttle drivers was through
 references from other shuttle drivers. Each shuttle driver generally
 has a territory that they can cover in a cost-effective way. I 
 found that they knew exactly who the good drivers were to the 
