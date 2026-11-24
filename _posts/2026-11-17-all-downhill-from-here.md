@@ -573,13 +573,20 @@ like there wasn't going to water at my target campsite I would
 carry a second liter in reserve. 2.7L of water weighs around
 6 pounds so this was a major pain in the back.
 
-My main advice is: pay close attention to the water commentary 
+Don't count on water caches, particularly for late-season
+SOBO hikes. I passed a lot of empty jugs in the south. I 
+think I only found two useful water caches on my entire hike.
+
+Pay close attention to the water commentary 
 in FarOut and, when in doubt, carry some extra. The mental 
 tax of worrying about being thirsty is high so carrying a bit 
 of extra makes the day much more enjoyable.
 
-And don't forget to sleep with your filter and carry it on your
-body once it gets cold. A Sawyer filter that has frozen is ineffective.
+Filter all water, no matter where it comes from. I always filtered 
+the bottled water from caches.
+
+Once it gets cold, don't forget to sleep with your water filter and carry it on your
+body. A Sawyer filter that has frozen is ineffective.
 
 The Mental Game
 ---------------
