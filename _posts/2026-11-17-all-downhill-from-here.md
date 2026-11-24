@@ -320,7 +320,8 @@ sleeping in my tent all nights off trail felt luxurious.
 My advice to hikers: 
 * I didn't appreciate this before I left, but the AT hiker hostels
 are generally a great experience. A lot of trail culture is embodied in the hostels. In general, hostels are better equipped to accommodate hikers than hotels. For example: try drying a wet tent
-at a nice hotel. 
+at a nice hotel. The farther south I got, the more I favored hostels 
+over hotels.
 * Do some homework before staying at a random hostel
 on trail. There are some really bad ones (possibly dangerous) that you want to avoid. I'm 
 not going to get into those details - you can figure it out by talking
@@ -357,6 +358,7 @@ I spent the night at each of these places:
 * Uncle Johnny's Hostel, Erwin, TN.
 * The Appalachian Trailer Hostel, Hot Springs, NC. 
 * Rambling Roots Hostel, Bryson City, NC
+* The Grove Hostel, Franklin, NC
 * Green Dragon Hostel, Hiawassee, GA
 * Above the Clouds Hostel, Suches, GA
 * The Amicalola Lodge, Amicalola State Park, GA
