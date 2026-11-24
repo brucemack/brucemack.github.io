@@ -516,6 +516,31 @@ GA is the only state that requires them to be carried at all times.
 All this said, I was under-caloried and lost about 40 pounds during 
 my trip. Not ideal.
 
+Water
+-----
+
+I started off with 1L and 700mL Smartwater bottles for carrying
+water. Once I got to PA and the drought became a bigger issue
+I added a second 1L bottle for longer carries. 
+
+I used the Sawyer Squeeze filter and a 2L CNOC water bladder. I also
+made a scoop by cutting the off the bottom of a 12oz plastic 
+Coke bottle. In the south a scoop is critical because there are many
+water sources that are too shallow to fill up a CNOC directly.
+
+I had some problems with water supply given the drought that 
+was going on in PA and VA during my hike. Any time I passed 
+a usable source in a dry area I would "camel up" (i.e. drink a 
+liter) and then collect at least 1.7L to carry. If it looked 
+like there wasn't going to water at my target campsite I would
+carry a second liter in reserve. 2.7L of water weighs around
+6 pounds so this was a major pain in the back.
+
+My main advice is: pay close attention to the water commentary 
+in FarOut and, when in doubt, carry some extra. The mental 
+tax of worrying about being thirsty is high so carrying a bit 
+of extra makes the day much more enjoyable.
+
 The Mental Game
 ---------------
 
@@ -523,32 +548,31 @@ Many have said this before: a multi-month hiking trip is more
 mental than physical. I would generally agree. 
 
 One of the things that Zach Davis stresses in his "Appalachian Trials"
-book is the importance of having a clear "why" for your trip before 
+book is the importance of having a clear "reason why" for your trip before 
 you leave. His argument is that the novelty of the hiking experience will 
 wear off after a few weeks and, when things get bad, hikers who don't 
-have a strong reason for being on trail will quit. It's a voluntary 
+have a strong reason for being on trail will often quit. It's a voluntary 
 activity and there's nothing *really* forcing you to stay out there.
-Zach goes so far as to suggest that you write your "why" on a slip of
-paper and carry it on your hike as a reminder during the inevitable bad
+Zach goes so far as to suggest that you should write your "why" on a slip of
+paper and carry it on your hike to use as a reminder during the inevitable bad
 days.
 
 I think this is solid advice. That said, I wasn't able to articulate
-any clear reason why I was doing the hike, although I was pretty 
+a clear reason why I was doing the hike, although I was pretty 
 confident that the "why" would reveal itself along the way. Zach's advice notwithstanding, I started my trip whyless. Fortunately, when the bad days
 came I never considered quitting. As the trip went on I did
-get more clarity on the reasons why I was hiking.  Things worked out
+get more clarity on the reasons why I was hiking.  Things all worked out
 in the end. 
 
 Be cautious about basing your expectations for the trip on YouTube. There
-are some very entertaining YouTubers/Vloggers on the AT, but I feel
+are some very entertaining YouTubers/vloggers on the AT, but I feel
 like most videos focus on the exciting/entertaining parts of the hike
 while skipping the boring/painful/uncomfortable parts. The pictures
 that I took of my own trip have the same bias. If nothing else,
 I didn't want to get my phone wet by taking a picture in the pouring 
 rain! 
 
-Here are a few tips for dealing with the mental side of a
-trip like this:
+Here are a few tips for dealing with the mental side of an AT hike:
 
 * Don't plan too far ahead - that can become overwhelming. Just focus on
 getting to the next water source, the next campsite, and the next
@@ -559,11 +583,12 @@ derailing. Just get yourself to the next campsite!
 will end. The rain will stop. Your gear will dry. The ache in your 
 leg will subside (or at least move to the other leg). You'll meet 
 another hiker soon. You'll be in town soon. 
-* I tried to avoid checking on my mileage or the elevation profile
-during the day. Constant checking of progress makes the day feel
-longer.
+* I tried to avoid checking on my mileage an/dor elevation
+during the day. Constant checking of progress makes the day drag.
 * Text chains with family, classmates, friends back home, and 
 other hikers on the trail provided a big morale boost. 
+* Stretch mileage goals like the Four-State Challenge or the Connecticut 
+Challenge are fun ways to break up the routine of the trip.
 
 Gear
 ----
@@ -584,7 +609,7 @@ use a pack cover or any "stuff sacks" for the rest of my gear. Everything
 that needed to stay dry went into the nylofume and I never 
 had a problem with things getting wet, even 
 during a few bad rain storms. 
-* ZPacks Plex Solo 1P treking pole tent. This weighs about 14 ounces. This
+* Zpacks Plex Solo 1P trekking pole tent. This weighs about 14 ounces. This
 tent is very small, just barely large enough for a 5' 11" hiker. I 
 was comfortable and dry for the entire hike. Condensation was a problem, 
 as it would be for any single-wall tent design. The foot box of my 
@@ -670,7 +695,9 @@ as soon as it is fully charged.
 Random Tips
 -----------
 
-* Put some reflective tape on your bear canister and phone case.
+* Put some reflective tape on your bear canister, phone case,
+and trekking poles. All of these things are easy to lose track 
+of in the dark.
 * Put some reflective string on the outside of your pack. One time
 I almost lost my pack in the dark.
 * Put some reflective string on the outside of your tent if not
