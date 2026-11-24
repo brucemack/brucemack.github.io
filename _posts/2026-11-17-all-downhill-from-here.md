@@ -351,6 +351,8 @@ I spent the night at each of these places:
 * Above the Clouds Hostel, Suches, GA
 * The Amicalola Lodge, Amicalola State Park, GA
 
+![AT](/assets/images/IMG_1256.jpg)
+
 Nights On Trail
 ---------------
 
@@ -511,29 +513,29 @@ GA is the only state that requires them to be carried at all times.
 All this said, I was under-caloried and lost about 40 pounds during 
 my trip. Not ideal.
 
-![AT2](/assets/images/IMG_0978.jpg)
+![AT](/assets/images/IMG_0978.jpg)
 
 The Mental Game
 ---------------
 
 Many have said this before: a multi-month hiking trip is more
-mental than physical. I would generally agree with that. 
+mental than physical. I would generally agree. 
 
 One of the things that Zach Davis stresses in his "Appalachian Trials"
 book is the importance of having a clear "why" for your trip before 
-you leave. His argument is that the novelty of the experience will 
+you leave. His argument is that the novelty of the hiking experience will 
 wear off after a few weeks and, when things get bad, hikers who don't 
 have a strong reason for being on trail will quit. It's a voluntary 
 activity and there's nothing *really* forcing you to stay out there.
 Zach goes so far as to suggest that you write your "why" on a slip of
-paper and carry it on your hike as a reminder on the inevitable bad
+paper and carry it on your hike as a reminder during the inevitable bad
 days.
 
 I think this is solid advice. That said, I wasn't able to articulate
 any clear reason why I was doing the hike, although I was pretty 
 confident that the "why" would reveal itself along the way. Zach's advice notwithstanding, I started my trip whyless. Fortunately, when the bad days
 came I never considered quitting. As the trip went on I did
-get more clarity on the reasons I was out there, and things worked out
+get more clarity on the reasons why I was out there, and things worked out
 in the end. Here are a few tips for dealing with the mental side of a
 trip like this:
 
@@ -546,10 +548,16 @@ derailing. Just get yourself to the next campsite!
 will end. The rain will stop. Your gear will dry. The ache in your 
 leg will subside (or at least move to the other leg). You'll meet 
 another hiker soon. You'll be in town soon. 
-* I tried to avoid checking on mileage or the elevation profile
-during the day. 
+* I tried to avoid checking on my mileage or the elevation profile
+during the day. Constant checking of progress makes the day feel
+longer.
 * When on a steep climb I tried to avoid looking up the hill. I 
-just concentrated on my footing, moving up one step at a time. 
+just concentrated on my footing, moving up one step at a time. A
+hat with a brim can act as a "blinder" to keep you focused on the
+next step. If I stayed in a step-by-step rhythm the top came more
+quickly.
+* Text chains with family, classmates, friends back home, and 
+other hikers on the trail provided a big morale boost. 
 
 Gear
 ----
@@ -608,9 +616,10 @@ it is very foggy.
 * Always cultivate friendly conversations with day-hikers that you
 encounter in the woods. They will often turn into a free ride
 into town.
+* Practice unpacking and packing while zipped completely into your
+tent. Being able to do this quickly and efficiently during rain 
+is valuable so get your reps when its dry.
 
-
-MORE TO FOLLOW
-
+![AT](/assets/images/IMG_2069.jpg)
 
 
