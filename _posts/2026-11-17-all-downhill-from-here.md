@@ -628,7 +628,7 @@ like most videos focus on the exciting/entertaining parts of the hike
 while skipping the boring/painful/uncomfortable/dangerous parts. The pictures
 that I took of my own trip have this same bias. If nothing else,
 I didn't want to get my phone wet by taking a picture in the pouring 
-rain! 
+rain!
 
 Here are a few tips for dealing with the mental side of an AT hike:
 
@@ -655,6 +655,10 @@ Challenge are fun ways to break up the routine of the trip.
 make an effort to eat dinner with the group. The human contact (even
 with hikers that you know you'll never see again) will help you
 to maintain your sanity.
+* Be honest with yourself before leaving on your hike: **some days
+(or weeks) on trail are really going to suck.** That's just part of 
+the experience. Don't be surprised and don't over-react in these
+situations.
 
 Gear
 ----
