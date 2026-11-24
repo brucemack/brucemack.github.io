@@ -562,11 +562,6 @@ another hiker soon. You'll be in town soon.
 * I tried to avoid checking on my mileage or the elevation profile
 during the day. Constant checking of progress makes the day feel
 longer.
-* When on a steep climb I tried to avoid constantly looking up the hill. I 
-just concentrated on my footing, moving up one step at a time. A
-hat with a brim can act as a "blinder" to keep you focused on the
-next step. If I stayed in a step-by-step rhythm the top came more
-quickly.
 * Text chains with family, classmates, friends back home, and 
 other hikers on the trail provided a big morale boost. 
 
@@ -614,13 +609,47 @@ wise son pointed out before one of our trips, it might be more productive to imp
 your diet and loose 5 pounds off your body than to figure out how to 
 loose 5 pounds from your pack.
 
-Navigation
-----------
+Electronics
+-----------
 
-TO FOLLOW
+I carried:
+* An iPhone 17 with the FarOut app loaded. 
+* A Nitecore NU-25 headlamp.
+* A Nitecore NB-10000 Gen 3 power bank (10,000 mAh capacity)
+* A Garmin InReach Mini 2
+* A cheap Casio wrist watch with an alarm.
 
-Communications
---------------
+I used the ubiquitous FarOut app for navigation. I won't get
+into a long description of FarOut because it is covered well
+in other places. The most important uses of FarOut in my experience
+were:
+* Commentary on water sources, particularly through the droughts
+in PA and VA.
+* Help getting back on the trail during a few places (less than 10)
+where lost it. 
+* Reassurance that I was still on the trail, particularly during night hiking.
+
+When you depend on your phone for navigation it is critical 
+to keep it dry. Obviously, you want to avoid a submerged phone. 
+However, a more subtle/common problem can occur when a few drops of water
+get on the phone's screen. Very often a damp touch screen is unusable.
+My solution was to keep my phone in a thin Zip-lock 
+bag when it was wet out. The phone could still be used (sort of) through 
+the bag. I also carried a bandanna in a separate Zip-lock to dry off
+the phone screen if needed. All this being said, there were two days 
+on my trip when I couldn't access FarOut because it was too wet
+to use my phone reliably. This could be a significant problem.
+
+After one such failure, I got in the habit of writing down the 
+mile numbers of the future water sources and campsites at each 
+resupply stop. This gave me a back-up to use in the case that either
+my phone was not working, or it was raining so hard that I didn't
+dare pull it out.
+
+The Garmin InReach Mini worked great for sending daily check-in messages to my family. I also used the Garmin text feature occasionally, but
+the satellite messaging feature on the iPhone was generally faster. 
+
+
 
 TO FOLLOW
 
