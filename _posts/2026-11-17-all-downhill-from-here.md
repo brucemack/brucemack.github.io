@@ -215,6 +215,11 @@ There were some areas in southern Maine and New Hampshire where I had
 a hard time covering more than 8 miles in a 12 hour hiking day. The
 terrain was brutal.
 
+The hard miles through Maine and New Hampshire were demoralizing 
+at times, particularly given my hope of returning to my family
+before Thanksgiving. My advice is: **don't panic**, bigger miles
+will come more easily as you get further south. 
+
 I started to feel much stronger after exiting the White Mountains.
 
 I did my first 20 mile day in Vermont. There were a few very smooth 
