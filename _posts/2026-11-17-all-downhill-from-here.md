@@ -230,7 +230,9 @@ per day.  Further south I started to make a few 30 mile days when needed
 to land at an important waypoint (i.e. reaching a store/restaurant before closing, meeting a shuttle driver on time, getting to a town
 a day ahead of schedule just because, etc.).
 
-My longest "normal" day (i.e. repeatable) was 33 miles.
+My longest "normal" day (i.e. repeatable) was 33 miles. I think that
+day was going into the nice dining room at the Big Meadows Lodge in the 
+Shenandoahs. The dinner made it worth it. 
 
 My longest 24-hour period was logged during the AT Four-State
 Challenge across PA/MD/WV/VA. I did 48 miles that day but needed to
