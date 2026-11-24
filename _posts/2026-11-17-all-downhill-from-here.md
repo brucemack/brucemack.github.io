@@ -164,7 +164,7 @@ of the park. This served as a great warm-up before tackling
 Katahdin on my official AT start day. It also provided a good way to force some
 days of low mileage to ease into my hiking routine. 
 
-One challenge that Baxter Park hikers need to deal with is obtaining
+One challenge for Baxter Park hikers is obtaining
 the necessary permits. This required phone calls to the 
 Baxter reservation office on consecutive mornings 4 months before my
 start date. Fortunately, the north of the park is not heavily traveled
@@ -178,12 +178,12 @@ so transportation was relatively easy for me. My pre-hike went like this:
 [Shaw's Hiker Hostel](http://www.shawshikerhostel.com/): one to be received
 in the middle of the 100 Mile Wilderness and one to be received at the 
 end.
-* Drove further north to Abol Bridge Campground to leave a food box for
+* Drove further north on the Golden Road to the Abol Bridge Campground to leave a food box for
 pickup at the start of the 100 Mile Wilderness. In my experience, this
 campground was not particularly "hiker-friendly," but I was able to 
 convince them to help me out with this box drop. Your mileage may vary.
 * Drove further north to the excellent [Matagamon Wilderness Campground](https://www.matagamon.com/).  Here we rented a cabin for night 2.
-* The next morning, made the short drive into the Baxter Park Matagamon Gate, signed-in, and started the hike south through the park.
+* The next morning we made the short drive into the Baxter Park Matagamon Gate, signed-in, and I started my hike south through the park.
 * Hiked south to the South Branch Pond Campground for night 3. About 10 miles.
 * Hiked south to the Russell Pond Campground for night 4. About 12 miles.
 * Hiked south to the Nesowadnehunk Field Campground for night 5, including
@@ -192,16 +192,16 @@ a long stop at the spectacular Wassataquoik Lake. About 12 miles.
 stops at Ledge Falls (bath and shave), Kidney Pond, and Daicey Pond. About 12 miles, much
 along the park tote road.
 * The next morning, summited Katahdin to start the AT, then returned to Katahdin Stream Campground
-for one more night. About 11 miles.
+for my official first night on the AT. About 11 miles.
 
 I had obtained permits for three nights at Katahdin Stream in case of 
-bad weather. Fortunately I didn't need all of them.
+bad weather. Fortunately I didn't need all three of them.
 
 Importantly, *none of the days in this phase of the trip required more than 12 miles
 of hiking*. This start is easy on your legs.
 
-Notes on Pace/Hours
--------------------
+Notes on My Pace/Hiking Hours
+-----------------------------
 
 The biggest risk on an AT thru-hike is injury due to starting too 
 fast. I saw a bunch of people forced off trail due to various repetitive
@@ -215,7 +215,7 @@ There were some areas in southern Maine and New Hampshire where I had
 a hard time covering more than 8 miles in a 12 hour hiking day. The
 terrain was brutal.
 
-I started to feel much stronger after the White Mountains.
+I started to feel much stronger after exiting the White Mountains.
 
 I did my first 20 mile day in Vermont. There were a few very smooth 
 days in eastern Vermont (farm country) where I started to test my legs.
@@ -227,13 +227,14 @@ a day ahead of schedule just because, etc.).
 
 My longest "normal" day (i.e. repeatable) was 33 miles.
 
-My longest 24-hour period was 48 miles during the AT Four-State
-Challenge across MD and WV.
+My longest 24-hour period was logged during the AT Four-State
+Challenge across PA/MD/WV/VA. I did 48 miles that day but needed to
+take a day off to recover. That was fun!
 
-I found it necessary to be up early and hiking during every minute
+I found it necessary to be up early and moving during every minute
 of daylight. As the days got shorter I almost always hiked for an 
 hour or two in the dark in the morning. I disliked hiking in the dark
-at night, but sometimes it was unavoidable to reach a suitable campsite.
+at night, but sometimes it was necessary to reach a suitable campsite.
 I found that breaking camp in the dark in the morning was *way* easier
 than making camp in the dark at night - thus the morning skew. I 
 particularly hated coming into a tent/shelter site in the dark and 
@@ -247,32 +248,33 @@ I took the steep uphills and steep downhills very slowly.
 My "planning pace" for a typical day's milestones was 2.5 miles per hour. 
 There were very few days that ended up faster/slower than that pace.
 
-I tried to avoid setting my milage goal (i.e. campsite for the night)
-until after lunch. I found that having maximum flexibility during the day improved my mental state and reduced the chances of "falling short" for
+I tried to avoid setting my daily mileage goal (i.e. campsite for the night)
+until after lunch. I found that keeping maximum flexibility during the day improved my mental state and reduced the chances of "falling short" for
 the day.
 
 My "planning pace" for resupplies was 20 miles per day. Mentally, I found
 it helpful to supply for 4 20-mile days and then try to finish the stretch
-in 3 days.  Finishing a food carry a day early provided me with a huge
-mental boost. Plus, I could eat two days of food on the third day! This approach provided a good margin in case something went
+in 3 days.  I would often have two sets of routes mapped in FarOut: one conservative set and one "push" set that was more aggressive. Finishing a food carry between towns one day early provided me with a huge
+mental boost. Plus, I could eat two days of food on the last day! This approach provided a good margin in case something went
 wrong - I never ran out of food on the trail.
 
-A big determinant of daily milage was the elevation profile of the
+A big determinant of daily mileage was the elevation profile of the
 day. I tried to avoid days with more than 5,500 feet of vertical gain
 or days with a grade of more than 600 feet/mile. Sometimes this was 
 impossible to avoid. The most "up" I did in one day was in the Smokies when
 I had a day with 8,500 feet of vertical ascent. That was tough going.
 
-I tried to minimize the number of zero days on the trail. I did NEROs
-into towns frequently.
+I tried to minimize the number of zero days on the trail. I did NERO
+days (near zero) into towns frequently and even managed a few HERO
+days (no lost mileage) where the trail passed directly through a town.
 
-I rarely hiked directly with others. It was better to hike at my
+I rarely hiked directly with others. I found it better to hike at my
 own pace at all times. My "own pace" varied across the day. That said,
-in the few cases that I hiked with other people the milage went by 
+in the few cases that I hiked with other people the miles went by 
 very quickly given the interesting/free-ranging conversations 
 that would inevitably come up on trail. :-)
 
-I tried to avoid injury/illness. Both can cost days off trail.
+I tried hard to avoid injury/illness. Both can cost days off trail.
 
 You'll hear this advice often and it's true: "fast" hikers don't walk
 fast, they just walk for more hours.
@@ -300,11 +302,11 @@ Nights Off Trail
 ----------------
 
 On average, I got off trail for the night every 5 days. That provided
-a very good balance between making miles south and having a break for a 
+a very good balance between making fast miles south and having a break for a 
 hot shower and a good meal. I also used these trips off trail to resupply.
 
 I really liked all of the places I stayed so I can recommend all of the following
-without hesitation. A few of these place were more "primitive" than 
+without hesitation. A few of these place were more primitive than 
 others, but compared to 
 sleeping in my tent all nights off trail felt luxurious. 
 
@@ -313,7 +315,7 @@ My advice to hikers:
 are generally a great experience. A lot of trail culture is embodied in the hostels. In general, hostels are better equipped to accommodate hikers than hotels. For example: try drying a wet tent
 at a nice hotel. 
 * Do some homework before staying at a random hostel
-on trail. There are some really bad (possibly dangerous) ones that you want to avoid. I'm 
+on trail. There are some really bad ones (possibly dangerous) that you want to avoid. I'm 
 not going to get into those details - you can figure it out by talking
 to the hikers moving in the opposite direction. Be careful out there.
 * FarOut is great, but it only lists the hotels that have specifically
@@ -358,7 +360,9 @@ Nights On Trail
 I slept on trail about 95 nights. Most of the time I slept in 
 my tent (Zpacks Solo Plex 1P). I usually camped at an established 
 shelter or tent sites because flat tent spots were easier to find 
-in those places. 
+in those places. It's very important to find a stopping point that will result
+in a good night sleep. Your body needs sleep to recover from a long 
+day of hiking.
 
 I slept in shelters about 8 times:
 * Three nights in the Smokies where it is mandated.
@@ -366,7 +370,8 @@ I slept in shelters about 8 times:
 
 I stealth-camped (i.e. random spot in the woods) about 25 nights. This
 generally happened in cases where I was too tired to make it to a 
-more established site or when an exceptionally cool spot was seen.
+more established site or when an exceptionally good spot was seen
+along the trail.
 
 I don't have a philosophical problem with the AT shelters, but I generally
 got better sleep in my tent due to reduced concerns about drifters,
@@ -377,7 +382,7 @@ problem in shelter areas, particularly those built very
 close to road crossings. I only ran into this twice and it's not
 too hard to manage. My advice would be:
 * When rolling into a shelter area I never took off my pack until 
-I had sized up the crew that was already there. Its very easy to 
+I had sized up the crew that was already there. It's very easy to 
 say something like "hi, just checking this place out" and keep moving
 if the crowd doesn't feel right to you.
 * Likewise, I generally avoided unpacking much until just before
@@ -389,8 +394,8 @@ trail 15 minutes
 and setting up at a stealth spot in the woods will result in a 
 much better night sleep.
 
-It interesting to see that the trail authorities are working on 
-removing all "non-conformant" shelters that are less than 1 mile 
+It's interesting to see that the trail authorities are working on 
+demolishing the "non-conformant" shelters that are less than 1 mile 
 from a road. I'm assuming this is being done to manage the issue
 of non-hikers living in the AT shelters.
 
@@ -417,11 +422,10 @@ Some pains would go away in the afternoon. This generally meant that I
 needed to "warm up" that part of my body more carefully. 
 
 I fell a bunch of times. A few things I noticed:
-* Falls were most common when setting out immediately after a rest
-stop of some kind. I needed to force myself to get going slowly 
+* Falls were most common when setting out immediately after a stop of some kind. I needed to force myself to get going slowly 
 after a stop.
 * Blue blazes and/or awkward hikes down to water sources were the 
-most dangerous, partially because I didn't always approach these
+most dangerous, probably because I didn't always approach these
 places with the same care as the "real trail."
 * I found that listening to music/podcasts/books could distract me
 from being careful about footing. I needed to walk in silence in very 
@@ -432,7 +436,7 @@ Giardia, food poisoning, and lyme disease are real threats
 on the trail - much more dangerous than bears or snakes.
 I encountered hikers with all of these ailments. Norovirus is 
 more of a problem
-for the early-season NOBOs so I never saw that on my trip.
+for the early-season NOBOs and I never saw that on my trip.
 
 In my opinion, I avoided illness by doing the following:
 * Washed hands with soap aggressively, even at lunch breaks. 
@@ -486,6 +490,8 @@ Random food notes:
 * I ate a lot of Cliff Builder protein bars.
 * I ate a lot of fig bars.
 * I ate a lot of Carnation Breakfast Essentials.
+* It's better to eat small amounts at a time continuously 
+through the day.
 * My favorite homemade breakfast packet:
   - Oatmeal
   - Powdered milk
@@ -562,12 +568,12 @@ days.
 I think this is solid advice. That said, I wasn't able to articulate
 a clear reason why I was doing the hike, although I was pretty 
 confident that the "why" would reveal itself along the way. Zach's advice notwithstanding, I started my trip whyless. Fortunately, when the bad days
-came I never considered quitting. As the trip went on I did
+came I never considered quitting. Fortunately, as the trip went on I did
 get more clarity on the reasons why I was hiking.  Things all worked out
 in the end. 
 
 Be cautious about basing your expectations for the trip on YouTube. There
-are some very entertaining YouTubers/vloggers on the AT, but I feel
+are some very informative YouTubers/vloggers on the AT, but I feel
 like most videos focus on the exciting/entertaining parts of the hike
 while skipping the boring/painful/uncomfortable parts. The pictures
 that I took of my own trip have the same bias. If nothing else,
@@ -580,17 +586,23 @@ Here are a few tips for dealing with the mental side of an AT hike:
 getting to the next water source, the next campsite, and the next
 resupply. I'm a bad planner so perhaps this is self-serving, but when
 I started planning out a week or two things tended to start 
-derailing. Just get yourself to the next campsite!
+derailing. Just get yourself to the next campsite! I didn't even
+book my flight home until I was less than a week from the finish.
 * Always remember that your situation is temporary. The climb
 will end. The rain will stop. Your gear will dry. The ache in your 
 leg will subside (or at least move to the other leg). You'll meet 
-another hiker soon. You'll be in town soon. 
+another hiker soon. You'll be in town soon. Hang in there, the
+problem will pass.
 * I tried to avoid checking on my mileage an/dor elevation
 during the day. Constant checking of progress makes the day drag.
 * Text chains with family, classmates, friends back home, and 
 other hikers on the trail provided a big morale boost. 
 * Stretch mileage goals like the Four-State Challenge or the Connecticut 
 Challenge are fun ways to break up the routine of the trip.
+* Always introduce yourself to others at the shelters/campsites and
+make an effort to eat dinner with the group. The human contact (even
+with hkers that you know you'll never see again) will help you
+to maintain your sanity.
 
 Gear
 ----
