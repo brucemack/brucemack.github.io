@@ -34,7 +34,7 @@ I averaged about 17.5 miles per day. I took about 10 days off.
 
 There were a few really bad days, but generally speaking I enjoyed
 every minute of this adventure. I would strongly encourage everyone to 
-give it a try. The AT will change your life.
+give it a try. The AT will change you.
 
 Choosing My Route
 -----------------
@@ -510,6 +510,88 @@ All this said, I was under-caloried and lost about 40 pounds during
 my trip. Not ideal.
 
 ![AT2](/assets/images/IMG_0978.jpg)
+
+The Mental Game
+---------------
+
+Many have said this before: a multi-month hiking trip is more
+mental than physical. I would generally agree with that. 
+
+One of the things that Zach Davis stresses in his "Appalachian Trials"
+book is the importance of having a clear "why" for your trip before 
+you leave. His argument is that the novelty of the experience will 
+wear off after a few weeks and, when things get bad, hikers who don't 
+have a strong reason for being on trail will quit. It's a voluntary 
+activity and there's nothing *really* forcing you to stay out there.
+Zach goes so far as to suggest that you write your "why" on a slip of
+paper and carry it on your hike as a reminder on the inevitable bad
+days.
+
+I think this is solid advice. That said, I wasn't able to articulate
+any clear reason why I was doing the hike, although I was pretty 
+confident that the "why" would reveal itself along the way. Zach's advice notwithstanding, I started my trip whyless. Fortunately, when the bad days
+came I never considered quitting. As the trip went on I did
+get more clarity on the reasons I was out there, and things worked out
+in the end. Here are a few tips for dealing with the mental side of a
+trip like this:
+
+* Don't plan too far ahead - that can become overwhelming. Just focus on
+getting to the next water source, the next campsite, and the next
+resupply. I'm a bad planner so perhaps this is self-serving, but when
+I started planning out a week or two things tended to start 
+derailing. Just get yourself to the next campsite!
+* Always remember that your situation is temporary. The climb
+will end. The rain will stop. Your gear will dry. The ache in your 
+leg will subside (or at least move to the other leg). You'll meet 
+another hiker soon. You'll be in town soon. 
+* I tried to avoid checking on mileage or the elevation profile
+during the day. 
+* When on a steep climb I tried to avoid looking up the hill. I 
+just concentrated on my footing, moving up one step at a time. 
+
+Gear
+----
+
+I'm not a big gear nerd and there is already plenty of material on the internet about AT packing lists so 
+I'm not going to list out all of my gear.  Reach out if you care. Suffice to say, 
+I am not an ultra-light hiker. From my experience, my base weight of ~16 
+pounds put me in the middle of the range of hikers I met along the way. Some had
+lighter packs and many had heavier. Lighter is better for sure, but I doubt that 
+5 pounds more or less would have made much of a difference in my success/enjoyment.
+
+My "big three" consisted of:
+* Hyperlite Mountain Gear 55L Southwest pack (black). This is the most durable 
+version of the HMG packs, which is important given the amount of times you'll 
+scrape/snag your pack on rocks and trees on the AT. Yes, it's a bit heavier.
+I used a nylofume bag to keep things dry inside my pack. I did not
+use a pack cover or any "stuff sacks" for the rest of my gear. Everything
+that needed to stay dry went into the nylofume and I never 
+had a problem with things getting wet, even 
+during a few bad rain storms. 
+* ZPacks Plex Solo 1P treking pole tent. This weighs about 14 ounces. This
+tent is very small, just barely large enough for a 5' 11" hiker. I 
+was comfortable and dry for the entire hike. Condensation was a problem, 
+as it would be for any single-wall tent design. The foot box of my 
+sleeping quilt was wet almost every morning. It was important to 
+keep both vestibule flaps open at all times to maintain good airflow, except during rain.
+* Enlightened Equipment Revelation 20 quilt. I switched to the 0 
+degree version in Hot Springs, NC. I don't think I was in danger
+of exceeding the survival rating of the 20 degree quilt, but I certainly
+would have exceeded the comfort rating during the very cold nights 
+in the south. The 0 degree quilt was very comfortable and I was glad
+to carry the extra weight.
+* A silk sleeping bag liner. I switched to a Sea to Summit 
+Reactor fleece winter liner in Hot Springs, NC.
+* Therm-a-Rest NeoAir NextLite NXT sleeping pad. Comfortable enough, and not too loud.
+* Gossamer Gear 1/8" foam pad -  particularly important for protecting your 
+fragile sleeping pad from shelter floors. Also a great sit/nap pad.
+
+I was happy with all gear selections and wouldn't change anything.
+
+I see a lot of people online obsessing about UL and pack weights. As my 
+wise son pointed out before one of our trips, it might be more productive to improve
+your diet and loose 5 pounds off your body than to figure out how to 
+loose 5 pounds from your pack.
 
 Random Tips
 -----------
