@@ -28,9 +28,10 @@ General Overview
 I'm going to assume that you know what the Appalachian Trail 
 is about. I hiked southbound (SOBO) starting on July 20 and ending on November 17, 2026. The trail itself was 2,197.7 miles long in 2026. I also hiked for 
 a few days in the north prior to my official start (about 50 miles) and did the AT 
-approach trail in Amicalola State Park after my official finish (about 9 miles). So total mileage was around 2,260. My hike lasted around 130 days.
+approach trail in Amicalola State Park after my official finish (about 9 miles). So my total mileage was around 2,260. My hike lasted around 130 days.
  
-I averaged about 17.5 miles per day. I took about 10 days off.
+I averaged about 17.5 miles per day. I took about 10 days off. My daily
+mileage started around 10-12 miles per day and ended around 25 miles per day.
 
 There were a few really bad days, but generally speaking I enjoyed
 every minute of this adventure. I would strongly encourage everyone to 
@@ -43,7 +44,7 @@ Choosing My Route
 
 I hiked southbound (SOBO). This decision was mostly driven by scheduling.
 I had several other trips/family events scheduled for the first part 
-of the summer so my start date was going to be in the second half of July.
+of the summer so my start date needed to be in the second half of July.
 At that point in the year a northbound trip is infeasible. I didn't seriously consider a
 flip-flop because that option is too complicated for a poor planner like
 me. A SOBO journey was the only viable option.
@@ -62,7 +63,7 @@ snowfalls in the south.
 * Once you hit Vermont the large crowds are gone.
 * Once you hit Massachusetts you are often alone.
 * Great fall colors for most of the trip.
-* SOBO is faster. It's not a coincidence that the AT FKTs were set going south.
+* SOBO is faster. It's not a coincidence that AT FKTs are usually set going south.
 * It's meant to be. It's not a coincidence that the rock at the start 
 of the approach trail at Amicalola Falls says "AT Maine to Georgia."
 * The SOBO hiker personality type tends to be more focused on hiking
@@ -535,8 +536,18 @@ I think this is solid advice. That said, I wasn't able to articulate
 any clear reason why I was doing the hike, although I was pretty 
 confident that the "why" would reveal itself along the way. Zach's advice notwithstanding, I started my trip whyless. Fortunately, when the bad days
 came I never considered quitting. As the trip went on I did
-get more clarity on the reasons why I was out there, and things worked out
-in the end. Here are a few tips for dealing with the mental side of a
+get more clarity on the reasons why I was hiking.  Things worked out
+in the end. 
+
+Be cautious about basing your expectations for the trip on YouTube. There
+are some very entertaining YouTubers/Vloggers on the AT, but I feel
+like most videos focus on the exciting/entertaining parts of the hike
+while skipping the boring/painful/uncomfortable parts. The pictures
+that I took of my own trip have the same bias. If nothing else,
+I didn't want to get my phone wet by taking a picture in the pouring 
+rain! 
+
+Here are a few tips for dealing with the mental side of a
 trip like this:
 
 * Don't plan too far ahead - that can become overwhelming. Just focus on
@@ -551,7 +562,7 @@ another hiker soon. You'll be in town soon.
 * I tried to avoid checking on my mileage or the elevation profile
 during the day. Constant checking of progress makes the day feel
 longer.
-* When on a steep climb I tried to avoid looking up the hill. I 
+* When on a steep climb I tried to avoid constantly looking up the hill. I 
 just concentrated on my footing, moving up one step at a time. A
 hat with a brim can act as a "blinder" to keep you focused on the
 next step. If I stayed in a step-by-step rhythm the top came more
@@ -602,6 +613,16 @@ I see a lot of people online obsessing about UL and pack weights. As my
 wise son pointed out before one of our trips, it might be more productive to improve
 your diet and loose 5 pounds off your body than to figure out how to 
 loose 5 pounds from your pack.
+
+Navigation
+----------
+
+TO FOLLOW
+
+Communications
+--------------
+
+TO FOLLOW
 
 Random Tips
 -----------
