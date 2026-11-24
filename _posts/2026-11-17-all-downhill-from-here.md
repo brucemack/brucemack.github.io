@@ -545,6 +545,10 @@ the dense rhododendron forests.
 Ironically, I sent my bear canister home just before entering GA. Now
 GA is the only state that requires them to be carried at all times.
 
+I carried a stove and cooked hot meals for all breakfasts and dinners. To
+me, the extra weight was well worth it. Resupplying isobutane canisters
+on the trail was very easy.
+
 All this said, I was under-caloried and lost about 40 pounds during 
 my trip. Not ideal.
 
