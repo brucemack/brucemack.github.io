@@ -37,8 +37,6 @@ There were a few really bad days, but generally speaking I enjoyed
 every minute of this adventure. I would strongly encourage everyone to 
 give it a try. The AT will change you.
 
-![AT1](/assets/images/IMG_1206.jpg)
-
 Choosing My Route
 -----------------
 
@@ -352,8 +350,6 @@ I spent the night at each of these places:
 * Above the Clouds Hostel, Suches, GA
 * The Amicalola Lodge, Amicalola State Park, GA
 
-![AT](/assets/images/IMG_1256.jpg)
-
 Nights On Trail
 ---------------
 
@@ -513,8 +509,6 @@ GA is the only state that requires them to be carried at all times.
 
 All this said, I was under-caloried and lost about 40 pounds during 
 my trip. Not ideal.
-
-![AT](/assets/images/IMG_0978.jpg)
 
 The Mental Game
 ---------------
@@ -685,5 +679,4 @@ tent. Being able to do this quickly and efficiently during rain
 is valuable so get your reps when its dry.
 
 ![AT](/assets/images/IMG_2069.jpg)
-
 
