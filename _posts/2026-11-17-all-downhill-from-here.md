@@ -87,13 +87,13 @@ Preparation Notes
 I saw lots of younger 
 hikers who were successful "right off the couch." That wasn't me.
 
-At my age, preparation was critical to success.  A lot of physical training is required, particularly if you 
+At my age (58), preparation was critical to success.  A lot of physical training is required, particularly if you 
 want to enjoy the trip. I started off in reasonably good shape because my preparation started 
 about two years before I stepped onto the trail.
 
 Key elements of my preparations:
-* I hiked the VT Long Trail, see below.
-* I walked 5-12 miles every day for two years leading up to the hike.  My longer training days were often made up of two walks, one in early
+* I hiked the VT Long Trail the summer before, see below.
+* I walked 5-12 miles every day for two years leading up to the hike.  My longer training days were often made up of two walks: one in early
 morning and one in the evening before dinner.
 * I did basic weight training at a local gym for about 18 months prior to the hike. I 
 used weights every other day and rotated through push (arms), pull (arms), and legs. You 
