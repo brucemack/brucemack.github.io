@@ -399,6 +399,30 @@ demolishing the "non-conformant" shelters that are less than 1 mile
 from a road. I'm assuming this is being done to manage the issue
 of non-hikers living in the AT shelters.
 
+Getting Around
+--------------
+
+There are cases where rides were needed to get into towns. A few 
+notes from my experience:
+* Hitchhiking is pretty easy at major trail crossings. The 
+locals know about hikers and many seem to enjoy picking up 
+hikers.
+* Local shuttles are a good way to provide more certainty. The
+local shuttle drivers also know the ins/outs of AT road crossings,
+some of which are obscure US Forest Service Roads that won't be
+familiar to "normal" people. 
+* Uber actually works in some places on the trail.
+* Outfitters always maintain a list of local shuttles/taxis.
+* The best way to find out about good shuttle drivers is through
+references from other shuttle drivers. Each shuttle driver generally
+has a territory that they can cover in a cost-effective way. I 
+found that they knew exactly who the good drivers were to the 
+immediate south of 
+them and were happy to share contact information. These relationships 
+are reciprocal since the drivers to the south do the same to hand
+NOBO hikers up the trail. I think I started this chain in PA and used
+the recommendations all the way to GA.
+
 Injuries/Illness
 ----------------
 
