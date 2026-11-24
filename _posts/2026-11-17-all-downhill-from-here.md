@@ -36,6 +36,8 @@ There were a few really bad days, but generally speaking I enjoyed
 every minute of this adventure. I would strongly encourage everyone to 
 give it a try. The AT will change you.
 
+![AT1](/assets/images/IMG_1206.jpg)
+
 Choosing My Route
 -----------------
 
