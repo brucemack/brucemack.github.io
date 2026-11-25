@@ -570,23 +570,33 @@ my trip. Not ideal.
 Water
 -----
 
-I started off with 1L and 700mL Smartwater bottles for carrying
-water. Once I got to PA and the drought became a bigger issue
-I added a second 1L bottle for longer carries. 
-
-I used the Sawyer Squeeze filter and a 2L CNOC water bladder. These
-were very common on trail. I also
-made a scoop by cutting the off the bottom of a 12oz plastic 
-Coke bottle. In the south a scoop became critical because there were many
-water sources that were too shallow to fill up a CNOC directly.
-
 I had some problems with water supply given the drought that 
 was going on in PA and VA during my hike. Any time I passed 
 a usable source in a dry area I would "camel up" (i.e. drink a 
 liter) and then collect at least 1.7L to carry. If it looked 
-like there wasn't going to water at my target campsite I would
+like there wasn't going to be water at my target campsite I would
 carry a second liter in reserve. 2.7L of water weighs around
 6 pounds so this was a major pain in the back.
+
+I used a Sawyer Squeeze filter and a 2L CNOC water bladder. These
+were very common on trail. I also
+made a scoop by cutting off the bottom of a 12oz plastic 
+Coke bottle. In the south a scoop became critical because there were many
+water sources that were too shallow to fill up a CNOC directly.
+Sometimes I even collected water from "seeping" sources, so a thin,
+rigid scoop was extremely useful.
+
+I backflushed my filter in a sink (blue coupler) every time I slept 
+off trail and never had a problem with the filtering becoming slow.
+
+I started off carrying 1L and 700mL Smartwater bottles. I carried
+the 700mL bottle in a front bottle holder for easy access during
+the day.  Once I got 
+to PA and the drought became a bigger issue
+I added a second 1L Smartwater bottle for longer carries. One good feature
+of the HMG Southwest pack is the large side pockets that can
+hold two 1L Smartwater bottles close to your back. I never carried
+water in my CNOC.
 
 Don't count on water caches, particularly for late-season
 SOBO hikes. I passed a lot of empty jugs in the south. I 
