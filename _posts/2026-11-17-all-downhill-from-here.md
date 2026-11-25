@@ -249,8 +249,12 @@ than making camp in the dark at night - thus the morning bias. I
 particularly hated coming into a tent/shelter site in the dark and 
 not being able to quickly locate the water source and/or bear box.
 
+Mornings were my favorite part of the day. I particularly liked
+starting early and getting on top of a clear summit for sunrise.
+No better way to start the day.
+
 I took a 30 minute break at lunch. I tried to avoid any other significant
-breaks during the day, aside from drawing water. I tried to eat snacks/drink water while moving.
+breaks during the day, aside from collecting water. I tried to eat snacks/drink water while moving as much as possible.
 
 If I needed to dry out my gear I would take a longer lunch break
 at a place with good sun exposure.
@@ -264,14 +268,13 @@ I tried to avoid setting my daily mileage goal (i.e. campsite for the night)
 until after lunch. I found that keeping maximum flexibility during the day improved my mental state and reduced the chances of "falling short" for
 the day.
 
-My "planning pace" for resupplies was 20 miles per day. Mentally, I found
+My planning pace between resupplies was 20 miles per day. Mentally, I found
 it helpful to supply for 4 20-mile days and then try to finish the stretch
-in 3 days.  I would often have two sets of routes mapped in FarOut: one conservative set and one "push" set that was more aggressive. Finishing a food carry between towns one day early provided me with a huge
+in 3 days.  I would often keep two sets of routes mapped in FarOut: one conservative set and one "push" set that was more aggressive. Finishing a food carry between towns one day early provided me with a huge
 mental boost. Plus, I could eat two days of food on the last day! This approach provided a good margin in case something went
-wrong - I never ran out of food on the trail.
+wrong - I never ran out of food on the trail. 
 
-A big determinant of daily mileage was the elevation profile of the
-day. I tried to avoid days with more than 5,500 feet of vertical gain
+A big determinant of my daily mileage was the elevation profile. I tried to avoid days with more than 5,500 feet of vertical gain
 or days with a grade of more than 600 feet/mile. Sometimes this was 
 impossible to avoid. The most "up" I did in one day was in the Smokies when
 I had a day with 8,500 feet of vertical ascent. That was tough going.
