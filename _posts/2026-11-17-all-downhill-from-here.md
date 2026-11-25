@@ -281,7 +281,7 @@ I had a day with 8,500 feet of vertical ascent. That was tough going.
 
 I tried to minimize the number of zero days on the trail. I did NERO
 days (near zero) into towns frequently and even managed a few HERO
-days (no lost mileage) where the trail passed directly through a town.
+days (resupply with no lost mileage) where the trail passed directly through a town.
 
 I rarely hiked directly with others. I found it better to hike at my
 own pace at all times. My "own pace" varied across the day. That said,
@@ -330,7 +330,7 @@ My advice to hikers:
 are generally a great experience. A lot of trail culture is embodied in the hostels. In general, hostels are better equipped to accommodate hikers than hotels. For example: try drying a wet tent
 at a nice hotel. The farther south I got, the more I favored hostels 
 over hotels.
-* Do some homework before staying at a random hostel
+* Do your homework before staying at a random hostel
 on trail. There are some really bad ones (possibly dangerous) that you want to avoid. I'm 
 not going to get into those details - you can figure it out by talking
 to the hikers moving in the opposite direction. Be careful out there.
