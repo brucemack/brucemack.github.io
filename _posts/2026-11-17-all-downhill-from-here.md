@@ -64,7 +64,7 @@ snowfalls in the south.
 * SOBO is faster. It's not a coincidence that AT FKTs are usually set going south.
 * The trail was meant to be hiked SOBO. It's not a coincidence that the rock at the start 
 of the approach trail at Amicalola Falls says "AT Maine to Georgia."
-* The SOBO hiker personality type tends to be more focused on hiking
+* Based on my observations of all of the hikers I met, the SOBO personality type tends to be more focused on hiking
 (as opposed to partying), more easy-going, and less prone to fear-mongering
 and other trail drama.
 
@@ -78,7 +78,7 @@ will will be a mostly solitary experience. Given my late start, I didn't
 encounter any other southbounders until New Hampshire. I was camping
 alone about 50% of the time in the south. 
 * Unless you like the cold, be ready for a relatively fast hike. It's
-counter-intuitive for us northerners, but the southern part of the AT gets
+counter-intuitive for those of us from the north, but the southern part of the AT gets
 cold in late October. You'll spend a lot of time above 5,000 feet (and below freezing) in NC, TN, and GA. The fear of snow had me up early and hiking south every morning!
 
 Preparation Notes
@@ -239,11 +239,13 @@ Challenge across PA/MD/WV/VA. I did 48 miles that day but needed to
 take a day off to recover. That was fun!
 
 I found it necessary to be up early and moving during every minute
-of daylight. As the days got shorter I almost always hiked for an 
+of daylight. This became even more important as the days became
+shorter through October and November - one important downside
+of the late-season SOBO experience. As I lost daylight I almost always hiked for an 
 hour or two in the dark in the morning. I disliked hiking in the dark
-at night, but sometimes it was necessary to reach a suitable campsite.
+in the evening but sometimes it was necessary to reach a suitable campsite.
 I found that breaking camp in the dark in the morning was *way* easier
-than making camp in the dark at night - thus the morning skew. I 
+than making camp in the dark at night - thus the morning bias. I 
 particularly hated coming into a tent/shelter site in the dark and 
 not being able to quickly locate the water source and/or bear box.
 
