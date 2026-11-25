@@ -570,14 +570,6 @@ my trip. Not ideal.
 Water
 -----
 
-I had some problems with water supply given the drought that 
-was going on in PA and VA during my hike. Any time I passed 
-a usable source in a dry area I would "camel up" (i.e. drink a 
-liter) and then collect at least 1.7L to carry. If it looked 
-like there wasn't going to be water at my target campsite I would
-carry a second liter in reserve. 2.7L of water weighs around
-6 pounds so this was a major pain in the back.
-
 I used a Sawyer Squeeze filter and a 2L CNOC water bladder. These
 were very common on trail. I also
 made a scoop by cutting off the bottom of a 12oz plastic 
@@ -588,6 +580,14 @@ rigid scoop was extremely useful.
 
 I backflushed my filter in a sink (blue coupler) every time I slept 
 off trail and never had a problem with the filtering becoming slow.
+
+I had some problems with water supply given the drought that 
+was going on in PA and VA during my hike. Any time I passed 
+a usable source in a dry area I would "camel up" (i.e. drink a 
+liter) and then collect at least 1.7L to carry. If it looked 
+like there wasn't going to be water at my target campsite I would
+carry a second liter in reserve. 2.7L of water weighs around
+6 pounds so this was a major pain in the back.
 
 I started off carrying 1L and 700mL Smartwater bottles. I carried
 the 700mL bottle in a front bottle holder for easy access during
