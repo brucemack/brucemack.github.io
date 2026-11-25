@@ -232,7 +232,7 @@ a day ahead of schedule just because, etc.).
 
 My longest "normal" day (i.e. repeatable) was 33 miles. I think that
 day was going into the nice dining room at the Big Meadows Lodge in the 
-Shenandoahs. The dinner made it worth it. 
+Shenandoahs. The dinner made it worthwhile.
 
 My longest 24-hour period was logged during the AT Four-State
 Challenge across PA/MD/WV/VA. I did 48 miles that day but needed to
@@ -581,10 +581,10 @@ Sometimes I even collected water from "seeping" sources, so a thin,
 rigid scoop was extremely useful.
 
 I backflushed my filter in a sink (blue coupler) every time I slept 
-off trail and never had a problem with the filtering becoming slow.
+off trail and never had a problem with the filter becoming slow.
 
 I had some problems with water supply given the drought that 
-was going on in PA and VA during my hike. Any time I passed 
+was going on in the south during my hike. Any time I passed 
 a usable source in a dry area I would "camel up" (i.e. drink a 
 liter) and then collect at least 1.7L to carry. If it looked 
 like there wasn't going to be water at my target campsite I would
@@ -632,8 +632,8 @@ paper and carry it on your hike to use as a reminder during the inevitable bad
 days.
 
 I think this is solid advice. That said, I wasn't able to articulate
-a clear reason why I was doing the hike, although I was pretty 
-confident that the "why" would reveal itself along the way. Zach's advice notwithstanding, I started my trip whyless. Fortunately, when the bad days
+a clear reason why I was doing the hike before I left, although I was pretty 
+confident that there was a "why" that would reveal itself along the way. Fortunately, when the bad days
 came I never considered quitting. As the trip went on I did
 get more clarity on the reasons why I was hiking.  Things all worked out
 in the end. 
@@ -674,7 +674,7 @@ to maintain your sanity.
 * Be honest with yourself before leaving on your hike: **some days
 (or weeks) on trail are really going to suck.** That's just part of 
 the experience. Don't be surprised and don't over-react in these
-situations.
+situations. You'll get through it.
 
 Gear
 ----
@@ -714,6 +714,11 @@ Reactor fleece winter liner in Hot Springs, NC.
 fragile sleeping pad from shelter floors. Also a great sit/nap pad.
 
 I was happy with all gear selections and wouldn't change anything.
+
+To answer a common question: no, I didn't bring camp shoes. There were 
+only 6 river crossings that required wading (a few at least knee deep).
+I just got my hiking shoes wet. In my view the weight of a second pair
+of shoes wasn't worth it.
 
 I see a lot of people online obsessing about UL and pack weights. As my 
 wise son pointed out before one of our trips, it might be more productive to improve
