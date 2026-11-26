@@ -716,12 +716,15 @@ Reactor fleece winter liner in Hot Springs, NC.
 * Gossamer Gear 1/8" foam pad -  particularly important for protecting your 
 fragile sleeping pad from shelter floors. Also a great sit/nap pad.
 
-I was happy with all gear selections and wouldn't change anything.
-
-To answer a common question: no, I didn't bring camp shoes. There were 
+Other:
+* I used a MSR Pocket Rocket 2 stove.
+* I used a Toaks 750mL titanium cooking pot.
+* To answer a common question: no, I didn't bring camp shoes. There were 
 only 6 river crossings that required wading (a few at least knee deep).
 I just got my hiking shoes wet. In my view the weight of a second pair
 of shoes wasn't worth it.
+
+I was happy with all gear selections and wouldn't change anything.
 
 I see a lot of people online obsessing about UL and pack weights. As my 
 wise son pointed out before one of our trips, it might be more productive to improve
@@ -765,10 +768,19 @@ dare pull it out.
 
 I traveled with my phone in low power and airplane modes at all times.
 
-The Garmin InReach Mini worked great for sending daily check-in messages to my family. I also used the Garmin text feature occasionally, but
+I am a Verizon mobile cellular subscriber. I had very little mobile cellular coverage in Maine. After Maine the coverage was quite
+good, particularly when I was at high points. I would estimates that 
+I had at least one bar of mobile service (enough to make a call) at
+75% of the campsites that I stayed at. When the cellular network 
+was not available I was able to use the satellite text feature 
+(SOS) of the iPhone - this was quite impressive.
+
+The Garmin InReach Mini 2 worked great for sending daily check-in messages to my family. I also used the Garmin text feature occasionally, but
 the satellite messaging feature on the iPhone was generally faster. 
 I only turned on my Garmin in the evening for as long as it took to 
-transmit the check-in message, download any texts, and download the weather forecast. The battery life on the Garmin is very good. 
+transmit the check-in message, download any texts, and download the weather forecast. Sometimes I needed to wait up to an hour for the 
+Garmin communication to complete, particularly in valleys or places
+under dense vegetation. The battery life on the Garmin is very good. 
 
 The Nitecore NU25 is a great headlamp. I could get around 8 hours of
 night hiking on a single charge. The low-power "moonlight" mode was
