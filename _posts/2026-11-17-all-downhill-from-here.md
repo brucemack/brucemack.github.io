@@ -375,7 +375,7 @@ This long list makes the trip look more planned than it actually
 was. The only two stops on the list that were pre-planned were the first
 (Shaw's) and my weekend trip home. Other than the Mt. Washington
 Hotel, I had never heard of any of the other places. I think it works
-better this way: just take the nights off as you need them down the 
+better this way: just take the nights off as/when you need them down the 
 track.
 
 Nights On Trail
@@ -383,7 +383,7 @@ Nights On Trail
 
 I slept on trail about 95 nights. Most of the time I slept in 
 my tent (Zpacks Solo Plex 1P). I usually camped at an established 
-shelter or tent sites because flat tent spots were easier to find 
+shelter or tent site because flat tent spots were easier to find 
 in those places. It's very important to find a stopping point that will result
 in a good night sleep. Your body needs sleep to recover from a long 
 day of hiking.
@@ -404,7 +404,7 @@ late-arriving hikers, snoring, mice, and snakes.
 Drifters and/or folks with mental problems can occasionally be a 
 problem in shelter areas, particularly those built very
 close to road crossings. I only ran into this twice and it's not
-too hard to manage. My advice would be:
+too hard to manage. My advice:
 * All other things being equal, I avoided shelters and campsites that 
 were close to a road.
 * When rolling into a shelter area I never took off my pack until 
