@@ -371,6 +371,13 @@ I spent the night at each of these places:
 * Above the Clouds Hostel, Suches, GA
 * The Amicalola Lodge, Amicalola State Park, GA
 
+This long list makes the trip look more planned than it actually
+was. The only two stops on the list that were pre-planned were the first
+(Shaw's) and my weekend trip home. Other than the Mt. Washington
+Hotel, I had never heard of any of the other places. I think it works
+better this way: just take the nights off as you need them down the 
+track.
+
 Nights On Trail
 ---------------
 
@@ -655,9 +662,11 @@ Here are a few tips for dealing with the mental side of an AT hike:
 for the first time on your actual thru-hike.  
 * Don't plan too far ahead - that can become overwhelming. Just focus on
 getting to the next water source, the next campsite, and the next
-resupply. I'm a bad planner so perhaps this is self-serving, but when
+resupply. Sometimes a plan that goes too far into the future can add 
+pressure to make a bunch of intermediate deadlines. If you have no plan then you're never behind! I'm a bad planner so
+perhaps this is self-serving, but when
 I started planning out a week or two things tended to start 
-derailing. Just get yourself to the next campsite! I didn't even
+derailing.  Just get yourself to the next campsite! I didn't even
 book my flight home until I was less than a week from the finish.
 * Always remember that your situation is temporary. The climb
 will end. The rain will stop. Your gear will dry. The ache in your 
@@ -668,15 +677,15 @@ problem will pass.
 during the day. Constant checking of progress makes the day drag.
 * Text chains with family, classmates, friends back home, and 
 other hikers on the trail provided a big morale boost. 
-* Stretch mileage goals like the Four-State Challenge or the Connecticut 
-Challenge are fun ways to break up the routine of the trip.
+* Stretch mileage goals like the Four-State Challenge, the Connecticut 
+Challenge, or just trying to beat your previous mileage record are fun ways to break up the routine of the trip.
 * Always introduce yourself to others at the shelters/campsites and
 make an effort to eat dinner with the group. The human contact (even
 with hikers that you know you'll never see again) will help you
 to maintain your sanity.
 * Be honest with yourself before leaving on your hike: **some days
 (or weeks) on trail are really going to suck.** That's just part of 
-the experience. Don't be surprised and don't over-react in these
+the AT experience. Don't be surprised and don't over-react in these
 situations. You'll get through it.
 
 Gear
@@ -740,6 +749,13 @@ I carried:
 * A Nitecore NB10000 Gen 3 power bank (10,000 mAh capacity)
 * A Garmin InReach Mini 2 satellite messenger.
 * A cheap Casio wrist watch with an alarm.
+* A Anker charging block (45W) with two USB-C ports. This was 
+a modern block that had quick-charge capability for the iPhone.
+* Two USB-C cables: one fairly long and one extremely short. Having
+one long cable was helpful for situations where I needed
+to charge my phone and use it at the same time. Having the cables
+to charge a phone and a power bank at the same time was very useful 
+when I charged while I slept.
 
 I used the ubiquitous FarOut app for navigation. I won't get
 into a long description of FarOut because it is covered well
